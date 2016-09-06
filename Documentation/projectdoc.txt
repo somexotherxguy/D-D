@@ -1,0 +1,49 @@
+4096 Project Info Doc
+
+=================================
+----------- Tasks ---------------
+=================================
+Sean Langford
+    Completed
+        -
+    In Progress
+        -
+Sean Dickey
+    Completed
+        -
+    In Progress
+        -
+Dylan Roach
+    Completed
+        -
+    In Progress
+        -
+Jace O'Brian
+    Completed
+        -
+    In Progress
+        -
+Logan Rodgers
+    Completed
+        -
+    In Progress
+        -
+Jonathon Walsh
+    Completed
+        -
+    In Progress
+        -
+
+=================================
+------- Project Outline ---------
+=================================
+Base Project (should be done by first presentation)
+    Front-End Features
+        - readable/usable web layout
+        - automate character sheet
+            * only automate small amount of things such as auto-level-ups
+
+    Back-End Features
+        - username and password functionality
+        - store character sheets
+            * username should be the key for each stored char sheet
