@@ -1,0 +1,128 @@
+create table characterinfo(
+	play_name varchar(30) not null,
+	char_name varchar(30) not null,
+	level int,
+	race varchar(30) not null,
+	align varchar(30) not null,
+	age int,
+	height int not null,
+	weight int not null,
+	eyes varchar(30) not null,
+	skin varchar(30) not null,
+	hair varchar(30) not null,
+	hp_total int,
+	hp_current int,
+	temp_hp int,
+	hit_die int,
+	ac int,
+	xp int,
+	speed int,
+	prof int,
+	inspir bool not null,
+	init int
+
+);
+
+create table deathsaves(
+	play_name varchar(30) not null,
+	de_suc int,
+	de_fail int
+);
+
+create table attributes(
+	play_name varchar(30) not null,
+	str int,
+	dex int,
+	con int,
+	intel int,
+	wis int,
+	cha int,
+	str_mod int,
+	dex_mod int,
+	con_mod int,
+	intel_mod int,
+	wis_mod int,
+	cha_mod int
+
+);
+
+create table skills(
+	play_name varchar(30) not null,
+	acro int,
+	ani_hand int,
+	arcana int,
+	athl int,
+	decep int,
+	hist int,
+	insight int,
+	intim int,
+	invest int,
+	medi int,
+	nat int,
+	percep int,
+	perform int,
+	pers int,
+	reli int,
+	soh int,
+	stealth int,
+	survival int,
+	pass_invest int,
+	pass_insight int,
+	pass_percep int
+	acro_prof bool not null,
+	ani_hand_prof bool not null,
+	arcana_prof bool not null,
+	athl_prof bool not null,
+	decep_prof bool not null,
+	hist_prof bool not null,
+	insight_prof bool not null,
+	intim_prof bool not null,
+	invest_prof bool not null,
+	medi_prof bool not null,
+	nat_prof bool not null,
+	percep_prof bool not null,
+	perform_prof bool not null,
+	pers_prof bool not null,
+	reli_prof bool not null,
+	soh_prof bool not null,
+	stealth_prof bool not null,
+	survival_prof bool not null,
+	pass_invest_prof bool not null,
+	pass_insight_prof bool not null,
+	pass_percep_prof bool not null
+);
+
+create table background_equip(
+	play_name varchar(30) not null,
+	personality varchar(1000),
+	ideals varchar(1000),
+	bonds varchar(1000),
+	flaws varchar(1000),
+	features varchar(1000),
+	feats varchar(1000),
+	equip varchar(1000),
+	plat int,
+	gold int,
+	silver int,
+	copper int,
+	languages varchar(1000),
+	tool_prof varchar(1000),
+	backstory varchar(1000),
+	weap_prof varchar(1000)
+);
+
+create table saves(
+	play_name varchar(30) not null,
+	str_save int,
+	dex_save int,
+	con_save int,
+	intel_save int,
+	wis_save int,
+	cha_save int,
+	str_prof bool not null,
+	dex_prof bool not null,
+	con_prof bool not null,
+	intel_prof bool not null,
+	wis_prof bool not null,
+	cha_prof bool not null
+);
