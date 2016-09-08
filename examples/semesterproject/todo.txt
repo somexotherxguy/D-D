@@ -1,0 +1,22 @@
+Project By: dkmg24 & mststudent
+-------------------------------
+Dec 8 2014
+dkmg24 - Added bulk of todo list
+-------------------------------
+Last Update: Dec 9 2014
+By: mststudent
+
+Bugs:
+
+Features:
+Add drag & drop
+change navigation from double click to something else for mobile
+find a way to simplify drawTree
+get rid of the JSON area, replace with download button - Might need to use Ajax calls for this to work, so we will need either php or a webframe to do this. I think js can't really do this (easily) due to security problems that can come up.
+center interface in window
+
+Architecture:
+migrate to Apache - Apache or Apache2 or Lighttpd?
+migrate to mySQL - which is better for this mySQL or postgresql?
+migrate from pure html w/js to a web-frame w/js (like bootstrap or something) it
+could solve the mobile compatibility and help with making things look "pretty"
