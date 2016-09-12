@@ -17,7 +17,7 @@ Dylan Roach
     Completed
         -
     In Progress
-        -
+        - Improve knowledge of JavaScript
 Jace O'Brian
     Completed
         -
