@@ -221,8 +221,6 @@ create table class(
 	FOREIGN KEY (username) REFERENCES users(username)
 );
 
-Needs Class specific resources( probably as a table)
-Needs Class specific tables for spell casting
 possibly use subclass variable in characterinfo
 Needs some manner of handling weapon stats(perhaps something for later)
 
