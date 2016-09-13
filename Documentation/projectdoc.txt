@@ -26,11 +26,16 @@ Jace O'Brian
         -
     In Progress
         -
-Logan Rodgers
+Logan Rogers
     Completed
-        -
+        - Modeled basic format of SQL database
+	- Helped create baseline character tables
+	- Created User table and Characters table connecting a user with all
+ 	  their characters.
     In Progress
-        -
+        - Create Equipment/Magic/Class tables
+	- Potentially reformat SQL database if needed or convenient
+
 Jonathon Walsh
     Completed
         -
