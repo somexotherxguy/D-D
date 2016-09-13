@@ -8,17 +8,16 @@ CREATE TABLE users(
 
 CREATE TABLE characters(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
+	user varchar(30),
 
 	PRIMARY KEY (char_name),
-	FOREIGN KEY (username) REFERENCES users(username),
+	FOREIGN KEY (user) REFERENCES users(username)
 
 	ON DELETE CASCADE
 );
 
 CREATE TABLE basic_info(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
 	level int,
 	race varchar(30) NOT NULL,
 	alignment varchar(30),
@@ -41,28 +40,24 @@ CREATE TABLE basic_info(
 	melee_mod int,
 	range_mod int,
 	
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
-	ON DELETE CASCADE
+ON DELETE CASCADE
 );
 
 
 CREATE TABLE deathsaves(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
 	successes int,
 	failures int,
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
 	ON DELETE CASCADE
 );
 
 CREATE TABLE attributes(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
 	str int,
 	dex int,
 	con int,
@@ -76,15 +71,13 @@ CREATE TABLE attributes(
 	wis_mod int,
 	cha_mod int,
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
 	ON DELETE CASCADE
 );
 
 CREATE TABLE skills(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
 	acro int,
 	ani_hand int,
 	arcana int,
@@ -128,15 +121,13 @@ CREATE TABLE skills(
 	pass_insight_prof bool not null,
 	pass_percep_prof bool not null,
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
 	ON DELETE CASCADE
 );
 
 CREATE TABLE background(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
 	personality varchar(1000),
 	ideals varchar(1000),
 	bonds varchar(1000),
@@ -148,15 +139,13 @@ CREATE TABLE background(
 	backstory varchar(1000),
 	weap_prof varchar(1000)
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
 	ON DELETE CASCADE
 );
 
 CREATE TABLE equipment_treasure(
 	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
 	equip varchar(1000),
 	treasure varchar(1000),
 	plat int,
@@ -164,15 +153,13 @@ CREATE TABLE equipment_treasure(
 	silver int,
 	copper int,
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
 	ON DELETE CASCADE
 );
 
 CREATE TABLE saves(
-	char_name varchar(100) NOT NULL,
-	username varchar(30) NOT NULL,
+	char_name varchar(100) NOT NULL,	
 	str_save int,
 	dex_save int,
 	con_save int,
@@ -186,12 +173,15 @@ CREATE TABLE saves(
 	wis_prof bool NOT NULL,
 	cha_prof bool NOT NULL,
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name),
-	FOREIGN KEY (username) REFERENCES users(username)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name)
 
 	ON DELETE CASCADE
 );
 
+create table class(
+	username varchar(30) not null,
+	
+);
 
 Needs Class specific resources( probably as a table)
 Needs Class specific tables for spell casting
@@ -202,6 +192,9 @@ Needs some manner of handling weapon stats(perhaps something for later)
 ------------------------------------------------------------------
 Test Inserts
 ------------------------------------------------------------------
+----------------------------------------------------------------
+Test Inserts
+----------------------------------------------------------------
 --------------------------------
 Users
 --------------------------------
