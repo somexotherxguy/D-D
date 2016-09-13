@@ -15,6 +15,9 @@ Sean Dickey
         - imported HTML field names into JavaScript
     In Progress
         - Programmatically translate user requests to SQL operations.
+        - Set up communication with backend server.
+        - Define communication layout for backend server.
+        - Run test data both into and out of SQL server.
 Dylan Roach
     Completed
         - 
