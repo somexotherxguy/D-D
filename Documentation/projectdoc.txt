@@ -21,11 +21,12 @@ Dylan Roach
     In Progress
         - Improve knowledge of JavaScript
         - Create login functionality
-Jace O'Brian
+Jace O'Brien
     Completed
-        -
+        - 
     In Progress
-        -
+        - Web Page Prototyping
+        - Material design exploration 
 Logan Rogers
     Completed
         - Modeled basic format of SQL database
