@@ -17,10 +17,9 @@ Sean Dickey
         - Programmatically translate user requests to SQL operations.
 Dylan Roach
     Completed
-        - 
+        - Researched JavaScript functionality.
     In Progress
-        - Improve knowledge of JavaScript
-        - Create login functionality
+        - Play with mock data.
 Jace O'Brien
     Completed
         - 
