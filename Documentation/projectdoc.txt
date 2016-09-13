@@ -18,6 +18,7 @@ Dylan Roach
         -
     In Progress
         - Improve knowledge of JavaScript
+        - Create login functionality
 Jace O'Brian
     Completed
         -
