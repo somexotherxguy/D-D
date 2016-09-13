@@ -5,9 +5,11 @@
 =================================
 Sean Langford
     Completed
-        -
+        - Created Character Tables for sql database
+        - Created test inserts for Character Tables
     In Progress
-        -
+        - Create Class Tables
+        - Create Magic Tables
 Sean Dickey
     Completed
         -
