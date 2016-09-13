@@ -7,8 +7,8 @@ Sean Langford
     Completed
         - Created Character Tables for sql database
         - Created test inserts for Character Tables
+        - Created Class Tables
     In Progress
-        - Create Class Tables
         - Create Magic Tables
 Sean Dickey
     Completed
@@ -20,15 +20,15 @@ Sean Dickey
         - Run test data both into and out of SQL server.
 Dylan Roach
     Completed
+        - Researched JavaScript functionality.
+    In Progress
+        - Play with mock data.
+Jace O'Brien
+    Completed
         - 
     In Progress
-        - Improve knowledge of JavaScript
-        - Create login functionality
-Jace O'Brian
-    Completed
-        -
-    In Progress
-        -
+        - Web Page Prototyping
+        - Material design exploration 
 Logan Rogers
     Completed
         - Modeled basic format of SQL database
