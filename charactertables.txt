@@ -193,8 +193,32 @@ CREATE TABLE saves(
 );
 
 create table class(
-	username varchar(30) not null,
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
+	rage int,
+	inspiration_die int,
+	beast_shifts int,
+	action_surges int,
+	superiority_die int,
+	channeled_div int,
+	ki_points int,
+	lay_on_hands int,
+	sorceror_points int,
+	invocations int,
+	cantrip_slots int,
+	one_slot int,
+	two_slot int,
+	three_slot int,
+	four_slot int,
+	five_slot int,
+	six_slot int,
+	seven_slot int,
+	eight_slot int,
+	nine_slot int,
+	spells_known int,
 	
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
 );
 
 Needs Class specific resources( probably as a table)
