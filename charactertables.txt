@@ -250,54 +250,54 @@ VALUES
 Basic Info
 --------------------------------
 INSERT INTO 
-basic_info(char_name, level, race, alignment, exp, age, height, weight, eyes, skin, hair, hp_total, hp_current, hp_temp, hit_die, armor_class, initiative, speed, inspiration, prof, melee_mod, range_mod) 
+basic_info(char_name, username, level, race, alignment, exp, age, height, weight, eyes, skin, hair, hp_total, hp_current, hp_temp, hit_die, armor_class, initiative, speed, inspiration, prof, melee_mod, range_mod) 
 VALUES 
-(‘Liekki’, 15, ‘Fire Genasi’, ‘Neutral Evil’, 0, 26, 71, 195, ‘Orange’, ‘Red’, ‘Orange’, 97, 97, 0, 15, 16, 3, 30, false, 5, 6, 8);
+(‘Liekki’, ‘Sean_test’, 15, ‘Fire Genasi’, ‘Neutral Evil’, 0, 26, 71, 195, ‘Orange’, ‘Red’, ‘Orange’, 97, 97, 0, 15, 16, 3, 30, false, 5, 6, 8);
 
 --------------------------------
 Death Saves
 --------------------------------
 INSERT INTO
-deathsaves(char_name, successes, failures)
+deathsaves(char_name, username, successes, failures)
 VALUES
-(‘Liekki’, 0, 0);
+(‘Liekki’, ‘Sean_test’, 0, 0);
 
 --------------------------------
 Attributes
 --------------------------------
 INSERT INTO
-attributes(char_name, str, dex, con, intel, wis, cha, str_mod, dex_mod, con_mod, intel_mod, wis_mod, cha_mod)
+attributes(char_name, username, str, dex, con, intel, wis, cha, str_mod, dex_mod, con_mod, intel_mod, wis_mod, cha_mod)
 VALUES
-(‘Liekki’, 12, 16, 16, 13, 14, 18, 1, 3, 3, 1, 2, 4);
+(‘Liekki’, ‘Sean_test’, 12, 16, 16, 13, 14, 18, 1, 3, 3, 1, 2, 4);
 
 --------------------------------
 Skills
 --------------------------------
 INSERT INTO
-skills(char_name, acro, ani_hand, arcana, athl, decep, hist, insight, intim, invest, medi, nat, percep, perform, pers, reli, soh, stealth, survival, pass_invest, pass_insight, pass_perce, acro_prof, ani_hand_prof, arcana_prof, athl_prof, decep_prof, hist_prof, insight_prof, intim_prof, invest_prof, medi_prof, nat_prof, percep_prof, perform_prof, pers_prof, reli_prof, soh_prof, stealth_prof, survival_prof, pass_invest_prof, pass_insight_prof, pass_percep_prof)
+skills(char_name, username, acro, ani_hand, arcana, athl, decep, hist, insight, intim, invest, medi, nat, percep, perform, pers, reli, soh, stealth, survival, pass_invest, pass_insight, pass_perce, acro_prof, ani_hand_prof, arcana_prof, athl_prof, decep_prof, hist_prof, insight_prof, intim_prof, invest_prof, medi_prof, nat_prof, percep_prof, perform_prof, pers_prof, reli_prof, soh_prof, stealth_prof, survival_prof, pass_invest_prof, pass_insight_prof, pass_percep_prof)
 VALUES
-(‘Liekki’, 3, 2, 6, 1, 9, 1, 2, 9, 1, 2, 1, 7, 4, 4, 1, 3, 3, 2, 11, 12, 16, false, false, true, false, true, false, false, true, false, false, false, true, false, false, false, false, false, false);
+(‘Liekki’, ‘Sean_test’, 3, 2, 6, 1, 9, 1, 2, 9, 1, 2, 1, 7, 4, 4, 1, 3, 3, 2, 11, 12, 16, false, false, true, false, true, false, false, true, false, false, false, true, false, false, false, false, false, false);
 
 --------------------------------
 Background
 --------------------------------
 INSERT INTO
-background(char_name, personality, ideals, bonds, flaws, features_traits, feats, languages, tool_prof, backstory, weap_prof)
+background(char_name, username, personality, ideals, bonds, flaws, features_traits, feats, languages, tool_prof, backstory, weap_prof)
 VALUES
-(‘Liekki’, ‘short temper’, ‘None’, ‘None’, ‘typical evil things’, ‘Darkvision, Fire Resistance, Fire Genasi Race Spells, Sorcery Points, Heightened Spell, Quickened Spell, Twinned Spell, Dragon Ancestor, Draconic Resilience, Elemental Affinity, Dragon Wings’, ‘War Caster, Elemental Adept (Fire)’, ‘Common, Ignan, Draconic’, ‘None’, ‘So deep you could drown in it’, ‘Simple, Martial’);
+(‘Liekki’, ‘Sean_test’, ‘short temper’, ‘None’, ‘None’, ‘typical evil things’, ‘Darkvision, Fire Resistance, Fire Genasi Race Spells, Sorcery Points, Heightened Spell, Quickened Spell, Twinned Spell, Dragon Ancestor, Draconic Resilience, Elemental Affinity, Dragon Wings’, ‘War Caster, Elemental Adept (Fire)’, ‘Common, Ignan, Draconic’, ‘None’, ‘So deep you could drown in it’, ‘Simple, Martial’);
 
 --------------------------------
 Equipment Treasure
 --------------------------------
 INSERT INTO
-equipment_treasure(char_name, equip, treasure, plat, gold, silver, copper)
+equipment_treasure(char_name, username, equip, treasure, plat, gold, silver, copper)
 VALUES
-(‘Liekki’, ‘Stuff’, ‘Stuff’, 0, 0, 0, 0);
+(‘Liekki’, ‘Sean_test’, ‘Stuff’, ‘Stuff’, 0, 0, 0, 0);
 
 --------------------------------
 Saves 
 --------------------------------
 INSERT INTO
-saves(char_name, str_save, dex_save, con_save, intel_save, wis_save, cha_save, str_prof, dex_prof, con_prof, intel_prof, wis_prof, cha_prof)
+saves(char_name, username, str_save, dex_save, con_save, intel_save, wis_save, cha_save, str_prof, dex_prof, con_prof, intel_prof, wis_prof, cha_prof)
 VALUES
-(‘Liekki’, 1, 3, 8, 1, 2, 9, false, false, true, false, false, true);
+(‘Liekki’, ‘Sean_test’, 1, 3, 8, 1, 2, 9, false, false, true, false, false, true);
