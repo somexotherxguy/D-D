@@ -12,12 +12,12 @@ Sean Langford
         - Create Magic Tables
 Sean Dickey
     Completed
-        -
+        - imported HTML field names into JavaScript
     In Progress
-        -
+        - Programmatically translate user requests to SQL operations.
 Dylan Roach
     Completed
-        -
+        - 
     In Progress
         - Improve knowledge of JavaScript
         - Create login functionality
@@ -35,12 +35,6 @@ Logan Rogers
     In Progress
         - Create Equipment/Magic/Class tables
 	- Potentially reformat SQL database if needed or convenient
-
-Jonathon Walsh
-    Completed
-        -
-    In Progress
-        -
 
 =================================
 ------- Project Outline ---------
