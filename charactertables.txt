@@ -1,41 +1,68 @@
-create table characterinfo(
-	play_name varchar(30),
-	char_name varchar(30) not null,
+CREATE TABLE users(
+	username varchar(30) NOT NULL,
+	user_pw varchar(30) NOT NULL,
+	player_name varchar(100) NOT NULL,
+
+	PRIMARY KEY (username)
+);
+
+CREATE TABLE characters(
+	char_name varchar(100) NOT NULL,
+	user varchar(30),
+
+	PRIMARY KEY (char_name),
+	FOREIGN KEY (user) REFERENCES users(username)
+
+	ON DELETE CASCADE
+);
+
+CREATE TABLE basic_info(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
 	level int,
-	race varchar(30) not null,
-	align varchar(30) not null,
+	race varchar(30) NOT NULL,
+	alignment varchar(30),
+	exp int,
 	age int,
-	height int not null,
-	weight int not null,
-	eyes varchar(30) not null,
-	skin varchar(30) not null,
-	hair varchar(30) not null,
+	height int NOT NULL,
+	weight int NOT NULL,
+	eyes varchar(30) NOT NULL,
+	skin varchar(30) NOT NULL,
+	hair varchar(30) NOT NULL,
 	hp_total int,
 	hp_current int,
-	temp_hp int,
+	hp_temp int,
 	hit_die int,
-	ac int,
-	xp int,
+	armor_class int,
+	initiative int,
 	speed int,
+	Inspiration bool NOT NULL,
 	prof int,
-	inspir bool not null,
-	init int,
-	melee_mod int, 
+	melee_mod int,
 	range_mod int,
+	
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
 
-	primary key (play_name)
+	ON DELETE CASCADE
 );
 
-create table deathsaves(
-	play_name varchar(30) not null,
-	de_suc int,
-	de_fail int,
 
-	foreign key(play_name) references characterinfo(play_name)
+CREATE TABLE deathsaves(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
+	successes int,
+	failures int,
+
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
+
+	ON DELETE CASCADE
 );
 
-create table attributes(
-	play_name varchar(30) not null,
+CREATE TABLE attributes(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
 	str int,
 	dex int,
 	con int,
@@ -49,11 +76,15 @@ create table attributes(
 	wis_mod int,
 	cha_mod int,
 
-	foreign key(play_name) references characterinfo(play_name)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
+
+	ON DELETE CASCADE
 );
 
-create table skills(
-	play_name varchar(30) not null,
+CREATE TABLE skills(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
 	acro int,
 	ani_hand int,
 	arcana int,
@@ -93,49 +124,78 @@ create table skills(
 	soh_prof bool not null,
 	stealth_prof bool not null,
 	survival_prof bool not null,
+	pass_invest_prof bool not null,
+	pass_insight_prof bool not null,
+	pass_percep_prof bool not null,
 
-	foreign key(play_name) references characterinfo(play_name)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
+
+	ON DELETE CASCADE
 );
 
-create table background_equip(
-	play_name varchar(30) not null,
+CREATE TABLE background(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
 	personality varchar(1000),
 	ideals varchar(1000),
 	bonds varchar(1000),
 	flaws varchar(1000),
-	features varchar(1000),
+	features_traits varchar(1000),
 	feats varchar(1000),
+	languages varchar(1000),
+	tool_prof varchar(1000),
+	backstory varchar(1000),
+	weap_prof varchar(1000)
+
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
+
+	ON DELETE CASCADE
+);
+
+CREATE TABLE equipment_treasure(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
 	equip varchar(1000),
+	treasure varchar(1000),
 	plat int,
 	gold int,
 	silver int,
 	copper int,
-	languages varchar(1000),
-	tool_prof varchar(1000),
-	backstory varchar(1000),
-	weap_prof varchar(1000),
 
-	foreign key(play_name) references characterinfo(play_name)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
+
+	ON DELETE CASCADE
 );
 
-create table saves(
-	play_name varchar(30) not null,
+CREATE TABLE saves(
+	char_name varchar(100) NOT NULL,
+	username varchar(30) NOT NULL,
 	str_save int,
 	dex_save int,
 	con_save int,
 	intel_save int,
 	wis_save int,
-	cha_save int,
-	str_prof bool not null,
-	dex_prof bool not null,
-	con_prof bool not null,
-	intel_prof bool not null,
-	wis_prof bool not null,
-	cha_prof bool not null,
+	cha_save int
+	str_prof bool NOT NULL,
+	dex_prof bool NOT NULL,
+	con_prof bool NOT NULL,
+	intel_prof bool NOT NULL,
+	wis_prof bool NOT NULL,
+	cha_prof bool NOT NULL,
 
-	foreign key(play_name) references characterinfo(play_name)
+	FOREIGN KEY (char_name) REFERENCES characters(char_name),
+	FOREIGN KEY (username) REFERENCES users(username)
+
+	ON DELETE CASCADE
 );
 
+create table class(
+	username varchar(30) not null,
+	
+);
 
 Needs Class specific resources( probably as a table)
 Needs Class specific tables for spell casting
@@ -146,80 +206,77 @@ Needs some manner of handling weapon stats(perhaps something for later)
 ------------------------------------------------------------------
 Test Inserts
 ------------------------------------------------------------------
-------------
-characterinfo
-------------
+----------------------------------------------------------------
+Test Inserts
+----------------------------------------------------------------
+--------------------------------
+Users
+--------------------------------
+INSERT INTO 
+users(username, user_pw, player_name) 
+VALUES 
+(‘Sean_test’, ‘test’, ‘Sean L’);
 
-insert into characterinfo(play_name, char_name, level, race, align, age, height, 
+--------------------------------
+Characters
+--------------------------------
+INSERT INTO 
+characters(char_name, user)
+VALUES 
+(‘Liekki’, ‘Sean_test’);
 
-weight, eyes, skin, hair, hp_total, hp_current, temp_hp, hit_die, ac, xp, speed, 
+--------------------------------
+Basic Info
+--------------------------------
+INSERT INTO 
+basic_info(char_name, level, race, alignment, exp, age, height, weight, eyes, skin, hair, hp_total, hp_current, hp_temp, hit_die, armor_class, initiative, speed, inspiration, prof, melee_mod, range_mod) 
+VALUES 
+(‘Liekki’, 15, ‘Fire Genasi’, ‘Neutral Evil’, 0, 26, 71, 195, ‘Orange’, ‘Red’, ‘Orange’, 97, 97, 0, 15, 16, 3, 30, false, 5, 6, 8);
 
-prof, inspir, init, melee_mod, range_mod) values ('Sean', 'Liekki', 15, 'Fire 
+--------------------------------
+Death Saves
+--------------------------------
+INSERT INTO
+deathsaves(char_name, successes, failures)
+VALUES
+(‘Liekki’, 0, 0);
 
-Genasi', 'Neutral Evil', 26, 71, 195, 'Orange', 'Red', 'Orange', 97, 97, 0, 15, 16, 
+--------------------------------
+Attributes
+--------------------------------
+INSERT INTO
+attributes(char_name, str, dex, con, intel, wis, cha, str_mod, dex_mod, con_mod, intel_mod, wis_mod, cha_mod)
+VALUES
+(‘Liekki’, 12, 16, 16, 13, 14, 18, 1, 3, 3, 1, 2, 4);
 
-0, 30, 5, false, 3, 6, 8);
+--------------------------------
+Skills
+--------------------------------
+INSERT INTO
+skills(char_name, acro, ani_hand, arcana, athl, decep, hist, insight, intim, invest, medi, nat, percep, perform, pers, reli, soh, stealth, survival, pass_invest, pass_insight, pass_perce, acro_prof, ani_hand_prof, arcana_prof, athl_prof, decep_prof, hist_prof, insight_prof, intim_prof, invest_prof, medi_prof, nat_prof, percep_prof, perform_prof, pers_prof, reli_prof, soh_prof, stealth_prof, survival_prof, pass_invest_prof, pass_insight_prof, pass_percep_prof)
+VALUES
+(‘Liekki’, 3, 2, 6, 1, 9, 1, 2, 9, 1, 2, 1, 7, 4, 4, 1, 3, 3, 2, 11, 12, 16, false, false, true, false, true, false, false, true, false, false, false, true, false, false, false, false, false, false);
 
-------------
-deathsaves
-------------
+--------------------------------
+Background
+--------------------------------
+INSERT INTO
+background(char_name, personality, ideals, bonds, flaws, features_traits, feats, languages, tool_prof, backstory, weap_prof)
+VALUES
+(‘Liekki’, ‘short temper’, ‘None’, ‘None’, ‘typical evil things’, ‘Darkvision, Fire Resistance, Fire Genasi Race Spells, Sorcery Points, Heightened Spell, Quickened Spell, Twinned Spell, Dragon Ancestor, Draconic Resilience, Elemental Affinity, Dragon Wings’, ‘War Caster, Elemental Adept (Fire)’, ‘Common, Ignan, Draconic’, ‘None’, ‘So deep you could drown in it’, ‘Simple, Martial’);
 
-insert into deathsaves(play_name, de_suc, de_fail) values ('Sean', 0, 0);
+--------------------------------
+Equipment Treasure
+--------------------------------
+INSERT INTO
+equipment_treasure(char_name, equip, treasure, plat, gold, silver, copper)
+VALUES
+(‘Liekki’, ‘Stuff’, ‘Stuff’, 0, 0, 0, 0);
 
-------------
-attributes
-------------
-
-insert into attributes(play_name, str, dex, con, intel, wis, cha, str_mod, dex_mod, 
-
-con_mod, intel_mod, wis_mod, cha_mod) values ('Sean', 12, 16, 16, 13, 14, 18, 1, 3, 
-
-3, 1, 2, 4);
-
-------------
-skills
-------------
-
-insert into skills(play_name, acro, ani_hand, arcana, athl, decep, hist, insight, 
-
-intim, invest, medi, nat, percep, perform, pers, reli, soh, stealth, survival, 
-
-pass_invest, pass_insight, pass_percep, acro_prof, ani_hand_prof, arcana_prof, 
-
-athl_prof, decep_prof, hist_prof, insight_prof, intim_prof, invest_prof, medi_prof, 
-
-nat_prof, percep_prof, perform_prof, pers_prof, reli_prof, soh_prof, stealth_prof, 
-
-survival_prof) values ('Sean', 3, 2, 6, 1, 9, 1, 2, 9, 1, 2, 1, 7, 4, 4, 1, 3, 3, 2, 
-
-11, 12, 16, false, false, true, false, true, false, false, true, false, false, false, 
-
-true, false, false, false, false, false, false);
-
-------------
-background_equip
-------------
-
-insert into background_equip(play_name, personality, ideals, bonds, flaws, features, 
-
-feats, equip, plat, gold, silver, copper, languages, tool_prof, backstory, weap_prof) 
-
-values ('Sean', 'short temper', 'None', 'None', 'typical evil things', 'Darkvision, 
-
-Fire Resistance, Fire Genasi Race Spells, Sorcery Points, Heightened Spell, Quickened 
-
-Spell, Twinned Spell, Dragon Ancestor, Draconic Resilience, Elemental Affinity, 
-
-Dragon Wings', 'War Caster, Elemental Adept(Fire)', 'Stuff', 0, 0, 0, 0, 'Common, 
-
-Ignan, Draconic', 'none', 'So deep you could drown in it', 'simple, martial');
-
-------------
-saves
-------------
-
-insert into saves(play_name, str_save, dex_save, con_save, intel_save, wis_save, 
-
-cha_save, str_prof, dex_prof, con_prof, intel_prof, wis_prof, cha_prof) values 
-
-('Sean', 1, 3, 8, 1, 2, 9, false, false, true, false, false, true);
+--------------------------------
+Saves 
+--------------------------------
+INSERT INTO
+saves(char_name, str_save, dex_save, con_save, intel_save, wis_save, cha_save, str_prof, dex_prof, con_prof, intel_prof, wis_prof, cha_prof)
+VALUES
+(‘Liekki’, 1, 3, 8, 1, 2, 9, false, false, true, false, false, true);
