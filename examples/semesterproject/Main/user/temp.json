@@ -5,55 +5,7 @@
 		{
 			"id":1,
 			"name":"childTask",
-			"children":[
-			{
-				"id":5,
-				"name":"title",
-				"description":"description",
-				"children":[
-				{
-					"id":7,
-					"name":"title",
-					"description":"description",
-					"children":[
-					{
-						"id":9,
-						"name":"title",
-						"description":"descriptiona",
-						"percent": 58,
-						"color": "#44ff00",
-						"children":[
-						{
-							"id":12,
-							"name":"title",
-							"description":"description",
-							"children":[]
-						}
-						]
-					},
-					{
-						"id":10,
-						"name":"title",
-						"description":"description",
-						"children":[]
-					}
-					]
-				},
-				{
-					"id":8,
-					"name":"title",
-					"description":"description",
-					"children":[]
-				}
-				]
-			},
-			{
-				"id":6,
-				"name":"title",
-				"description":"description",
-				"children":[]
-			}
-			]
+			"children":[]
 		},
 		{
 			"id":2,
