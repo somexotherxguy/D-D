@@ -21,6 +21,8 @@ Sean Dickey
 Dylan Roach
     Completed
         - Researched JavaScript functionality.
+        - Created Form for Character Info
+        - Added Submit button
     In Progress
         - Play with mock data.
 Jace O'Brien
