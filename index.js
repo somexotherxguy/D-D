@@ -8,14 +8,15 @@ name_array = [["Field Name", "Variable Name", "Field Type", "Data Type", "Requir
 function update() {
 	var form = document.getElementById("char_info");
     //var char_info = JSON.stringify(form)
-    var char_info = { };
+    var char_json = { };
     console.log(name_array.slice(1))
     for (field in name_array.slice(1)) {
     	try {
-    	    char_info[name_array.slice(1)[field][1]] = document.getElementById(name_array.slice(1)[field][1]).value;
+    	    char_json[name_array.slice(1)[field][1]] = document.getElementById(name_array.slice(1)[field][1]).value;
     	}
     	catch (err){;}
     }
+    console.log(JSON.stringify(char_json))
 	//form.submit();
 }
 
