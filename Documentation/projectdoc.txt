@@ -20,11 +20,12 @@ Sean Dickey
         - Run test data both into and out of SQL server.
 Dylan Roach
     Completed
-        - Researched JavaScript functionality.
+        - Researched JavaScript functionality
         - Created Form for Character Info
         - Added Submit button
+        - Created JSON Object
     In Progress
-        - Play with mock data.
+        - Play with mock data
 Jace O'Brien
     Completed
         - 
