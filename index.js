@@ -20,3 +20,11 @@ function update() {
 	//form.submit();
 }
 
+function() {
+	class_name = document.getElementById("class");
+	class_name.addEventListener("change", class_selected);
+}();
+
+function class_selected()  {
+	if class_name.value == "barbarian"
+}
