@@ -27,9 +27,11 @@ function update() {
 
 function class_selected(class_name)  {
   var archetype_list = document.getElementById("archetype");
-  for (i=0; i<archetype_list.length; i++) {
+  console.log(archetype_list.options.length)
+  for (i=0; i<archetype_list.options.length; i++) {
     archetype_list.remove(i);
   }
+  console.log(archetype_list.options.length)
   switch (class_name.value) {
     case "barbarian":
       archetype_list.insertAdjacentHTML("beforeend",
@@ -79,6 +81,130 @@ function class_selected(class_name)  {
       archetype_list.insertAdjacentHTML("beforeend",
         "<option value='college_of_toreador'>College of the Toréador</option>");
       break;
+	case "cleric":
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='arcana_domain'>Arcana Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='darkness_domain'>Darkness Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='dragon_domain'>Dragon Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='life_death_domain'>Life & Death Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='magic_domain'>Magic Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='martyrdom_domain'>Martyrdom Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='spider_domain'>Spider Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='spirit_domain'>Spirit Domain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='strife_domain'>Strife Domain</option>");      
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='undeath_domain'>Undeath Domain, Variant</option>");
+      break;
+	case "druid":
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_anathema'>Circle of Anathema</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_dragons'>Circle of Dragons</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_plants'>Circle of Plants</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_reptiles'>Circle of Reptiles</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_rot'>Circle of Rot - Druidic Circle</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_first_forest'>Circle of the First Forest</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_beast'>Circle of the Beast</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_furies'>Circle of the Furies</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='circle_of_sun'>Circle of the Sun</option>");
+	  break;
+	case "fighter":
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='archfighter'>Archfighter</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='cavalier'>Cavalier</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='dragonknight'>Dragonknight</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='dreadnought'>Dreadnought</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='elite_mercenary'>Elite Mercenary</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='gladiator'>Gladiator</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='guardian'>Guardian</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='gunslinger'>Gunslinger</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='hoplite'>Hoplite</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='reaver'>Reaver</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='rune_wielder'>Rune Wielder</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='samurai'>Samurai</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='shieldman'>Shieldman</option>");
+	  break;
+	case "monk":
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='dervish'>Dervish</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='ki_thief'>Ki Thief</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='miko'>Miko</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='bladeless_sword'>The Bladeless Sword</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_nine_gates'>Way of the Nine Gates of Hell</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_perfect_fist'>Way of the Perfect Fist</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_beggar'>Way of the Beggar</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_body'>Way of the Body</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_force'>Way of the Force</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_stars'>Way of the Innumerable Stars</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_jeskai'>Way of the Jeskai</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_limitless'>Way of the Limitless</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_mentor'>Way of the Mentor</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_silent_death'>Way of the Silent Death</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_fists'>Way of the Thousand Fists</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='way_of_zodiac'>Way of the Zodiac</option>");
+	  break;
+	case "paladin":
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='antipaladin'>Antipaladin</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_commerce'>Oath of Commerce</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_forbidden'>Oath of Forbidden Knowledge</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_knowledge'>Oath of Knowledge</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_sacrifice'>Oath of Sacrifice</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_inquisition'>Oath of the Inquisition</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_night'>Oath of the Night Paladin</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_time'>Oath of Time</option>");
+	  archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='oath_of_eternal_flame'>Oath of the Eternal Flame</option>");
+	  break;
     default:
       break;
   }
