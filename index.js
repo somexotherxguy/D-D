@@ -20,11 +20,66 @@ function update() {
 	//form.submit();
 }
 
-function() {
-	class_name = document.getElementById("class");
-	class_name.addEventListener("change", class_selected);
-}();
+(function() {
+  class_name = document.getElementById("class");
+	class_name.addEventListener("change", class_selected(class_name));
+})();
 
-function class_selected()  {
-	if class_name.value == "barbarian"
+function class_selected(class_name)  {
+  var archetype_list = document.getElementById("archetype");
+  for (i=0; i<archetype_list.length; i++) {
+    archetype_list.remove(i);
+  }
+  switch (class_name.value) {
+    case "barbarian":
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='cannibal'>Cannibal</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='einherji'>Einherji</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_crash'>Path of Crash</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_exile'>Path of the Exile</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_fist'>Path of the Fist</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_healer'>Path of the Healer</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_ki_warrior'>Path of the Ki Warrior</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_shaman'>Path of the Shaman</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_silent_berserker'>Path of the Silent Berserker</option>");      
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='path_of_slayer'>Path of the Slayer</option>");
+      break;
+    case "bard":
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_compulsion'>College of Compulsion</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_death'>College of Death's Song</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_healing'>College of Healing</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_pain'>College of Pain</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_sorrow'>College of Sorrow</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_sound'>College of Sound</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_taiko'>College of Taiko</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_vylius'>College of Vylius</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_boons'>College of Boons</option>");      
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_band'>College of the Band</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_gambler'>College of the Gambler</option>");
+      archetype_list.insertAdjacentHTML("beforeend",
+        "<option value='college_of_toreador'>College of the Toréador</option>");
+      break;
+    default:
+      break;
+  }
 }

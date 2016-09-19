@@ -39,7 +39,7 @@
         <option value="chaotic_evil">Chaotic Evil</option>
       </select></div>
     <div>Class
-      <select id="class">
+      <select id="class" onchange="class_selected(document.getElementById('class'));">
         <option value="barbarian">Barbarian</option>
         <option value="bard">Bard</option>
         <option value="cleric">Cleric</option>
@@ -55,11 +55,11 @@
       </select>
       <ul id="class_options">
         <li><div>Archetype
-          <select id="class">
+          <select id="archetype">
           </select>
         </div></li>
         <li><div>Fighting Style
-          <select id="class">
+          <select id="fighting_style">
           </select>
         </div></li>
       </ul>
