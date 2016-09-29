@@ -26,6 +26,7 @@ Dylan Roach
         - Created JSON Object
     In Progress
         - Play with mock data
+        - Generate appropriate dropdowns (Fighting Style, etc.) for Classes
 Jace O'Brien
     Completed
         - 
