@@ -20,25 +20,32 @@ function update() {
 	//form.submit();
 }
 
-(function() {
+/* (function() {
   class_name = document.getElementById("class");
-	class_name.addEventListener("change", class_selected(class_name));
-})();
+  class_name.addEventListener("change", class_selected(class_name));
+})(); */
 
-function class_selected(class_name)  {
+var class_options = {"fighter":{"archery":"Archery","defense": "Dueling","dueling": "Dueling","great_weapon": "Great Weapon Fighting","protection": "Protection","two_weapon":"Two Weapon Fighting","second_wind": "Second Wind"}}
+
+
+function class_selected(class_name = "fighter")  {
   var fighting_styles = document.getElementById("fighting_style")
   var archetype_list = document.getElementById("archetype");
   length = archetype_list.options.length
   for (var i = length - 1; i >= 0; i--) {
     archetype_list.remove(i);
   }
-  if (class_name.value !== "fighter") {
+  if (class_name !== "fighter") {
     length = fighting_styles.options.length
     for (var i = length - 1; i >= 0; i--) {
       fighting_styles.remove(i)
     }
   } else if (fighting_styles.options.length === 0) {
-    fighting_styles.insertAdjacentHTML("beforeend",
+	  for (i in class_options["fighter"]) {
+		  fighting_styles.insertAdjacentHTML("beforeend",
+		  '<option value="' + i + '">' + class_options["fighter"][i] + '</option>')
+	  }
+    /* fighting_styles.insertAdjacentHTML("beforeend",
       "<option value='archery'>Archery</option>")
     fighting_styles.insertAdjacentHTML("beforeend",
       "<option value='defense'>Defense</option>")
@@ -47,13 +54,13 @@ function class_selected(class_name)  {
     fighting_styles.insertAdjacentHTML("beforeend",
       "<option value='great_weapon'>Great Weapon Fighting</option>")
     fighting_styles.insertAdjacentHTML("beforeend",
-      "<option value='Protection'>Protection</option>")
+      "<option value='protection'>Protection</option>")
     fighting_styles.insertAdjacentHTML("beforeend",
       "<option value='two_weapon'>Two Weapon Fighting</option>")
     fighting_styles.insertAdjacentHTML("beforeend",
-      "<option value='second_wind'>Second Wind</option>")
+      "<option value='second_wind'>Second Wind</option>") */
   }
-  switch (class_name.value) {
+  switch (class_name) {
     case "barbarian":
       archetype_list.insertAdjacentHTML("beforeend",
         "<option value='cannibal'>Cannibal</option>");
