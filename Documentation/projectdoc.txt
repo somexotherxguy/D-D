@@ -24,9 +24,10 @@ Dylan Roach
         - Created Form for Character Info
         - Added Submit button
         - Created JSON Object
+	- Created dynamic dropdowns
     In Progress
         - Play with mock data
-        - Generate appropriate dropdowns (Fighting Style, etc.) for Classes
+        - Refine JS Code
 Jace O'Brien
     Completed
         - 
