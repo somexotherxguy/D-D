@@ -25,6 +25,7 @@ Dylan Roach
         - Added Submit button
         - Created JSON Object
 	- Created dynamic dropdowns
+	- Cleaned up dropdown logic
     In Progress
         - Play with mock data
         - Refine JS Code
