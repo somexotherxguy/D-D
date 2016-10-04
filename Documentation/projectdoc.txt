@@ -10,6 +10,7 @@ Sean Langford
         - Created Class Tables
     In Progress
         - Create Magic Tables
+	- Discuss Feat/Feature Management
 Sean Dickey
     Completed
         - imported HTML field names into JavaScript
