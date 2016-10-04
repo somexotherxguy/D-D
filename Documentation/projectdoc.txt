@@ -10,6 +10,7 @@ Sean Langford
         - Created Class Tables
     In Progress
         - Create Magic Tables
+	- Discuss Feat/Feature Management
 Sean Dickey
     Completed
         - imported HTML field names into JavaScript
@@ -24,9 +25,11 @@ Dylan Roach
         - Created Form for Character Info
         - Added Submit button
         - Created JSON Object
+	- Created dynamic dropdowns
+	- Cleaned up dropdown logic
     In Progress
         - Play with mock data
-        - Generate appropriate dropdowns (Fighting Style, etc.) for Classes
+        - Refine JS Code
 Jace O'Brien
     Completed
         - 
