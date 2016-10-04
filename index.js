@@ -233,12 +233,17 @@ function test_query() {
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
 		r = xhttp.response;
-		JSON.parse(r)
-		for (k in r) {
-		  console.log(k, r[k])
-		}
+		console.log(r);
+		/*JSON.parse(r, function(k, v) {
+		  console.log(k, v);
+	    })*/
+		json_test = '{"ideal":"3","flaw":"2","story":"Tragic","gender":"M","height":"12.5","race":"Orc","alignment":"Humans","class_name":"Warrior","fighting_style":"Melee","background":"Red","proficiency_mod":"3","str":"12","con":"13","wis":"16","dex":"14","int":"14","chr":"21","feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":"8972","weight":"37463929","sub_race":"Dragon-Man","exp":">9000","archetype":"SmackEm","level":"Too Damn High!","hp":"Enough","tool_prof":"some","weapon_prof":"fists","skills":"all of them","money":"one horde","available_spells":"Firebreath","notes":"Remember to buy eggs"}'
+		r = JSON.parse(json_test)
+		console.log(r["char_name"], "the", r["description"])
+		/*for (k in r) {
+		  console.log(k, r[k]);
+		}*/
 	}
-	
 	xhttp.open("GET", "object.json", true);
 	xhttp.send();
 }
