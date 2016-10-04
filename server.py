@@ -91,7 +91,7 @@ class myHandler(BaseHTTPRequestHandler):
 
   #Handler for the POST requests
   def do_POST(self):
-    if self.path.endswith("/send"):
+    if self.path.endswith("/save"):
       form = cgi.FieldStorage(
         fp=self.rfile, 
         headers=self.headers,
