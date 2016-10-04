@@ -14,10 +14,10 @@ Sean Langford
 Sean Dickey
     Completed
         - imported HTML field names into JavaScript
+        - Define communication layout for backend server.
     In Progress
         - Programmatically translate user requests to SQL operations.
         - Set up communication with backend server.
-        - Define communication layout for backend server.
         - Run test data both into and out of SQL server.
 Dylan Roach
     Completed

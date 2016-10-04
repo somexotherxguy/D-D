@@ -26,8 +26,9 @@ class myHandler(BaseHTTPRequestHandler):
       #This means a split on '/' would start with ''.
       #The next item will be the user_name and the next will be character_name.
       user_name = self.path.split('/')[1]
-      #The +1 here represents the first '/' in the path.
-      self.path = self.path[len(user_name)+1:]
+      character_name = self.path.split('/')[2]
+      #The +2 here represents the first and middle '/' in the path.
+      self.path = self.path[len(user_name)+len(character_name)+2:]
     
     if self.path=="/":
       self.path="/index.html"
