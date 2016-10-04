@@ -28,8 +28,8 @@ Dylan Roach
 	- Created dynamic dropdowns
 	- Cleaned up dropdown logic
     In Progress
+        - Research Docker
         - Play with mock data
-        - Refine JS Code
 Jace O'Brien
     Completed
         - 
