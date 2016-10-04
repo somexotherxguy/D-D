@@ -11,110 +11,46 @@ var class_options = {
     {
       "archetypes":
         {
-          "bloodranger": "Bloodranger",
-          "cannibal": "Cannibal",
-          "dragon_shaman": "Dragon Shaman (Primal Path)",
-          "einherji": "Einherji",
-          "path_of_crash": "Path of Crash",
-          "path_of_exile": "Path of the Exile",
-          "path_of_fist": "Path of the Fist",
-          "path_of_healer": "Path of the Healer",
-          "path_of_ki_warrior": "Path of the Ki Warrior",
-          "path_of_shaman": "Path of the Shaman",
-          "path_of_silent_berserker": "Path of the Silent Berserker",
-          "path_of_slayer": "Path of the Slayer",
-          "warlord": "Warlord (Primal Path)"
+          "path_of_the_beserker": "Path of the Beserker",
+          "path_of_the_totem_warrior": "Path of the Totem Warrior"
         }
     },
   "bard":
     {
       "archetypes":
         {
-          "college_of_compulsion": "College of Compulsion",
-          "college_of_deaths_song": "College of Death's Song",
-          "college_of_healing": "College of Healing",
-          "college_of_pain": "College of Pain",
-          "college_of_prestige": "College of Prestige",
-          "college_of_sorrow": "College of Sorrow",
-          "college_of_sound": "College of Sound",
-          "college_of_taiko": "College of Taiko",
-          "college_of_vylius": "College of Vylius",
-          "college_of_boons": "College of Boons",
-          "college_of_band": "College of the Band",
-          "college_of_gambler": "College of the Gambler",
-          "college_of_toreador": "College of the Toréador",
-          "sunsinger": "Sunsinger",
-          "troubador": "Troubador"
+          "college_of_lore": "College of Lore",
+          "college_of_valor": "College of Valor"
         }
     },
   "cleric":
     {
       "archetypes":
         {
-          "arcana_domain": "Arcana Domain",
-          "cleric_law_domain": "Cleric Law Domain",
-          "darkness_domain": "Darkness Domain",
-          "dragon_domain": "Dragon Domain",
-          "fire_domain": "Fire Domain",
-          "life_death_domain": "Life & Death Domain",
-          "love_domain": "Love Domain",
-          "luck_domain": "Luck Domain",
-          "magic_domain": "Magic Domain",
-          "martyrdom_domain": "Martyrdom Domain",
-          "oceanic_domain": "Oceanic Domain",
-          "peace_domain": "Peace Domain",
-          "spider_domain": "Spider Domain",
-          "spirit_domain": "Spirit Domain",
-          "strife_domain": "Strife Domain",
-          "time_domain": "Time Domain",
-          "travel_domain": "Travel Domain",
-          "undeath_domain": "Undeath Domain, Variant"
+          "knowledge_domain": "Knowledge Domain",
+          "life_domain": "Life Domain",
+          "light_domain": "Light Domain",
+          "nature_domain": "Nature Domain",
+          "tempest_domain": "Tempest Domain",
+          "trickery_domain": "Trickery Domain",
+          "war_domain": "War Domain"
         }
     },
   "druid":
     {
       "archetypes":
         {
-          "beast_druid": "Beast Druid",
-          "circle_of_anathema": "Circle of Anathema",
-          "circle_of_dragons": "Circle of Dragons",
-          "circle_of_plants": "Circle of Plants",
-          "circle_of_reptiles": "Circle of Reptiles",
-          "circle_of_rot": "Circle of Rot",
-          "circle_of_first_forest": "Circle of the First Forest",
-          "circle_of_beast": "Circle of the Beast",
-          "circle_of_claw": "Circle of the Claw",
-          "circle_of_fountain": "Circle of the Fountain",
-          "circle_of_furies": "Circle of the Furies",
-          "circle_of_seasons": "Circle of the Seasons",
-          "circle_of_sun": "Circle of the Sun"
+          "circle_of_the_land": "Circle of the Land",
+          "circle_of_the_moon": "Circle of the Moon"
         }
     },
   "fighter":
     {
       "archetypes":
         {
-          "archfighter": "Archfighter",
-          "brutal_combatant": "Brutal Combatant",
-          "cavalier": "Cavalier",
-          "champion": "Champion, Variant",
-          "dragonknight": "Dragonknight",
-          "dragoon": "Dragoon",
-          "dreadnought": "Dreadnought",
-          "elite_mercenary": "Elite Mercenary",
-          "gladiator": "Gladiator",
-          "guardian": "Guardian",
-          "gunslinger": "Gunslinger",
-          "hoplite": "Hoplite",
-          "paragon_fighter": "Paragon Fighter",
-          "planetouched_warrior": "Planetouched Warrior",
-          "reaver": "Reaver",
-          "rune_wielder": "Rune Wielder",
-          "samurai": "Samurai",
-          "shieldman": "Shieldman",
-          "shien": "Shien",
-          "slayer": "Slayer",
-          "sylvan_knight": "Sylvan Knight"
+          "champion": "Champion",
+          "battle_master": "Battle Master",
+          "eldritch_knight": "Eldritch Knight"
         },
       "fighting_styles":
         {
@@ -124,61 +60,24 @@ var class_options = {
           "great_weapon": "Great Weapon Fighting",
           "protection": "Protection",
           "two_weapon":"Two Weapon Fighting",
-          "second_wind": "Second Wind"
         }
     },
   "monk":
     {
       "archetypes":
         {
-          "dervish": "Dervish",
-          "ki_thief": "Ki Thief",
-          "miko": "Miko",
-          "bladeless_sword": "The Bladeless Sword",
-          "way_of_warrior": "Way of the Warrior",
-          "way_of_nine": "Way of Nine Gates of Hell",
-          "way_of_perfect_fist": "Way of the Perfect Fist",
-          "way_of_beggar": "Way of the Beggar",
-          "way_of_body": "Way of the Body",
-          "way_of_dragon": "Way of the Dragon (Monastic Tradition)",
-          "way_of_drunken_fist": "Way of the Drunken Fist",
-          "way_of_elements": "Way of the Elements - Spellcasting",
-          "way_of_fleet_foot": "Way of the Fleet Foot",
-          "way_of_force": "Way of the Force",
-          "way_of_guardian": "Way of the Guardian",
-          "way_of_inner_light": "Way of the Inner Light",
-          "way_of_innumerable": "Way of the Innumerable Stars",
-          "way_of_iron_mountain": "Way of the Iron Mountain",
-          "way_of_jeskai": "Way of the Jeskai",
-          "way_of_limitless": "Way of the Limitless",
-          "way_of_long_blade": "Way of the Long Blade",
-          "way_of_mentor": "Way of the Mentor",
-          "way_of_silent_death": "Way of the Silent Death",
-          "way_of_storm": "Way of the Storm",
-          "way_of_thousand_fists": "Way of the Thousand Fists",
-          "way_of_zen_archer": "Way of the Zen Archer",
-          "way_of_zodiac": "Way of the the Zodiac"
+          "way_of_the_open_hand": "Way of the Open Hand",
+          "way_of_shadow": "Way of Shadow",
+          "way_of_the_four_elements": "Way of the Four Elements"
         }
     },
   "paladin":
     {
       "archetypes":
         {
-          "antipaladin": "Antipaladin",
-          "oath_of_commerce": "Oath of Commerce",
-          "oath_of_forbidden_knowledge": "Oath of Forbidden Knowledge",
-          "oath_of_knowledge": "Oath of Knowledge",
-          "oath_of_peace": "Oath of Peace",
-          "oath_of_sacrifice": "Oath of Sacrifice",
-          "oath_of_dragon": "Oath of the Dragon",
-          "oath_of_inquisition": "Oath of the Inquisition",
-          "oath_of_night_paladin": "Oath of the Night Paladin",
-          "oath_of_time": "Oath of Time",
-          "oath_of_eternal_flame": "Oath of the Eternal Flame",
-          "oath_of_guardian": "Oath of the Guardian",
-          "oath_of_lich": "Oath of the Lich",
-          "oath_of_shield": "Oath of the Shield",
-          "oath_of_templar": "Oath of the Templar"
+          "oath_of_devotion": "Oath of Devotion",
+          "oath_of_the_ancients": "Oath of the Ancients",
+          "oath_of_vengeance": "Oath of Vengeance"
         }
     },
   "ranger":
