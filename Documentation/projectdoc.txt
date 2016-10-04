@@ -28,8 +28,8 @@ Dylan Roach
 	- Created dynamic dropdowns
 	- Cleaned up dropdown logic
     In Progress
+        - Research Docker
         - Play with mock data
-        - Refine JS Code
 Jace O'Brien
     Completed
         - 
@@ -42,9 +42,11 @@ Logan Rogers
 	- Helped create baseline character tables
 	- Created User table and Characters table connecting a user with all
  	  their characters.
+	- Created local database for query testing
     In Progress
+    	- Learn Python
+	- Create Python Script to manage SQLite DB
         - Create Equipment/Magic/Class tables
-	- Potentially reformat SQL database if needed or convenient
 
 =================================
 ------- Project Outline ---------
