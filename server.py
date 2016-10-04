@@ -18,18 +18,16 @@ class myHandler(BaseHTTPRequestHandler):
   #Handler for the GET requests
   def do_GET(self):
     #Handle GET requests for user files
-    user_tag = '/user'
-    userName = ''
-    if self.path.find(user_tag) == 0:
-      #A user only has a JSON file and all the links are relative.
-      #This strips out the user's name and '/user' from the requested files.
-      self.path = self.path[len(user_tag):]
-      #The format for user's URLs is '/user/' + userName .
-      #This means a split on '/' after removing '/user' would start with ''.
-      #The next item will be the userName.
-      userName = self.path.split('/')[1]
+    user_name = ''
+    character_name = ''
+    character_tag = '/character'
+    if self.path.find(character_tag) != 0:
+      #The format for user's URLs is '/' + user_name + '/' + character_name.
+      #This means a split on '/' would start with ''.
+      #The next item will be the user_name and the next will be character_name.
+      user_name = self.path.split('/')[1]
       #The +1 here represents the first '/' in the path.
-      self.path = self.path[len(userName)+1:]
+      self.path = self.path[len(user_name)+1:]
     
     if self.path=="/":
       self.path="/index.html"
