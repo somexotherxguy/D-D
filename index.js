@@ -204,27 +204,16 @@ function test_query() {
 }
 
 function class_selected(class_name = "fighter")  {
+  var options = document.getElementById("class_options");
+  options.innerHTML=""
   for (first in class_options[class_name]) break;
   for (last in class_options[class_name]);
-  var list = document.getElementById("class_options_1");
-  list.innerHTML = first[0].toUpperCase() + first.slice(1, first.length) + '<select id="archetype"></select>';
-  var fighting_styles = document.getElementById("fighting_style")
+  options.insertAdjacentHTML("beforeend",
+    '<li><div id=class_options_1>' + first[0].toUpperCase() + first.slice(1, first.length) + '<select id="archetype"></select>');
   var archetype_list = document.getElementById("archetype");
   var length = archetype_list.options.length
   for (var i = length - 1; i >= 0; i--) {
     archetype_list.remove(i);
-  }
-  var length = fighting_styles.options.length;
-  for (var i = length - 1; i >= 0; i--) {
-      fighting_styles.remove(i)
-  }
-  if (last !== first && fighting_styles.options.length === 0) {
-	  fighting_styles.insertAdjacentHTML("beforeend",
-	  '<option disabled selected value>' + "-- --" + '</option');
-	  for (var i in class_options[class_name]["fighting_style"]) {
-		  fighting_styles.insertAdjacentHTML("beforeend",
-		  '<option value="' + i + '">' + class_options[class_name]["fighting_style"][i] + '</option>');
-	  }
   }
   archetype_list.insertAdjacentHTML("beforeend",
 	  '<option disabled selected value>' + "-- --" + '</option');
@@ -232,5 +221,19 @@ function class_selected(class_name = "fighter")  {
     archetype_list.insertAdjacentHTML("beforeend",
       '<option value = "' + i + '">' + class_options[class_name][first][i]);
   }
-  
+  if (last !== first) {
+	options.insertAdjacentHTML("beforeend",
+	'<li><div>Fighting Style<select id="fighting_style"></select></div></li>');
+	var fighting_styles = document.getElementById("fighting_style");
+    var length = fighting_styles.options.length;
+    for (var i = length - 1; i >= 0; i--) {
+      fighting_styles.remove(i);
+	}
+	fighting_styles.insertAdjacentHTML("beforeend",
+	  '<option disabled selected value>' + "-- --" + '</option>');
+	for (var i in class_options[class_name]["fighting_style"]) {
+		  fighting_styles.insertAdjacentHTML("beforeend",
+		  '<option value="' + i + '">' + class_options[class_name]["fighting_style"][i] + '</option>');
+	}
+  }	  
 }
