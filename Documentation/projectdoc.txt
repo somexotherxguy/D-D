@@ -27,9 +27,11 @@ Dylan Roach
         - Created JSON Object
 	- Created dynamic dropdowns
 	- Cleaned up dropdown logic
+	- Implemented Retrieve functionality
     In Progress
         - Fix JSON parsing
         - Play with mock data
+	- Dynamic archetype lists
 Jace O'Brien
     Completed
         - 
