@@ -89,7 +89,7 @@ var class_options = {
     },
   "ranger":
     {
-      "archetypes":
+      "archetype":
         {
 		  "hunter": "Hunter",
 		  "beast_master": "Beast Master",
@@ -98,7 +98,7 @@ var class_options = {
 	  {
 		  "archery": "Archery",
 		  "defense": "Defense",
-		  "dueling":, "Dueling",
+		  "dueling": "Dueling",
 		  "two_weapon_fighting": "Two-Weapon Fighting"
 	  }
     },
@@ -106,7 +106,7 @@ var class_options = {
     {
       "archetype":
         {
-          "thief": "Theif",
+          "thief": "Thief",
           "assassin": "Assassin",
           "arcane_trickster": "Arcane Trickster"
         }
@@ -205,25 +205,29 @@ function test_query() {
 
 function class_selected(class_name = "fighter")  {
   for (first in class_options[class_name]) break;
+  for (last in class_options[class_name]);
   var list = document.getElementById("class_options_1");
-  list.innerHTML = first[0].toUpperCase() + first.slice(1, first.length) + s + '<select id="archetype"></select>';
+  list.innerHTML = first[0].toUpperCase() + first.slice(1, first.length) + '<select id="archetype"></select>';
   var fighting_styles = document.getElementById("fighting_style")
   var archetype_list = document.getElementById("archetype");
   var length = archetype_list.options.length
   for (var i = length - 1; i >= 0; i--) {
     archetype_list.remove(i);
   }
-  if (class_name !== "fighter") {
-    length = fighting_styles.options.length
-    for (var i = length - 1; i >= 0; i--) {
+  var length = fighting_styles.options.length;
+  for (var i = length - 1; i >= 0; i--) {
       fighting_styles.remove(i)
-    }
-  } else if (fighting_styles.options.length === 0) {
-	  for (var i in class_options["fighter"]["fighting_style"]) {
+  }
+  if (last !== first && fighting_styles.options.length === 0) {
+	  fighting_styles.insertAdjacentHTML("beforeend",
+	  '<option disabled selected value>' + "-- --" + '</option');
+	  for (var i in class_options[class_name]["fighting_style"]) {
 		  fighting_styles.insertAdjacentHTML("beforeend",
-		  '<option value="' + i + '">' + class_options["fighter"]["fighting_style"][i] + '</option>')
+		  '<option value="' + i + '">' + class_options[class_name]["fighting_style"][i] + '</option>');
 	  }
   }
+  archetype_list.insertAdjacentHTML("beforeend",
+	  '<option disabled selected value>' + "-- --" + '</option');
   for (var i in class_options[class_name][first]) {
     archetype_list.insertAdjacentHTML("beforeend",
       '<option value = "' + i + '">' + class_options[class_name][first][i]);
