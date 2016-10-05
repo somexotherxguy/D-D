@@ -46,7 +46,7 @@ var class_options = {
     },
   "fighter":
     {
-      "archetypes":
+      "archetype":
         {
           "champion": "Champion",
           "battle_master": "Battle Master",
@@ -126,12 +126,13 @@ var class_options = {
           "chain": "Pact of the Chain",
           "blade": "Pact of the Blade",
           "tome": "Pact of the Tome"
-        }
+        },
       "patron":
         {
           "archfey": "The Archfey",
           "fiend": "The Fiend",
           "great_old_one": "The Great Old One"
+        }
     },
   "wizard":
     {
