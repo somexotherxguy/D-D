@@ -111,91 +111,47 @@ var class_options = {
     },
   "rogue":
     {
-      "archetypes":
+      "archetype":
         {
-          "arcane_assassin": "Arcane Assassin",
-          "bounty_hunter": "Bounty Hunter",
-          "captain": "Captain",
-          "investigator": "Investigator",
-          "joker": "Joker",
-          "marksman": "Marksman",
-          "mechanique": "Mechanique de Arcane",
-          "ninja": "Ninja",
-          "phantom_blade": "Phantom Blade",
-          "pirate": "Pirate",
-          "scoundrel": "Scoundrel",
-          "sellsword": "Sellsword",
-          "wyrmhand": "Wyrmhand"
+          "thief": "Theif",
+          "assassin": "Assassin",
+          "arcane_trickster": "Arcane Trickster"
         }
     },
   "sorcerer":
     {
-      "archetypes":
+      "origin":
         {
-          "arcane_origin": "Arcane Origin",
-          "deathtouched_bloodline": "Deathtouched Sorcerous Bloodline",
-          "destined_bloodline": "Destined Bloodline",
-          "divine_bloodline": "Divine Bloodline",
-          "fey_bloodline": "Fey Bloodline",
-          "fiend_bloodline": "Fiend Bloodline",
-          "frost_touched_bloodline": "Frost-touched Bloodline",
-          "inferno": "Inferno",
-          "lithic_bloodline": "Lithic Bloodline",
-          "maestro": "Maestro",
-          "muscle_sorcerer": "Muscle Sorcerer",
-          "phoenix_blood": "Phoneix Blood",
-          "pyral_bloodline": "Pyral Bloodline",
-          "shadow_adept": "Shadow Adept",
-          "sorcerer_variant": "Sorcerer, Variant",
-          "spellbreaker": "Spellbreaker",
-          "storm_bloodline": "Storm Bloodline, Variant",
-          "temporal_origin": "Temporal Origin",
-          "thallasic_bloodline": "Thallasic Bloodline",
-          "true_blood_of_dragon": "True Blood of the Dragon",
-          "winter_soul": "Winter Soul"
+          "draconic_bloodline": "Draconic Bloodline",
+          "wild_magic": "Wild Magic"
         }
     },
   "warlock":
     {
-      "archetypes":
+      "pact":
         {
-          "archmage_patron": "Archmage Patron",
-          "creature_of_depth": "Creature of the Depth",
-          "crimson_lord_patron": "Crimson Lord Patron",
-          "dragon_patron": "Dragon Patron",
-          "gearmind_patron": "Gearmind Patron",
-          "orb_bearer": "Orb Bearer",
-          "otherwordly_patron": "Otherwordly Patron: Genie",
-          "primordial_patron": "Primordial Patron",
-          "seraphim_patron": "Seraphim Patron",
-          "servants_of_moon": "Servants of the Moon",
-          "shadowmaster": "Shadowmaster",
-          "skull_of_orcus": "Skull of Orcus",
-          "spirit_sharer": "Spirit Sharer",
-          "starry_night": "Starry Night",
-          "sugar_daddy": "Sugar Daddy",
-          "aetheric_patron": "The Aetheric Patron",
-          "eidolon": "The Eidolon",
-          "flesh": "The Flesh",
-          "furies": "The Furies",
-          "wheel": "The Wheel",
-          "titan_patron": "Titan Patron",
-          "vessel_of_souls": "Vessel of Souls",
-          "warlock_patron_celestial": "Warlock Patron Celestial"
+          "chain": "Pact of the Chain",
+          "blade": "Pact of the Blade",
+          "tome": "Pact of the Tome"
         }
+      "patron":
+        {
+          "archfey": "The Archfey",
+          "fiend": "The Fiend",
+          "great_old_one": "The Great Old One"
     },
   "wizard":
     {
-      "archetypes":
+      "school":
         {
-          "arcane_linguist": "Arcane Linguist",
-          "archivist_tradition": "Archivist Tradition",
-          "defiler": "Defiler",
-          "geomancy": "Geomancy",
-          "scar_caster": "Scar Caster",
-          "school_of_mereology": "School of Mereology",
-          "school_of_gunmage": "School of the Gunmage",
-          "wild_mage": "Wild Mage"
+          "abjuration": "School of Abjuration",
+          "conjuration": "School of Conjuration",
+          "divination": "School of Divination",
+          "enchantment": "School of Enchantment",
+          "evocation": "School of Evocation",
+          "illusion": "School of Illusion",
+          "necromancy": "School of Necromancy",
+          "transmutation": "School of Transmutation"
         }
     }
 }
