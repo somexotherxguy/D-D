@@ -4,7 +4,7 @@
 
 <meta charset="utf-8" />
 <link href="index.css" rel="stylesheet">
-<script src="index.js" type="text/javascript" language="JavaScript"></script>
+
 
 <title>D&&D</title>
 
@@ -42,7 +42,7 @@
         <option value="chaotic_evil">Chaotic Evil</option>
       </select></div>
     <div>Class
-      <select id="class" onchange="class_selected(document.getElementById('class').value);">
+      <select id="class">
         <option disabled selected value> -- -- </option>
         <option value="barbarian">Barbarian</option>
         <option value="bard">Bard</option>
@@ -122,8 +122,9 @@
     <div>Flaws<input type="text" id="flaw"></div>
     <div>Backstory<input type="text" id="story"></div>
     <div>Notes<input type="text" id="notes"></div>
-    <input type="button" onclick="update()" value="Submit"></input>
-	<input type="button" onclick="test_query()" value="Retrieve"></input>
+    <input type="button" id="submit" value="Submit"></input>
+	<input type="button" id="load" value="Retrieve"></input>
   </form>
 </body>
+<script src="index.js" type="text/javascript" language="JavaScript"></script>
 </html>
