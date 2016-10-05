@@ -9,7 +9,7 @@ name_array = [["Field Name", "Variable Name", "Field Type", "Data Type", "Requir
 var class_options = {
   "barbarian":
     {
-      "archetypes":
+      "path":
         {
           "path_of_the_beserker": "Path of the Beserker",
           "path_of_the_totem_warrior": "Path of the Totem Warrior"
@@ -17,7 +17,7 @@ var class_options = {
     },
   "bard":
     {
-      "archetypes":
+      "college":
         {
           "college_of_lore": "College of Lore",
           "college_of_valor": "College of Valor"
@@ -25,7 +25,7 @@ var class_options = {
     },
   "cleric":
     {
-      "archetypes":
+      "domain":
         {
           "knowledge_domain": "Knowledge Domain",
           "life_domain": "Life Domain",
@@ -38,7 +38,7 @@ var class_options = {
     },
   "druid":
     {
-      "archetypes":
+      "circle":
         {
           "circle_of_the_land": "Circle of the Land",
           "circle_of_the_moon": "Circle of the Moon"
@@ -52,7 +52,7 @@ var class_options = {
           "battle_master": "Battle Master",
           "eldritch_knight": "Eldritch Knight"
         },
-      "fighting_styles":
+      "fighting_style":
         {
           "archery":"Archery",
           "defense": "Defense",
@@ -64,7 +64,7 @@ var class_options = {
     },
   "monk":
     {
-      "archetypes":
+      "tradition":
         {
           "way_of_the_open_hand": "Way of the Open Hand",
           "way_of_shadow": "Way of Shadow",
@@ -73,41 +73,34 @@ var class_options = {
     },
   "paladin":
     {
-      "archetypes":
+      "oath":
         {
           "oath_of_devotion": "Oath of Devotion",
           "oath_of_the_ancients": "Oath of the Ancients",
           "oath_of_vengeance": "Oath of Vengeance"
-        }
+        },
+	  "fighting_style":
+	  {
+		  "defense": "Defense",
+		  "dueling": "Dueling",
+		  "great_weapon_fighting": "Great Weapon Fighting",
+		  "protection": "Protection"
+	  }
     },
   "ranger":
     {
       "archetypes":
         {
-          "archer": "Archer (Versatile)",
-          "beastmaster_constant": "Beastmaster: Constant",
-          "beastmaster_strider": "Beastmaster: Strider",
-          "beastmaster_summoned": "Beastmaster: Summoned",
-          "blade_dancer": "Blade Dancer",
-          "bloodhunter": "Bloodhunter",
-          "eldruidic": "Eldruidic",
-          "hunter_deep_stalker": "Hunter: Deep Stalker",
-          "hunter_eldritch": "Hunter: Eldritch Hunter",
-          "hunter_true": "Hunter: True Hunter",
-          "land_master": "Land Master",
-          "occult_hunter": "Occult Hunter",
-          "primal": "Primal",
-          "ranger_variant": "Ranger, Variant",
-          "sharpshooter": "Sharpshooter",
-          "slayer_blade_dancer": "Slayer: Blade Dancer",
-          "slayer_guardian": "Slayer: Guardian",
-          "slayer_revenge": "Slayer: Revenge",
-          "slayer_standard": "Slayer: Standard",
-          "spell_gunner": "Spell Gunner",
-          "spellstrider_ranger": "Spellstrider Ranger",
-          "tempest_rifleman": "Tempest Rifleman",
-          "warden": "Warden"
-        }
+		  "hunter": "Hunter",
+		  "beast_master": "Beast Master",
+        },
+	  "fighting_style":
+	  {
+		  "archery": "Archery",
+		  "defense": "Defense",
+		  "dueling":, "Dueling",
+		  "two_weapon_fighting": "Two-Weapon Fighting"
+	  }
     },
   "rogue":
     {
@@ -254,6 +247,9 @@ function test_query() {
 }
 
 function class_selected(class_name = "fighter")  {
+  for (first in class_options[class_name]) break;
+  var list = document.getElementById("class_options_1");
+  list.innerHTML = first[0].toUpperCase() + first.slice(1, first.length) + s + '<select id="archetype"></select>';
   var fighting_styles = document.getElementById("fighting_style")
   var archetype_list = document.getElementById("archetype");
   var length = archetype_list.options.length
@@ -266,13 +262,14 @@ function class_selected(class_name = "fighter")  {
       fighting_styles.remove(i)
     }
   } else if (fighting_styles.options.length === 0) {
-	  for (var i in class_options["fighter"]["fighting_styles"]) {
+	  for (var i in class_options["fighter"]["fighting_style"]) {
 		  fighting_styles.insertAdjacentHTML("beforeend",
-		  '<option value="' + i + '">' + class_options["fighter"]["fighting_styles"][i] + '</option>')
+		  '<option value="' + i + '">' + class_options["fighter"]["fighting_style"][i] + '</option>')
 	  }
   }
-  for (var i in class_options[class_name]["archetypes"]) {
+  for (var i in class_options[class_name][first]) {
     archetype_list.insertAdjacentHTML("beforeend",
-      '<option value = "' + i + '">' + class_options[class_name]["archetypes"][i])
+      '<option value = "' + i + '">' + class_options[class_name][first][i]);
   }
+  
 }
