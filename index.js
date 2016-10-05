@@ -55,7 +55,7 @@ var class_options = {
       "fighting_styles":
         {
           "archery":"Archery",
-          "defense": "Dueling",
+          "defense": "Defense",
           "dueling": "Dueling",
           "great_weapon": "Great Weapon Fighting",
           "protection": "Protection",
@@ -231,21 +231,26 @@ var r = "";
 function test_query() {
 	var xhttp;
 	xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function () {
-		r = xhttp.response;
-		console.log(r);
-		/*JSON.parse(r, function(k, v) {
-		  console.log(k, v);
-	    })*/
-		json_test = '{"ideal":"3","flaw":"2","story":"Tragic","gender":"M","height":"12.5","race":"Orc","alignment":"Humans","class_name":"Warrior","fighting_style":"Melee","background":"Red","proficiency_mod":"3","str":"12","con":"13","wis":"16","dex":"14","int":"14","chr":"21","feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":"8972","weight":"37463929","sub_race":"Dragon-Man","exp":">9000","archetype":"SmackEm","level":"Too Damn High!","hp":"Enough","tool_prof":"some","weapon_prof":"fists","skills":"all of them","money":"one horde","available_spells":"Firebreath","notes":"Remember to buy eggs"}'
-		r = JSON.parse(json_test)
-		console.log(r["char_name"], "the", r["description"])
-		/*for (k in r) {
-		  console.log(k, r[k]);
-		}*/
-	}
+	/*xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("char_info").innerHTML = this.responseText;
+		}
+	};*/
+	json_test = JSON.stringify({"ideal":3,"flaw":2,"story":"Tragic","gender":"male","height":12.5,"race":"Man","alignment":"Humans","class_name":"Warrior","fighting_style":"Melee","background":"Red","proficiency_mod":3,"str":12,"con":13,"wis":"16","dex":14,"int":14,"chr":21,"feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":8972,"weight":37463929,"sub_race":"Dragon-Man","exp":9000,"archetype":"SmackEm","level":69,"hp":1000,"tool_prof":"some","weapon_prof":"fists","skills":"all of them","platinum":123,"gold":500,"electrum":12,"silver":756,"copper":9,"available_spells":"Firebreath","notes":"Remember to buy eggs", "languages":"Python"});
+	r = JSON.parse(json_test);
 	xhttp.open("GET", "object.json", true);
 	xhttp.send();
+	for (k in r) {
+		if (k === "gender") {
+			var row = document.getElementById(r[k]);
+			row.checked = true;
+		} else {
+		  var row = document.getElementById(k);
+		  if (row) {
+		    row.value = r[k];
+		  }
+		}
+	}
 }
 
 function class_selected(class_name = "fighter")  {
