@@ -65,6 +65,7 @@ name_array = [["Field Name", "Variable Name", "Field Type", "Data Type", "Requir
   , ["Spells_player_is_able_to_use", "available_spells", "dropdown", "string", "y"]
   , ["Notes", "notes", "text area", "string", "n"]]
 
+
 var class_options = {
   "barbarian":
     {
@@ -261,11 +262,10 @@ function test_query() {
       //document.getElementById("char_info").innerHTML = this.responseText;
 		}
 	};
-  
-  /*
-	json_test = JSON.stringify({"ideal":3,"flaw":2,"story":"Tragic","gender":"male","height":12.5,"race":"Man","alignment":"Humans","class_name":"Warrior","fighting_style":"Melee","background":"Red","proficiency_mod":3,"str":12,"con":13,"wis":"16","dex":14,"int":14,"chr":21,"feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":8972,"weight":37463929,"sub_race":"Dragon-Man","exp":9000,"archetype":"SmackEm","level":69,"hp":1000,"tool_prof":"some","weapon_prof":"fists","skills":"all of them","platinum":123,"gold":500,"electrum":12,"silver":756,"copper":9,"available_spells":"Firebreath","notes":"Remember to buy eggs", "languages":"Python"});
+	json_test = JSON.stringify({"ideal":3,"flaw":2,"story":"Tragic","gender":"male","height":12.5,"race":"Man","alignment":"chaotic neutral","class":"fighter","fighting_style":"dueling","background":"Red","proficiency_mod":3,"str":12,"con":13,"wis":"16","dex":14,"int":14,"chr":21,"feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":8972,"weight":37463929,"sub_race":"Dragon-Man","exp":9000,"archetype":"battle_master","level":"20","hp":1000,"tool_prof":"some","weapon_prof":"fists","skills":"all of them","platinum":123,"gold":500,"electrum":12,"silver":756,"copper":9,"available_spells":"Firebreath","notes":"Remember to buy eggs", "languages":"Python"});
+/*
 	r = JSON.parse(json_test);
-	xhttp.open("GET", "object.json", true);
+	xhttp.open("GET", "object.json");
 	xhttp.send();
 	for (k in r) {
 		if (k === "gender") {
@@ -275,12 +275,15 @@ function test_query() {
 		  var row = document.getElementById(k);
 		  if (row) {
 		    row.value = r[k];
+        if (k === "class") {
+          class_selected(row.value);
+        }
 		  }
 		}
 	}*/
 }
 
-function class_selected(class_name = "fighter")  {
+function class_selected(class_name = "fighter") {
   var options = document.getElementById("class_options");
   options.innerHTML=""
   for (first in class_options[class_name]) break;
@@ -299,19 +302,20 @@ function class_selected(class_name = "fighter")  {
       '<option value = "' + i + '">' + class_options[class_name][first][i]);
   }
   if (last !== first) {
-	options.insertAdjacentHTML("beforeend",
-	'<li><div>Fighting Style<select id="fighting_style"></select></div></li>');
-	var fighting_styles = document.getElementById("fighting_style");
+  	options.insertAdjacentHTML("beforeend",
+  	'<li><div>Fighting Style<select id="fighting_style"></select></div></li>');
+  	var fighting_styles = document.getElementById("fighting_style");
     var length = fighting_styles.options.length;
     for (var i = length - 1; i >= 0; i--) {
       fighting_styles.remove(i);
-	}
-	fighting_styles.insertAdjacentHTML("beforeend",
-	  '<option disabled selected value>' + "-- --" + '</option>');
-	for (var i in class_options[class_name]["fighting_style"]) {
-		  fighting_styles.insertAdjacentHTML("beforeend",
-		  '<option value="' + i + '">' + class_options[class_name]["fighting_style"][i] + '</option>');
-	}
-  }	  
+  	}
+  	fighting_styles.insertAdjacentHTML("beforeend",
+  	  '<option disabled selected value>' + "-- --" + '</option>');
+  	for (var i in class_options[class_name]["fighting_style"]) {
+  		fighting_styles.insertAdjacentHTML("beforeend",
+  		  '<option value="' + i + '">' + class_options[class_name]["fighting_style"][i] + '</option>');
+  	}	  
+  }
 }
+
 
