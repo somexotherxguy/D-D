@@ -221,15 +221,10 @@ create table class(
 	FOREIGN KEY (username) REFERENCES users(username)
 );
 
-possibly use subclass variable in characterinfo
 Needs some manner of handling weapon stats(perhaps something for later)
-Warlock mystic arcanum(implement as spell slot or as its own thing?)
 Feat storage
 Feature storage
-*Consider better way to implement feats(need a way to automate, worst case use a table with all the feats as bools with a script making the changes to the character when selected)
-*Sorcerer Metamagic(probably smaller scale version of feat implementation)
-
-*might not be something we need to handle at database level, something to discuss
+Sorcerer Metamagic(?)
 
 ------------------------------------------------------------------
 Test Inserts
