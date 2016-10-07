@@ -8,9 +8,9 @@ Sean Langford
         - Created Character Tables for sql database
         - Created test inserts for Character Tables
         - Created Class Tables
+	- Created Magic Tables
     In Progress
-        - Create Magic Tables
-	- Discuss Feat/Feature Management
+    	- Create/Populate Feat Tables
 Sean Dickey
     Completed
         - imported HTML field names into JavaScript
