@@ -9,7 +9,7 @@ Sean Langford
         - Created test inserts for Character Tables
         - Created Class Tables
 	- Created Magic Tables
-	- Create/Populate Feat Tables
+	- Created/Populated Feat Tables
     In Progress
         - 
 Sean Dickey
