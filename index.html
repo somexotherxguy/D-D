@@ -4,7 +4,7 @@
 
 <meta charset="utf-8" />
 <link href="index.css" rel="stylesheet">
-<script src="index.js" type="text/javascript" language="JavaScript"></script>
+
 
 <title>D&&D</title>
 
@@ -13,12 +13,12 @@
   <form id="char_info" autocomplete="off">
     <div>Abilities
       <ul>
-        <li><div>Strength <input type="number" id="str"></div></li>
-        <li><div>Constitution<input type="number" id="con"></div></li>
-        <li><div>Dexterity<input type="number" id="dex"></div></li>
-        <li><div>Intelligence<input type="number" id="int"></div></li>
-        <li><div>Wisdom<input type="number" id="wis"></div></li>
-        <li><div>Charisma<input type="number" id="chr"></div></li>
+        <li><div>Strength <input type="number" min="0" id="str"></div></li>
+        <li><div>Constitution<input type="number" min="0" id="con"></div></li>
+        <li><div>Dexterity<input type="number" min="0" id="dex"></div></li>
+        <li><div>Intelligence<input type="number" min="0" id="int"></div></li>
+        <li><div>Wisdom<input type="number" min="0" id="wis"></div></li>
+        <li><div>Charisma<input type="number" min="0" id="chr"></div></li>
       </ul>
     </div>
 
@@ -30,18 +30,20 @@
     <div>Sub Race<input type="text" id="sub_race"></div>
     <div>Alignment
       <select id="alignment">
-        <option value="lawful_good">Lawful Good</option>
-        <option value="neutral_good">Neutral Good</option>
-        <option value="chaotic_good">Chaotic Good</option>
-        <option value="lawful_neutral">Lawful Neutral</option>
-        <option value="true_neutral">True Neutral</option>
-        <option value="chaotic_neutral">Chaotic Neutral</option>
-        <option value="lawful_evil">Lawful Evil</option>
-        <option value="neutral_evil">Neutral Evil</option>
-        <option value="chaotic_evil">Chaotic Evil</option>
+        <option disabled selected value> -- -- </option>
+        <option value="lawful good">Lawful Good</option>
+        <option value="neutral good">Neutral Good</option>
+        <option value="chaotic good">Chaotic Good</option>
+        <option value="lawful neutral">Lawful Neutral</option>
+        <option value="true neutral">True Neutral</option>
+        <option value="chaotic neutral">Chaotic Neutral</option>
+        <option value="lawful evil">Lawful Evil</option>
+        <option value="neutral evil">Neutral Evil</option>
+        <option value="chaotic evil">Chaotic Evil</option>
       </select></div>
     <div>Class
-      <select id="class" onchange="class_selected(document.getElementById('class').value);">
+      <select id="class">
+        <option disabled selected value> -- -- </option>
         <option value="barbarian">Barbarian</option>
         <option value="bard">Bard</option>
         <option value="cleric">Cleric</option>
@@ -56,29 +58,29 @@
         <option value="wizard">Wizard</option>
       </select>
       <ul id="class_options">
-        <li><div>Archetype
+        <!--<li><div id="class_options_1">Archetype
           <select id="archetype">
           </select>
         </div></li>
         <li><div>Fighting Style
           <select id="fighting_style">
           </select>
-        </div></li>
+        </div></li>-->
       </ul>
     </div>
     <div>Background<input type="text" id="background"></div>
     <div>Languages<input type="text" id="languages"></div>
     <div>Armor</div>
     <div>Weapons</div>
-    <div>Proficiency Modifier<input type="number" id="proficiency_mod"></div>
+    <div>Proficiency Modifier<input type="number" min="0" id="proficiency_mod"></div>
     <div>Feats<input type="text" id="feat"></div>
     <div>Name<input type="text" id="char_name"></div>
     <div>Personality Traits<input type="text" id="traits"></div>
     <div>Bonds<input type="text" id="bonds"></div>
     <div>Traits of Note<input type="text" id="notable_traits"></div>
     <div>Description<input type="text" id="description"></div>
-    <div>Age<input type="number" id="age"></div>
-    <div>Weight<input type="number" id="weight"></div>
+    <div>Age<input type="number" min="1" id="age"></div>
+    <div>Weight<input type="number" min="0" id="weight"></div>
     <div>Experience</div>
     <div>Level<select id="level">
                     <option value="1">1</option>
@@ -102,7 +104,7 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                   </select></div></div>
-    <div>Hit Points<input type="number" id="hp"></div>
+    <div>Hit Points<input type="number" min="0" id="hp"></div>
     <div>Tool Proficiency<input type="text" id="tool_prof"></div>
     <div>Weapon Proficiency<input type="text" id="weapon_prof"></div>
     <div>Tools</div>
@@ -110,18 +112,19 @@
     <div>Saves</div>
     <div>Equipment</div>
     <div>Money</br>
-        Platinum<input type="number" class="money" id="platinum"></br>
-        Gold<input type="number" class="money" id="gold"></br>
-        Electrum<input type="number" class="money" id="electrum"></br>
-        Silver<input type="number" class="money" id="silver"></br>
-        Copper<input type="number" class="money" id="copper"></div>
+        Platinum<input type="number" min="0" class="money" id="platinum"></br>
+        Gold<input type="number" min="0" class="money" id="gold"></br>
+        Electrum<input type="number" min="0" class="money" id="electrum"></br>
+        Silver<input type="number" min="0" class="money" id="silver"></br>
+        Copper<input type="number" min="0" class="money" id="copper"></div>
     <div>Spells<input type="text" id="available_spells"></div>
     <div>Ideals<input type="text" id="ideal"></div>
     <div>Flaws<input type="text" id="flaw"></div>
     <div>Backstory<input type="text" id="story"></div>
     <div>Notes<input type="text" id="notes"></div>
-    <input type="button" onclick="update()" value="Submit"></input>
-	<input type="button" onclick="test_query()" value="Retrieve"></input>
+    <input type="button" id="submit" value="Submit"></input>
+	<input type="button" id="load" value="Retrieve"></input>
   </form>
 </body>
+<script src="index.js" type="text/javascript" language="JavaScript"></script>
 </html>
