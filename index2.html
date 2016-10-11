@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link href="index.css" rel="stylesheet">
+
+
+<title>D&&D</title>
+
+</head>
+<body>
+  <form id="char_info" autocomplete="off">
+    <div>Abilities
+      <ul>
+        <li><div>Strength <input type="number" min="0" id="str"></div></li>
+        <li><div>Constitution<input type="number" min="0" id="con"></div></li>
+        <li><div>Dexterity<input type="number" min="0" id="dex"></div></li>
+        <li><div>Intelligence<input type="number" min="0" id="int"></div></li>
+        <li><div>Wisdom<input type="number" min="0" id="wis"></div></li>
+        <li><div>Charisma<input type="number" min="0" id="chr"></div></li>
+      </ul>
+    </div>
+
+    <div>Gender
+      <input type="radio" name="gender" id="male" value="male">Male
+      <input type="radio" name="gender" id="female" value="female">Female</div>
+    <div>Height<input type="text" id="height"></div>
+    <div>Race<input type="text" id="race"></div>
+    <div>Sub Race<input type="text" id="sub_race"></div>
+    <div>Alignment
+      <select id="alignment">
+        <option disabled selected value> -- -- </option>
+        <option value="lawful good">Lawful Good</option>
+        <option value="neutral good">Neutral Good</option>
+        <option value="chaotic good">Chaotic Good</option>
+        <option value="lawful neutral">Lawful Neutral</option>
+        <option value="true neutral">True Neutral</option>
+        <option value="chaotic neutral">Chaotic Neutral</option>
+        <option value="lawful evil">Lawful Evil</option>
+        <option value="neutral evil">Neutral Evil</option>
+        <option value="chaotic evil">Chaotic Evil</option>
+      </select></div>
+    <div>Class
+      <select id="class">
+        <option disabled selected value> -- -- </option>
+        <option value="barbarian">Barbarian</option>
+        <option value="bard">Bard</option>
+        <option value="cleric">Cleric</option>
+        <option value="druid">Druid</option>
+        <option value="fighter">Fighter</option>
+        <option value="monk">Monk</option>
+        <option value="paladin">Paladin</option>
+        <option value="ranger">Ranger</option>
+        <option value="rogue">Rogue</option>
+        <option value="sorcerer">Sorcerer</option>
+        <option value="warlock">Warlock</option>
+        <option value="wizard">Wizard</option>
+      </select>
+      <ul id="class_options">
+        <!--<li><div id="class_options_1">Archetype
+          <select id="archetype">
+          </select>
+        </div></li>
+        <li><div>Fighting Style
+          <select id="fighting_style">
+          </select>
+        </div></li>-->
+      </ul>
+    </div>
+    <div>Background<input type="text" id="background"></div>
+    <div>Languages<input type="text" id="languages"></div>
+    <div>Armor</div>
+    <div>Weapons</div>
+    <div>Proficiency Modifier<input type="number" min="0" id="proficiency_mod"></div>
+    <div>Feats<input type="text" id="feat"></div>
+    <div>Name<input type="text" id="char_name"></div>
+    <div>Personality Traits<input type="text" id="traits"></div>
+    <div>Bonds<input type="text" id="bonds"></div>
+    <div>Traits of Note<input type="text" id="notable_traits"></div>
+    <div>Description<input type="text" id="description"></div>
+    <div>Age<input type="number" min="1" id="age"></div>
+    <div>Weight<input type="number" min="0" id="weight"></div>
+    <div>Experience</div>
+    <div>Level<select id="level">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select></div></div>
+    <div>Hit Points<input type="number" min="0" id="hp"></div>
+    <div>Tool Proficiency<input type="text" id="tool_prof"></div>
+    <div>Weapon Proficiency<input type="text" id="weapon_prof"></div>
+    <div>Tools</div>
+    <div>Skills<input type="text" id="skills"></div>
+    <div>Saves</div>
+    <div>Equipment</div>
+    <div>Money</br>
+        Platinum<input type="number" min="0" class="money" id="platinum"></br>
+        Gold<input type="number" min="0" class="money" id="gold"></br>
+        Electrum<input type="number" min="0" class="money" id="electrum"></br>
+        Silver<input type="number" min="0" class="money" id="silver"></br>
+        Copper<input type="number" min="0" class="money" id="copper"></div>
+    <div>Spells<input type="text" id="available_spells"></div>
+    <div>Ideals<input type="text" id="ideal"></div>
+    <div>Flaws<input type="text" id="flaw"></div>
+    <div>Backstory<input type="text" id="story"></div>
+    <div>Notes<input type="text" id="notes"></div>
+    <input type="button" id="submit" value="Submit"></input>
+	<input type="button" id="load" value="Retrieve"></input>
+  </form>
+</body>
+<script src="index.js" type="text/javascript" language="JavaScript"></script>
+</html>
