@@ -379,16 +379,16 @@
                     <td>
                       <div align="left">
                         <select id="alignment">
-                          <option disabled selected value> Unspecified </option>
-                          <option value="lawful_good">Lawful Good</option>
-                          <option value="neutral_good">Neutral Good</option>
-                          <option value="chaotic_good">Chaotic Good</option>
-                          <option value="lawful_neutral">Lawful Neutral</option>
-                          <option value="true_neutral">True Neutral</option>
-                          <option value="chaotic_neutral">Chaotic Neutral</option>
-                          <option value="lawful_evil">Lawful Evil</option>
-                          <option value="neutral_evil">Neutral Evil</option>
-                          <option value="chaotic_evil">Chaotic Evil</option>
+                          <option disabled selected value> -- -- </option>
+                          <option value="lawful good">Lawful Good</option>
+                          <option value="neutral good">Neutral Good</option>
+                          <option value="chaotic good">Chaotic Good</option>
+                          <option value="lawful neutral">Lawful Neutral</option>
+                          <option value="true neutral">True Neutral</option>
+                          <option value="chaotic neutral">Chaotic Neutral</option>
+                          <option value="lawful evil">Lawful Evil</option>
+                          <option value="neutral evil">Neutral Evil</option>
+                          <option value="chaotic evil">Chaotic Evil</option>
                         </select></div>
                     </td>
                     <td>
@@ -402,7 +402,7 @@
                     <td>
                       <div align="left">
                         <select id="class" onchange="class_selected(document.getElementById('class').value);">
-                          <option disabled selected value> Unspecified </option>
+                          <option disabled selected value> -- -- </option>
                           <option value="barbarian">Barbarian</option>
                           <option value="bard">Bard</option>
                           <option value="cleric">Cleric</option>
@@ -618,8 +618,8 @@
           <!--Add background, Personality Traits, Name, Bonds, Traits of Note, Age, Weight-->
             <div class="page-content" align="center">
               <div class="mdl-cell">
-                <input type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit"></input>
-                <input type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Retrieve"></input>
+                <input id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit"></input>
+                <input id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Load"></input>
               </div>
             </div>
           </div>
@@ -629,5 +629,6 @@
       </div>
     </div>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script src="creator.js"></script>
   </body>
 </html>
