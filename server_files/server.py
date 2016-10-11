@@ -9,11 +9,16 @@ PORT_NUMBER = 5000
 #the browser 
 class myHandler(BaseHTTPRequestHandler):
   #to load
-  #GET: <urlbase> / <username> / <character name> /
+  #GET: <urlbase> / user / <username> / <character name> /
   #to save
   #POST: <urlbase> / <username> / <character name> / save
   #future: character without user
   #GET: <urlbase> / character / [<character name>] / <character id>
+  save_token = "/save"
+  user_token = "/user"
+  user_data_token = "char_data.json"
+  
+  
   
   #Handler for the GET requests
   def do_GET(self):
@@ -21,6 +26,11 @@ class myHandler(BaseHTTPRequestHandler):
     user_name = ''
     character_name = ''
     character_tag = '/character'
+    print(self.path)
+    response = "<html><head><title>test</title></head><body>best test</body></html>"
+    self.wfile.write( response )
+    return
+    """
     if self.path.find(character_tag) != 0:
       #The format for user's URLs is '/' + user_name + '/' + character_name.
       #This means a split on '/' would start with ''.
@@ -37,7 +47,7 @@ class myHandler(BaseHTTPRequestHandler):
     if self.path == '/default.json':
       if userName == '':
         userName = 'default'
-      pathToUserFile = '/'.join(['..', user_tag[1:], userName + '.json'])
+      pathToUserFile = '/'.join(['..', character_tag[1:], userName + '.json'])
       try:
         userFile = open(pathToUserFile, 'r')
       except:
@@ -89,7 +99,7 @@ class myHandler(BaseHTTPRequestHandler):
 
     except IOError:
       self.send_error(404,'File Not Found: %s' % self.path)
-
+"""
   #Handler for the POST requests
   def do_POST(self):
     if self.path.endswith("/save"):
@@ -174,12 +184,12 @@ try:
   #Create a web server and define the handler to manage the
   #incoming request
   server = HTTPServer(('', PORT_NUMBER), myHandler)
-  print 'Started httpserver on port ' , PORT_NUMBER
+  print( 'Started httpserver on port ' , PORT_NUMBER)
   
   #Wait forever for incoming htto requests
   server.serve_forever()
 
 except KeyboardInterrupt:
-  print '^C received, shutting down the web server'
+  print( '^C received, shutting down the web server')
   server.socket.close()
   
