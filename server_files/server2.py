@@ -1,4 +1,23 @@
 #!/usr/bin/python
+import http.server
+import socketserver
+
+PORT_NUMBER = 5000
+
+try:
+  #Create a web server and define the handler to manage the
+  #incoming request
+  Handler = http.server.SimpleHTTPRequestHandler
+  server_address=('',PORT_NUMBER)
+  httpd = socketserver.TCPServer(server_address, Handler)
+  #Wait forever for incoming http requests
+  print( 'Started httpserver on port ' , PORT_NUMBER)
+  httpd.serve_forever()
+
+except KeyboardInterrupt:
+  httpd.socket.close()
+  print( '^C received, shutting down the web server')
+"""
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 from os import curdir, sep
 import cgi
@@ -33,7 +52,8 @@ class myHandler(BaseHTTPRequestHandler):
     response = "<html><head><title>test</title></head><body>best test</body></html>"
     self.wfile.write( response )
     return
-    """
+"""
+"""
     if self.path.find(character_tag) != 0:
       #The format for user's URLs is '/' + user_name + '/' + character_name.
       #This means a split on '/' would start with ''.
@@ -103,6 +123,7 @@ class myHandler(BaseHTTPRequestHandler):
     except IOError:
       self.send_error(404,'File Not Found: %s' % self.path)
 """
+"""
   #Handler for the POST requests
   def do_POST(self):
     if self.path.endswith("/save"):
@@ -134,12 +155,12 @@ class myHandler(BaseHTTPRequestHandler):
         pathToUserFile = pathToUserFile[:len(pathToUserFile)-1]
         #Put it back into a string.
         pathToUserFile = '/'.join(pathToUserFile)
-        """These two sections should be combined neatly: FIX LATER"""
+        ####These two sections should be combined neatly: FIX LATER
         #This gets the username part of the URL with the '.json' at the end.
         userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
         #This gets rid of the last '.*' which should be '.json'.
         userName = '.'.join(userName[:len(userName)-1])
-        """This one, too: FIX LATER"""
+        ####This one, too: FIX LATER
         if pathToUserFile == '../user':
           pathToUserFile += '/temp'
         pathToUserFile += '.json'
@@ -155,26 +176,28 @@ class myHandler(BaseHTTPRequestHandler):
         userFile.close()
       except:
         pass
-      """
+"""
+"""
       #send the response
       userFile = open(pathToUserFile, 'r')
       self.wfile.write(userFile.read())
       userFile.close()
-      """
-      """
+"""
+"""
       #print "Your name is: %s" % form["jsonArea"].value
       self.send_response(200)
       self.end_headers()
       #self.wfile.write("Thanks %s !" % form["jsonArea"].value)
-      """
-      """
+"""
+"""
       #Determine the user name
       userName = form["user"]
       #This gets the username part of the URL with the '.json' at the end.
       userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
       #This gets rid of the last '.*' which should be '.json'.
       userName = '.'.join(userName[:len(UserName)-1])
-      """
+"""
+"""
       # redirect browser to the user page to test that the file saved
       self.send_response(301)
       self.send_header("Location", '/user/' + userName + "/")
@@ -182,17 +205,5 @@ class myHandler(BaseHTTPRequestHandler):
       return None
       return      
       
-      
-try:
-  #Create a web server and define the handler to manage the
-  #incoming request
-  server = HTTPServer(('', PORT_NUMBER), myHandler)
-  print( 'Started httpserver on port ' , PORT_NUMBER)
   
-  #Wait forever for incoming htto requests
-  server.serve_forever()
-
-except KeyboardInterrupt:
-  print( '^C received, shutting down the web server')
-  server.socket.close()
-  
+"""
