@@ -20,8 +20,12 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     #Handle GET requests for user files
     print( '\t'.join(("GET",self.path)) )
     check_path = self.path.split('/')
+    #clean any final '/'
+    if( len(check_path) > 1 and check_path[len(check_path) - 1] == ''):
+      check_path = check_path[:len(check_path) - 1]
     print(check_path) #DEBUG
     
+    #check for 
     user_name = ''
     character_name = ''
     if( check_path[ len(check_path) - 1 ] == character_file ):
