@@ -1,38 +1,96 @@
 #!/usr/bin/python
-from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+import http.server
+import socketserver
 from os import curdir, sep
-import cgi
 
 PORT_NUMBER = 5000
 
+
+character_file = 'object.json'
 #This class will handles any incoming request from
 #the browser 
-class myHandler(BaseHTTPRequestHandler):
+class myHandler(http.server.SimpleHTTPRequestHandler):
+  #to load
+  #GET: / user / <username> / <character name> /
+  
+  #to save
+  #POST: / user / <username> / <character name> / save
+  #Handler for the GET requests
+  def do_GET(self):
+    #Handle GET requests for user files
+    print( '\t'.join(("GET",self.path)) )
+    check_path = self.path.split('/')
+    print(check_path) #DEBUG
+    
+    user_name = ''
+    character_name = ''
+    if( check_path[ len(check_path) - 1 ] == character_file ):
+      print('unique') # # debug
+    
+    #ensure proper root folder resolution
+    if self.path=="/":
+      self.path="/index.html"
+    
+
+
+try:
+  #Create a web server and define the handler to manage the
+  #incoming request
+  Handler = http.server.SimpleHTTPRequestHandler
+  server_address=('',PORT_NUMBER)
+  httpd = socketserver.TCPServer(server_address, myHandler)
+  #httpd = socketserver.TCPServer(server_address, Handler)
+  #Wait forever for incoming http requests
+  print( 'Started httpserver on port ' , PORT_NUMBER)
+  httpd.serve_forever()
+
+except KeyboardInterrupt:
+  httpd.socket.close()
+  print( '^C received, shutting down the web server')
+"""
+from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+import cgi
+
+
+# # # # #
+  
+  
+  #future: character without user
+  #GET: <urlbase> / character / [<character name>] / <character id>
+  save_token = "/save"
+  user_token = "/user"
+  user_data_token = "char_data.json"
+  
+  
   
   #Handler for the GET requests
   def do_GET(self):
     #Handle GET requests for user files
-    user_tag = '/user'
-    userName = ''
-    if self.path.find(user_tag) == 0:
-      #A user only has a JSON file and all the links are relative.
-      #This strips out the user's name and '/user' from the requested files.
-      self.path = self.path[len(user_tag):]
-      #The format for user's URLs is '/user/' + userName .
-      #This means a split on '/' after removing '/user' would start with ''.
-      #The next item will be the userName.
-      userName = self.path.split('/')[1]
-      #The +1 here represents the first '/' in the path.
-      self.path = self.path[len(userName)+1:]
+    user_name = ''
+    character_name = ''
+    character_tag = '/character'
+    print(self.path)
+    response = "<html><head><title>test</title></head><body>best test</body></html>"
+    self.wfile.write( response )
+    return
+"""
+"""
+    if self.path.find(character_tag) != 0:
+      #The format for user's URLs is '/' + user_name + '/' + character_name.
+      #This means a split on '/' would start with ''.
+      #The next item will be the user_name and the next will be character_name.
+      user_name = self.path.split('/')[1]
+      character_name = self.path.split('/')[2]
+      #The +2 here represents the first and middle '/' in the path.
+      self.path = self.path[len(user_name)+len(character_name)+2:]
     
-    if self.path=="/":
-      self.path="/index.html"
+# # #
     
     #Check to see if it was the user data being requested.
     if self.path == '/default.json':
       if userName == '':
         userName = 'default'
-      pathToUserFile = '/'.join(['..', user_tag[1:], userName + '.json'])
+      pathToUserFile = '/'.join(['..', character_tag[1:], userName + '.json'])
       try:
         userFile = open(pathToUserFile, 'r')
       except:
@@ -84,10 +142,11 @@ class myHandler(BaseHTTPRequestHandler):
 
     except IOError:
       self.send_error(404,'File Not Found: %s' % self.path)
-
+"""
+"""
   #Handler for the POST requests
   def do_POST(self):
-    if self.path.endswith("/send"):
+    if self.path.endswith("/save"):
       form = cgi.FieldStorage(
         fp=self.rfile, 
         headers=self.headers,
@@ -116,12 +175,12 @@ class myHandler(BaseHTTPRequestHandler):
         pathToUserFile = pathToUserFile[:len(pathToUserFile)-1]
         #Put it back into a string.
         pathToUserFile = '/'.join(pathToUserFile)
-        """These two sections should be combined neatly: FIX LATER"""
+        ####These two sections should be combined neatly: FIX LATER
         #This gets the username part of the URL with the '.json' at the end.
         userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
         #This gets rid of the last '.*' which should be '.json'.
         userName = '.'.join(userName[:len(userName)-1])
-        """This one, too: FIX LATER"""
+        ####This one, too: FIX LATER
         if pathToUserFile == '../user':
           pathToUserFile += '/temp'
         pathToUserFile += '.json'
@@ -137,26 +196,28 @@ class myHandler(BaseHTTPRequestHandler):
         userFile.close()
       except:
         pass
-      """
+"""
+"""
       #send the response
       userFile = open(pathToUserFile, 'r')
       self.wfile.write(userFile.read())
       userFile.close()
-      """
-      """
+"""
+"""
       #print "Your name is: %s" % form["jsonArea"].value
       self.send_response(200)
       self.end_headers()
       #self.wfile.write("Thanks %s !" % form["jsonArea"].value)
-      """
-      """
+"""
+"""
       #Determine the user name
       userName = form["user"]
       #This gets the username part of the URL with the '.json' at the end.
       userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
       #This gets rid of the last '.*' which should be '.json'.
       userName = '.'.join(userName[:len(UserName)-1])
-      """
+"""
+"""
       # redirect browser to the user page to test that the file saved
       self.send_response(301)
       self.send_header("Location", '/user/' + userName + "/")
@@ -164,17 +225,5 @@ class myHandler(BaseHTTPRequestHandler):
       return None
       return      
       
-      
-try:
-  #Create a web server and define the handler to manage the
-  #incoming request
-  server = HTTPServer(('', PORT_NUMBER), myHandler)
-  print 'Started httpserver on port ' , PORT_NUMBER
   
-  #Wait forever for incoming htto requests
-  server.serve_forever()
-
-except KeyboardInterrupt:
-  print '^C received, shutting down the web server'
-  server.socket.close()
-  
+"""
