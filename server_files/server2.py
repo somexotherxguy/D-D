@@ -1,15 +1,45 @@
 #!/usr/bin/python
 import http.server
 import socketserver
+from os import curdir, sep
 
 PORT_NUMBER = 5000
+
+
+character_file = 'object.json'
+#This class will handles any incoming request from
+#the browser 
+class myHandler(http.server.SimpleHTTPRequestHandler):
+  #to load
+  #GET: / user / <username> / <character name> /
+  
+  #to save
+  #POST: / user / <username> / <character name> / save
+  #Handler for the GET requests
+  def do_GET(self):
+    #Handle GET requests for user files
+    print( '\t'.join(("GET",self.path)) )
+    check_path = self.path.split('/')
+    print(check_path) #DEBUG
+    
+    user_name = ''
+    character_name = ''
+    if( check_path[ len(check_path) - 1 ] == character_file ):
+      print('unique') # # debug
+    
+    #ensure proper root folder resolution
+    if self.path=="/":
+      self.path="/index.html"
+    
+
 
 try:
   #Create a web server and define the handler to manage the
   #incoming request
   Handler = http.server.SimpleHTTPRequestHandler
   server_address=('',PORT_NUMBER)
-  httpd = socketserver.TCPServer(server_address, Handler)
+  httpd = socketserver.TCPServer(server_address, myHandler)
+  #httpd = socketserver.TCPServer(server_address, Handler)
   #Wait forever for incoming http requests
   print( 'Started httpserver on port ' , PORT_NUMBER)
   httpd.serve_forever()
@@ -19,19 +49,10 @@ except KeyboardInterrupt:
   print( '^C received, shutting down the web server')
 """
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
-from os import curdir, sep
 import cgi
 
-PORT_NUMBER = 5000
 
-#This class will handles any incoming request from
-#the browser 
-class myHandler(BaseHTTPRequestHandler):
-  #to load
-  #GET: / user / <username> / <character name> /
-  
-  #to save
-  #POST: / user / <username> / <character name> / save
+# # # # #
   
   
   #future: character without user
@@ -63,8 +84,7 @@ class myHandler(BaseHTTPRequestHandler):
       #The +2 here represents the first and middle '/' in the path.
       self.path = self.path[len(user_name)+len(character_name)+2:]
     
-    if self.path=="/":
-      self.path="/index.html"
+# # #
     
     #Check to see if it was the user data being requested.
     if self.path == '/default.json':
