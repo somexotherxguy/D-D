@@ -7,6 +7,7 @@ PORT_NUMBER = 5000
 
 
 character_file = 'object.json'
+user_tag = 'user'
 #This class will handles any incoming request from
 #the browser 
 class myHandler(http.server.SimpleHTTPRequestHandler):
@@ -14,33 +15,108 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
   #GET: / user / <username> / <character name> /
   
   #to save
-  #POST: / user / <username> / <character name> / save
+  #POST: / user / <username> / <character name> /
   #Handler for the GET requests
   def do_GET(self):
     #Handle GET requests for user files
     print( '\t'.join(("GET",self.path)) )
     check_path = self.path.split('/')
+    serve_file = ''
+    serve_path = ''
+    
     #clean any final '/'
-    if( len(check_path) > 1 and check_path[len(check_path) - 1] == ''):
+    """if( len(check_path) > 2 and check_path[len(check_path) - 1] == ''):
       check_path = check_path[:len(check_path) - 1]
+      self.path = self.path[:len(self.path) - 1]"""
     print(check_path) #DEBUG
     
     #check for 
     user_name = ''
     character_name = ''
-    if( check_path[ len(check_path) - 1 ] == character_file ):
-      print('unique') # # debug
+    long_enough = len(check_path) >= 5
+    is_character_file = check_path[ len(check_path) - 1 ] == character_file
+    if( long_enough ):
+      if( is_character_file ):
+        print('unique') # # debug
+        user_name = check_path[2]
+        character_name = check_path[3]
+        
+        #Use a single dot here; asecond dot is added later to all paths.
+        serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
+      else:
+        serve_path = '/' + check_path[ len(check_path) - 1 ]
+      print(serve_path) #DEBUG
+    
+    if(serve_path == ''):
+      serve_path = '/'.join(check_path)
     
     #ensure proper root folder resolution
-    if self.path=="/":
-      self.path="/index.html"
+    if serve_path.endswith("/"):
+      serve_path="/index.html"
+      
+      
+      
+    #####
+    #make the serve_path relative
+    serve_path = '.' + serve_path
+    print('file:',serve_path,'opening') #DEBUG
+    #Check that the user file exists
+    if( is_character_file):
+      try:
+        serve_file = open(serve_path, 'rb')
+        serve_file.close()
+      except:
+        #ALWAYS RETURN A CHARACTER JSON
+        serve_path = './' + character_file
+      #serve_file = open(serve_path, 'rb')
     
+    #####
+    try:
+      #Check the file extension required and
+      #set the right mime type
+
+      #Fix these two things later
+      sendReply = True#False
+      #This is just for a decent default
+      mimetype='text/html'#''
+      if serve_path.endswith(".html"):
+        mimetype='text/html'
+        sendReply = True
+      if serve_path.endswith(".jpg"):
+        mimetype='image/jpg'
+        sendReply = True
+      if serve_path.endswith(".gif"):
+        mimetype='image/gif'
+        sendReply = True
+      if serve_path.endswith(".js"):
+        mimetype='application/javascript'
+        sendReply = True
+      if serve_path.endswith(".css"):
+        mimetype='text/css'
+        sendReply = True
+
+      if sendReply == True:
+        #Send the headers
+        self.send_response(200)
+        self.send_header('Content-type',mimetype)
+        self.end_headers()
+        #Open the static file requested and send it
+        serve_file = open(serve_path, 'rb')
+        self.copyfile(serve_file, self.wfile)
+        #Only run the format command for index.html
+        #self.wfile.write( (f.read()).format(user = userName) )
+        #self.wfile.write(f.read())
+        serve_file.close()
+      return
+
+    except IOError:
+      self.send_error(404,'File not found: %s' % self.path)
 
 
 try:
   #Create a web server and define the handler to manage the
   #incoming request
-  Handler = http.server.SimpleHTTPRequestHandler
+  #Handler = http.server.SimpleHTTPRequestHandler
   server_address=('',PORT_NUMBER)
   httpd = socketserver.TCPServer(server_address, myHandler)
   #httpd = socketserver.TCPServer(server_address, Handler)
@@ -104,48 +180,7 @@ import cgi
       self.path = '/' + pathToUserFile
         
 
-    try:
-      #Check the file extension required and
-      #set the right mime type
-
-      #Fix these two things later
-      sendReply = True#False
-      #This is just for a decent default
-      mimetype='text/html'#''
-      if self.path.endswith(".html"):
-        mimetype='text/html'
-        sendReply = True
-      if self.path.endswith(".jpg"):
-        mimetype='image/jpg'
-        sendReply = True
-      if self.path.endswith(".gif"):
-        mimetype='image/gif'
-        sendReply = True
-      if self.path.endswith(".js"):
-        mimetype='application/javascript'
-        sendReply = True
-      if self.path.endswith(".css"):
-        mimetype='text/css'
-        sendReply = True
-
-      if sendReply == True:
-        #Open the static file requested and send it
-        f = open(self.path[1:])
-        self.send_response(200)
-        self.send_header('Content-type',mimetype)
-        self.end_headers()
-        #Only run the format command for index.html
-        if self.path == '/index.html':
-          if userName == '':
-            userName = 'temp'
-          self.wfile.write( (f.read()).format(user = userName) )
-        else:
-          self.wfile.write(f.read())
-        f.close()
-      return
-
-    except IOError:
-      self.send_error(404,'File Not Found: %s' % self.path)
+# # #
 """
 """
   #Handler for the POST requests
