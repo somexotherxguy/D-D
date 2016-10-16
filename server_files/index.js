@@ -228,7 +228,11 @@ function update() {
     	catch (err){;}
     }
     var char_json = JSON.stringify(char_object);
-    console.log(char_json);
+    //Create sending function
+    xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "object.json");
+    xhttp.send(char_json);
+    console.log(char_json); //DEBUG
 	//form.submit();
 }
 
@@ -262,7 +266,7 @@ function test_query() {
       //document.getElementById("char_info").innerHTML = this.responseText;
 		}
 	};
-	json_test = JSON.stringify({"ideal":3,"flaw":2,"story":"Tragic","gender":"male","height":12.5,"race":"Man","alignment":"chaotic neutral","class":"fighter","fighting_style":"dueling","background":"Red","proficiency_mod":3,"str":12,"con":13,"wis":"16","dex":14,"int":14,"chr":21,"feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":8972,"weight":37463929,"sub_race":"Dragon-Man","exp":9000,"archetype":"battle_master","level":"20","hp":1000,"tool_prof":"some","weapon_prof":"fists","skills":"all of them","platinum":123,"gold":500,"electrum":12,"silver":756,"copper":9,"available_spells":"Firebreath","notes":"Remember to buy eggs", "languages":"Python"});
+	//json_test = JSON.stringify({"ideal":3,"flaw":2,"story":"Tragic","gender":"male","height":12.5,"race":"Man","alignment":"chaotic neutral","class":"fighter","fighting_style":"dueling","background":"Red","proficiency_mod":3,"str":12,"con":13,"wis":"16","dex":14,"int":14,"chr":21,"feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":8972,"weight":37463929,"sub_race":"Dragon-Man","exp":9000,"archetype":"battle_master","level":"20","hp":1000,"tool_prof":"some","weapon_prof":"fists","skills":"all of them","platinum":123,"gold":500,"electrum":12,"silver":756,"copper":9,"available_spells":"Firebreath","notes":"Remember to buy eggs", "languages":"Python"});
 /*
 	r = JSON.parse(json_test);
 	xhttp.open("GET", "object.json");

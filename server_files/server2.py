@@ -61,7 +61,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     serve_path = '.' + serve_path
     print('file:',serve_path,'opening') #DEBUG
     #Check that the user file exists
-    if( is_character_file):
+    if( is_character_file ):
       try:
         serve_file = open(serve_path, 'rb')
         serve_file.close()
@@ -111,6 +111,44 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
 
     except IOError:
       self.send_error(404,'File not found: %s' % self.path)
+  
+  def do_POST(self):
+    print( '\t'.join(("POST",self.path)) )
+    check_path = self.path.split('/')
+    serve_path = ''
+    #check for 
+    long_enough = len(check_path) >= 5
+    is_character_file = check_path[ len(check_path) - 1 ] == character_file
+    if( long_enough ):
+      if( is_character_file ):
+        user_name = check_path[2]
+        character_name = check_path[3]
+        
+        #Use a single dot here; asecond dot is added later to all paths.
+        serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
+        
+        #make the serve_path relative
+        serve_path = '.' + serve_path
+        check_path = serve_path.split('/')
+        
+        #Ensure the directory tree exists
+        "mkdir -p " + check_path[: len(check_path) - 1]
+        
+        #print(self.rfile)
+        out_file = open(serve_path, 'w')
+        
+        length = self.headers['content-length']
+        data = self.rfile.read(int(length))
+
+        out_file.write( data.decode() )
+        out_file.close()
+        """
+        with open(self.store_path, 'w') as fh:
+            fh.write(data.decode())
+    """
+        self.send_response(200)
+      else:
+        self.send_response(400)
 
 
 try:
@@ -126,61 +164,12 @@ try:
 
 except KeyboardInterrupt:
   httpd.socket.close()
-  print( '^C received, shutting down the web server')
+  print( '^C received, shutting down')
 """
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import cgi
+  
 
-
-# # # # #
-  
-  
-  #future: character without user
-  #GET: <urlbase> / character / [<character name>] / <character id>
-  save_token = "/save"
-  user_token = "/user"
-  user_data_token = "char_data.json"
-  
-  
-  
-  #Handler for the GET requests
-  def do_GET(self):
-    #Handle GET requests for user files
-    user_name = ''
-    character_name = ''
-    character_tag = '/character'
-    print(self.path)
-    response = "<html><head><title>test</title></head><body>best test</body></html>"
-    self.wfile.write( response )
-    return
-"""
-"""
-    if self.path.find(character_tag) != 0:
-      #The format for user's URLs is '/' + user_name + '/' + character_name.
-      #This means a split on '/' would start with ''.
-      #The next item will be the user_name and the next will be character_name.
-      user_name = self.path.split('/')[1]
-      character_name = self.path.split('/')[2]
-      #The +2 here represents the first and middle '/' in the path.
-      self.path = self.path[len(user_name)+len(character_name)+2:]
-    
-# # #
-    
-    #Check to see if it was the user data being requested.
-    if self.path == '/default.json':
-      if userName == '':
-        userName = 'default'
-      pathToUserFile = '/'.join(['..', character_tag[1:], userName + '.json'])
-      try:
-        userFile = open(pathToUserFile, 'r')
-      except:
-        pathToUserFile = '../user/default.json'
-        userFile = open(pathToUserFile,'r')
-      userFile.close()
-      self.path = '/' + pathToUserFile
-        
-
-# # #
 """
 """
   #Handler for the POST requests
