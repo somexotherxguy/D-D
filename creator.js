@@ -284,38 +284,80 @@ function test_query() {
 	}*/
 }
 
-function class_selected(class_name = "fighter") {
-  var options = document.getElementById("class_options");
-  options.innerHTML=""
+function class_selected(class_name) {
+  var details = document.getElementById("detail_table");
   for (first in class_options[class_name]) break;
   for (last in class_options[class_name]);
-  options.insertAdjacentHTML("beforeend",
-    '<li><div id=class_options_1>' + first[0].toUpperCase() + first.slice(1, first.length) + '<select id="archetype"></select>');
-  var archetype_list = document.getElementById("archetype");
-  var length = archetype_list.options.length
-  for (var i = length - 1; i >= 0; i--) {
-    archetype_list.remove(i);
+  while (details.rows.length > 10) {
+    details.deleteRow(-1);
   }
-  archetype_list.insertAdjacentHTML("beforeend",
-	  '<option disabled selected value>' + "-- --" + '</option');
-  for (var i in class_options[class_name][first]) {
-    archetype_list.insertAdjacentHTML("beforeend",
-      '<option value = "' + i + '">' + class_options[class_name][first][i]);
-  }
-  if (last !== first) {
-  	options.insertAdjacentHTML("beforeend",
-  	'<li><div>Fighting Style<select id="fighting_style"></select></div></li>');
-  	var fighting_styles = document.getElementById("fighting_style");
-    var length = fighting_styles.options.length;
-    for (var i = length - 1; i >= 0; i--) {
-      fighting_styles.remove(i);
-  	}
-  	fighting_styles.insertAdjacentHTML("beforeend",
-  	  '<option disabled selected value>' + "-- --" + '</option>');
-  	for (var i in class_options[class_name]["fighting_style"]) {
-  		fighting_styles.insertAdjacentHTML("beforeend",
-  		  '<option value="' + i + '">' + class_options[class_name]["fighting_style"][i] + '</option>');
-  	}	  
+  if (class_name) {
+    // Archetype Row Cell 1 - Name
+    var a_cell1 = details.insertRow();
+    var a_td1 = document.createElement("td");
+    a_td1.setAttribute("class", "mdl-data-table__cell--non-numeric");
+    a_td1.innerHTML = first[0].toUpperCase() + first.slice(1, first.length);
+    a_cell1.appendChild(a_td1);
+
+    // Archetype Row Cell 2 - Dropdown
+    var a_cell2 = a_cell1.insertCell();
+    var a_div1 = document.createElement("div");
+    a_div1.setAttribute("align", "left");
+    a_div1.setAttribute("id", 'id="class_options_1"');
+    a_cell2.appendChild(a_div1);
+    var archetype_list = document.createElement("select");
+    archetype_list.setAttribute("id", "archetype");
+    archetype_list.innerHTML = "<option disabled selected value> Unspecified </option>";
+    for (var i in class_options[class_name][first]) {
+      archetype_list.insertAdjacentHTML("beforeend",
+        '<option value = "' + i + '">' + class_options[class_name][first][i]);
+    }
+    a_div1.appendChild(archetype_list);
+
+    // Archetype Row Cell 3 - Random Button
+    var a_cell3 = a_cell1.insertCell();
+    var a_rand_button = document.createElement("button");
+    a_rand_button.setAttribute("class", "mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900");
+    var a_image = document.createElement("IMG");
+    a_image.setAttribute("class", "material-icons");
+    a_image.innerHTML = "autorenew";
+    a_rand_button.appendChild(a_image);
+    a_cell3.appendChild(a_rand_button);
+
+    // Create Fighting Styles
+    if (last !== first) {
+      // Fighting Style Row Cell 1 - Name
+      var f_cell1 = details.insertRow();
+      var f_td1 = document.createElement("td");
+      f_td1.setAttribute("class", "mdl-data-table__cell--non-numeric");
+      f_td1.innerHTML = "Fighting Style";
+      f_cell1.appendChild(f_td1);
+
+      // Fighting Style Row Cell 2 - Dropdown
+      var f_cell2 = f_cell1.insertCell();
+      var f_div1 = document.createElement("div");
+      f_div1.setAttribute("align", "left");
+      f_div1.setAttribute("id", 'id="class_options_2"');
+      f_cell2.appendChild(f_div1);
+      var fighting_styles = document.createElement("select");
+      fighting_styles.setAttribute("id", "archetype");
+      fighting_styles.innerHTML = "<option disabled selected value> Unspecified </option>";
+      for (var i in class_options[class_name][last]) {
+        fighting_styles.insertAdjacentHTML("beforeend",
+          '<option value = "' + i + '">' + class_options[class_name][last][i]);
+      }
+      f_div1.appendChild(fighting_styles);
+
+      // Fighting Style Row Cell 3 - Random Button
+      var f_cell3 = f_cell1.insertCell();
+      var f_rand_button = document.createElement("button");
+      f_rand_button.setAttribute("class", "mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900");
+      var f_image = document.createElement("IMG");
+      f_image.setAttribute("class", "material-icons");
+      f_image.innerHTML = "autorenew";
+      f_rand_button.appendChild(f_image);
+      f_cell3.appendChild(f_rand_button);
+    }
   }
 }
 
