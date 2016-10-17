@@ -2,6 +2,7 @@
 import http.server
 import socketserver
 from os import curdir, sep
+import subprocess
 
 PORT_NUMBER = 5000
 
@@ -53,9 +54,9 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     #ensure proper root folder resolution
     if serve_path.endswith("/"):
       serve_path="/index.html"
-      
-      
-      
+
+
+
     #####
     #make the serve_path relative
     serve_path = '.' + serve_path
@@ -132,7 +133,9 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         check_path = serve_path.split('/')
         
         #Ensure the directory tree exists
-        "mkdir -p " + check_path[: len(check_path) - 1]
+        file_make = ["mkdir", '-p', '/'.join(check_path[: len(check_path) - 1])]
+        aarg = subprocess.check_output(file_make).decode()
+        print(aarg) #DEBUG
         
         #print(self.rfile)
         out_file = open(serve_path, 'w')
