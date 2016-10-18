@@ -237,11 +237,16 @@ function update() {
 var r = "";
 
 function fill_form(r){
+    console.log(r["fighting_style"])
 	for (k in r) {
 		if (k === "gender") {
 			var row = document.getElementById(r[k]);
 			row.checked = true;
-		} else {
+		} else if (k === "class") {
+			var row = document.getElementById(k);
+			row.value = r[k];
+			class_selected(r[k]);
+	    } else {
 		  var row = document.getElementById(k);
 		  if (row) {
 		    row.value = r[k];
@@ -257,9 +262,9 @@ function test_query() {
 	xhttp.send();
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log( JSON.parse(this.response) );
+			//console.log( JSON.parse(this.response) );
 			fill_form( JSON.parse(this.response) );
-			console.log( JSON.parse(this.response) );
+			//console.log( JSON.parse(this.response) );
       //document.getElementById("char_info").innerHTML = this.responseText;
 		}
 	};
