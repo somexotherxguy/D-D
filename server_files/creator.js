@@ -216,7 +216,7 @@ var class_options = {
 //# <urlbase> / character / [<character name>] / <character id>
 
 function update() {
-	var form = document.getElementById("char_info");
+	//var form = document.getElementById("char_info");
     //var char_info = JSON.stringify(form)
     var char_object = { };
     console.log(name_array.slice(1));
@@ -229,6 +229,10 @@ function update() {
     }
     var char_json = JSON.stringify(char_object);
     console.log(char_json);
+	var xhttp;
+	xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "object.json", true);
+	xhttp.send(char_json);
 	//form.submit();
 }
 
@@ -268,25 +272,6 @@ function test_query() {
       //document.getElementById("char_info").innerHTML = this.responseText;
 		}
 	};
-	json_test = JSON.stringify({"ideal":3,"flaw":2,"story":"Tragic","gender":"male","height":12.5,"race":"Man","alignment":"chaotic neutral","class":"fighter","fighting_style":"dueling","background":"Red","proficiency_mod":3,"str":12,"con":13,"wis":"16","dex":14,"int":14,"chr":21,"feat":"lots","char_name":"Trogdor","traits":"Hotheaded","bonds":"Iron","notable_traits":"Dragon-Man","description":"Burninator","age":8972,"weight":37463929,"sub_race":"Dragon-Man","exp":9000,"archetype":"battle_master","level":"20","hp":1000,"tool_prof":"some","weapon_prof":"fists","skills":"all of them","platinum":123,"gold":500,"electrum":12,"silver":756,"copper":9,"available_spells":"Firebreath","notes":"Remember to buy eggs", "languages":"Python"});
-/*
-	r = JSON.parse(json_test);
-	xhttp.open("GET", "object.json");
-	xhttp.send();
-	for (k in r) {
-		if (k === "gender") {
-			var row = document.getElementById(r[k]);
-			row.checked = true;
-		} else {
-		  var row = document.getElementById(k);
-		  if (row) {
-		    row.value = r[k];
-        if (k === "class") {
-          class_selected(row.value);
-        }
-		  }
-		}
-	}*/
 }
 
 function class_selected(class_name) {
