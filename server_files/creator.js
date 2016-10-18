@@ -241,7 +241,7 @@ function update() {
 var r = "";
 
 function fill_form(r){
-    console.log(r["fighting_style"])
+    //console.log(r["fighting_style"])
 	for (k in r) {
 		if (k === "gender") {
 			var row = document.getElementById(r[k]);
@@ -256,7 +256,7 @@ function fill_form(r){
 		    row.value = r[k];
 		  }
 		}
-  }
+    }
 }
 
 function test_query() {
@@ -330,7 +330,7 @@ function class_selected(class_name) {
       f_div1.setAttribute("id", 'id="class_options_2"');
       f_cell2.appendChild(f_div1);
       var fighting_styles = document.createElement("select");
-      fighting_styles.setAttribute("id", "archetype");
+      fighting_styles.setAttribute("id", "fighting_style");
       fighting_styles.innerHTML = "<option disabled selected value> Unspecified </option>";
       for (var i in class_options[class_name][last]) {
         fighting_styles.insertAdjacentHTML("beforeend",
