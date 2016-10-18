@@ -1,65 +1,77 @@
 #!/usr/bin/python
-from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+import http.server
+import socketserver
 from os import curdir, sep
-import cgi
+import subprocess
 
 PORT_NUMBER = 5000
 
+
+character_file = 'object.json'
+user_tag = 'user'
 #This class will handles any incoming request from
 #the browser 
-class myHandler(BaseHTTPRequestHandler):
+class myHandler(http.server.SimpleHTTPRequestHandler):
   #to load
   #GET: / user / <username> / <character name> /
   
   #to save
-  #POST: / user / <username> / <character name> / save
-  
-  
-  #future: character without user
-  #GET: <urlbase> / character / [<character name>] / <character id>
-  save_token = "/save"
-  user_token = "/user"
-  user_data_token = "char_data.json"
-  
-  
-  
+  #POST: / user / <username> / <character name> /
   #Handler for the GET requests
   def do_GET(self):
     #Handle GET requests for user files
+    print( '\t'.join(("GET",self.path)) )
+    check_path = self.path.split('/')
+    serve_file = ''
+    serve_path = ''
+    
+    #clean any final '/'
+    """if( len(check_path) > 2 and check_path[len(check_path) - 1] == ''):
+      check_path = check_path[:len(check_path) - 1]
+      self.path = self.path[:len(self.path) - 1]"""
+    print(check_path) #DEBUG
+    
+    #check for 
     user_name = ''
     character_name = ''
-    character_tag = '/character'
-    print(self.path)
-    response = "<html><head><title>test</title></head><body>best test</body></html>"
-    self.wfile.write( response )
-    return
-    """
-    if self.path.find(character_tag) != 0:
-      #The format for user's URLs is '/' + user_name + '/' + character_name.
-      #This means a split on '/' would start with ''.
-      #The next item will be the user_name and the next will be character_name.
-      user_name = self.path.split('/')[1]
-      character_name = self.path.split('/')[2]
-      #The +2 here represents the first and middle '/' in the path.
-      self.path = self.path[len(user_name)+len(character_name)+2:]
-    
-    if self.path=="/":
-      self.path="/index.html"
-    
-    #Check to see if it was the user data being requested.
-    if self.path == '/default.json':
-      if userName == '':
-        userName = 'default'
-      pathToUserFile = '/'.join(['..', character_tag[1:], userName + '.json'])
-      try:
-        userFile = open(pathToUserFile, 'r')
-      except:
-        pathToUserFile = '../user/default.json'
-        userFile = open(pathToUserFile,'r')
-      userFile.close()
-      self.path = '/' + pathToUserFile
+    long_enough = len(check_path) >= 5
+    is_character_file = check_path[ len(check_path) - 1 ] == character_file
+    if( long_enough ):
+      if( is_character_file ):
+        print('unique') # # debug
+        user_name = check_path[2]
+        character_name = check_path[3]
         
+        #Use a single dot here; asecond dot is added later to all paths.
+        serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
+      else:
+        serve_path = '/' + check_path[ len(check_path) - 1 ]
+      print(serve_path) #DEBUG
+    
+    if(serve_path == ''):
+      serve_path = '/'.join(check_path)
+    
+    #ensure proper root folder resolution
+    if serve_path.endswith("/"):
+      serve_path="/index.html"
 
+
+
+    #####
+    #make the serve_path relative
+    serve_path = '.' + serve_path
+    print('file:',serve_path,'opening') #DEBUG
+    #Check that the user file exists
+    if( is_character_file ):
+      try:
+        serve_file = open(serve_path, 'rb')
+        serve_file.close()
+      except:
+        #ALWAYS RETURN A CHARACTER JSON
+        serve_path = './' + character_file
+      #serve_file = open(serve_path, 'rb')
+    
+    #####
     try:
       #Check the file extension required and
       #set the right mime type
@@ -68,40 +80,100 @@ class myHandler(BaseHTTPRequestHandler):
       sendReply = True#False
       #This is just for a decent default
       mimetype='text/html'#''
-      if self.path.endswith(".html"):
+      if serve_path.endswith(".html"):
         mimetype='text/html'
         sendReply = True
-      if self.path.endswith(".jpg"):
+      if serve_path.endswith(".jpg"):
         mimetype='image/jpg'
         sendReply = True
-      if self.path.endswith(".gif"):
+      if serve_path.endswith(".gif"):
         mimetype='image/gif'
         sendReply = True
-      if self.path.endswith(".js"):
+      if serve_path.endswith(".js"):
         mimetype='application/javascript'
         sendReply = True
-      if self.path.endswith(".css"):
+      if serve_path.endswith(".css"):
         mimetype='text/css'
         sendReply = True
 
       if sendReply == True:
-        #Open the static file requested and send it
-        f = open(self.path[1:])
+        #Send the headers
         self.send_response(200)
         self.send_header('Content-type',mimetype)
         self.end_headers()
+        #Open the static file requested and send it
+        serve_file = open(serve_path, 'rb')
+        self.copyfile(serve_file, self.wfile)
         #Only run the format command for index.html
-        if self.path == '/index.html':
-          if userName == '':
-            userName = 'temp'
-          self.wfile.write( (f.read()).format(user = userName) )
-        else:
-          self.wfile.write(f.read())
-        f.close()
+        #self.wfile.write( (f.read()).format(user = userName) )
+        #self.wfile.write(f.read())
+        serve_file.close()
       return
 
     except IOError:
-      self.send_error(404,'File Not Found: %s' % self.path)
+      self.send_error(404,'File not found: %s' % self.path)
+  
+  def do_POST(self):
+    print( '\t'.join(("POST",self.path)) )
+    check_path = self.path.split('/')
+    serve_path = ''
+    #check for 
+    long_enough = len(check_path) >= 5
+    is_character_file = check_path[ len(check_path) - 1 ] == character_file
+    if( long_enough ):
+      if( is_character_file ):
+        user_name = check_path[2]
+        character_name = check_path[3]
+        
+        #Use a single dot here; asecond dot is added later to all paths.
+        serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
+        
+        #make the serve_path relative
+        serve_path = '.' + serve_path
+        check_path = serve_path.split('/')
+        
+        #Ensure the directory tree exists
+        file_make = ["mkdir", '-p', '/'.join(check_path[: len(check_path) - 1])]
+        aarg = subprocess.check_output(file_make).decode()
+        print(aarg) #DEBUG
+        
+        #print(self.rfile)
+        out_file = open(serve_path, 'w')
+        
+        length = self.headers['content-length']
+        data = self.rfile.read(int(length))
+
+        out_file.write( data.decode() )
+        out_file.close()
+        """
+        with open(self.store_path, 'w') as fh:
+            fh.write(data.decode())
+    """
+        self.send_response(200)
+      else:
+        self.send_response(400)
+
+
+try:
+  #Create a web server and define the handler to manage the
+  #incoming request
+  #Handler = http.server.SimpleHTTPRequestHandler
+  server_address=('',PORT_NUMBER)
+  httpd = socketserver.TCPServer(server_address, myHandler)
+  #httpd = socketserver.TCPServer(server_address, Handler)
+  #Wait forever for incoming http requests
+  print( 'Started httpserver on port ' , PORT_NUMBER)
+  httpd.serve_forever()
+
+except KeyboardInterrupt:
+  httpd.socket.close()
+  print( '^C received, shutting down')
+"""
+from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+import cgi
+  
+
+"""
 """
   #Handler for the POST requests
   def do_POST(self):
@@ -134,12 +206,12 @@ class myHandler(BaseHTTPRequestHandler):
         pathToUserFile = pathToUserFile[:len(pathToUserFile)-1]
         #Put it back into a string.
         pathToUserFile = '/'.join(pathToUserFile)
-        """These two sections should be combined neatly: FIX LATER"""
+        ####These two sections should be combined neatly: FIX LATER
         #This gets the username part of the URL with the '.json' at the end.
         userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
         #This gets rid of the last '.*' which should be '.json'.
         userName = '.'.join(userName[:len(userName)-1])
-        """This one, too: FIX LATER"""
+        ####This one, too: FIX LATER
         if pathToUserFile == '../user':
           pathToUserFile += '/temp'
         pathToUserFile += '.json'
@@ -155,26 +227,28 @@ class myHandler(BaseHTTPRequestHandler):
         userFile.close()
       except:
         pass
-      """
+"""
+"""
       #send the response
       userFile = open(pathToUserFile, 'r')
       self.wfile.write(userFile.read())
       userFile.close()
-      """
-      """
+"""
+"""
       #print "Your name is: %s" % form["jsonArea"].value
       self.send_response(200)
       self.end_headers()
       #self.wfile.write("Thanks %s !" % form["jsonArea"].value)
-      """
-      """
+"""
+"""
       #Determine the user name
       userName = form["user"]
       #This gets the username part of the URL with the '.json' at the end.
       userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
       #This gets rid of the last '.*' which should be '.json'.
       userName = '.'.join(userName[:len(UserName)-1])
-      """
+"""
+"""
       # redirect browser to the user page to test that the file saved
       self.send_response(301)
       self.send_header("Location", '/user/' + userName + "/")
@@ -182,17 +256,5 @@ class myHandler(BaseHTTPRequestHandler):
       return None
       return      
       
-      
-try:
-  #Create a web server and define the handler to manage the
-  #incoming request
-  server = HTTPServer(('', PORT_NUMBER), myHandler)
-  print( 'Started httpserver on port ' , PORT_NUMBER)
   
-  #Wait forever for incoming htto requests
-  server.serve_forever()
-
-except KeyboardInterrupt:
-  print( '^C received, shutting down the web server')
-  server.socket.close()
-  
+"""
