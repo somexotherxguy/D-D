@@ -20,7 +20,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
   #Handler for the GET requests
   def do_GET(self):
     #Handle GET requests for user files
-    print( '\t'.join(("GET",self.path)) )
+    #print( '\t'.join(("GET",self.path)) ) #DEBUG
     check_path = self.path.split('/')
     serve_file = ''
     serve_path = ''
@@ -29,7 +29,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     """if( len(check_path) > 2 and check_path[len(check_path) - 1] == ''):
       check_path = check_path[:len(check_path) - 1]
       self.path = self.path[:len(self.path) - 1]"""
-    print(check_path) #DEBUG
+    #print(check_path) #DEBUG
     
     #check for 
     user_name = ''
@@ -38,7 +38,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     is_character_file = check_path[ len(check_path) - 1 ] == character_file
     if( long_enough ):
       if( is_character_file ):
-        print('unique') # # debug
+        #print('unique') # # debug
         user_name = check_path[2]
         character_name = check_path[3]
         
@@ -46,7 +46,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
       else:
         serve_path = '/' + check_path[ len(check_path) - 1 ]
-      print(serve_path) #DEBUG
+      #print(serve_path) #DEBUG
     
     if(serve_path == ''):
       serve_path = '/'.join(check_path)
@@ -60,7 +60,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     #####
     #make the serve_path relative
     serve_path = '.' + serve_path
-    print('file:',serve_path,'opening') #DEBUG
+    #print('file:',serve_path,'opening') #DEBUG
     #Check that the user file exists
     if( is_character_file ):
       try:
@@ -135,7 +135,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         #Ensure the directory tree exists
         file_make = ["mkdir", '-p', '/'.join(check_path[: len(check_path) - 1])]
         aarg = subprocess.check_output(file_make).decode()
-        print(aarg) #DEBUG
+        #print(aarg) #DEBUG
         
         #print(self.rfile)
         out_file = open(serve_path, 'w')
@@ -168,93 +168,4 @@ try:
 except KeyboardInterrupt:
   httpd.socket.close()
   print( '^C received, shutting down')
-"""
-from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
-import cgi
-  
 
-"""
-"""
-  #Handler for the POST requests
-  def do_POST(self):
-    if self.path.endswith("/save"):
-      form = cgi.FieldStorage(
-        fp=self.rfile, 
-        headers=self.headers,
-        environ={'REQUEST_METHOD':'POST',
-                     'CONTENT_TYPE':self.headers['Content-Type'],
-      })
-
-      
-      pathToUserFile = ''
-      #Determine the user name
-      userName = ''
-      try:
-        userName = form["user"].value
-      except:
-        print('DEBUG1')
-        #The user files are in an outside folder so only the server can see them.
-        pathToUserFile = self.path
-        #This is for the default page.
-        if pathToUserFile[:len('/user')] != '/user':
-          pathToUserFile = '/user' + pathToUserFile
-        #This prepends the folder ascension to the path.
-        pathToUserFile = '..' + pathToUserFile
-        #Split up the string.
-        pathToUserFile = pathToUserFile.split('/')
-        #Get rid of the '/send' on the end.
-        pathToUserFile = pathToUserFile[:len(pathToUserFile)-1]
-        #Put it back into a string.
-        pathToUserFile = '/'.join(pathToUserFile)
-        ####These two sections should be combined neatly: FIX LATER
-        #This gets the username part of the URL with the '.json' at the end.
-        userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
-        #This gets rid of the last '.*' which should be '.json'.
-        userName = '.'.join(userName[:len(userName)-1])
-        ####This one, too: FIX LATER
-        if pathToUserFile == '../user':
-          pathToUserFile += '/temp'
-        pathToUserFile += '.json'
-      if userName == 'default':
-        userName = 'temp'
-      
-      pathToUserFile = '../user/' + userName + '.json'
-      
-      try:
-        #Open, write, and close the user's data file.
-        userFile = open(pathToUserFile, 'w')
-        userFile.write(form["jsonArea"].value)
-        userFile.close()
-      except:
-        pass
-"""
-"""
-      #send the response
-      userFile = open(pathToUserFile, 'r')
-      self.wfile.write(userFile.read())
-      userFile.close()
-"""
-"""
-      #print "Your name is: %s" % form["jsonArea"].value
-      self.send_response(200)
-      self.end_headers()
-      #self.wfile.write("Thanks %s !" % form["jsonArea"].value)
-"""
-"""
-      #Determine the user name
-      userName = form["user"]
-      #This gets the username part of the URL with the '.json' at the end.
-      userName = '/'.join(pathToUserFile.split('/')[2:]).split('.')
-      #This gets rid of the last '.*' which should be '.json'.
-      userName = '.'.join(userName[:len(UserName)-1])
-"""
-"""
-      # redirect browser to the user page to test that the file saved
-      self.send_response(301)
-      self.send_header("Location", '/user/' + userName + "/")
-      self.end_headers()
-      return None
-      return      
-      
-  
-"""

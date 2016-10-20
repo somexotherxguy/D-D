@@ -1,0 +1,33 @@
+/*Fonts*/
+@font-face {
+	font-family: Sorry Not Sorry;
+	src: url('Fonts/KGSorryNotSorry.ttf');
+}
+
+@font-face {
+	font-family: Roboto;
+	src: url('Fonts/Roboto-Light.ttf');
+}
+
+/*Grid View*/
+* {
+    box-sizing: border-box;
+}
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+.col-1 {width: 17%;}
+.col-2 {width: 16%;}
+.col-3 {width: 33%;}
+.col-4 {width: 33%;}
+
+.navbar {
+	color: #E89B00;
+	background-color: #E89B00;
+}
