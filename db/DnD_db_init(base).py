@@ -1,6 +1,3 @@
-#edit tables based on what website has slots for, comment out other stuff?
-#edit dummy inserts based on what is changed
-
 import sqlite3
 conn = sqlite3.connect('DnD.db')
 
@@ -36,8 +33,8 @@ c.execute('''CREATE TABLE char_info(
 	race TEXT NOT NULL,
 	alignment TEXT NOT NULL,
 	class TEXT NOT NULL,
-	fighting_style TEXT, 	#??????????????????????
-	background TEXT, 		#?????????? same as backstory?
+	fighting_style TEXT,
+	background TEXT,
 	proficiency_mod INTEGER,
 	str INTEGER NOT NULL,
 	con INTEGER NOT NULL,
@@ -47,15 +44,15 @@ c.execute('''CREATE TABLE char_info(
 	chr INTEGER NOT NULL,
 	feats TEXT,
 	char_name TEXT NOT NULL,
-	traits TEXT,			#personality
+	traits TEXT,
 	bonds TEXT,
-	notable_traits TEXT,	#features_traits
-	description TEXT, 		#??????????????????
+	notable_traits TEXT,
+	description TEXT,
 	age INTEGER,
 	weight INTEGER NOT NULL,
 	sub_race TEXT,
 	exp INTEGER NOT NULL,
-	archetype TEXT NOT NULL,	#???
+	archetype TEXT NOT NULL,
 	level INTEGER NOT NULL,
 	hp INTEGER NOT NULL,
 	tool_prof TEXT NOT NULL,
@@ -63,11 +60,11 @@ c.execute('''CREATE TABLE char_info(
 	skills TEXT NOT NULL,
 	platinum INTEGER,
 	gold INTEGER,
-	electrum INTEGER,		#????
+	electrum INTEGER,
 	silver INTEGER,
 	copper INTEGER,
 	available_spells TEXT NOT NULL,
-	notes TEXT,				#????
+	notes TEXT,
 	languages TEXT NOT NULL,
 
 	FOREIGN KEY (char_name) REFERENCES characters(char_name) ON DELETE CASCADE,
