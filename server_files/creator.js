@@ -63,7 +63,7 @@ name_array = [["Field Name", "Variable Name", "Field Type", "Data Type", "Requir
   , ["Equipment", "equipment", "subform", "class", "n"]
   , ["Money", "money", "number", "int", "y"]
   , ["Spells_player_is_able_to_use", "available_spells", "dropdown", "string", "y"]
-  , ["Notes", "notes", "text area", "string", "n"]]
+  , ["Notes", "notes", "text area", "string", "n"]];
 
 
 var class_options = {
@@ -208,7 +208,7 @@ var class_options = {
           "transmutation": "School of Transmutation"
         }
     }
-}
+};
 
 //#to load or save
 //# <urlbase> / <username> / <character name> / [save]

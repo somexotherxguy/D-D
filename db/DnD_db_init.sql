@@ -1,29 +1,21 @@
-import sqlite3
-conn = sqlite3.connect('DnD.db')
+PRAGMA foreign_keys = ON;
 
-c = conn.cursor()
-
-#Enable foreign key support
-c.execute("PRAGMA foreign_keys = ON")
-
-#Create all database tables
-c.execute('''CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
 	username TEXT NOT NULL,
 	user_pw TEXT NOT NULL,
-	#player_name TEXT NOT NULL,
 
 	PRIMARY KEY (username)
-)''')
+);
 
-c.execute('''CREATE TABLE characters(
+CREATE TABLE IF NOT EXISTS characters(
 	char_name TEXT NOT NULL,
 	username TEXT,
 
 	PRIMARY KEY (char_name),
-	FOREIGN KEY (user) REFERENCES users(username) ON DELETE CASCADE
-)''')
+	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+);
 
-c.execute('''CREATE TABLE char_info(
+CREATE TABLE IF NOT EXISTS char_info(
 	username TEXT NOT NULL,
 	ideal TEXT,
 	flaw TEXT,
@@ -69,10 +61,4 @@ c.execute('''CREATE TABLE char_info(
 
 	FOREIGN KEY (char_name) REFERENCES characters(char_name) ON DELETE CASCADE,
 	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
-)''')
-
-#commit changes to database
-conn.commit()
-
-#close connection to database, creation completed
-conn.close()
+);

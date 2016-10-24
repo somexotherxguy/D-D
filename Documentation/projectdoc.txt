@@ -32,7 +32,8 @@ Dylan Roach
 	- Wrote function to parse JSON object
 	- Integrated dynamic dropdowns with new interface
     In Progress
-        - Integrate Weapons, Armor, etc.
+        - Implement login
+	- Integrate Weapons, Armor, etc.
         - Implement RNG
 Jace O'Brien
     Completed
