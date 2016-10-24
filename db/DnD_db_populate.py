@@ -7,71 +7,69 @@ c = conn.cursor()
 c.execute("PRAGMA foreign_keys = ON")
 
 #Insert table values
-
+"""
 c.execute('''INSERT INTO 
 	users(username, user_pw, player_name) 
 	VALUES 
-	(‘Sean_test’, ‘test’, ‘Sean L’)
+	('Sean_test', 'test', 'Sean L')
 ''')
 
 c.execute('''INSERT INTO 
 	characters(char_name, user)
 	VALUES 
-	(‘Liekki’, ‘Sean_test’)
+	('Liekki', 'Sean_test')
 ''')
 
 c.execute('''INSERT INTO 
 	basic_info(char_name, username, level, race, alignment, exp, age, height, weight, eyes, skin, hair, hp_total, hp_current, hp_temp, hit_die, armor_class, initiative, speed, inspiration, prof, melee_mod, range_mod) 
-	VALUES 
-	(‘Liekki’, ‘Sean_test’, 15, ‘Fire Genasi’, ‘Neutral Evil’, 0, 26, 71, 195, ‘Orange’, ‘Red’, ‘Orange’, 97, 97, 0, 15, 16, 3, 30, false, 5, 6, 8)
-
+	VALUES('Liekki', 'Sean_test', 15, 'Fire Genasi', 'Neutral Evil', 0, 26, 71, 195, 'Orange', 'Red', 'Orange', 97, 97, 0, 15, 16, 3, 30, 0, 5, 6, 8)
 ''')
 
 c.execute('''INSERT INTO
 	deathsaves(char_name, username, successes, failures)
 	VALUES
-	(‘Liekki’, ‘Sean_test’, 0, 0)
+	('Liekki', 'Sean_test', 0, 0)
 ''')
 
 c.execute('''INSERT INTO
 	attributes(char_name, username, str, dex, con, intel, wis, cha, str_mod, dex_mod, con_mod, intel_mod, wis_mod, cha_mod)
 	VALUES
-	(‘Liekki’, ‘Sean_test’, 12, 16, 16, 13, 14, 18, 1, 3, 3, 1, 2, 4)
+	('Liekki', 'Sean_test', 12, 16, 16, 13, 14, 18, 1, 3, 3, 1, 2, 4)
 ''')
 
 c.execute('''INSERT INTO
-	skills(char_name, username, acro, ani_hand, arcana, athl, decep, hist, insight, intim, invest, medi, nat, percep, perform, pers, reli, soh, stealth, survival, pass_invest, pass_insight, pass_perce, acro_prof, ani_hand_prof, arcana_prof, athl_prof, decep_prof, hist_prof, insight_prof, intim_prof, invest_prof, medi_prof, nat_prof, percep_prof, perform_prof, pers_prof, reli_prof, soh_prof, stealth_prof, survival_prof, pass_invest_prof, pass_insight_prof, pass_percep_prof)
+	skills(char_name, username, acro, ani_hand, arcana, athl, decep, hist, insight, intim, invest, medi, nat, percep, perform, pers, reli, soh, stealth, survival, pass_invest, pass_insight, pass_percep, acro_prof, ani_hand_prof, arcana_prof, athl_prof, decep_prof, hist_prof, insight_prof, intim_prof, invest_prof, medi_prof, nat_prof, percep_prof, perform_prof, pers_prof, reli_prof, soh_prof, stealth_prof, survival_prof, pass_invest_prof, pass_insight_prof, pass_percep_prof)
 	VALUES
-	(‘Liekki’, ‘Sean_test’, 3, 2, 6, 1, 9, 1, 2, 9, 1, 2, 1, 7, 4, 4, 1, 3, 3, 2, 11, 12, 16, false, false, true, false, true, false, false, true, false, false, false, true, false, false, false, false, false, false)
+	('Liekki', 'Sean_test', 3, 2, 6, 1, 9, 1, 2, 9, 1, 2, 1, 7, 4, 4, 1, 3, 3, 2, 11, 12, 16, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,2,2,2)
 ''')
 
 c.execute('''INSERT INTO
 	background(char_name, username, personality, ideals, bonds, flaws, features_traits, feats, languages, tool_prof, backstory, weap_prof)
 	VALUES
-	(‘Liekki’, ‘Sean_test’, ‘short temper’, ‘None’, ‘None’, ‘typical evil things’, ‘Darkvision, Fire Resistance, Fire Genasi Race Spells, Sorcery Points, Heightened Spell, Quickened Spell, Twinned Spell, Dragon Ancestor, Draconic Resilience, Elemental Affinity, Dragon Wings’, ‘War Caster, Elemental Adept (Fire)’, ‘Common, Ignan, Draconic’, ‘None’, ‘So deep you could drown in it’, ‘Simple, Martial’)
+	('Liekki', 'Sean_test', 'short temper', 'None', 'None', 'typical evil things', 'Darkvision, Fire Resistance, Fire Genasi Race Spells, Sorcery Points, Heightened Spell, Quickened Spell, Twinned Spell, Dragon Ancestor, Draconic Resilience, Elemental Affinity, Dragon Wings', 'War Caster, Elemental Adept (Fire)', 'Common, Ignan, Draconic', 'None', 'So deep you could drown in it', 'Simple, Martial')
 
 ''')
 
 c.execute('''INSERT INTO
 	equipment_treasure(char_name, username, equip, treasure, plat, gold, silver, copper)
 	VALUES
-	(‘Liekki’, ‘Sean_test’, ‘Stuff’, ‘Stuff’, 0, 0, 0, 0)
+	('Liekki', 'Sean_test', 'Stuff', 'Stuff', 0, 0, 0, 0)
 ''')
 
 c.execute('''INSERT INTO
 	saves(char_name, username, str_save, dex_save, con_save, intel_save, wis_save, cha_save, str_prof, dex_prof, con_prof, intel_prof, wis_prof, cha_prof)
 	VALUES
-	(‘Liekki’, ‘Sean_test’, 1, 3, 8, 1, 2, 9, false, false, true, false, false, true)
+	('Liekki', 'Sean_test', 1, 3, 8, 1, 2, 9, 0, 0, 1, 0, 0, 1)
 ''')
-
+"""
 c.execute('''INSERT INTO
 	feats(feat_name, description)
 	VALUES
 	('Alert', 'Always on the lookout for danger, you gain the
 	following benefits:
 	• You gain a +5 bonus to initiative.
-	• You can’t be surprised while you are conscious.
-	• Other creatures don’t gain advantage on attack rolls
+	• You can't be surprised while you are conscious.
+	• Other creatures don't gain advantage on attack rolls
 	against you as a result of being hidden from you.')
 ''')
 
@@ -84,7 +82,7 @@ c.execute('''INSERT INTO
 	maximum o f 20.
 	• When you are prone, standing up uses only 5 feet of
 	your movement.
-	• Climbing doesn’t halve your speed.
+	• Climbing doesn't halve your speed.
 	• You can make a running long jump or a running high
 	jump after moving only 5 feet on foot, rather than
 	10 feet.")
@@ -116,7 +114,7 @@ c.execute('''INSERT INTO
 	shove a creature.
 	If you move at least 10 feet in a straight line
 	immediately before taking this bonus action, you either
-	gain a +5 bonus to the attack’s damage roll (if you chose
+	gain a +5 bonus to the attack's damage roll (if you chose
 	to make a melee attack and hit) or push the target up
 	to 10 feet away from you (if you chose to shove and
 	you succeed).")
@@ -129,7 +127,7 @@ c.execute('''INSERT INTO
 	gain the following benefits:
 	• You ignore the loading quality of crossbows with
 	which you are proficient.
-	• Being within 5 feet of a hostile creature doesn’t
+	• Being within 5 feet of a hostile creature doesn't
 	impose disadvantage on your ranged attack rolls.
 	• When you use the Attack action and attack with a onehanded
 	w eapon, you can use a bonus action to attack
@@ -155,7 +153,7 @@ c.execute('''INSERT INTO
 	• You gain a +1 bonus to AC while you are wielding a
 	separate melee weapon in each hand.
 	• You can use two-weapon fighting even when the onehanded
-	melee weapons you are wielding aren’t light.
+	melee weapons you are wielding aren't light.
 	• You can draw or stow two one-handed weapons when
 	you w ould normally be able to draw or stow only one.")
 ''')
@@ -205,7 +203,7 @@ c.execute('''INSERT INTO
 	feats(feat_name, description)
 	VALUES
 	("Grappler", "Prerequisite: Strength 13 or higher
-	You’ve developed the skills necessary to hold your
+	You've developed the skills necessary to hold your
 	own in close-quarters grappling. You gain the
 	following benefits:
 	• You have advantage on attack rolls against a creature
@@ -214,14 +212,14 @@ c.execute('''INSERT INTO
 	by you. To do so, make another grapple check. If
 	you succeed, you and the creature are both restrained
 	until the grapple ends.
-	• Creatures that are one size larger than you don’t automatically
+	• Creatures that are one size larger than you don't automatically
 	succeed on checks to escape your grapple.")
 ''')
 
 c.execute('''INSERT INTO
 	feats(feat_name, description)
 	VALUES
-	("Great Weapon Master", "You’ve learned to put the weight of a weapon to your
+	("Great Weapon Master", "You've learned to put the weight of a weapon to your
 	advantage, letting its momentum empower your strikes.
 	You gain the following benefits:
 	• On your turn, when you score a critical hit with a
@@ -231,7 +229,7 @@ c.execute('''INSERT INTO
 	• Before you make a melee attack with a heavy weapon
 	that you are proficient with, you can choose to take a
 	- 5 penalty to the attack roll. If the attack hits, you add
-	+10 to the attack’s damage.")
+	+10 to the attack's damage.")
 ''')
 
 c.execute('''INSERT INTO
@@ -240,12 +238,12 @@ c.execute('''INSERT INTO
 	("Healer", "You are an able physician, allowing you to mend wounds
 	quickly and get your allies back in the fight. You gain the
 	following benefits:
-	• When you use a healer’s kit to stabilize a dying creature,
+	• When you use a healer's kit to stabilize a dying creature,
 	that creature also regains 1 hit point.
-	• As an action, you can spend one use of a healer’s kit to
+	• As an action, you can spend one use of a healer's kit to
 	tend to a creature and restore 1d6 + 4 hit points to it,
-	plus additional hit points equal to the creature’s maximum
-	number of Hit Dice. The creature can’t regain
+	plus additional hit points equal to the creature's maximum
+	number of Hit Dice. The creature can't regain
 	hit points from this feat again until it finishes a short
 	or long rest.")
 ''')
@@ -282,7 +280,7 @@ c.execute('''INSERT INTO
 	within 30 feet of you who can see or hear you and w ho
 	can understand you. Each creature can gain temporary
 	hit points equal to your level + your Charisma modifier.
-	A creature can’t gain temporary hit points from this feat
+	A creature can't gain temporary hit points from this feat
 	again until it has finished a short or long rest.")
 ''')
 
@@ -318,7 +316,7 @@ c.execute('''INSERT INTO
 	following benefits:
 	• Increase your Intelligence score by 1, to a maximum of 20.
 	• You learn three languages of your choice.
-	• You can ably create written ciphers. Others can’t decipher
+	• You can ably create written ciphers. Others can't decipher
 	a code you create unless you teach them, they
 	succeed on an Intelligence check (DC equal to your
 	Intelligence score + your proficiency bonus), or they
@@ -339,7 +337,7 @@ c.execute('''INSERT INTO
 	saving throw.
 	You can also spend one luck point when an attack
 	roll is made against you. Roll a d20, and then choose
-	whether the attack uses the attacker’s roll or yours.
+	whether the attack uses the attacker's roll or yours.
 	If more than one creature spends a luck point to
 	influence the outcome of a roll, the points cancel each
 	other out; no additional dice are rolled.
@@ -367,7 +365,7 @@ c.execute('''INSERT INTO
 	VALUES
 	("Magic Initiate", "Choose a class: bard, cleric, druid, sorcerer, warlock, or
 	wizard. You learn two cantrips of your choice from that
-	class’s spell list.
+	class's spell list.
 	In addition, choose one 1st-level spell from that same
 	list. You learn that spell and can cast it at its lowest
 	level. Once you cast it, you must finish a long rest before
@@ -387,7 +385,7 @@ c.execute('''INSERT INTO
 	• You learn two maneuvers of your choice from among
 	those available to the Battle Master archetype in the
 	fighter class. If a maneuver you use requires your target
-	to make a saving throw to resist the maneuver’s
+	to make a saving throw to resist the maneuver's
 	effects, the saving throw DC equals 8 + your proficiency
 	bonus + your Strength or Dexterity modifier
 	(your choice).
@@ -405,7 +403,7 @@ c.execute('''INSERT INTO
 	("Medium Armor Master", "Prerequisite: Proficiency with medium armor
 	You have practiced moving in medium armor to gain the
 	following benefits:
-	• Wearing medium armor doesn’t impose disadvantage
+	• Wearing medium armor doesn't impose disadvantage
 	on your Dexterity (Stealth) checks.
 	• When you wear medium armor, you can add 3,
 	rather than 2, to your AC if you have a Dexterity of
@@ -418,10 +416,10 @@ c.execute('''INSERT INTO
 	("Mobile", "You are exceptionally speedy and agile. You gain the
 	following benefits:
 	• Your speed increases by 10 feet.
-	• When you use the Dash action, difficult terrain doesn’t
+	• When you use the Dash action, difficult terrain doesn't
 	cost you extra movement on that turn.
 	• When you make a melee attack against a creature, you
-	don’t provoke opportunity attacks from that creature
+	don't provoke opportunity attacks from that creature
 	for the rest of the turn, whether you hit or not.")
 ''')
 
@@ -440,7 +438,7 @@ c.execute('''INSERT INTO
 	feats(feat_name, description)
 	VALUES
 	("Mounted Combatant", "You are a dangerous foe to face while mounted. While
-	you are mounted and aren’t incapacitated, you gain the
+	you are mounted and aren't incapacitated, you gain the
 	following benefits:
 	• You have advantage on melee attack rolls against any
 	unmounted creature that is smaller than your mount.
@@ -459,8 +457,8 @@ c.execute('''INSERT INTO
 	the following benefits:
 	• Increase your Intelligence or Wisdom score by 1, to a
 	maximum of 20.
-	• If you can see a creature’s mouth while it is speaking
-	a language you understand, you can interpret what it’s
+	• If you can see a creature's mouth while it is speaking
+	a language you understand, you can interpret what it's
 	saying by reading its lips.
 	• You have a +5 bonus to your passive Wisdom
 	(Perception) and passive Intelligence (Investigation)
@@ -475,7 +473,7 @@ c.execute('''INSERT INTO
 	• When you take the Attack action and attack with only
 	a glaive, halberd, or quarterstaff, you can use a bonus
 	action to make a melee attack with the opposite end of
-	the weapon. The weapon’s damage die for this attack
+	the weapon. The weapon's damage die for this attack
 	is a d4, and the attack deals bludgeoning damage.
 	• While you are wielding a glaive, halberd, pike, or quarterstaff,
 	other creatures provoke an opportunity attack
@@ -503,15 +501,15 @@ c.execute('''INSERT INTO
 	holding two 1st-level spells of your choice. Choose one
 	of the following classes: bard, cleric, druid, sorcerer,
 	warlock, or wizard. You must choose your spells
-	from that class’s spell list, and the spells you choose
+	from that class's spell list, and the spells you choose
 	must have the ritual tag. The class you choose also
 	determines your spellcasting ability for these spells:
 	Charisma for bard, sorcerer, or warlock; Wisdom for
 	cleric or druid; or Intelligence for wizard.
 	If you come across a spell in written form, such as a
-	magical spell scroll or a wizard’s spellbook, you might
+	magical spell scroll or a wizard's spellbook, you might
 	be able to add it to your ritual book. The spell must be
-	on the spell list for the class you chose, the spell’s level
+	on the spell list for the class you chose, the spell's level
 	can be no higher than half your level (rounded up), and
 	it must have the ritual tag. The process of copying the
 	spell into your ritual book takes 2 hours per level of the
@@ -525,7 +523,7 @@ c.execute('''INSERT INTO
 	feats(feat_name, description)
 	VALUES
 	("Savage Attacker", "Once per turn when you roll damage for a melee weapon
-	attack, you can reroll the weapon’s damage dice and use
+	attack, you can reroll the weapon's damage dice and use
 	either total.")
 ''')
 
@@ -533,16 +531,16 @@ c.execute('''INSERT INTO
 	feats(feat_name, description)
 	VALUES
 	("Sentinel", "You have mastered techniques to take advantage
-	of every drop in any enemy’s guard, gaining the
+	of every drop in any enemy's guard, gaining the
 	following benefits:
 	• When you hit a creature with an opportunity attack,
-	the creature’s speed becomes 0 for the rest of
+	the creature's speed becomes 0 for the rest of
 	the turn.
 	• Creatures within 5 feet of you provoke opportunity
 	attacks from you even if they take the Disengage
 	action before leaving your reach.
 	• When a creature within 5 feet of you makes an attack
-	against a target other than you (and that target doesn’t
+	against a target other than you (and that target doesn't
 	have this feat), you can use your reaction to make a
 	melee weapon attack against the attacking creature.")
 ''')
@@ -560,7 +558,7 @@ c.execute('''INSERT INTO
 	• Before you make an attack with a ranged weapon that
 	you are proficient with, you can choose to take a - 5
 	penalty to the attack roll. If the attack hits, you add +10
-	to the attack’s damage.")
+	to the attack's damage.")
 ''')
 
 c.execute('''INSERT INTO
@@ -572,7 +570,7 @@ c.execute('''INSERT INTO
 	• If you take the Attack action on your turn, you can use
 	a bonus action to try to shove a creature within 5 feet
 	of you with your shield.
-	• If you aren’t incapacitated, you can add your shield’s AC
+	• If you aren't incapacitated, you can add your shield's AC
 	bonus to any Dexterity saving throw you make against
 	a spell or other harmful effect that targets only you.
 	• If you are subjected to an effect that allows you to
@@ -601,7 +599,7 @@ c.execute('''INSERT INTO
 	• When you are hidden from a creature and miss it with
 	a ranged weapon attack, making the attack doesn't
 	reveal your position.
-	• Dim light doesn’t impose disadvantage on your
+	• Dim light doesn't impose disadvantage on your
 	Wisdom (Perception) checks relying on sight.")
 ''')
 
@@ -614,7 +612,7 @@ c.execute('''INSERT INTO
 	attacks with certain kinds of spells, gaining the
 	following benefits:
 	• When you cast a spell that requires you to make an
-	attack roll, the spell’s range is doubled.
+	attack roll, the spell's range is doubled.
 	• Your ranged spell attacks ignore half cover and
 	three-quarters cover.
 	• You learn one cantrip that requires an attack roll.
@@ -666,7 +664,7 @@ c.execute('''INSERT INTO
 	• You can perform the somatic components of spells
 	even when you have weapons or a shield in one or
 	both hands.
-	• When a hostile creature’s movement provokes an
+	• When a hostile creature's movement provokes an
 	opportunity attack from you, you can use your reaction
 	to cast a spell at the creature, rather than making
 	an opportunity attack. The spell must have a casting
@@ -691,7 +689,7 @@ c.execute('''INSERT INTO
 	("Barbarian", 1, "Rage", "In battle, you fight with primal ferocity. On your turn,
 	you can enter a rage as a bonus action.
 	While raging, you gain the following benefits if you
-	aren’t wearing heavy armor:
+	aren't wearing heavy armor:
 	• You have advantage on Strength checks and Strength
 	saving throws.
 	• When you make a melee weapon attack using
@@ -700,11 +698,11 @@ c.execute('''INSERT INTO
 	in the Rage Damage column of the Barbarian table.
 	• You have resistance to bludgeoning, piercing, and
 	slashing damage.
-	If you are able to cast spells, you can’t cast them or
+	If you are able to cast spells, you can't cast them or
 	concentrate on them while raging.
 	Your rage lasts for 1 minute. It ends early if you are
 	knocked unconscious or if your turn ends and you
-	haven’t attacked a hostile creature since your last turn
+	haven't attacked a hostile creature since your last turn
 	or taken damage since then. You can also end your rage
 	on your turn as a bonus action.
 	Once you have raged the number of times shown
@@ -740,11 +738,11 @@ c.execute('''INSERT INTO
 	class_features(class, level, feature_name, description)
 	VALUES
 	("Barbarian", 2, "Danger Sense", "At 2nd level, you gain an uncanny sense o f when things
-	nearby aren’t as they should be, giving you an edge
+	nearby aren't as they should be, giving you an edge
 	when you dodge away from danger.
 	You have advantage on Dexterity saving throws
 	against effects that you can see, such as traps and spells.
-	To gain this benefit, you can’t be blinded, deafened, or
+	To gain this benefit, you can't be blinded, deafened, or
 	incapacitated.")
 ''')
 
@@ -766,7 +764,7 @@ c.execute('''INSERT INTO
 	("Barbarian", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 	and 19th level, you can increase one ability score of your
 	choice by 2, or you can increase two ability scores of
-	your choice by 1. As normal, you can’t increase an ability
+	your choice by 1. As normal, you can't increase an ability
 	score above 20 using this feature.")
 ''')
 
@@ -783,7 +781,7 @@ c.execute('''INSERT INTO
 	class_features(class, level, feature_name, description)
 	VALUES
 	("Barbarian", 5, "Fast Movement", "Starting at 5th level, your speed increases by 10 feet
-	while you aren’t wearing heavy armor.")
+	while you aren't wearing heavy armor.")
 ''')
 
 
@@ -793,7 +791,7 @@ c.execute('''INSERT INTO
 	("Barbarian", 7, "Feral Instinct", "By 7th level, your instincts are so honed that you have
 	advantage on initiative rolls.
 	Additionally, if you are surprised at the beginning of
-	combat and aren’t incapacitated, you can act normally
+	combat and aren't incapacitated, you can act normally
 	on your first turn, but only if you enter your rage before
 	doing anything else on that turn.")
 ''')
@@ -815,7 +813,7 @@ c.execute('''INSERT INTO
 	VALUES
 	("Barbarian", 11, "Relentless Rage", "Starting at 11th level, your rage can keep you fighting
 	despite grievous wounds. If you drop to 0 hit points
-	while you’re raging and don’t die outright, you can make
+	while you're raging and don't die outright, you can make
 	a DC 10 Constitution saving throw. If you succeed, you
 	drop to 1 hit point instead.
 	Each time you use this feature after the first, the DC
@@ -866,7 +864,7 @@ c.execute('''INSERT INTO
 	Spell Slots
 	The Bard table shows how many spell slots you have to
 	cast your spells of 1st level and higher. To cast one of
-	these spells, you must expend a slot of the spell’s level
+	these spells, you must expend a slot of the spell's level
 	or higher. You regain all expended spell slots when you
 	finish a long rest.
 	For example, if you know the 1st-level spell cure
@@ -936,7 +934,7 @@ c.execute('''INSERT INTO
 	VALUES
 	("Bard", 2, "Jack of All Trades", "Starting at 2nd level, you can add half your proficiency
 	bonus, rounded down, to any ability check you make that
-	doesn’t already include your proficiency bonus.")
+	doesn't already include your proficiency bonus.")
 ''')
 
 
@@ -983,7 +981,7 @@ c.execute('''INSERT INTO
 	("Bard", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 	and 19th level, you can increase one ability score of your
 	choice by 2, or you can increase two ability s cores of
-	your choice by 1. As normal, you can’t increase an ability
+	your choice by 1. As normal, you can't increase an ability
 	score above 20 using this feature.")
 ''')
 
@@ -1047,7 +1045,7 @@ c.execute('''INSERT INTO
 	Preparing and Casting Spells
 	The Cleric table shows how many spell slots you have
 	to cast your spells of 1st level and higher. To cast one of
-	these spells, you must expend a slot of the spell’s level
+	these spells, you must expend a slot of the spell's level
 	or higher. You regain all expended spell slots when you
 	finish a long rest.
 	You prepare the list of cleric spells that are available
@@ -1061,7 +1059,7 @@ c.execute('''INSERT INTO
 	of 16, your list of prepared spells can include six spells
 	of 1st or 2nd level, in any combination. If you prepare
 	the 1st-level spell cure wounds, you can cast it using
-	a 1st-level or 2nd-level slot. Casting the spell doesn’t
+	a 1st-level or 2nd-level slot. Casting the spell doesn't
 	remove it from your list of prepared spells.
 	You can change your list of prepared spells when you
 	finish a long rest. Preparing a new list of cleric spells
@@ -1103,9 +1101,9 @@ c.execute('''INSERT INTO
 	Each domain has a list of spells—its domain spells—
 	that you gain at the cleric levels noted in the domain
 	description. Once you gain a domain spell, you always
-	have it prepared, and it doesn’t count against the
+	have it prepared, and it doesn't count against the
 	number of spells you can prepare each day.
-	If you have a domain spell that doesn’t appear on the
+	If you have a domain spell that doesn't appear on the
 	cleric spell list, the spell is nonetheless a cleric spell for you.")
 ''')
 
@@ -1135,11 +1133,11 @@ c.execute('''INSERT INTO
 	saving throw. If the creature fails its saving throw, it is
 	turned for 1 minute or until it takes any damage.
 	A turned creature must spend its turns trying to move
-	as far away from you as it can, and it can’t willingly
-	move to a space within 30 feet of you. It also can’t take
+	as far away from you as it can, and it can't willingly
+	move to a space within 30 feet of you. It also can't take
 	reactions. For its action, it can use only the Dash action
 	or try to escape from an effect that prevents it from
-	moving. If there’s nowhere to move, the creature can use
+	moving. If there's nowhere to move, the creature can use
 	the Dodge action.")
 ''')
 
@@ -1149,7 +1147,7 @@ c.execute('''INSERT INTO
 	("Cleric", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 	and 19th level, you can increase one ability score of your
 	choice by 2, or you can increase two ability scores of
-	your choice by 1. As normal, you can’t increase an ability
+	your choice by 1. As normal, you can't increase an ability
 	score above 20 using this feature.")
 ''')
 
@@ -1167,13 +1165,13 @@ c.execute('''INSERT INTO
 	VALUES
 	("Cleric", 10, "Divine Intervention", "Beginning at 10th level, you can call on your deity to
 	intervene on your behalf when your need is great.
-	Imploring your deity’s aid requires you to use your
+	Imploring your deity's aid requires you to use your
 	action. Describe the assistance you seek, and roll
 	percentile dice. If you roll a number equal to or lower
 	than your cleric level, your deity intervenes. The DM
 	chooses the nature of the intervention; the effect of any
 	cleric spell or cleric domain spell would be appropriate.
-	If your deity intervenes, you can’t use this feature
+	If your deity intervenes, you can't use this feature
 	again for 7 days. Otherwise, you can use it again after
 	you finish a long rest.
 	At 20th level, your call for intervention succeeds
@@ -1193,7 +1191,7 @@ c.execute('''INSERT INTO
 	Preparing and Casting Spells
 	The Druid table shows how many spell slots you have
 	to cast your spells of 1st level and higher. To cast one of
-	these druid spells, you must expend a slot of the spell’s
+	these druid spells, you must expend a slot of the spell's
 	level or higher. You regain all expended spell slots when
 	you finish a long rest.
 	You prepare the list of druid spells that are available
@@ -1207,7 +1205,7 @@ c.execute('''INSERT INTO
 	of 16, your list of prepared spells can include six spells
 	of 1st or 2nd level, in any combination. If you prepare
 	the 1st-level spell cure wounds, you can cast it using
-	a 1st-level or 2nd-level slot. Casting the spell doesn’t
+	a 1st-level or 2nd-level slot. Casting the spell doesn't
 	remove it from your list of prepared spells.
 	You can also change your list of prepared spells when
 	you finish a long rest. Preparing a new list of druid
@@ -1240,8 +1238,8 @@ c.execute('''INSERT INTO
 	can speak the language and use it to leave hidden
 	messages. You and others who know this language
 	automatically spot such a message. Others spot the
-	message’s presence with a successful DC 15 Wisdom
-	(Perception) check but can’t decipher it without magic.")
+	message's presence with a successful DC 15 Wisdom
+	(Perception) check but can't decipher it without magic.")
 ''')
 
 c.execute('''INSERT INTO
@@ -1254,7 +1252,7 @@ c.execute('''INSERT INTO
 	Your druid level determines the beasts you can
 	transform into, as shown in the Beast Shapes table. At
 	2nd level, for example, you can transform into any beast
-	that has a challenge rating of 1/4 or lower that doesn’t
+	that has a challenge rating of 1/4 or lower that doesn't
 	have a flying or swimming speed.
 	You can stay in a beast shape for a number o f hours
 	equal to half your druid level (rounded down). You then
@@ -1271,9 +1269,9 @@ c.execute('''INSERT INTO
 	in addition to gaining those of the creature. If
 	the creature has the same proficiency as you and the
 	bonus in its stat block is higher than yours, use the
-	creature’s bonus instead of yours. If the creature has
+	creature's bonus instead of yours. If the creature has
 	any legendary or lair actions, you can't use them.
-	• When you transform, you assume the beast’s hit
+	• When you transform, you assume the beast's hit
 	points and Hit Dice. When you revert to your normal
 	form, you return to the number of hit points you had
 	before you transformed. However, if you revert as a
@@ -1281,27 +1279,27 @@ c.execute('''INSERT INTO
 	carries over to your normal form. For example, if you
 	take 10 damage in animal form and have only 1 hit
 	point left, you revert and take 9 damage. As long as
-	the excess damage doesn’t reduce your normal form
-	to 0 hit points, you aren’t knocked unconscious.
-	• You can’t cast spells, and your ability to speak or
+	the excess damage doesn't reduce your normal form
+	to 0 hit points, you aren't knocked unconscious.
+	• You can't cast spells, and your ability to speak or
 	take any action that requires hands is limited to the
-	capabilities of your beast form. Transforming doesn’t
-	break your concentration on a spell you’ve already
+	capabilities of your beast form. Transforming doesn't
+	break your concentration on a spell you've already
 	cast, however, or prevent you from taking actions that
-	are part of a spell, such as call lightning, that you’ve
+	are part of a spell, such as call lightning, that you've
 	already cast.
 	• You retain the benefit of any features from your class,
 	race, or other source and can use them if the new
 	form is physically capable of doing so. However, you
-	can’t use any of your special senses, such as darkvision,
+	can't use any of your special senses, such as darkvision,
 	unless your new form also has that sense.
 	• You choose whether your equipment falls to the
 	ground in your space, merges into your new form, or
 	is w orn by it. Worn equipment functions as normal,
 	but the DM decides whether it is practical for the new
-	form to wear a piece of equipment, based on the creature’s
-	shape and size. Your equipment doesn’t change
-	size or shape to match the new form, and any equipment that the new form can’t wear
+	form to wear a piece of equipment, based on the creature's
+	shape and size. Your equipment doesn't change
+	size or shape to match the new form, and any equipment that the new form can't wear
 	must either fall to the ground or merge with it.
 	Equipment that merges with the form has no
 	effect until you leave the form.")
@@ -1324,7 +1322,7 @@ c.execute('''INSERT INTO
 	("Druid", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 	and 19th level, you can increase one ability score of
 	your choice by 2, or you can increase two ability scores
-	of your choice by 1. As normal, you can’t increase an
+	of your choice by 1. As normal, you can't increase an
 	ability score above 20 using this feature.")
 ''')
 
@@ -1342,7 +1340,7 @@ c.execute('''INSERT INTO
 	("Druid", 18, "Beast Spells", "Beginning at 18th level, you can cast many of your druid
 	spells in any shape you assume using Wild Shape. You
 	can perform the somatic and verbal components of a
-	druid spell while in a beast shape, but you aren’t able to
+	druid spell while in a beast shape, but you aren't able to
 	provide material components.")
 ''')
 

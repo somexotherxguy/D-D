@@ -3,8 +3,29 @@ import http.server
 import socketserver
 from os import curdir, sep
 import subprocess
+import sqlite3
+
+dbaseFile = '../' + 'DnD.db'
 
 PORT_NUMBER = 5000
+
+def dbase(sql_string, dbaseFile = dbaseFile):
+  conn = sqlite3.connect(dbaseFile)
+
+  c = conn.cursor()
+
+  #Enable foreign key support
+  c.execute("PRAGMA foreign_keys = ON")
+
+  #Insert table values
+  c.execute(sql_string)
+  #GIVE ME YOUR DUMMY VALUES
+
+  #commit changes to database
+  conn.commit()
+
+  #close connection to database, creation completed
+  conn.close()
 
 
 character_file = 'object.json'
