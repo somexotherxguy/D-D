@@ -2,25 +2,18 @@ users = {
 	"Roach": "burninate"
 };
 
-function redirect(url) {
-	window.location = url;
-}
-
-function change_url(new_url) {
-	var state = {};
-	var title = "Creator";
-	history.pushState(state, title, new_url);
-}
-
 function login() {
 	var username = document.getElementById("username").value;
+	var char_name = document.getElementById("char_name").value;
 	var password = document.getElementById("password").value;
 	if (username in users && users[username] === password) {
-		//window.location = "creator.html";
-		//redirect("creator.html");
-		//change_url("/user/" + username);
-		redirect("/user/" + username + "/Trogdor/");
+		var url = "/user/" + username + "/" + char_name + "/creator.html";
+		location.assign(url);
+		var account_name = document.getElementById("account_name");
+		account_name.innerHTML = username;
+		var login_text = document.getElementById("login_text");
+		login_text.innerHTML = "Logoff";
 	} else {
-		window.location = "login.html";
+		location.assign("login.html");
 	}
 }

@@ -5,6 +5,13 @@
 }, 100)
 */
 
+var account_name = document.getElementById("account_name");
+var url = window.location.href.split("/");
+if (url.length >= 4) {
+  account_name.innerHTML = url[4];
+}
+
+
 class_name = document.getElementById("class");
 class_name.addEventListener("change", function() { class_selected(document.getElementById('class').value);});
 
