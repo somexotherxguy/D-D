@@ -31,8 +31,10 @@ Dylan Roach
 	- Implemented Retrieve functionality
 	- Wrote function to parse JSON object
 	- Integrated dynamic dropdowns with new interface
+	- Started work on login
+	- Fixed issues discovered in presentation
     In Progress
-        - Implement login
+        - Fully Implement login
 	- Integrate Weapons, Armor, etc.
         - Implement RNG
 Jace O'Brien
