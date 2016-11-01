@@ -11,8 +11,6 @@ function login() {
 		location.assign(url);
 		var account_name = document.getElementById("account_name");
 		account_name.innerHTML = username;
-		var login_text = document.getElementById("login_text");
-		login_text.innerHTML = "Logoff";
 	} else {
 		location.assign("login.html");
 	}
