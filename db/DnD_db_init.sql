@@ -1,8 +1,9 @@
-PRAGMA foreign_keys = ON;
+--PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS users(
 	username TEXT NOT NULL,
 	user_pw TEXT NOT NULL,
+	user_email TEXT NOT NULL,
 
 	PRIMARY KEY (username)
 );
@@ -27,13 +28,18 @@ CREATE TABLE IF NOT EXISTS char_info(
 	class TEXT NOT NULL,
 	fighting_style TEXT,
 	background TEXT,
+	languages TEXT NOT NULL,
+	armor TEXT,
+	weapon TEXT,
 	proficiency_mod INTEGER,
+	ability TEXT NOT NULL,
 	str INTEGER NOT NULL,
 	con INTEGER NOT NULL,
 	wis INTEGER NOT NULL,
 	dex INTEGER NOT NULL,
 	intel INTEGER NOT NULL,
 	chr INTEGER NOT NULL,
+	spellcasting TEXT,
 	feats TEXT,
 	char_name TEXT NOT NULL,
 	traits TEXT,
@@ -49,15 +55,16 @@ CREATE TABLE IF NOT EXISTS char_info(
 	hp INTEGER NOT NULL,
 	tool_prof TEXT NOT NULL,
 	weapon_prof TEXT NOT NULL,
+	tool TEXT,
 	skills TEXT NOT NULL,
-	platinum INTEGER,
-	gold INTEGER,
-	electrum INTEGER,
-	silver INTEGER,
-	copper INTEGER,
+	--platinum INTEGER,
+	--gold INTEGER,
+	--electrum INTEGER,
+	--silver INTEGER,
+	--copper INTEGER,
+	money INTEGER NOT NULL,
 	available_spells TEXT NOT NULL,
 	notes TEXT,
-	languages TEXT NOT NULL,
 
 	FOREIGN KEY (char_name) REFERENCES characters(char_name) ON DELETE CASCADE,
 	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
