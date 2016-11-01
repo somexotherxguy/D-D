@@ -57,17 +57,17 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     character_name = ''
     long_enough = len(check_path) >= 5
     is_character_file = check_path[ len(check_path) - 1 ] == character_file
-    print(check_path) #DEBUG
     if( long_enough ):
       if( is_character_file ):
         #print('unique') # # debug
         user_name = check_path[2]
         character_name = check_path[3]
-
+        print(check_path) #DEBUG
         #Use a single dot here; a second dot is added later to all paths.
         serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
       else:
-        serve_path = '/' + check_path[ len(check_path) - 1 ]
+        #start by removing the user, <user>, and <character> from the path
+        serve_path = '/' + '/'.join( check_path[ 4: ] )
         #print(serve_path) #DEBUG
 
     if(serve_path == ''):
@@ -86,7 +86,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         serve_file.close()
       except:
         #ALWAYS RETURN A CHARACTER JSON
-        serve_path = './' + character_file
+        serve_path = '/' + character_file
         #serve_file = open(serve_path, 'rb')
     #make the serve_path relative
     serve_path = '.' + serve_path
