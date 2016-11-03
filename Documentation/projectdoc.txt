@@ -11,7 +11,7 @@ Sean Langford
 	- Created Magic Tables
 	- Created/Populated Feat Tables
     In Progress
-        - 
+        - Creating/Populating Base Class Feature Tables
 Sean Dickey
     Completed
         - imported HTML field names into JavaScript
