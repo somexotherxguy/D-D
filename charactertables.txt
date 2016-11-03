@@ -232,13 +232,19 @@ create table feats(
 
 create table class_features(
 	class varchar(30) NOT NULL,
-	level int,
+	level int NOT NULL,
 	feature_name varchar(30) NOT NULL,
 	description varchar(3000) NOT NULL
 );
 
-Feature storage
-Sorcerer Metamagic(?)
+create table archetype_features(
+	class varchar(30) NOT NULL,
+	archetype varchar(30) NOT NULL,
+	level int NOT NULL,
+	feature_name varchar(30) NOT NULL,
+	descritpion varchar(3000) NOT NULL
+
+);
 
 ------------------------------------------------------------------
 Test Inserts
