@@ -322,6 +322,9 @@ VALUES
 (‘Liekki’, ‘Sean_test’, 1, 3, 8, 1, 2, 9, false, false, true, false, false, true);
 
 --------------------------------
+Storage
+--------------------------------
+--------------------------------
 Feats
 --------------------------------
 INSERT INTO
@@ -1403,7 +1406,7 @@ transform into, as shown in the Beast Shapes table. At
 2nd level, for example, you can transform into any beast
 that has a challenge rating of 1/4 or lower that doesn’t
 have a flying or swimming speed.
-You can stay in a beast shape for a number o f hours
+You can stay in a beast shape for a number of hours
 equal to half your druid level (rounded down). You then
 revert to your normal form unless you expend another
 use of this feature. You can revert to your normal
@@ -1531,7 +1534,7 @@ class_features(class, level, feature_name, description)
 VALUES
 ("Fighter", 1, "Second Wind", "You have a limited well of stamina that you can draw on
 to protect yourself from harm. On your turn, you can use
-a bonus action to regain hit points equal to 1d 10 + your
+a bonus action to regain hit points equal to 1d10 + your
 fighter level.
 Once you use this feature, you must finish a short or
 long rest before you can use it again.")
