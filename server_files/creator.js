@@ -226,7 +226,7 @@ function update() {
 	//var form = document.getElementById("char_info");
     //var char_info = JSON.stringify(form)
     var char_object = { };
-    console.log(name_array.slice(1));
+    //console.log(name_array.slice(1));
     for (field in name_array.slice(1)) {
     	try {
           var field_id = name_array.slice(1)[field][1];
@@ -235,10 +235,10 @@ function update() {
     	catch (err){;}
     }
     var char_json = JSON.stringify(char_object);
-    console.log(char_json);
+    //console.log(char_json);
 	var xhttp;
 	xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "object.json", true);
+	xhttp.open("POST", "new_object.json", true);
 	xhttp.send(char_json);
 	//form.submit();
 }
@@ -248,9 +248,10 @@ function update() {
 var r = "";
 
 function fill_form(r){
-    //console.log(r["fighting_style"])
 	for (k in r) {
+    console.log(k, r[k]);
 		if (k === "gender") {
+      console.log("Found gender");
 			var row = document.getElementById(r[k]);
 			row.checked = true;
 		} else if (k === "class") {
@@ -263,13 +264,13 @@ function fill_form(r){
 		    row.value = r[k];
 		  }
 		}
-    }
+  }
 }
 
 function test_query() {
 	var xhttp;
 	xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "object.json", true);
+	xhttp.open("GET", "new_object.json", true);
 	xhttp.send();
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
