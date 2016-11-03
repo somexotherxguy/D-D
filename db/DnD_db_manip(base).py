@@ -15,6 +15,7 @@ c = conn.cursor()
 #Enable foreign key support
 c.execute("PRAGMA foreign_keys = ON")
 
+#Update this based on the table creation file.
 def db_character_pull(username, char_name):
 	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?" (username, char_name))
 	char_info = c.fetchone()
