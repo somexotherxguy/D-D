@@ -15,6 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -402,7 +403,7 @@
                     <td class="mdl-data-table__cell--non-numeric">Class</td>
                     <td>
                       <div align="left">
-                        <select id="class" onchange="class_selected(document.getElementById('class').value);">
+                        <select classSelect id="class">
                           <option disabled selected value> -- -- </option>
                           <option value="barbarian">Barbarian</option>
                           <option value="bard">Bard</option>
@@ -631,5 +632,8 @@
     </div>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 	<script src="creator.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+	<script src="scripts/app.js"></script>
   </body>
 </html>

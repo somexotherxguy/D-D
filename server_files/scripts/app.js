@@ -1,5 +1,17 @@
 var app = angular.module('app', ['ngRoute']);
 
+app.directive('classSelect', function() {
+	return {
+		retrict: 'A',
+		link: function(scope, element) {
+			console.log('Hello');
+			element.on('change', function(){
+				console.log('test');
+			});
+		}
+	};
+});
+
 app.config(["$routeProvider", function($routeProvider){
     $routeProvider
         .when('/', {
