@@ -75,7 +75,7 @@ def db_char_update(username, char_name):
 	with open('object.json', 'r') as infile:
 		data = json.load(infile)
 
-	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?" (username, char_name))
+	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?", (username, char_name))
 	char_info = c.fetchone()
 
 	for key in data:
@@ -83,8 +83,9 @@ def db_char_update(username, char_name):
 
 	conn.commit()
 
-def db_account_create(username, password):
-	c.execute("INSERT INTO users(username, user_pw) VALUES (?,?)" (username, password))
+#Given a username, email, and password, creates an entry in the 'users' database table for a new account
+def db_account_create(username, user_email, password):
+	c.execute("INSERT INTO users(username, user_email, user_pw) VALUES (?,?,?)", (username, user_email, password))
 
 #assuming we take full character creation before submitting into the database.  If we just take a name, then we can skip the series of inserts
 def db_add_character(username):
@@ -92,16 +93,19 @@ def db_add_character(username):
 	with open('object.json', 'r') as infile:
 		data = json.load(infile)
 
-	c.execute("INSERT INTO characters(char_name, username) VALUES (?,?)" (data['char_name'], username))
+	#Create new entry in 'characters' table
+	c.execute("INSERT INTO characters(char_name, username) VALUES (?,?)", (data['char_name'], username))  
+	
+	#Create input values for new character in 'char_info' table
 	c.execute('''INSERT INTO 
 		char_info(username, ideal, flaw, backstory, gender, height, race, alignment, class, fighting_style, background, proficiency_mod, str, con, wis, dex, intel, chr, feats, char_name, traits, bonds, notable_traits, description, age, weight, sub_race, exp, archetype, level, hp, tool_prof, weapon_prof, skills, platinum, gold, electrum, silver, copper, available_spells, notes, languages) 
 		VALUES
-		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
-		(username, data['ideal'], data['flaw'], data['backstory'], data['gender'], data['height'], data['race'], data['alignment'], data['class'], data['fighting_style'], data['background'], data['proficiency_mod'], data['str'], data['con'], data['wis'], data['dex'], data['intel'], data['chr'], data['feats'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['platinum'], data['gold'], data['electrum'], data['silver'], data['copper'], data['available_spells'], data['notes'], data['languages'])
-)
-
+		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+		(username, data['ideal'], data['flaw'], data['backstory'], data['gender'], data['height'], data['race'], data['alignment'], data['class'], data['fighting_style'], data['background'], data['proficiency_mod'], data['str'], data['con'], data['wis'], data['dex'], data['intel'], data['chr'], data['feats'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['platinum'], data['gold'], data['electrum'], data['silver'], data['copper'], data['available_spells'], data['notes'], data['languages']))
+	conn.commit()
+	
 def db_get_char_list(username):
-	c.execute("SELECT * from characters WHERE username=?" (username))
+	c.execute("SELECT * from characters WHERE username=?", (username))
 	#return/output code, decide how we want to handle
 
 #commit changes to database
