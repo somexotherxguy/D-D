@@ -94,7 +94,7 @@ def db_add_character(username):
 	#Create new entry in 'characters' table
 	c.execute("INSERT INTO characters(char_name, username) VALUES (?,?)", (data['char_name'], username))  
 	
-	#Create input values for new character in 'char_info' table
+	#Input values for new character in 'char_info' table
 	c.execute('''INSERT INTO 
 		char_info(username, ideal, flaw, backstory, gender, height, race, alignment, class, fighting_style, background, languages, armor, weapon, proficiency_mod, ability, str, con, wis, dex, intel, chr, spellcasting, feats, char_name, traits, bonds, notable_traits, description, age, weight, sub_race, exp, archetype, level, hp, tool_prof, weapon_prof, skills, saves, equipment, money, available_spells, notes) 
 		VALUES
