@@ -34,6 +34,7 @@ Dylan Roach
 	- Started work on login
 	- Fixed issues discovered in presentation
     In Progress
+    	- Convert code to Angular
         - Fully Implement login
 	- Integrate Weapons, Armor, etc.
         - Implement RNG
