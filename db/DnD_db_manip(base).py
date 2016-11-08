@@ -69,18 +69,16 @@ def db_character_pull(username, char_name):
 	with open('object.json', 'w') as outfile:
 		json.dump(char_obj, outfile)
 
-
+#FIX THIS
 def db_char_update(username, char_name):
 	#import data
 	with open('object.json', 'r') as infile:
 		data = json.load(infile)
 
-	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?", (username, char_name))
-	char_info = c.fetchone()
-
-	for key in data:
-		c.execute("UPDATE char_info SET %s=? WHERE username=? AND char_name=?" %(key) (data[key], username, char_name))
-
+	c.execute('''UPDATE char_info SET 
+		ideal=?, flaw=?, backstory=?, gender=?, height=?, race=?, alignment=?, class=?, fighting_style=?, background=?, languages=?, armor=?, weapon=?, proficiency_mod=?, ability=?, str=?, con=?, wis=?, dex=?, intel=?, chr=?, spellcasting=?, feats=?, char_name=?, traits=?, bonds=?, notable_traits=?, description=?, age=?, weight=?, sub_race=?, exp=?, archetype=?, level=?, hp=?, tool_prof=?, weapon_prof=?, skills=?, saves=?, equipment=?, money=?, available_spells=?, notes=?''', 
+		(data['ideal'], data['flaw'], data['story'], data['gender'], data['height'], data['race'], data['alignment'], data['class_name'], data['fighting_style'], data['background'], data['language'], data['armor'], data['weapon'], data['proficiency_mod'], data['ability'], data['str'], data['con'], data['wis'], data['dex'], data['int'], data['chr'], data['spellcasting'], data['feat'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['saves'], data['equipment'], data['money'], data['available_spells'], data['notes']))
+	
 	conn.commit()
 
 #Given a username, email, and password, creates an entry in the 'users' database table for a new account
@@ -98,10 +96,10 @@ def db_add_character(username):
 	
 	#Create input values for new character in 'char_info' table
 	c.execute('''INSERT INTO 
-		char_info(username, ideal, flaw, backstory, gender, height, race, alignment, class, fighting_style, background, proficiency_mod, str, con, wis, dex, intel, chr, feats, char_name, traits, bonds, notable_traits, description, age, weight, sub_race, exp, archetype, level, hp, tool_prof, weapon_prof, skills, platinum, gold, electrum, silver, copper, available_spells, notes, languages) 
+		char_info(username, ideal, flaw, backstory, gender, height, race, alignment, class, fighting_style, background, languages, armor, weapon, proficiency_mod, ability, str, con, wis, dex, intel, chr, spellcasting, feats, char_name, traits, bonds, notable_traits, description, age, weight, sub_race, exp, archetype, level, hp, tool_prof, weapon_prof, skills, saves, equipment, money, available_spells, notes) 
 		VALUES
-		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
-		(username, data['ideal'], data['flaw'], data['backstory'], data['gender'], data['height'], data['race'], data['alignment'], data['class'], data['fighting_style'], data['background'], data['proficiency_mod'], data['str'], data['con'], data['wis'], data['dex'], data['intel'], data['chr'], data['feats'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['platinum'], data['gold'], data['electrum'], data['silver'], data['copper'], data['available_spells'], data['notes'], data['languages']))
+		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+		(username, data['ideal'], data['flaw'], data['story'], data['gender'], data['height'], data['race'], data['alignment'], data['class_name'], data['fighting_style'], data['background'], data['language'], data['armor'], data['weapon'], data['proficiency_mod'], data['ability'], data['str'], data['con'], data['wis'], data['dex'], data['int'], data['chr'], data['spellcasting'], data['feat'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['saves'], data['equipment'], data['money'], data['available_spells'], data['notes']))
 	conn.commit()
 	
 def db_get_char_list(username):
