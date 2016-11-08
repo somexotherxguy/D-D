@@ -1,10 +1,3 @@
-#Make sure to add imports, db connection/cursor, etc into functions if needed
-#Or include them in the file calling these functions
-
-#Add other tables if needed, currently only set to deal with the basic tables
-
-#Have front end change 'int' variable to 'intel'
-
 import sqlite3
 import json
 
@@ -15,38 +8,43 @@ c = conn.cursor()
 #Enable foreign key support
 c.execute("PRAGMA foreign_keys = ON")
 
-#Update this based on the table creation file.
+#Query database for all character info given a username and character name.  Package as json output.
 def db_character_pull(username, char_name):
-	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?" (username, char_name))
+	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?", (username, char_name))
 	char_info = c.fetchone()
 	
-	#Created based on object.json in git files
+	#Fill in dictionary of character info to pass as json
 	char_obj = {
 		'ideal': char_info['ideal'],
 		'flaw': char_info['flaw'],
-		'backstory': char_info['backstory'],
+		'story': char_info['backstory'],
 		'gender': char_info['gender'],
 		'height': char_info['height'],
 		'race': char_info['race'],
 		'alignment': char_info['alignment'],
-		'class': char_info['class'],
-		'fighting_style': char_info['fighting_style'],
+		'class_name': char_info['class'],
+		'fighting_style': char_info['fighting_style'],	#check how we handle this for other classes
 		'background': char_info['background'],
+		'language': char_info['languages'],
+		'armor': char_info['armor'],
+		'weapon': char_info['weapon'],
 		'proficiency_mod': char_info['proficiency_mod'],
-		'str': attributes['str'],
-		'con': attributes['con'],
-		'wis': attributes['wis'],
-		'dex': attributes['dex'],
-		'intel': attributes['intel'],
-		'chr': attributes['chr'],
-		'feats': char_info['feats'],
+		'ability': char_info['ability'],
+		'str': char_info['str'],
+		'con': char_info['con'],
+		'wis': char_info['wis'],
+		'dex': char_info['dex'],
+		'int': char_info['intel'],
+		'chr': char_info['chr'],
+		'spellcasting': char_info['spellcasting'],
+		'feat': char_info['feats'],
 		'char_name': char_name,
 		'traits': char_info['traits'],
 		'bonds': char_info['bonds'],
 		'notable_traits': char_info['notable_traits'],
 		'description': char_info['description'],
 		'age': char_info['age'],
-		'weight': char_info['age'],
+		'weight': char_info['weight'],
 		'sub_race': char_info['sub_race'],
 		'exp': char_info['exp'],
 		'archetype': char_info['archetype'],
@@ -55,14 +53,16 @@ def db_character_pull(username, char_name):
 		'tool_prof': char_info['tool_prof'],
 		'weapon_prof': char_info['weapon_prof'],
 		'skills': char_info['skills'],
-		'platinum': char_info['platinum'],
-		'gold': char_info['gold'],
-		'electrum': char_info['electrum'],
-		'silver': char_info['silver'],
-		'copper': char_info['copper'],
+		'saves': char_info['saves'],
+		'equipment': char_info['equipment'],
+		#'platinum': char_info['platinum'],
+		#'gold': char_info['gold'],
+		#'electrum': char_info['electrum'],
+		#'silver': char_info['silver'],
+		#'copper': char_info['copper'],
+		'money': char_info['money'],
 		'available_spells': char_info['available_spells'],
-		'notes': char_info['notes'],
-		'languages': char_info['languages']
+		'notes': char_info['notes']
 	}
 
 	#export data
