@@ -2,14 +2,23 @@ var app = angular.module('app', ['ngRoute']);
 
 app.directive('classSelect', function() {
 	return {
-		retrict: 'A',
-		link: function(scope, element) {
-			console.log('Hello');
+		retrict: 'E',
+        replace: true,
+        scope: {model:'='},
+		link: function(scope, element, attr) {
 			element.on('change', function(){
-				console.log('test');
-			});
-		}
-	};
+                var class_name = document.getElementById("class").value;
+                console.log(class_name);
+                scope.model[details[7][value]] = class_name;
+                var new_row = {
+                    field: class_options[class_name],
+                    value: []
+                };
+                scope.model[details].push(new_row);
+                scope.$apply();
+            })
+        }
+    }
 });
 
 app.config(["$routeProvider", function($routeProvider){
