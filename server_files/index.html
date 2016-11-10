@@ -60,7 +60,11 @@
     }
     </style>
   </head>
-  <body>
+  <body ng-app="app">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="scripts/app.js"></script>
+    
     <div class="demo-layout mdl-layout mdl-js-layout">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -84,7 +88,7 @@
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--indigo-700">
           <a class="mdl-navigation__link" href="index.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">desktop_windows</i>Dashboard</a>
-          <a class="mdl-navigation__link" href="creator.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">build</i>Creator Tool</a>
+          <a class="mdl-navigation__link" href="#/creator"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">build</i>Creator Tool</a>
           <a class="mdl-navigation__link" href="dmtools.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">people</i>DM Utilities</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href="login.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">account_box</i>Login/Logoff</a>
@@ -94,10 +98,12 @@
         </nav>
       </div>
       
-      
+      <div ng-view></div>
       
     </div>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-	<script src="creator.js"></script>
+	
+    
+    <script src="scripts/controllers/creator.js"></script>
   </body>
 </html>
