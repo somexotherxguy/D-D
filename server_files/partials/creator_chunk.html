@@ -1,3 +1,4 @@
+<<<<<<< HEAD:server_files/partials/creator_chunk.html
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
         <header class="mdl-layout__header">
           <div class="mdl-layout__header-row mdl-color--grey-100 mdl-color-text--grey-600">
@@ -533,3 +534,643 @@
         </form>
         </main>
       </div>
+=======
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>D&&D Character Creation and Management</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-orange.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body ng-app="app">
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Creator</span>
+        </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--indigo-900 mdl-color-text--indigo-50">
+        <header class="demo-drawer-header">
+          <img src="images/user.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span id="account_name">No Account</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item"><a class="mdl-navigation__link" href="login.html">Logoff</a></li>
+            </ul>
+          </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--indigo-700">
+          <a class="mdl-navigation__link" href="index.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">desktop_windows</i>Dashboard</a>
+          <a class="mdl-navigation__link" href="creator.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">build</i>Creator Tool</a>
+          <a class="mdl-navigation__link" href="dmtools.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">people</i>DM Utilities</a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href="login.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">account_box</i>Login/Logoff</a>
+          <a class="mdl-navigation__link" href="aboutus.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">mood</i>About Us</a>
+          <a class="mdl-navigation__link" href="legal.html"><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">gavel</i>Legal Info</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span>Help</a>
+        </nav>
+      </div>
+      
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row mdl-color--grey-100 mdl-color-text--grey-600">
+            <span class="mdl-layout-title">Creator Tool</span>
+          </div>
+          <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--indigo-700">
+              <a href="#stats" class="mdl-layout__tab is-active">Stats</a>
+              <a href="#skills" class="mdl-layout__tab">Skills</a>
+              <a href="#details" class="mdl-layout__tab">Details</a>
+              <a href="#descriptors" class="mdl-layout__tab">Descriptors</a>
+              <a href="#equipment" class="mdl-layout__tab">Equipment</a>
+              <a href="#finalize" class="mdl-layout__tab">Finalize</a>
+          </div>
+        </header>
+        <main class="mdl-layout__content mdl-color--grey-100">
+          <form>
+          <div class="mdl-layout__tab-panel is-active" id="stats">
+            <div class="page-content" align="center">
+              <div class="mdl-cell">
+                <table class="mdl-data-table mdl-js-data-table">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Field</th>
+                    <th style="text-align: center;">Value</th>
+                    <th>Random</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">STR</td>
+                    <td><input class="mdl-textfield__input" type="number" id="str"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">DEX</td>
+                    <td><input class="mdl-textfield__input" type="number" id="dex"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">CON</td>
+                    <td><input class="mdl-textfield__input" type="number" id="con"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">INT</td>
+                    <td><input class="mdl-textfield__input" type="number" id="int"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">WIS</td>
+                    <td><input class="mdl-textfield__input" type="number" id="wis"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">CHAR</td>
+                    <td><input class="mdl-textfield__input" type="number" id="chr"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">HP</td>
+                    <td><input class="mdl-textfield__input" type="number" id="hp"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mdl-layout__tab-panel" id="skills">
+            <div class="page-content" align="center">
+              <div class="mdl-cell">
+                <table class="mdl-data-table mdl-js-data-table">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Field</th>
+                    <th style="text-align: center;">Value</th>
+                    <th>Random</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Level</td>
+                    <td>
+                      <select id="level">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Languages</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="languages"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Feats</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="feat"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Spells</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="available_spells"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Abilities</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="skills"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Tool Proficiencies</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="tool_prof"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Weapon Proficiencies</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="tool_prof"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mdl-layout__tab-panel" id="details">
+            <div class="page-content" align="center">
+              <div class="mdl-cell">
+                <table class="mdl-data-table mdl-js-data-table" id="detail_table">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Field</th>
+                    <th style="text-align: center;">Value</th>
+                    <th>Random</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Name</td>
+                    <td><input class="mdl-textfield__input" type="text" id="char_name"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Age</td>
+                    <td><input class="mdl-textfield__input" type="number" id="age"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Height</td>
+                    <td><input class="mdl-textfield__input" type="number" id="height"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Weight</td>
+                    <td><input class="mdl-textfield__input" type="number" id="weight"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Race</td>
+                    <td><input class="mdl-textfield__input" type="text" id="race"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Sub-Race</td>
+                    <td><input class="mdl-textfield__input" type="text" id="sub_race"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Gender</td>
+                    <td>
+                      <div align="left">
+                        <input type="radio" name="gender" id="male" value="male">Male
+                        <input type="radio" name="gender" id="female" value="female">Female
+                      </div>
+                    </td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Alignment</td>
+                    <td>
+                      <div align="left">
+                        <select id="alignment">
+                          <option disabled selected value> -- -- </option>
+                          <option value="lawful good">Lawful Good</option>
+                          <option value="neutral good">Neutral Good</option>
+                          <option value="chaotic good">Chaotic Good</option>
+                          <option value="lawful neutral">Lawful Neutral</option>
+                          <option value="true neutral">True Neutral</option>
+                          <option value="chaotic neutral">Chaotic Neutral</option>
+                          <option value="lawful evil">Lawful Evil</option>
+                          <option value="neutral evil">Neutral Evil</option>
+                          <option value="chaotic evil">Chaotic Evil</option>
+                        </select></div>
+                    </td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Class</td>
+                    <td>
+                      <div align="left">
+                        <select class-select id="class">
+                          <option disabled selected value> -- -- </option>
+                          <option value="barbarian">Barbarian</option>
+                          <option value="bard">Bard</option>
+                          <option value="cleric">Cleric</option>
+                          <option value="druid">Druid</option>
+                          <option value="fighter">Fighter</option>
+                          <option value="monk">Monk</option>
+                          <option value="paladin">Paladin</option>
+                          <option value="ranger">Ranger</option>
+                          <option value="rogue">Rogue</option>
+                          <option value="sorcerer">Sorcerer</option>
+                          <option value="warlock">Warlock</option>
+                          <option value="wizard">Wizard</option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+<!--                   <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Archetype</td>
+                    <td>
+                      <div align="left" id="class_options_1">
+                        <select id="archetype">
+                          <option disabled selected value> Unspecified </option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr> -->
+<!--                   <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Fighting Style</td>
+                    <td>
+                      <div align="left">
+                        <select id="fighting_style">
+                          <option disabled selected value> Unspecified </option>
+                        </select>
+                      </div>
+                    </td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr> -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mdl-layout__tab-panel" id="descriptors">
+            <div class="page-content" align="center">
+              <div class="mdl-cell mdl-cell--8-col">
+                <table class="mdl-data-table mdl-js-data-table">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Field</th>
+                    <th style="text-align: center;">Value</th>
+                    <th>Random</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Background</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="background"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Traits</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="notable_traits"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Bonds</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="bonds"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Physical<br>Description</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="description"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Miscellaneous<br>Notes</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="description"></textarea></td>
+                    <td>
+                      <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                        <i class="material-icons">autorenew</i>
+                      </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mdl-layout__tab-panel" id="equipment">
+          <!--Add background, Personality Traits, Name, Bonds, Traits of Note, Age, Weight-->
+            <div class="page-content" align="center">
+              <div class="mdl-cell">
+                <table class="mdl-data-table mdl-js-data-table">
+                  <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Field</th>
+                    <th style="text-align: center;">Value</th>
+                    <th>Random</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Armor</td>
+                    <td><textarea class="mdl-textfield__input" type="number" id="armor"></textarea></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Weapons</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="weapons"></textarea></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Tools</td>
+                    <td><textarea class="mdl-textfield__input" type="text" id="tools"></textarea></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Money, Platinum</td>
+                    <td><input class="mdl-textfield__input" type="number" id="platinum"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Money, Gold</td>
+                    <td><input class="mdl-textfield__input" type="number" id="gold"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Money, Electrum</td>
+                    <td><input class="mdl-textfield__input" type="number" id="electrum"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Money, Silver</td>
+                    <td><input class="mdl-textfield__input" type="number" id="silver"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">Money, Copper</td>
+                    <td><input class="mdl-textfield__input" type="number" id="copper"></td>
+                    <td>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-color-text--orange-900">
+                      <i class="material-icons">autorenew</i>
+                    </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mdl-layout__tab-panel" id="finalize">
+          <!--Add background, Personality Traits, Name, Bonds, Traits of Note, Age, Weight-->
+            <div class="page-content" align="center">
+              <div class="mdl-cell">
+                <input id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit"></input>
+                <input id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Load"></input>
+              </div>
+            </div>
+          </div>
+        </form>
+        </main>
+      </div>
+    </div>
+    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script src="creator.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+	<script src="scripts/app.js"></script>
+  </body>
+</html>
+>>>>>>> e55b1dc7fe4d5423261ca141831459dbd2a69ec0:server_files/creator.html
