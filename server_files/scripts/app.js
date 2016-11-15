@@ -23,10 +23,10 @@ app.directive('classSelect', function() {
 
 app.config(["$routeProvider", function($routeProvider){
     $routeProvider
-        .when('/', {
+        /* .when('/', {
             controller: 'home',
             templateUrl: 'partials/home.html'
-        })
+        }) */
         .when('/login', {
             controller: 'login',
             templateUrl: 'partials/login.html'
@@ -37,7 +37,7 @@ app.config(["$routeProvider", function($routeProvider){
         })
         .when('/creator', {
             controller: 'creator',
-            templateUrl: 'partials/creator.html'
+            templateUrl: 'partials/creator_chunk.html'
         })
         .when('/dmtools', {
             controller: 'dmtools',
