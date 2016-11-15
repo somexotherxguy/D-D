@@ -36,10 +36,9 @@
 		</select>
 		<table class="mdl-data-table mdl-js-data-table">
 			<!-- <tr ng-repeat="d in details | hide"> -->
-			<tr ng-repeat="d in details" ng-show="!d.hidden">
-				<td style="text-align: center">{{ d.field }}</td>
-				
-                <td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
+			<tr ng-repeat="s in stats" ng-show="!s.hidden">
+				<td style="text-align: center">{{ s.field }}</td>
+                <td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></td>
 			</tr>
 		</table>
     </div>

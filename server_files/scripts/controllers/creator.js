@@ -119,7 +119,7 @@ var class_options = {
           'blade': 'Pact of the Blade',
           'tome': 'Pact of the Tome'
         },
-      'patron':
+      'Patron':
         {
           'archfey': 'The Archfey',
           'fiend': 'The Fiend',
@@ -153,7 +153,6 @@ app.directive('dynamicInput', [function(){
 }]);
 
 app.controller('creator', ['$scope', function($scope) {
-    console.log('hello?');
     $scope.stats = [
     {
     	field: 'Str',
