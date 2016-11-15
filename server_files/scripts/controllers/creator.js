@@ -389,7 +389,36 @@ app.controller('creator', ['$scope', function($scope) {
     	value: 0,
         type: 'number'
     }];
-    $scope.classSelect = function() {
+    $scope.tabs = [
+		{
+			title: 'Stats',
+			url: 'stats.tpl.html'
+		},
+		{
+			title: 'Skills',
+			url: 'skills.tpl.html'
+		},
+		{
+			title: 'Details',
+			url: 'details.tpl.html'
+		},
+		{
+			title: 'Descriptors',
+			url: 'descriptors.tpl.html'
+		},
+		{
+			title: 'Equipment',
+			url: 'equipment.tpl.html'
+		}
+	];
+	$scope.currentTab = 'stats.tpl.html';
+	$scope.onClickTab = function(tab) {
+		$scope.currentTab = tab.url;
+	};
+	$scope.isActiveTab = function(tabUrl) {
+		return tabUrl == $scope.currentTab;
+	};
+	$scope.classSelect = function() {
     	var class_name = document.getElementById('class').value;
     	$scope.details[10].hidden = true;
     	$scope.details[8].value = class_name[0].toUpperCase() + class_name.slice(1, class_name.length);
