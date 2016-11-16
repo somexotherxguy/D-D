@@ -269,53 +269,11 @@ app.controller('creator', ['$scope', function($scope) {
         id: 'weight'
     },
     {
-    	field: 'Race',
-    	value: '',
-    	hidden: false,
-        type: 'text',
-        id: 'race'
-    },
-    {
-    	field: 'Sub-Race',
-    	value: '',
-    	hidden: true,
-        type: 'text',
-        id: 'sub_race'
-    },
-    {
     	field: 'Gender',
     	value: '',
     	hidden: false,
         type: 'text',
         id: 'gender'
-    },
-    {
-    	field: 'Alignment',
-    	value: '',
-    	hidden: false,
-        type: 'text',
-        id: 'alignment'
-    },
-    {
-    	field: 'Class',
-    	value: '',
-    	hidden: false,
-        type: 'text',
-        id: 'class'
-    },
-    {
-    	field: 'Archetype',
-    	value: '',
-    	hidden: true,
-        type: 'text',
-        id: 'archetype'
-    },
-    {
-    	field: 'Fighting Style',
-    	value: '',
-    	hidden: true,
-        type: 'text',
-        id: 'fighting_style'
     }];
     $scope.descriptors = [
     {
@@ -411,6 +369,222 @@ app.controller('creator', ['$scope', function($scope) {
 			url: 'equipment.tpl.html'
 		}
 	];
+  $scope.dropdowns = [
+    {
+      field: 'Race',
+      list: [
+        'Dragonborn',
+        'Dwarf',
+        'Elf',
+        'Gnome',
+        'Half-Elf',
+        'Halfling',
+        'Half-Orc',
+        'Human',      
+        'Tiefling'
+      ],
+      hidden: false
+    },
+    {
+      field: 'Alignment',
+      list: [
+        'Lawful Good',
+        'Lawful Neutral',
+        'Lawful Evil',
+        'Neutral Good',
+        'True Neutral',
+        'Neutral Evil',
+        'Choatic Good',
+        'Chaotic Neutral',
+        'Choatic Evil'
+      ],
+      hidden: false
+    },
+    {
+      field: 'Class',
+      class_list: [
+        {
+          'Barbarian': {
+            archetype: {
+              name: 'Path',
+              list: [
+                'Path of the Berserker',
+                'Path of the Totem Warrior'
+              ]
+            }
+          },
+          'Bard': {
+            archetype: {
+              name: 'College',
+              list: [
+                'College of Lore',
+                'College of Valor'
+              ],
+              hidden: true
+            }
+          },
+          'Cleric': {
+            archetype: {
+              name: 'Domain',
+              list: [
+                'Knowledge Domain',
+                'Life Domain',
+                'Light Domain',
+                'Nature Domain',
+                'Tempest Domain',
+                'Trickery Domain',
+                'War Domain'
+              ],
+              hidden: true
+            }
+          },
+          'Druid': {
+            archetype: {
+              name: 'Circle',
+              list: [
+                'Circle of the Land',
+                'Circle of the Moon'
+              ],
+              hidden: true
+            }
+          },
+          'Fighter': {
+            archetype: {
+              name: 'Archetype',
+              list: [
+                'Champion',
+                'Battle Master',
+                'Eldritch Knight'
+              ],
+              hidden: true
+            },
+            fighting_style: {
+              name: 'Fighting Style',
+              list: [
+                'Archery',
+                'Defense',
+                'Dueling',
+                'Great Weapon Fighting',
+                'Protection',
+                'Two-Weapon Fighting'
+              ],
+              hidden: true
+            }
+          },
+          'Monk': {
+            archetype: {
+              name: 'Tradition',
+              list: [
+                'Way of the Open Hand',
+                'Way of Shadow',
+                'Way of the Four Elements'
+              ],
+              hidden: true
+            }
+          },
+          'Paladin': {
+            archetype: {
+              name: 'Oath',
+              list: [
+                'Oath of Devotion',
+                'Oath of the Ancients',
+                'Oath of Vengeance'
+              ],
+              hidden: true
+            },
+            fighting_style: {
+              name: 'Fighting Style',
+              list: [
+                'Defense',
+                'Dueling',
+                'Great Weapon Fighting',
+                'Protection'
+              ],
+              hidden: true
+            }
+          },
+          'Ranger': {
+            archetype: {
+              name: 'Archetype',
+              list: [
+                'Hunter',
+                'Beast Master'
+              ],
+              hidden: true
+            },
+            fighting_style: {
+              name: 'Fighting Style',
+              list: [
+                'Archery',
+                'Defense',
+                'Dueling',
+                'Two-Weapon Fighting'
+              ],
+              hidden: true
+            }
+          },
+          'Rogue': {
+            archetype: {
+              name: 'Archetype',
+              list: [
+                'Thief',
+                'Assassin',
+                'Arcane Trickster'
+              ],
+              hidden: true
+            }
+          },
+          'Sorcerer': {
+            archetype: {
+              name: 'Origin',
+              list: [
+                'Draconic Bloodline',
+                'Wild Magic'
+              ],
+              hidden: true
+            }
+          },
+          'Warlock': {
+            archetype: {
+              name: 'Pact',
+              list: [
+                'Pact of the Chain',
+                'Pact of the Blade',
+                'Pact of the Tome'
+              ],
+              hidden: true
+            },
+            fighting_style: {
+              name: 'Patron',
+              list: [
+                'The Archfey',
+                'The Fiend',
+                'The Great Old One'
+              ],
+              hidden: true
+            }
+          },
+          'Wizard': {
+            archetype: {
+              name: 'School',
+              list: [
+                'School of Abjuration',
+                'School of Conjuration',
+                'School of Divination',
+                'School of Enchantment',
+                'School of Evocation',
+                'School of Illusion',
+                'School of Necromancy',
+                'School of Transmutation'
+              ],
+              hidden: true
+            }
+          }
+        }
+      ],
+      hidden: false
+    },
+  ];
 	$scope.currentTab = 'stats.tpl.html';
 	$scope.onClickTab = function(tab) {
 		$scope.currentTab = tab.url;
@@ -419,7 +593,7 @@ app.controller('creator', ['$scope', function($scope) {
 		return tabUrl == $scope.currentTab;
 	};
 	$scope.classSelect = function() {
-    	var class_name = document.getElementById('class').value;
+    	/*var class_name = document.getElementById('class').value;
     	$scope.details[10].hidden = true;
     	$scope.details[8].value = class_name[0].toUpperCase() + class_name.slice(1, class_name.length);
     	for (first in class_options[class_name]) break;
@@ -429,6 +603,6 @@ app.controller('creator', ['$scope', function($scope) {
     	if (last !== first) {
     		$scope.details[10].field = last;
     		$scope.details[10].hidden = false;
-    	}
+    	}*/
     };
 }]);

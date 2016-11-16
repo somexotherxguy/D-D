@@ -72,6 +72,13 @@
 								<td style="text-align: center">{{ d.field }}</td>
 								<td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
 							</tr>
+							<tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
+								<td style="text-align: center">{{ dd.field }}</td>
+								<td>
+									<select>
+										<option ng-repeat="l in dd.list">{{ l }}</option>
+									</select>
+								</td>
 						</table>
 				</div>
 			  </div>
