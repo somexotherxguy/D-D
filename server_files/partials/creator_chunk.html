@@ -72,6 +72,14 @@
 								<td style="text-align: center">{{ d.field }}</td>
 								<td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
 							</tr>
+              <tr ng-repeat="r in radios" ng-show="!r.hidden">
+                <td style="text-align: center">{{r.field}}</td>
+                <td>
+                  <!-- CURRENTLY NOT PRINTING Female Male Other -->
+                  <!-- NO SPACE IN TD?                          -->
+                  <input ng-repeat="elem in r.list" type="radio" name="gender" value="{{elem}}">{{elem}}<br></input>
+                </td>
+              </tr>
 							<tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
 								<td style="text-align: center">{{ dd.field }}</td>
 								<td>
@@ -79,6 +87,10 @@
 										<option ng-repeat="l in dd.list">{{ l }}</option>
 									</select>
 								</td>
+              </tr>
+              <tr>
+                <td style="text-align: center">{{chosen_class.label}}</td>
+              </tr>
 						</table>
 				</div>
 			  </div>

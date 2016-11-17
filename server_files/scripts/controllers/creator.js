@@ -1,3 +1,5 @@
+
+
 var class_options = {
   'barbarian':
     {
@@ -272,7 +274,7 @@ app.controller('creator', ['$scope', function($scope) {
     	field: 'Gender',
     	value: '',
     	hidden: false,
-        type: 'text',
+        type: 'radial',
         id: 'gender'
     }];
     $scope.descriptors = [
@@ -402,9 +404,24 @@ app.controller('creator', ['$scope', function($scope) {
     },
     {
       field: 'Class',
-      class_list: [
+      list: [
+        'Barbarian',
+        'Bard',
+        'Cleric',
+        'Druid',
+        'Fighter',
+        'Monk',
+        'Paladin',
+        'Ranger',
+        'Rogue',
+        'Sorcerer',
+        'Warlock',
+        'Wizard'
+      ],
+      class_object: [
         {
           'Barbarian': {
+            label: 'Barbarian',
             archetype: {
               name: 'Path',
               list: [
@@ -412,8 +429,10 @@ app.controller('creator', ['$scope', function($scope) {
                 'Path of the Totem Warrior'
               ]
             }
-          },
+          }
+        },{
           'Bard': {
+            label: 'Barbarian',
             archetype: {
               name: 'College',
               list: [
@@ -422,8 +441,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Cleric': {
+            label: 'Barbarian',
             archetype: {
               name: 'Domain',
               list: [
@@ -437,8 +458,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Druid': {
+            label: 'Barbarian',
             archetype: {
               name: 'Circle',
               list: [
@@ -447,8 +470,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Fighter': {
+            label: 'Barbarian',
             archetype: {
               name: 'Archetype',
               list: [
@@ -470,8 +495,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Monk': {
+            label: 'Barbarian',
             archetype: {
               name: 'Tradition',
               list: [
@@ -481,8 +508,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Paladin': {
+            label: 'Barbarian',
             archetype: {
               name: 'Oath',
               list: [
@@ -502,8 +531,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Ranger': {
+            label: 'Barbarian',
             archetype: {
               name: 'Archetype',
               list: [
@@ -522,8 +553,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Rogue': {
+            label: 'Barbarian',
             archetype: {
               name: 'Archetype',
               list: [
@@ -533,8 +566,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Sorcerer': {
+            label: 'Sorcerer',
             archetype: {
               name: 'Origin',
               list: [
@@ -543,8 +578,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Warlock': {
+            label: 'Warlock',
             archetype: {
               name: 'Pact',
               list: [
@@ -563,8 +600,10 @@ app.controller('creator', ['$scope', function($scope) {
               ],
               hidden: true
             }
-          },
+          }
+        },{
           'Wizard': {
+            label: 'Wizard',
             archetype: {
               name: 'School',
               list: [
@@ -585,7 +624,18 @@ app.controller('creator', ['$scope', function($scope) {
       hidden: false
     },
   ];
-	$scope.currentTab = 'stats.tpl.html';
+	$scope.radios = [
+    {
+      field: 'Gender',
+      list: [
+        'Female',
+        'Male',
+        'Other'
+      ],
+      hidden: false
+    }
+  ]
+  $scope.currentTab = 'stats.tpl.html';
 	$scope.onClickTab = function(tab) {
 		$scope.currentTab = tab.url;
 	};
