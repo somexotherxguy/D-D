@@ -1,5 +1,3 @@
-
-
 var class_options = {
   'barbarian':
     {
@@ -269,13 +267,6 @@ app.controller('creator', ['$scope', function($scope) {
     	hidden: false,
         type: 'number',
         id: 'weight'
-    },
-    {
-    	field: 'Gender',
-    	value: '',
-    	hidden: false,
-        type: 'radial',
-        id: 'gender'
     }];
     $scope.descriptors = [
     {
@@ -654,5 +645,8 @@ app.controller('creator', ['$scope', function($scope) {
     		$scope.details[10].field = last;
     		$scope.details[10].hidden = false;
     	}*/
+      console.log("Hello");
+      //console.log(class_name);
+      //if (!class_name) {return;}
     };
 }]);
