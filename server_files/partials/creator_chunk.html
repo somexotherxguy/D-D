@@ -42,7 +42,7 @@
 								<!-- <tr ng-repeat="d in details | hide"> -->
 								<tr ng-repeat="s in stats" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
-									<td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></input></td>
+									<td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></td>
 								</tr>
 							</table>
 					</div>
@@ -56,7 +56,7 @@
 								<!-- <tr ng-repeat="d in details | hide"> -->
 								<tr ng-repeat="s in skills" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
-									<td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></input></td>
+									<td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></td>
 								</tr>
 							</table>
 					</div>
@@ -66,32 +66,34 @@
 			  <script type="text/ng-template" id="details.tpl.html">
 			  <div class="mdl-layout__tab-panel is-active" id="details">
 				<div class="page-content" align="center">
-						<table class="mdl-data-table mdl-js-data-table">
-							<!-- <tr ng-repeat="d in details | hide"> -->
-							<tr ng-repeat="d in details" ng-show="!d.hidden">
-								<td style="text-align: center">{{ d.field }}</td>
-								<td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></input></td>
-							</tr>
-              <tr ng-repeat="r in radios" ng-show="!r.hidden">
-                <td style="text-align: center">{{r.field}}</td>
-                <td>
-                  <!-- CURRENTLY NOT PRINTING Female Male Other -->
-                  <!-- NO SPACE IN TD?                          -->
-                  <input ng-repeat="elem in r.list" ng-show="!elem.hidden" type="radio" name="gender" value="{{elem}}">{{elem}}<br></input>
-                </td>
-              </tr>
-							<tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
-								<td style="text-align: center">{{ dd.field }}</td>
-								<td>
-									<select ng-change="classSelect()">
-										<option ng-repeat="l in dd.list">{{ l }}</option>
-									</select>
-								</td>
-              </tr>
-              <tr>
-                <td style="text-align: center">{{chosen_class.label}}</td>
-              </tr>
-						</table>
+					<table class="mdl-data-table mdl-js-data-table">
+					  <!-- <tr ng-repeat="d in details | hide"> -->
+					  <tr ng-repeat="d in details" ng-show="!d.hidden">
+						  <td style="text-align: center">{{ d.field }}</td>
+						  <td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
+					  </tr>
+		              <tr ng-repeat="r in radios" ng-show="!r.hidden">
+		                <td style="text-align: center">{{r.field}}</td>
+		                <td>
+		                  <!-- CURRENTLY NOT PRINTING Female Male Other -->
+		                  <!-- NO SPACE IN TD?                          -->
+		                  <input ng-repeat="elem in r.list" ng-show="!elem.hidden" type="radio" name="gender" value="{{elem}}">{{elem}}<br>
+		                </td>
+		              </tr>
+					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
+						<td style="text-align: center">{{ dd.field }}</td>
+						  <td>
+							<!-- <select ng-options="l in dd.list">
+							    <option ng-repeat="l in dd.list">{{ l }}</option>
+							</select> -->
+							<select ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="classSelect(selectedClass)">
+							</select>
+						  </td>
+		              </tr>
+		              <tr>
+		                <td style="text-align: center">{{chosen_class.label}}</td>
+		              </tr>
+					</table>
 				</div>
 			  </div>
 			  </script>
@@ -103,7 +105,7 @@
 							<!-- <tr ng-repeat="d in details | hide"> -->
 							<tr ng-repeat="d in descriptors" ng-show="!d.hidden">
 								<td style="text-align: center">{{ d.field }}</td>
-								<td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></input></td>
+								<td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
 							</tr>
 						</table>
 				</div>
@@ -118,7 +120,7 @@
 							<!-- <tr ng-repeat="d in details | hide"> -->
 							<tr ng-repeat="e in equipment" ng-show="!e.hidden">
 								<td style="text-align: center">{{ e.field }}</td>
-								<td><input class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}"></input></td>
+								<td><input class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}"></td>
 							</tr>
 						</table>
 				</div>
@@ -127,8 +129,8 @@
 			  
 			  <div class="page-content" align="center">
 				<div class="mdl-cell">
-				  <input id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit"></input>
-				  <input id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Load"></input>
+				  <input id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit">
+				  <input id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Load">
 				 </div>
 			   </div>
 			  

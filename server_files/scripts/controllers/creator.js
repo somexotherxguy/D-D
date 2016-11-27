@@ -157,188 +157,188 @@ app.controller('creator', ['$scope', function($scope) {
     {
     	field: 'Str',
     	value: 0,
-        type: 'number',
-        id: 'str'
+      type: 'number',
+      id: 'str'
     },
     {
     	field: 'Dex',
     	value: 0,
-        type: 'number',
-        id: 'dex'
+      type: 'number',
+      id: 'dex'
     },
     {
     	field: 'Con',
     	value: 0,
-        type: 'number',
-        id: 'con'
+      type: 'number',
+      id: 'con'
     },
     {
     	field: 'Int',
     	value: 0,
-        type: 'number',
-        id: 'int'
+      type: 'number',
+      id: 'int'
     },
     {
     	field: 'Wis',
     	value: 0,
-        type: 'number',
-        id: 'wis'
+      type: 'number',
+      id: 'wis'
     },
     {
     	field: 'Char',
     	value: 0,
-        type: 'number',
-        id: 'char'
+      type: 'number',
+      id: 'char'
     },
     {
     	field: 'HP',
     	value: 0,
-        type: 'number',
-        id: 'hp'
+      type: 'number',
+      id: 'hp'
     }];
     $scope.skills = [
     {
     	field: 'Level',
     	value: 1,
-        type: 'number',
-        id: 'level'
+      type: 'number',
+      id: 'level'
     },
     {
     	field: 'Languages',
     	value: '',
-        type: 'text',
-        id: 'languages'
+      type: 'text',
+      id: 'languages'
     },
     {
     	field: 'Feats',
     	value: '',
-        type: 'text',
-        id: 'feat'
+      type: 'text',
+      id: 'feat'
     },
     {
     	field: 'Spells',
     	value: '',
-        type: 'text',
-        id: 'available_spells'
+      type: 'text',
+      id: 'available_spells'
     },
     {
     	field: 'Abilities',
     	value: '',
-        type: 'text',
-        id: 'abilities'
+      type: 'text',
+      id: 'abilities'
     },
     {
     	field: 'Tool Proficiencies',
     	value: '',
-        type: 'text',
-        id: 'tool_prof'
+      type: 'text',
+      id: 'tool_prof'
     },
     {
     	field: 'Weapon Proficiencies',
     	value: '',
-        type: 'text',
-        id: 'weapon_prof'
+      type: 'text',
+      id: 'weapon_prof'
     }];
     $scope.details = [
     {
     	field: 'Name',
     	value: '',
     	hidden: false,
-        type: 'text',
-        id: 'name'
+      type: 'text',
+      id: 'name'
     },
     {
     	field: 'Age',
     	value: 1,
     	hidden: false,
-        type: 'number',
-        id: 'age'
+      type: 'number',
+      id: 'age'
     },
     {
     	field: 'Height',
     	value: 0,
     	hidden: false,
-        type: 'number',
-        id: 'height'
+      type: 'number',
+      id: 'height'
     },
     {
     	field: 'Weight',
     	value: 0,
     	hidden: false,
-        type: 'number',
-        id: 'weight'
+      type: 'number',
+      id: 'weight'
     }];
     $scope.descriptors = [
     {
     	field: 'Background',
     	value: '',
-        type: 'text',
-        id: 'background'
+      type: 'text',
+      id: 'background'
     },
     {
     	field: 'Traits',
     	value: '',
-        type: 'text',
-        id: 'notable_traits'
+      type: 'text',
+      id: 'notable_traits'
     },
     {
     	field: 'Bonds',
     	value: '',
-        type: 'text',
-        id: 'bonds'
+      type: 'text',
+      id: 'bonds'
     },
     {
     	field: 'Physical Description',
     	value: '',
-        type: 'text',
-        id: 'description'
+      type: 'text',
+      id: 'description'
     },
     {
     	field: 'Miscellaneous Notes',
     	value: '',
-        type: 'text',
-        id: 'notes'
+      type: 'text',
+      id: 'notes'
     }];
     $scope.equipment = [
     {
     	field: 'Armor',
     	value: '',
-        type: 'text'
+      type: 'text'
     },
     {
     	field: 'Weapons',
     	value: '',
-        type: 'text'
+      type: 'text'
     },
     {
     	field: 'Tools',
     	value: '',
-        type: 'text'
+      type: 'text'
     },
     {
     	field: 'Platinum',
     	value: 0,
-        type: 'number'
+      type: 'number'
     },
     {
     	field: 'Gold',
     	value: 0,
-        type: 'number'
+      type: 'number'
     },
     {
     	field: 'Electrum',
     	value: 0,
-        type: 'number'
+      type: 'number'
     },
     {
     	field: 'Silver',
     	value: 0,
-        type: 'number'
+      type: 'number'
     },
     {
     	field: 'Copper',
     	value: 0,
-        type: 'number'
+      type: 'number'
     }];
     $scope.tabs = [
 		{
@@ -409,206 +409,182 @@ app.controller('creator', ['$scope', function($scope) {
         'Warlock',
         'Wizard'
       ],
-      class_object: [
+      class_objects: [
         {
-          'Barbarian': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Path',
-              list: [
-                'Path of the Berserker',
-                'Path of the Totem Warrior'
-              ]
-            }
+          label: 'Barbarian',
+          archetype: {
+            name: 'Path',
+            list: [
+              'Path of the Berserker',
+              'Path of the Totem Warrior'
+            ]
           }
         },{
-          'Bard': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'College',
-              list: [
-                'College of Lore',
-                'College of Valor'
-              ],
-              hidden: true
-            }
+          label: 'Bard',
+          archetype: {
+            name: 'College',
+            list: [
+              'College of Lore',
+              'College of Valor'
+            ],
+            hidden: true
           }
         },{
-          'Cleric': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Domain',
-              list: [
-                'Knowledge Domain',
-                'Life Domain',
-                'Light Domain',
-                'Nature Domain',
-                'Tempest Domain',
-                'Trickery Domain',
-                'War Domain'
-              ],
-              hidden: true
-            }
+          label: 'Cleric',
+          archetype: {
+            name: 'Domain',
+            list: [
+              'Knowledge Domain',
+              'Life Domain',
+              'Light Domain',
+              'Nature Domain',
+              'Tempest Domain',
+              'Trickery Domain',
+              'War Domain'
+            ],
+            hidden: true
           }
         },{
-          'Druid': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Circle',
-              list: [
-                'Circle of the Land',
-                'Circle of the Moon'
-              ],
-              hidden: true
-            }
+          label: 'Druid',
+          archetype: {
+            name: 'Circle',
+            list: [
+              'Circle of the Land',
+              'Circle of the Moon'
+            ],
+            hidden: true
           }
         },{
-          'Fighter': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Archetype',
-              list: [
-                'Champion',
-                'Battle Master',
-                'Eldritch Knight'
-              ],
-              hidden: true
-            },
-            fighting_style: {
-              name: 'Fighting Style',
-              list: [
-                'Archery',
-                'Defense',
-                'Dueling',
-                'Great Weapon Fighting',
-                'Protection',
-                'Two-Weapon Fighting'
-              ],
-              hidden: true
-            }
+          label: 'Fighter',
+          archetype: {
+            name: 'Archetype',
+            list: [
+              'Champion',
+              'Battle Master',
+              'Eldritch Knight'
+            ],
+            hidden: true
+          },
+          fighting_style: {
+            name: 'Fighting Style',
+            list: [
+              'Archery',
+              'Defense',
+              'Dueling',
+              'Great Weapon Fighting',
+              'Protection',
+              'Two-Weapon Fighting'
+            ],
+            hidden: true
           }
         },{
-          'Monk': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Tradition',
-              list: [
-                'Way of the Open Hand',
-                'Way of Shadow',
-                'Way of the Four Elements'
-              ],
-              hidden: true
-            }
+          label: 'Monk',
+          archetype: {
+            name: 'Tradition',
+            list: [
+              'Way of the Open Hand',
+              'Way of Shadow',
+              'Way of the Four Elements'
+            ],
+            hidden: true
           }
         },{
-          'Paladin': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Oath',
-              list: [
-                'Oath of Devotion',
-                'Oath of the Ancients',
-                'Oath of Vengeance'
-              ],
-              hidden: true
-            },
-            fighting_style: {
-              name: 'Fighting Style',
-              list: [
-                'Defense',
-                'Dueling',
-                'Great Weapon Fighting',
-                'Protection'
-              ],
-              hidden: true
-            }
+          label: 'Paladin',
+          archetype: {
+            name: 'Oath',
+            list: [
+              'Oath of Devotion',
+              'Oath of the Ancients',
+              'Oath of Vengeance'
+            ],
+            hidden: true
+          },
+          fighting_style: {
+            name: 'Fighting Style',
+            list: [
+              'Defense',
+              'Dueling',
+              'Great Weapon Fighting',
+              'Protection'
+            ],
+            hidden: true
           }
         },{
-          'Ranger': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Archetype',
-              list: [
-                'Hunter',
-                'Beast Master'
-              ],
-              hidden: true
-            },
-            fighting_style: {
-              name: 'Fighting Style',
-              list: [
-                'Archery',
-                'Defense',
-                'Dueling',
-                'Two-Weapon Fighting'
-              ],
-              hidden: true
-            }
+          label: 'Ranger',
+          archetype: {
+            name: 'Archetype',
+            list: [
+              'Hunter',
+              'Beast Master'
+            ],
+            hidden: true
+          },
+          fighting_style: {
+            name: 'Fighting Style',
+            list: [
+              'Archery',
+              'Defense',
+              'Dueling',
+              'Two-Weapon Fighting'
+            ],
+            hidden: true
           }
         },{
-          'Rogue': {
-            label: 'Barbarian',
-            archetype: {
-              name: 'Archetype',
-              list: [
-                'Thief',
-                'Assassin',
-                'Arcane Trickster'
-              ],
-              hidden: true
-            }
+          label: 'Rogue',
+          archetype: {
+            name: 'Archetype',
+            list: [
+              'Thief',
+              'Assassin',
+              'Arcane Trickster'
+            ],
+            hidden: true
           }
         },{
-          'Sorcerer': {
-            label: 'Sorcerer',
-            archetype: {
-              name: 'Origin',
-              list: [
-                'Draconic Bloodline',
-                'Wild Magic'
-              ],
-              hidden: true
-            }
+          label: 'Sorcerer',
+          archetype: {
+            name: 'Origin',
+            list: [
+              'Draconic Bloodline',
+              'Wild Magic'
+            ],
+            hidden: true
           }
         },{
-          'Warlock': {
-            label: 'Warlock',
-            archetype: {
-              name: 'Pact',
-              list: [
-                'Pact of the Chain',
-                'Pact of the Blade',
-                'Pact of the Tome'
-              ],
-              hidden: true
-            },
-            fighting_style: {
-              name: 'Patron',
-              list: [
-                'The Archfey',
-                'The Fiend',
-                'The Great Old One'
-              ],
-              hidden: true
-            }
+          label: 'Warlock',
+          archetype: {
+            name: 'Pact',
+            list: [
+              'Pact of the Chain',
+              'Pact of the Blade',
+              'Pact of the Tome'
+            ],
+            hidden: true
+          },
+          fighting_style: {
+            name: 'Patron',
+            list: [
+              'The Archfey',
+              'The Fiend',
+              'The Great Old One'
+            ],
+            hidden: true
           }
         },{
-          'Wizard': {
-            label: 'Wizard',
-            archetype: {
-              name: 'School',
-              list: [
-                'School of Abjuration',
-                'School of Conjuration',
-                'School of Divination',
-                'School of Enchantment',
-                'School of Evocation',
-                'School of Illusion',
-                'School of Necromancy',
-                'School of Transmutation'
-              ],
-              hidden: true
-            }
+          label: 'Wizard',
+          archetype: {
+            name: 'School',
+            list: [
+              'School of Abjuration',
+              'School of Conjuration',
+              'School of Divination',
+              'School of Enchantment',
+              'School of Evocation',
+              'School of Illusion',
+              'School of Necromancy',
+              'School of Transmutation'
+            ],
+            hidden: true
           }
         }
       ],
@@ -631,9 +607,9 @@ app.controller('creator', ['$scope', function($scope) {
 		$scope.currentTab = tab.url;
 	};
 	$scope.isActiveTab = function(tabUrl) {
-		return tabUrl == $scope.currentTab;
+		return tabUrl === $scope.currentTab;
 	};
-	$scope.classSelect = function() {
+	$scope.classSelect = function(class_name) {
     	/*var class_name = document.getElementById('class').value;
     	$scope.details[10].hidden = true;
     	$scope.details[8].value = class_name[0].toUpperCase() + class_name.slice(1, class_name.length);
@@ -645,8 +621,18 @@ app.controller('creator', ['$scope', function($scope) {
     		$scope.details[10].field = last;
     		$scope.details[10].hidden = false;
     	}*/
-      console.log("Hello");
-      //console.log(class_name);
-      //if (!class_name) {return;}
+      var isClass = false;
+      for (c in $scope.dropdowns[2].list) {
+        if (class_name === $scope.dropdowns[2].list[c]) {
+          isClass = true;
+        }
+      }
+      if (!(isClass)) {return;}
+      var classes = $scope.dropdowns[2].class_objects;
+      for (c in classes) {
+        if (classes[c].label === class_name) {
+          classes[c].archetype.hidden = false;
+        }
+      }
     };
 }]);
