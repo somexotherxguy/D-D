@@ -409,9 +409,9 @@ app.controller('creator', ['$scope', function($scope) {
         'Warlock',
         'Wizard'
       ],
-      class_objects: [
+      class_objects: {
+        'Barbarian':
         {
-          label: 'Barbarian',
           archetype: {
             name: 'Path',
             list: [
@@ -419,18 +419,19 @@ app.controller('creator', ['$scope', function($scope) {
               'Path of the Totem Warrior'
             ]
           }
-        },{
-          label: 'Bard',
+        },
+        'Bard':
+        {
           archetype: {
             name: 'College',
             list: [
               'College of Lore',
               'College of Valor'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Cleric',
+        },
+        'Cleric':
+        {
           archetype: {
             name: 'Domain',
             list: [
@@ -441,29 +442,28 @@ app.controller('creator', ['$scope', function($scope) {
               'Tempest Domain',
               'Trickery Domain',
               'War Domain'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Druid',
+        },
+        'Druid':
+        {
           archetype: {
             name: 'Circle',
             list: [
               'Circle of the Land',
               'Circle of the Moon'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Fighter',
+        },
+        'Fighter':
+        {
           archetype: {
             name: 'Archetype',
             list: [
               'Champion',
               'Battle Master',
               'Eldritch Knight'
-            ],
-            hidden: true
+            ]
           },
           fighting_style: {
             name: 'Fighting Style',
@@ -474,30 +474,29 @@ app.controller('creator', ['$scope', function($scope) {
               'Great Weapon Fighting',
               'Protection',
               'Two-Weapon Fighting'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Monk',
+        },
+        'Monk':
+        {
           archetype: {
             name: 'Tradition',
             list: [
               'Way of the Open Hand',
               'Way of Shadow',
               'Way of the Four Elements'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Paladin',
+        },
+        'Paladin':
+        {
           archetype: {
             name: 'Oath',
             list: [
               'Oath of Devotion',
               'Oath of the Ancients',
               'Oath of Vengeance'
-            ],
-            hidden: true
+            ]
           },
           fighting_style: {
             name: 'Fighting Style',
@@ -506,18 +505,17 @@ app.controller('creator', ['$scope', function($scope) {
               'Dueling',
               'Great Weapon Fighting',
               'Protection'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Ranger',
+        },
+        'Ranger':
+        {
           archetype: {
             name: 'Archetype',
             list: [
               'Hunter',
               'Beast Master'
-            ],
-            hidden: true
+            ]
           },
           fighting_style: {
             name: 'Fighting Style',
@@ -526,40 +524,39 @@ app.controller('creator', ['$scope', function($scope) {
               'Defense',
               'Dueling',
               'Two-Weapon Fighting'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Rogue',
+        },
+        'Rogue':
+        {
           archetype: {
             name: 'Archetype',
             list: [
               'Thief',
               'Assassin',
               'Arcane Trickster'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Sorcerer',
+        },
+        'Sorcerer':
+        {
           archetype: {
             name: 'Origin',
             list: [
               'Draconic Bloodline',
               'Wild Magic'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Warlock',
+        },
+        'Warlock':
+        {
           archetype: {
             name: 'Pact',
             list: [
               'Pact of the Chain',
               'Pact of the Blade',
               'Pact of the Tome'
-            ],
-            hidden: true
+            ]
           },
           fighting_style: {
             name: 'Patron',
@@ -567,11 +564,11 @@ app.controller('creator', ['$scope', function($scope) {
               'The Archfey',
               'The Fiend',
               'The Great Old One'
-            ],
-            hidden: true
+            ]
           }
-        },{
-          label: 'Wizard',
+        },
+        'Wizard':
+        {
           archetype: {
             name: 'School',
             list: [
@@ -583,11 +580,10 @@ app.controller('creator', ['$scope', function($scope) {
               'School of Illusion',
               'School of Necromancy',
               'School of Transmutation'
-            ],
-            hidden: true
+            ]
           }
         }
-      ],
+      },
       hidden: false
     },
   ];
@@ -610,29 +606,36 @@ app.controller('creator', ['$scope', function($scope) {
 		return tabUrl === $scope.currentTab;
 	};
 	$scope.classSelect = function(class_name) {
-    	/*var class_name = document.getElementById('class').value;
-    	$scope.details[10].hidden = true;
-    	$scope.details[8].value = class_name[0].toUpperCase() + class_name.slice(1, class_name.length);
-    	for (first in class_options[class_name]) break;
-    	for (last in class_options[class_name]);
-    	$scope.details[9].field = first[0].toUpperCase() + first.slice(1, first.length);
-    	$scope.details[9].hidden = false;
-    	if (last !== first) {
-    		$scope.details[10].field = last;
-    		$scope.details[10].hidden = false;
-    	}*/
-      var isClass = false;
-      for (c in $scope.dropdowns[2].list) {
-        if (class_name === $scope.dropdowns[2].list[c]) {
-          isClass = true;
-        }
+  	/*var class_name = document.getElementById('class').value;
+  	$scope.details[10].hidden = true;
+  	$scope.details[8].value = class_name[0].toUpperCase() + class_name.slice(1, class_name.length);
+  	for (first in class_options[class_name]) break;
+  	for (last in class_options[class_name]);
+  	$scope.details[9].field = first[0].toUpperCase() + first.slice(1, first.length);
+  	$scope.details[9].hidden = false;
+  	if (last !== first) {
+  		$scope.details[10].field = last;
+  		$scope.details[10].hidden = false;
+  	}*/
+
+    var isClass = false;
+    for (c in $scope.dropdowns[2].list) {
+      if (class_name === $scope.dropdowns[2].list[c]) {
+        isClass = true;
       }
-      if (!(isClass)) {return;}
-      var classes = $scope.dropdowns[2].class_objects;
-      for (c in classes) {
-        if (classes[c].label === class_name) {
-          classes[c].archetype.hidden = false;
-        }
-      }
-    };
+    }
+    if (!(isClass)) {return;}
+
+    var selected_class = $scope.dropdowns[2].class_objects[class_name];
+    console.log(selected_class.archetype.list);
+    for (first in selected_class) break;
+    for (last in selected_class);
+    var details_table = document.getElementById('details_table');
+    var a_row = details_table.insertRow();
+    var a_cell1 = a_row.insertCell();
+    a_cell1.innerHTML = selected_class.archetype.name;
+    a_cell1.setAttribute("style", "text-align: center");
+    var a_cell2 = a_row.insertCell();
+    a_cell2.innerHTML = '<select ng-options="a for a in selected_class.archetype.list"></select>';
+  };
 }]);
