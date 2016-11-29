@@ -335,7 +335,7 @@ VALUES
 ("Athlete", NULL, NULL, NULL, NULL, "You have undergone extensive physical training to gain
 the following benefits:
 • Increase your Strength or Dexterity score by 1, to a
-maximum o f 20.
+maximum of 20.
 • When you are prone, standing up uses only 5 feet of
 your movement.
 • Climbing doesn’t halve your speed.
@@ -2014,7 +2014,7 @@ each of those creatures will do on its next turn.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 1, "Spellcasting", "Drawing on the divine essence of nature itself, you
+("Druid", NULL, 1, "Spellcasting", "Drawing on the divine essence of nature itself, you
 can cast spells to shape that essence to your will. 
 Cantrips
 At 1st level, you know two cantrips of your choice from
@@ -2066,7 +2066,7 @@ spellcasting focus for your druid spells.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 1, "Druidic", "You know Druidic, the secret language of druids. You
+("Druid", NULL, 1, "Druidic", "You know Druidic, the secret language of druids. You
 can speak the language and use it to leave hidden
 messages. You and others who know this language
 automatically spot such a message. Others spot the
@@ -2076,7 +2076,7 @@ message’s presence with a successful DC 15 Wisdom
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 1, "Wild Shape", "Starting at 2nd level, you can use your action to
+("Druid", NULL, 1, "Wild Shape", "Starting at 2nd level, you can use your action to
 magically assume the shape of a beast that you have
 seen before. You can use this feature twice. You regain
 expended uses when you finish a short or long rest.
@@ -2138,7 +2138,7 @@ effect until you leave the form.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 2, "Druidic Circle", "At 2nd level, you choose to
+("Druid", NULL, 2, "Druidic Circle", "At 2nd level, you choose to
 identify with a circle of druids:
 the Circle of the Land or the Circle of the Moon, both
 detailed at the end of the class description. Your choice
@@ -2148,7 +2148,117 @@ and 14th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Druid", "Land", 2, "Bonus Cantrip", "When you choose this circle at 2nd level, you learn one
+additional druid cantrip of your choice.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Moon", 2, "Combat Wild Shape", "When you choose this circle at 2nd level, you gain the
+ability to use Wild Shape on your turn as a bonus action,
+rather than as an action.
+Additionally, while you are transformed by Wild
+Shape, you can use a bonus action to expend one
+spell slot to regain 1d8 hit points per level of the spell
+slot expended.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Moon", 2, "Circle Forms", "The rites of your circle grant you the ability to transform
+into more dangerous animal forms. Starting at 2nd
+level, you can use your Wild Shape to transform into a
+beast with a challenge rating as high as 1 (you ignore
+the Max. CR column of the Beast Shapes table, but must
+abide by the other limitations there).
+Starting at 6th level, you can transform into a beast
+with a challenge rating as high as your druid level
+divided by 3, rounded down.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Land", 2, "Natural Recovery", "Starting at 2nd level, you can regain some of your
+magical energy by sitting in meditation and communing
+with nature. During a short rest, you choose expended
+spell slots to recover. The spell slots can have a
+combined level that is equal to or less than half your
+druid level (rounded up), and none of the slots can be
+6th level or higher. You can’t use this feature again until
+you finish a long rest
+For example, when you are a 4th-level druid, you can
+recover up to two levels worth of spell slots. You can
+recover either a 2nd-level slot or two 1st-level slots.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Land", 3, "Circle Spells", "Your mystical connection to the land infuses you with
+the ability to cast certain spells. At 3rd, 5th, 7th, and
+9th level you gain access to circle spells connected
+to the land where you became a druid. Choose that
+land—arctic, coast, desert, forest, grassland, mountain,
+swamp, or Underdark—and consult the associated
+list of spells.
+Once you gain access to a circle spell, you always have
+it prepared, and it doesn’t count against the number of
+spells you can prepare each day. If you gain access to a
+spell that doesn’t appear on the druid spell list, the spell
+is nonetheless a druid spell for you.
+Arctic
+Druid Level Circle Spells
+3rd hold person, spike growth
+5th sleet storm, slow
+7th freedom of movement, ice storm
+9th commune with nature, cone o f cold
+Coast
+Druid Level Circle Spells
+3rd mirror image, misty step
+5th water breathing, water walk
+7th control water, freedom o f movement
+9th conjure elemental, scrying
+Desert
+Druid Level Circle Spells
+3rd blur, silence
+5th create food and water, protection from energy
+7th blight, hallucinatory terrain
+9th insect plague, wall of stone
+Forest
+Druid Level Circle Spells
+3rd barkskin, spider climb
+5th call lightning, plant growth
+7th divination, freedom of movement
+9th commune with nature, tree stride
+Grassland
+Druid Level Circle Spells
+3rd invisibility, pass without trace
+5th daylight, haste
+7th divination, freedom of movement
+9th dream, insect plague
+Mountain
+Druid Level Circle Spells
+3rd spider climb, spike growth
+5th lightning bolt, meld into stone
+7th stone shape, stoneskin
+9th passwall, wall of stone
+Swamp
+Druid Level Circle Spells
+3rd darkness, Melf’s acid arrow
+5th water walk, stinking cloud
+7th freedom of movement, locate creature
+9th insect plague, scrying
+Underdark
+Druid Level Circle Spells
+3rd spider climb, web
+5th gaseous form, stinking cloud
+7th greater invisibility, stone shape
+9th cloudkill, insect plague
+")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of
 your choice by 2, or you can increase two ability scores
 of your choice by 1. As normal, you can’t increase an
@@ -2157,14 +2267,68 @@ ability score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 18, "Timeless Body", "Starting at 18th level, the primal magic that you wield
+("Druid", "Land", 6, "Land's Stride", "Starting at 6th level, moving through nonmagical
+difficult terrain costs you no extra movement. You can
+also pass through nonmagical plants without being
+slowed by them and without taking damage from them if
+they have thorns, spines, or a similar hazard.
+In addition, you have advantage on saving throws against
+plants that are magically created or manipulated to impede
+movement, such those created by the entangle spell.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Moon", 6, "Primal Strike", "Starting at 6th level, your attacks in beast form count as
+magical for the purpose of overcoming resistance and
+immunity to nonmagical attacks and damage.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Land", 10, "Nature's Ward", "When you reach 10th level, you can’t be charmed or
+frightened by elementals or fey, and you are immune to
+poison and disease.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Moon", 10, "Elemental Wild Shape", "At 10th level, you can expend two uses of Wild Shape
+at the same time to transform into an air elemental, an
+earth elemental, a fire elemental, or a water elemental.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Land", 14, "Nature's Sanctuary", "When you reach 14th level, creatures of the natural
+world sense your connection to nature and become
+hesitant to attack you. When a beast or plant creature
+attacks you, that creature must make a Wisdom saving
+throw against your druid spell save DC. On a failed save,
+the creature must choose a different target, or the attack
+automatically misses. On a successful save, the creature
+is immune to this effect for 24 hours.
+The creature is aware of this effect before it makes its
+attack against you.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", "Moon", 14, "Thousand Forms", "By 14th level, you have learned to use magic to alter
+your physical form in more subtle ways. You can cast the
+alter self spell at will.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Druid", NULL, 18, "Timeless Body", "Starting at 18th level, the primal magic that you wield
 causes you to age more slowly. For every 10 years that
 pass, your body ages only 1 year.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 18, "Beast Spells", "Beginning at 18th level, you can cast many of your druid
+("Druid", NULL, 18, "Beast Spells", "Beginning at 18th level, you can cast many of your druid
 spells in any shape you assume using Wild Shape. You
 can perform the somatic and verbal components of a
 druid spell while in a beast shape, but you aren’t able to
@@ -2173,13 +2337,13 @@ provide material components.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Druid", 20, "Archdruid", "At 20th level, you can use your Wild Shape an unlimited
+("Druid", NULL, 20, "Archdruid", "At 20th level, you can use your Wild Shape an unlimited
 number of times.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 1, "Fighting Style", "You adopt a particular style of fighting as your specialty.
+("Fighter", NULL, 1, "Fighting Style", "You adopt a particular style of fighting as your specialty.
 Choose one of the following options. You can’t take a
 Fighting Style option more than once, even if you later
 get to choose again.
@@ -2203,7 +2367,7 @@ Protection
 When a creature you can see attacks a target other
 than you that is within 5 feet of you, you can use your
 reaction to impose disadvantage on the attack roll. You
-must be w ielding a shield.
+must be wielding a shield.
 Two-Weapon Fighting
 When you engage in two-weapon fighting, you can add
 your ability modifier to the damage of the second attack.")
@@ -2211,7 +2375,7 @@ your ability modifier to the damage of the second attack.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 1, "Second Wind", "You have a limited well of stamina that you can draw on
+("Fighter", NULL, 1, "Second Wind", "You have a limited well of stamina that you can draw on
 to protect yourself from harm. On your turn, you can use
 a bonus action to regain hit points equal to 1d10 + your
 fighter level.
@@ -2221,7 +2385,7 @@ long rest before you can use it again.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 2, "Action Surge", "Starting at 2nd level, you can push yourself beyond your
+("Fighter", NULL, 2, "Action Surge", "Starting at 2nd level, you can push yourself beyond your
 normal limits for a moment. On your turn, you can take
 one additional action on top of your regular action and a
 possible bonus action. 
@@ -2233,7 +2397,7 @@ the same turn.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 3, "Martial Archtype", "At 3rd level, you choose an archetype that you strive to
+("Fighter", NULL, 3, "Martial Archtype", "At 3rd level, you choose an archetype that you strive to
 emulate in your combat styles and techniques. Choose
 Champion, Battle Master, or Eldritch Knight, all detailed
 at the end of the class description. The archetype you
@@ -2243,7 +2407,116 @@ choose grants you features at 3rd level and again at 7th,
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 4, "Ability Score Improvement", "When you reach 4th level, and again at 6th, 8th, 12th,
+("Fighter", "Champion", 3, "Improved Critical", "Beginning when you choose this archetype at 3rd
+level, your weapon attacks score a critical hit on a
+roll of 19 or 20.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Eldritch Knight", 3, "Spellcasting", "When you reach 3rd level, you augment your martial
+prowess with the ability to cast spells. See chapter 10
+for the general rules of spellcasting and chapter 11 for
+the wizard spell list.
+Cantrips. You learn two cantrips of your choice from
+the w izard spell list. You learn an additional wizard
+cantrip of your choice at 10th level.
+Spell Slots. The Eldritch Knight Spellcasting table
+shows how many spell slots you have to cast your
+spells of 1st level and higher. To cast one of these
+spells, you must expend a slot of the spell’s level or
+higher. You regain all expended spell slots when you
+finish a long rest.
+For example, if you know the 1st-level spell shield and
+have a 1st-level and a 2nd-level spell slot available, you
+can cast shield using either slot.
+Spells Known of 1st-Level and Higher. You know
+three 1st-level wizard spells of your choice, two of which
+you must choose from the abjuration and evocation
+spells on the wizard spell list.
+The Spells Known column of the Eldritch Knight
+Spellcasting table shows when you learn more wizard
+spells of 1st level or higher. Each of these spells must be
+an abjuration or evocation spell of your choice, and must
+be of a level for which you have spell slots. For instance,
+when you reach 7th level in this class, you can learn one
+new spell of 1st or 2nd level.
+The spells you learn at 8th, 14th, and 20th level can
+come from any school of magic.
+Whenever you gain a level in this class, you can
+replace one of the wizard spells you know with another
+spell of your choice from the wizard spell list. The
+new spell must be of a level for which you have spell
+slots, and it must be an abjuration or evocation spell,
+unless you’re replacing the spell you gained at 8th, 14th,
+or 20th level.
+Spellcasting Ability. Intelligence is your spellcasting
+ability for your wizard spells, since you learn your
+spells through study and memorization. You use your
+Intelligence whenever a spell refers to your spellcasting
+ability. In addition, you use your Intelligence modifier
+when setting the saving throw DC for a wizard spell you
+cast and when making an attack roll with one.
+Spell save DC = 8 + your proficiency bonus +
+your Intelligence modifier
+Spell attack modifier = your proficiency bonus +
+your Intelligence modifier")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Eldritch Knight", 3, "Weapon Bond", "At 3rd level, you learn a ritual that creates a magical
+bond between yourself and one weapon. You perform
+the ritual over the course of 1 hour, which can be done
+during a short rest. The weapon must be within your
+reach throughout the ritual, at the conclusion of which
+you touch the weapon and forge the bond.
+Once you have bonded a weapon to yourself, you
+can’t be disarmed of that weapon unless you are
+incapacitated. If it is on the same plane of existence,
+you can summon that weapon as a bonus action on your
+turn, causing it to teleport instantly to your hand.
+You can have up to two bonded weapons, but can
+summon only one at a time with your bonus action.
+If you attempt to bond with a third weapon, you must
+break the bond with one of the other two.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Battle Master", 3, "Student of War", "At 3rd level, you gain proficiency with one type of
+artisan’s tools of your choice.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Battle Master", 3, "Combat Superiority", "When you choose this archetype at 3rd level, you
+learn maneuvers that are fueled by special dice called
+superiority dice.
+Maneuvers. You learn three maneuvers of your choice.
+Many maneuvers enhance an attack in some way. You
+can use only one maneuver per attack.
+You learn two additional maneuvers of your choice
+at 7th, 10th, and 15th level. Each time you learn new
+maneuvers, you can also replace one maneuver you
+know with a different one.
+Superiority Dice. You have four superiority dice,
+which are d8s. A superiority die is expended when you
+use it. You regain all of your expended superiority dice
+when you finish a short or long rest.
+You gain another superiority die at 7th level and one
+more at 15th level.
+Saving Throws. Some of your maneuvers require
+your target to make a saving throw to resist the
+maneuver’s effects. The saving throw DC is calculated
+as follows:
+Maneuver save DC = 8 + your proficiency bonus +
+your Strength or Dexterity modifier (your choice)")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 6th, 8th, 12th,
 14th, 16th, and 19th level, you can increase one ability
 score of your choice by 2, or you can increase two ability
 scores of your choice by 1. As normal, you can’t increase
@@ -2252,7 +2525,7 @@ an ability score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead o f
+("Fighter", NULL, 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead o f
 once, whenever you take the Attack action on your turn.
 The number of attacks increases to three when you
 reach 11th level in this class and to four when you reach
@@ -2261,7 +2534,102 @@ reach 11th level in this class and to four when you reach
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Fighter", 9, "Indomitable", "Beginning at 9th level, you can reroll a saving throw that
+("Fighter", "Champion", 7, "Remarkable Athlete", "Starting at 7th level, you can add half your proficiency
+bonus (round up) to any Strength, Dexterity, or
+Constitution check you make that doesn’t already use
+your proficiency bonus.
+In addition, when you make a running long jump, the
+distance you can cover increases by a number of feet
+equal to your Strength modifier.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Eldritch Knight", 7, "War Magic", "Beginning at 7th level, when you use your action to
+cast a cantrip, you can make one weapon attack as a
+bonus action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Battle Master", 7, "Know Your Enemy", "Starting at 7th level, if you spend at least 1 minute
+observing or interacting with another creature outside
+combat, you can learn certain information about its
+capabilities compared to your own. The DM tells you if
+the creature is your equal, superior, or inferior in regard
+to two of the following characteristics of your choice:
+
+• Strength score
+• Dexterity score
+• Constitution score
+• Armor Class
+• Current hit points
+• Total class levels (if any)
+• Fighter class levels (if any)")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Champion", 10, "Additional Fighting Style", "At 10th level, you can choose a second option from the
+Fighting Style class feature.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Eldritch Knight", 10, "Eldritch Strike", "At 10th level, you learn how to make your weapon
+strikes undercut a creature’s resistance to your spells.
+When you hit a creature with a weapon attack, that
+creature has disadvantage on the next saving throw
+it makes against a spell you cast before the end of
+your next turn.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Battle Master", 10, "Improved Combat Superiority", "At 10th level, your superiority dice turn into d10s. At
+18th level, they turn into dl2s.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Champion", 15, "Superior Critical", "Starting at 15th level, your weapon attacks score a
+critical hit on a roll of 18-20.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Eldritch Knight", 15, "Arcane Charge", "At 15th level, you gain the ability to teleport up to 30
+feet to an unoccupied space you can see when you use
+your Action Surge. You can teleport before or after the
+additional action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Battle Master", 15, "Relentless", "Starting at 15th level, when you roll initiative and
+have no superiority dice remaining, you regain 1
+superiority die.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Champion", 18, "Survivor", "At 18th level, you attain the pinnacle of resilience in
+battle. At the start of each of your turns, you regain hit
+points equal to 5 + your Constitution modifier if you
+have no more than half of your hit points left. You don’t
+gain this benefit if you have 0 hit points.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", "Eldritch Knight", 18, "Improved War Magic", "Starting at 18th level, when you use your action to
+cast a spell, you can make one weapon attack as a
+bonus action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Fighter", NULL, 9, "Indomitable", "Beginning at 9th level, you can reroll a saving throw that
 you fail. If you do so, you must use the new roll, and you
 can’t use this feature again until you finish a long rest.
 You can use this feature twice between long rests
@@ -2271,14 +2639,14 @@ starting at 17th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 1, "Unarmored Defense", "Beginning at 1st level, while you are wearing no armor
+("Monk", NULL, 1, "Unarmored Defense", "Beginning at 1st level, while you are wearing no armor
 and not wielding a shield, your AC equals 10 + your
 Dexterity modifier + your Wisdom modifier.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 1, "Martial Arts", "At 1st level, your practice of martial arts gives you
+("Monk", NULL, 1, "Martial Arts", "At 1st level, your practice of martial arts gives you
 mastery of combat styles that use unarmed strikes and
 monk weapons, which are shortswords and any simple
 melee weapons that don’t have the two-handed or
@@ -2304,7 +2672,7 @@ action this turn.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 2, "Ki", "Starting at 2nd level, your training allows you to
+("Monk", NULL, 2, "Ki", "Starting at 2nd level, your training allows you to
 harness the mystic energy of ki. Your access to this
 energy is represented by a number of ki points. Your
 monk level determines the number of points you have,
@@ -2338,7 +2706,7 @@ distance is doubled for the turn.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 2, "Unarmored Movement", "Starting at 2nd level, your speed increases by 10 feet
+("Monk", NULL, 2, "Unarmored Movement", "Starting at 2nd level, your speed increases by 10 feet
 while you are not wearing armor or wielding a shield.
 This bonus increases when you reach certain monk
 levels, as shown in the Monk table.
@@ -2349,7 +2717,7 @@ during the move.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 3, "Monastic Tradition", "When you reach 3rd level, you commit yourself to a
+("Monk", NULL, 3, "Monastic Tradition", "When you reach 3rd level, you commit yourself to a
 monastic tradition: the Way of the Open Hand, the Way
 of Shadow, or the Way of the Four Elements, all detailed
 at the end of the class description. Your tradition
@@ -2359,7 +2727,72 @@ and 17th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 3, "Deflect Missiles", "Starting at 3rd level, you can use your reaction to
+("Monk", "Shadow", 3, "Shadow Arts", "Starting when you choose this tradition at 3rd level, you
+can use your ki to duplicate the effects of certain spells.
+As an action, you can spend 2 ki points to cast darkness,
+darkvision, pass without trace, or silence, without
+providing material components. Additionally, you gain
+the minor illusion cantrip if you don’t already know it.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", "Elemental Adept", 3, "Disciple of the Elements", "When you choose this tradition at 3rd level, you learn
+magical disciplines that harness the power of the four
+elements. A discipline requires you to spend ki points
+each time you use it.
+You know the Elemental Attunement discipline and
+one other elemental discipline of your choice, which are
+detailed in the “Elemental Disciplines” section below.
+You learn one additional elemental discipline of your
+choice at 6th, 11th, and 17th level.
+Whenever you learn a new elemental discipline,
+you can also replace one elemental discipline that you
+already know with a different discipline.
+Casting Elemental Spells. Some elemental
+disciplines allow you to cast spells. See chapter 10 for
+the general rules of spellcasting. To cast one of these
+spells, you use its casting time and other rules, but you
+don’t need to provide material components for it.
+Once you reach 5th level in this class, you can spend
+additional ki points to increase the level of an elemental
+discipline spell that you cast, provided that the spell has
+an enhanced effect at a higher level, as burning hands
+does. The spell's level increases by 1 for each additional
+ki point you spend. For example, if you are a 5th-level
+monk and use Sweeping Cinder Strike to cast burning
+hands, you can spend 3 ki points to cast it as a 2nd-level
+spell (the discipline’s base cost of 2 ki points plus 1).
+The maximum number of ki points you can spend to
+cast a spell in this way (including its base ki point cost
+and any additional ki points you spend to increase its
+level) is determined by your monk level, as shown in the
+Spells and Ki Points table.
+Spells and Ki Points
+Monk Levels - Maximum Ki Points for a Spell
+5th—8th - 3
+9th—12th - 4
+13th—16th - 5
+17th—20th - 6")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", "Open Hand", 3, "Open Hand Technique", "Starting when you choose this tradition at 3rd level,
+you can manipulate your enemy’s ki when you harness
+your own. Whenever you hit a creature with one of the
+attacks granted by your Flurry of Blows, you can impose
+one of the following effects on that target:
+• It must succeed on a Dexterity saving throw or be
+knocked prone.
+• It must make a Strength saving throw. If it fails, you
+can push it up to 15 feet away from you.
+• It can’t take reactions until the end of your next turn.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", NULL, 3, "Deflect Missiles", "Starting at 3rd level, you can use your reaction to
 deflect or catch the missile when you are hit by a ranged
 weapon attack. When you do so, the damage you take
 from the attack is reduced by 1d10 + your Dexterity
@@ -2377,7 +2810,7 @@ for the attack.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Monk", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of your
 choice by 2, or you can increase two ability scores of
 your choice by 1. As normal, you can’t increase an ability
@@ -2386,20 +2819,20 @@ score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 4, "Slow Fall", "Beginning at 4th level, you can use your reaction when
+("Monk", NULL, 4, "Slow Fall", "Beginning at 4th level, you can use your reaction when
 you fall to reduce any falling damage you take by an
 amount equal to five times your monk level.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead of
+("Monk", NULL, 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead of
 once, whenever you take the Attack action on your turn.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 5, "Stunning Strike", "Starting at 5th level, you can interfere with the flow of
+("Monk", NULL, 5, "Stunning Strike", "Starting at 5th level, you can interfere with the flow of
 ki in an opponent’s body. When you hit another creature
 with a melee weapon attack, you can spend 1 ki point to
 attempt a stunning strike. The target must succeed on a
@@ -2409,14 +2842,31 @@ your next turn.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 6, "Ki-Empowered Strikes", "Starting at 6th level, your unarmed strikes count as
+("Monk", NULL, 6, "Ki-Empowered Strikes", "Starting at 6th level, your unarmed strikes count as
 magical for the purpose of overcoming resistance and
 immunity to nonmagical attacks and damage.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 7, "Evasion", "At 7th level, your instinctive agility lets you dodge
+("Monk", "Open Hand", 6, "Wholeness of Body", "At 6th level, you gain the ability to heal yourself. As an
+action, you can regain hit points equal to three times your monk level. You must finish a long rest before you
+can use this feature again.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", "Shadow", 6, "Shadow Step", "At 6th level, you gain the ability to step from one shadow
+into another. When you are in dim light or darkness,
+as a bonus action you can teleport up to 60 feet to an
+unoccupied space you can see that is also in dim light
+or darkness. You then have advantage on the first melee
+attack you make before the end of the turn.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", NULL, 7, "Evasion", "At 7th level, your instinctive agility lets you dodge
 out of the way of certain area effects, such as a blue
 dragon’s lightning breath or a fireball spell. When you
 are subjected to an effect that allows you to make a
@@ -2427,20 +2877,40 @@ throw, and only half damage if you fail.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 7, "Stillness of Mind", "Starting at 7th level, you can use your action to end one
+("Monk", NULL, 7, "Stillness of Mind", "Starting at 7th level, you can use your action to end one
 effect on yourself that is causing you to be charmed
 or frightened.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 10, "Purity of Body", "At 10th level, your mastery of the ki flowing through you
+("Monk", NULL, 10, "Purity of Body", "At 10th level, your mastery of the ki flowing through you
 makes you immune to disease and poison.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 13, "Tongue of the Sun and Moon", "Starting at 13th level, you learn to touch the ki of other
+("Monk", "Open Hand", 11, "Tranquility", "Beginning at 11th level, you can enter a special
+meditation that surrounds you with an aura of peace. At
+the end of a long rest, you gain the effect of a sanctuary
+spell that lasts until the start of your next long rest (the
+spell can end early as normal). The saving throw DC
+for the spell equals 8 + your Wisdom modifier + your
+proficiency bonus.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", "Shadow", 11, "Cloak of Shadows", "By 11th level, you have learned to become one with
+the shadows. When you are in an area of dim light or
+darkness, you can use your action to become invisible.
+You remain invisible until you make an attack, cast a
+spell, or are in an area of bright light.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", NULL, 13, "Tongue of the Sun and Moon", "Starting at 13th level, you learn to touch the ki of other
 minds so that you understand all spoken languages.
 Moreover, any creature that can understand a language
 can understand what you say.")
@@ -2448,7 +2918,7 @@ can understand what you say.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 14, "Diamond Soul", "Beginning at 14th level, your mastery of ki grants you
+("Monk", NULL, 14, "Diamond Soul", "Beginning at 14th level, your mastery of ki grants you
 proficiency in all saving throws.
 Additionally, whenever you make a saving throw and
 fail, you can spend 1 ki point to reroll it and take the
@@ -2457,7 +2927,7 @@ second result.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 15, "Timeless Body", "At 15th level, your ki sustains you so that you suffer
+("Monk", NULL, 15, "Timeless Body", "At 15th level, your ki sustains you so that you suffer
 none of the frailty of old age, and you can't be aged
 magically. You can still die of old age, however. In
 addition, you no longer need food or water.")
@@ -2465,7 +2935,34 @@ addition, you no longer need food or water.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 18, "Empty Body", "Beginning at 18th level, you can use your action to
+("Monk", "Open Hand", 17, "Quivering Palm", "At 17th level, you gain the ability to set up lethal
+vibrations in someone’s body. When you hit a creature
+with an unarmed strike, you can spend 3 ki points to
+start these imperceptible vibrations, which last for a
+number of days equal to your monk level. The vibrations
+are harmless unless you use your action to end them.
+To do so, you and the target must be on the same plane
+of existence. When you use this action, the creature
+must make a Constitution saving throw. If it fails, it is
+reduced to 0 hit points. If it succeeds, it takes 10d10
+necrotic damage.
+You can have only one creature under the effect of this
+feature at a time. You can choose to end the vibrations
+harmlessly without using an action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", "Shadow", 17, "Opportunist", "At 17th level, you can exploit a creature's momentary
+distraction when it is hit by an attack. Whenever a
+creature within 5 feet of you is hit by an attack made by
+a creature other than you, you can use your reaction to
+make a melee attack against that creature.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Monk", NULL, 18, "Empty Body", "Beginning at 18th level, you can use your action to
 spend 4 ki points to become invisible for 1 minute.
 During that time, you also have resistance to all damage
 but force damage.
@@ -2477,7 +2974,7 @@ creatures with you.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Monk", 20, "Perfect Self", "At 20th level, when you roll for initiative and have no ki
+("Monk", NULL, 20, "Perfect Self", "At 20th level, when you roll for initiative and have no ki
 points remaining, you regain 4 ki points.")
 
 INSERT INTO
