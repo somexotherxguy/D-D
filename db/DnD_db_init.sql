@@ -11,9 +11,20 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS characters(
 	char_name TEXT NOT NULL,
 	username TEXT,
+	group_name TEXT,
 
 	PRIMARY KEY (char_name),
 	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS groups(
+	group_name TEXT NOT NULL,
+	member_char TEXT,
+	member_username TEXT,
+	
+	PRIMARY KEY (group_name),
+	FOREIGN KEY (member_username) REFERENCES characters(username),
+	FOREIGN KEY (member_char) REFERENCES characters(char_name) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS char_info(
