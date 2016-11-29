@@ -594,8 +594,7 @@ app.controller('creator', ['$scope', function($scope) {
         'Female',
         'Male',
         'Other'
-      ],
-      hidden: false
+      ]
     }
   ]
   $scope.currentTab = 'stats.tpl.html';
@@ -605,6 +604,37 @@ app.controller('creator', ['$scope', function($scope) {
 	$scope.isActiveTab = function(tabUrl) {
 		return tabUrl === $scope.currentTab;
 	};
+	$scope.checkFeats = function() {
+        var feats = $scope.skills[2].value;
+        feats.split(',');
+    };
+    $scope.checkProficiencies = function() {
+        //display what tools and weapons do not have proficiency
+        var toolChecks = [];
+        var toolProfs = $scope.skills[5].value;
+        toolProfs.split(',');
+        var tools = $scope.equipment[2].value;
+        tools.split(',');
+        for(i in tools){
+            if(toolProfs.indexOf(tools[i]) === -1){
+                //that tool is not in the profs
+                toolChecks.push(tools[i]);
+            }
+        }
+
+        var weaponChecks = [];
+        var weaponProfs = $scope.skills[6].value;
+        weaponProfs.split(',');
+        var weapons = $scope.equipment[1].value;
+        weapons.split(',');
+		//MODIFY THIS
+        for(i in weapons){
+            if(weaponProfs.indexOf(weaponss[i]) === -1){
+                //that weapon is not in the profs
+                weaponChecks.push(tools[i]);
+            }
+        }
+    };
 	$scope.classSelect = function(class_name) {
   	/*var class_name = document.getElementById('class').value;
   	$scope.details[10].hidden = true;
@@ -627,7 +657,7 @@ app.controller('creator', ['$scope', function($scope) {
     if (!(isClass)) {return;}
 
     var selected_class = $scope.dropdowns[2].class_objects[class_name];
-    console.log(selected_class.archetype.list);
+	var a_list = selected_class.archetype.list;
     for (first in selected_class) break;
     for (last in selected_class);
     var details_table = document.getElementById('details_table');
@@ -636,6 +666,14 @@ app.controller('creator', ['$scope', function($scope) {
     a_cell1.innerHTML = selected_class.archetype.name;
     a_cell1.setAttribute("style", "text-align: center");
     var a_cell2 = a_row.insertCell();
-    a_cell2.innerHTML = '<select ng-options="a for a in selected_class.archetype.list"></select>';
+	var str = '<select>';
+	for (a in a_list) {
+	  str += '<option value="' + a_list[a] + '">' + a_list[a] + '</option>';
+	  if (a === a_list.length - 1) {
+		str += '</select>';
+	  }
+	}
+	a_cell2.innerHTML = str;
+	console.log(a_cell2.innerHTML);
   };
 }]);

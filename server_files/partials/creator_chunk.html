@@ -76,8 +76,10 @@
 		                <td style="text-align: center">{{r.field}}</td>
 		                <td>
 		                  <!-- CURRENTLY NOT PRINTING Female Male Other -->
-		                  <!-- NO SPACE IN TD?                          -->
-		                  <input ng-repeat="elem in r.list" ng-show="!elem.hidden" type="radio" name="gender" value="{{elem}}">{{elem}}<br>
+		                  <!-- NO SPACE IN TD?  						  -->
+						  <span ng-repeat="elem in r.list">
+		                  <input type="radio" name="gender" value="{{ elem }}">{{elem}}
+						  </span>
 		                </td>
 		              </tr>
 					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
