@@ -1,3 +1,5 @@
+#ask some questions to group, change approach based on answers.
+
 import sqlite3
 import json
 
@@ -9,7 +11,7 @@ c = conn.cursor()
 c.execute("PRAGMA foreign_keys = ON")
 
 #Query database for all character info given a username and character name.  Package as json output.
-def db_character_pull(username, char_name):
+def db_char_pull(username, char_name):
 	c.execute("SELECT * FROM char_info WHERE username=? AND char_name=?", (username, char_name))
 	char_info = c.fetchone()
 	
@@ -68,28 +70,23 @@ def db_character_pull(username, char_name):
 	#export data
 	with open('object.json', 'w') as outfile:
 		json.dump(char_obj, outfile)
+'''
+#Given a dictionary, insert dictionary values into database by key.
+def db_char_update(data):
 
-#FIX THIS
-def db_char_update(username, char_name):
-	#import data
-	with open('object.json', 'r') as infile:
-		data = json.load(infile)
-
+	#Gross string of code that should work.
 	c.execute('''UPDATE char_info SET 
 		ideal=?, flaw=?, backstory=?, gender=?, height=?, race=?, alignment=?, class=?, fighting_style=?, background=?, languages=?, armor=?, weapon=?, proficiency_mod=?, ability=?, str=?, con=?, wis=?, dex=?, intel=?, chr=?, spellcasting=?, feats=?, char_name=?, traits=?, bonds=?, notable_traits=?, description=?, age=?, weight=?, sub_race=?, exp=?, archetype=?, level=?, hp=?, tool_prof=?, weapon_prof=?, skills=?, saves=?, equipment=?, money=?, available_spells=?, notes=?''', 
 		(data['ideal'], data['flaw'], data['story'], data['gender'], data['height'], data['race'], data['alignment'], data['class_name'], data['fighting_style'], data['background'], data['language'], data['armor'], data['weapon'], data['proficiency_mod'], data['ability'], data['str'], data['con'], data['wis'], data['dex'], data['int'], data['chr'], data['spellcasting'], data['feat'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['saves'], data['equipment'], data['money'], data['available_spells'], data['notes']))
 	
 	conn.commit()
-
+'''
 #Given a username, email, and password, creates an entry in the 'users' database table for a new account
 def db_account_create(username, user_email, password):
 	c.execute("INSERT INTO users(username, user_email, user_pw) VALUES (?,?,?)", (username, user_email, password))
 
-#assuming we take full character creation before submitting into the database.  If we just take a name, then we can skip the series of inserts
-def db_add_character(username):
-	#import data
-	with open('object.json', 'r') as infile:
-		data = json.load(infile)
+#Given a dictionary, instert or replace character entry with dictionary values (new/modified character)
+def db_add_character(data):
 
 	#Create new entry in 'characters' table
 	c.execute("INSERT INTO characters(char_name, username) VALUES (?,?)", (data['char_name'], username))  
