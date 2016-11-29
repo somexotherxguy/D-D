@@ -99,10 +99,24 @@ def db_add_character(data):
 		(username, data['ideal'], data['flaw'], data['story'], data['gender'], data['height'], data['race'], data['alignment'], data['class_name'], data['fighting_style'], data['background'], data['language'], data['armor'], data['weapon'], data['proficiency_mod'], data['ability'], data['str'], data['con'], data['wis'], data['dex'], data['int'], data['chr'], data['spellcasting'], data['feat'], data['char_name'], data['traits'], data['bonds'], data['notable_traits'], data['description'], data['age'], data['weight'], data['sub_race'], data['exp'], data['archetype'], data['level'], data['hp'], data['tool_prof'], data['weapon_prof'], data['skills'], data['saves'], data['equipment'], data['money'], data['available_spells'], data['notes']))
 	conn.commit()
 	
-def db_get_char_list(username):
-	c.execute("SELECT * from characters WHERE username=?", (username))
-	#return/output code, decide how we want to handle
+def db_get_char_list(user_id_token):
+	c.execute("SELECT * from characters WHERE user_token=?", (user_id_token))
+	
+	with open('char_list.json', 'w') as outfile:
+		json.dump(char_list, outfile)
 
+#Given a dictionary object containing a character name and username, return the group of the character with all other group members.
+def db_get_group(data):
+	char_name = data['char_name']
+	username = data['username']
+	
+	c.execute("SELECT member_char FROM groups WHERE member_char = char_name AND member_username = username")
+	
+	char_list = c.fetchall()
+	
+	with open('group.json', 'w') as outfile:
+		json.dump(char_list, outfile)
+	
 #commit changes to database
 conn.commit()
 
