@@ -9,6 +9,52 @@ app.directive('dynamicInput', [function(){
 }]);
 
 app.controller('creator', ['$scope', function($scope) {
+    $scope.feats = [
+      'Alert',
+      'Athlete',
+      'Actor',
+      'Charger',
+      'Crossbow Expert',
+      'Defensive Duelist',
+      'Dual Wielder',
+      'Dungeon Delver',
+      'Durable',
+      'Elemental Adept',
+      'Grappler',
+      'Great Weapon Master',
+      'Healer',
+      'Heavily Armored',
+      'Heavy Armor Master',
+      'Inspiring Leader',
+      'Keen Mind',
+      'Lightly Armored',
+      'Linguist',
+      'Lucky',
+      'Mage Slayer',
+      'Magic Initiate',
+      'Martial Adept',
+      'Medium Armor Master',
+      'Mobile',
+      'Moderately Armored',
+      'Mounted Combatant',
+      'Observant',
+      'Polearm Master',
+      'Resilient',
+      'Ritual Caster',
+      'Savage Attacker',
+      'Sentinel',
+      'Sharpshooter',
+      'Shield Master',
+      'Skilled',
+      'Skulker',
+      'Spell Sniper',
+      'Tavern Brawler',
+      'Tough',
+      'War Caster',
+      'Weapon Caster'
+    ],
+    $scope.weapons = [],
+    $scope.armor = [],
     $scope.stats = [
     {
     	field: 'Str',
@@ -461,7 +507,7 @@ app.controller('creator', ['$scope', function($scope) {
     //$scope.currentGender = gender;
   }
   $scope.currentClass = { name: '', has_fs: false , currentArch: '', currentFS: '' };
-  $scope.currentRace = { name: '', has_sub: false };
+  $scope.currentRace = '';
   $scope.currentTab = 'stats.tpl.html';
 	$scope.onClickTab = function(tab) {
 		$scope.currentTab = tab.url;
@@ -500,6 +546,33 @@ app.controller('creator', ['$scope', function($scope) {
           }
       }
   };
+  $scope.validateStat = function(stat) {
+    if (stat.value < 0) {
+      console.log(stat.field, 'must be greater than 0');
+    }
+  }
+  $scope.validateSkill = function(skill) {
+    if (skill.field === 'Level') {
+      if (skill.value < 1 || skill.value > 20) {
+        console.log('Level must be between 1 and 20');
+      }
+    } else if (skill.field === 'Feats') {
+      var feats = skill.value.split(',');
+      var times_occur = {};
+      for (f in feats) {
+        if (times_occur[feats[f]]) {
+          times_occur[feats[f]] += 1;
+        } else {
+          times_occur[feats[f]] = 1;
+        }
+        if ($scope.feats.indexOf(feats[f]) === -1) {
+          console.log('Feat does not exist!');
+        } else if (times_occur[feats[f]] > 1) {
+          console.log('Cannot have a feat more than once');
+        }
+      }
+    }
+  }
   $scope.updateValue = function(field, value) {
     console.log(field, value);
     field.value = value;
@@ -520,7 +593,7 @@ app.controller('creator', ['$scope', function($scope) {
     if ($scope.dropdowns[2].list.indexOf(class_name) !== -1) {
       isClass = true;
     } else if ($scope.dropdowns[0].list.indexOf(class_name) !== -1) {
-      $scope.raceSelect(class_name);
+      $scope.currentRace = class_name;
     }
     if (!(isClass)) {return;}
 

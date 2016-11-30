@@ -26,7 +26,7 @@
 							<table class="mdl-data-table mdl-js-data-table">
 								<tr ng-repeat="s in stats" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
-									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)"></td>
+									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)" ng-blur="validateStat(s)"></td>
 								</tr>
 							</table>
 					</div>
@@ -40,7 +40,7 @@
 								<!-- <tr ng-repeat="d in details | hide"> -->
 								<tr ng-repeat="s in skills" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
-									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)"></td>
+									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)" ng-blur="validateSkill(s)"></td>
 								</tr>
 							</table>
 					</div>
