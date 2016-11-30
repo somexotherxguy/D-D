@@ -1,147 +1,3 @@
-var class_options = {
-  'barbarian':
-    {
-      'path':
-        {
-          'path_of_the_beserker': 'Path of the Beserker',
-          'path_of_the_totem_warrior': 'Path of the Totem Warrior'
-        }
-    },
-  'bard':
-    {
-      'college':
-        {
-          'college_of_lore': 'College of Lore',
-          'college_of_valor': 'College of Valor'
-        }
-    },
-  'cleric':
-    {
-      'domain':
-        {
-          'knowledge_domain': 'Knowledge Domain',
-          'life_domain': 'Life Domain',
-          'light_domain': 'Light Domain',
-          'nature_domain': 'Nature Domain',
-          'tempest_domain': 'Tempest Domain',
-          'trickery_domain': 'Trickery Domain',
-          'war_domain': 'War Domain'
-        }
-    },
-  'druid':
-    {
-      'circle':
-        {
-          'circle_of_the_land': 'Circle of the Land',
-          'circle_of_the_moon': 'Circle of the Moon'
-        }
-    },
-  'fighter':
-    {
-      'archetype':
-        {
-          'champion': 'Champion',
-          'battle_master': 'Battle Master',
-          'eldritch_knight': 'Eldritch Knight'
-        },
-      'Fighting Style':
-        {
-          'archery':'Archery',
-          'defense': 'Defense',
-          'dueling': 'Dueling',
-          'great_weapon': 'Great Weapon Fighting',
-          'protection': 'Protection',
-          'two_weapon':'Two Weapon Fighting',
-        }
-    },
-  'monk':
-    {
-      'tradition':
-        {
-          'way_of_the_open_hand': 'Way of the Open Hand',
-          'way_of_shadow': 'Way of Shadow',
-          'way_of_the_four_elements': 'Way of the Four Elements'
-        }
-    },
-  'paladin':
-    {
-      'oath':
-        {
-          'oath_of_devotion': 'Oath of Devotion',
-          'oath_of_the_ancients': 'Oath of the Ancients',
-          'oath_of_vengeance': 'Oath of Vengeance'
-        },
-      'Fighting Style':
-      {
-          'defense': 'Defense',
-          'dueling': 'Dueling',
-          'great_weapon_fighting': 'Great Weapon Fighting',
-          'protection': 'Protection'
-      }
-    },
-  'ranger':
-    {
-      'archetype':
-        {
-          'hunter': 'Hunter',
-          'beast_master': 'Beast Master',
-        },
-      'Fighting Style':
-      {
-          'archery': 'Archery',
-          'defense': 'Defense',
-          'dueling': 'Dueling',
-          'two_weapon_fighting': 'Two-Weapon Fighting'
-      }
-    },
-  'rogue':
-    {
-      'archetype':
-        {
-          'thief': 'Thief',
-          'assassin': 'Assassin',
-          'arcane_trickster': 'Arcane Trickster'
-        }
-    },
-  'sorcerer':
-    {
-      'origin':
-        {
-          'draconic_bloodline': 'Draconic Bloodline',
-          'wild_magic': 'Wild Magic'
-        }
-    },
-  'warlock':
-    {
-      'pact':
-        {
-          'chain': 'Pact of the Chain',
-          'blade': 'Pact of the Blade',
-          'tome': 'Pact of the Tome'
-        },
-      'Patron':
-        {
-          'archfey': 'The Archfey',
-          'fiend': 'The Fiend',
-          'great_old_one': 'The Great Old One'
-        }
-    },
-  'wizard':
-    {
-      'school':
-        {
-          'abjuration': 'School of Abjuration',
-          'conjuration': 'School of Conjuration',
-          'divination': 'School of Divination',
-          'enchantment': 'School of Enchantment',
-          'evocation': 'School of Evocation',
-          'illusion': 'School of Illusion',
-          'necromancy': 'School of Necromancy',
-          'transmutation': 'School of Transmutation'
-        }
-    }
-};
-
 app.directive('dynamicInput', [function(){
     return {
         restrict: 'A',
@@ -590,6 +446,7 @@ app.controller('creator', ['$scope', function($scope) {
 	$scope.radios = [
     {
       field: 'Gender',
+      value: 'Male',
       list: [
         'Female',
         'Male',
@@ -597,6 +454,14 @@ app.controller('creator', ['$scope', function($scope) {
       ]
     }
   ]
+  $scope.genderList = [ 'Male', 'Female', 'Other' ];
+  $scope.currentGender = '';
+  $scope.updateGender = function(gender) {
+    console.log(gender);
+    //$scope.currentGender = gender;
+  }
+  $scope.currentClass = { name: '', has_fs: false , currentArch: '', currentFS: '' };
+  $scope.currentRace = { name: '', has_sub: false };
   $scope.currentTab = 'stats.tpl.html';
 	$scope.onClickTab = function(tab) {
 		$scope.currentTab = tab.url;
@@ -605,75 +470,207 @@ app.controller('creator', ['$scope', function($scope) {
 		return tabUrl === $scope.currentTab;
 	};
 	$scope.checkFeats = function() {
-        var feats = $scope.skills[2].value;
-        feats.split(',');
-    };
-    $scope.checkProficiencies = function() {
-        //display what tools and weapons do not have proficiency
-        var toolChecks = [];
-        var toolProfs = $scope.skills[5].value;
-        toolProfs.split(',');
-        var tools = $scope.equipment[2].value;
-        tools.split(',');
-        for(i in tools){
-            if(toolProfs.indexOf(tools[i]) === -1){
-                //that tool is not in the profs
-                toolChecks.push(tools[i]);
-            }
-        }
-
-        var weaponChecks = [];
-        var weaponProfs = $scope.skills[6].value;
-        weaponProfs.split(',');
-        var weapons = $scope.equipment[1].value;
-        weapons.split(',');
-		//MODIFY THIS
-        for(i in weapons){
-            if(weaponProfs.indexOf(weaponss[i]) === -1){
-                //that weapon is not in the profs
-                weaponChecks.push(tools[i]);
-            }
-        }
-    };
-	$scope.classSelect = function(class_name) {
-  	/*var class_name = document.getElementById('class').value;
-  	$scope.details[10].hidden = true;
-  	$scope.details[8].value = class_name[0].toUpperCase() + class_name.slice(1, class_name.length);
-  	for (first in class_options[class_name]) break;
-  	for (last in class_options[class_name]);
-  	$scope.details[9].field = first[0].toUpperCase() + first.slice(1, first.length);
-  	$scope.details[9].hidden = false;
-  	if (last !== first) {
-  		$scope.details[10].field = last;
-  		$scope.details[10].hidden = false;
-  	}*/
-
-    var isClass = false;
-    for (c in $scope.dropdowns[2].list) {
-      if (class_name === $scope.dropdowns[2].list[c]) {
-        isClass = true;
+    var feats = $scope.skills[2].value;
+    feats.split(',');
+  };
+  $scope.checkProficiencies = function() {
+      //display what tools and weapons do not have proficiency
+      var toolChecks = [];
+      var toolProfs = $scope.skills[5].value;
+      toolProfs.split(',');
+      var tools = $scope.equipment[2].value;
+      tools.split(',');
+      for(i in tools){
+          if(toolProfs.indexOf(tools[i]) === -1){
+              //that tool is not in the profs
+              toolChecks.push(tools[i]);
+          }
       }
+
+      var weaponChecks = [];
+      var weaponProfs = $scope.skills[6].value;
+      weaponProfs.split(',');
+      var weapons = $scope.equipment[1].value;
+      weapons.split(',');
+	   //MODIFY THIS
+      for(i in weapons){
+          if(weaponProfs.indexOf(weaponss[i]) === -1){
+              //that weapon is not in the profs
+              weaponChecks.push(tools[i]);
+          }
+      }
+  };
+  $scope.updateValue = function(field, value) {
+    console.log(field, value);
+    field.value = value;
+  };
+  $scope.raceSelect = function(race_name) {
+    // Clear current Sub Race dropdown
+    var details_table = document.getElementById('details_table');
+    if ($scope.currentRace.name && $scope.currentRace.has_sub) {
+      details_table.deleteRow(-1);
+    }
+    var sub_list = [];
+    var sub_row = details_table.insertRow(6);
+    var sub_cell1 = sub_row.insertCell();
+  };
+	$scope.classSelect = function(class_name) {
+    // Check if Class field is being changed
+    var isClass = false;
+    if ($scope.dropdowns[2].list.indexOf(class_name) !== -1) {
+      isClass = true;
+    } else if ($scope.dropdowns[0].list.indexOf(class_name) !== -1) {
+      $scope.raceSelect(class_name);
     }
     if (!(isClass)) {return;}
 
+    // Clear current Archetype and Fighting Style dropdowns
+    var details_table = document.getElementById('details_table');
+    if ($scope.currentClass.name) {
+      if ($scope.currentClass.has_fs) {
+        details_table.deleteRow(-1);
+        details_table.deleteRow(-1);
+      } else {
+        details_table.deleteRow(-1);
+      }
+    }
+
+    $scope.currentClass.name = class_name;
     var selected_class = $scope.dropdowns[2].class_objects[class_name];
-	var a_list = selected_class.archetype.list;
+	  var a_list = selected_class.archetype.list;
     for (first in selected_class) break;
     for (last in selected_class);
-    var details_table = document.getElementById('details_table');
     var a_row = details_table.insertRow();
     var a_cell1 = a_row.insertCell();
     a_cell1.innerHTML = selected_class.archetype.name;
     a_cell1.setAttribute("style", "text-align: center");
     var a_cell2 = a_row.insertCell();
-	var str = '<select>';
-	for (a in a_list) {
-	  str += '<option value="' + a_list[a] + '">' + a_list[a] + '</option>';
-	  if (a === a_list.length - 1) {
-		str += '</select>';
+	  var str = '<select>';
+	  for (a in a_list) {
+	    str += '<option value="' + a_list[a] + '">' + a_list[a] + '</option>';
+	    if (a === a_list.length - 1) {
+		    str += '</select>';
+	    }
 	  }
-	}
-	a_cell2.innerHTML = str;
-	console.log(a_cell2.innerHTML);
+	  a_cell2.innerHTML = str;
+    if (last !== first) {
+      $scope.currentClass.has_fs = true;
+      var f_list = selected_class.fighting_style.list;
+      var f_row = details_table.insertRow();
+      var f_cell1 = f_row.insertCell();
+      f_cell1.innerHTML = selected_class.fighting_style.name;
+      f_cell1.setAttribute("style", "text-align: center");
+      var f_cell2 = f_row.insertCell();
+      str = '<select>';
+      for (f in f_list) {
+        str += '<option value="' + f_list[f] + '">' + f_list[f] + '</option>';
+        if (f === f_list.length - 1) {
+          str += '</select>';
+        }
+      }
+      f_cell2.innerHTML = str;
+    } else {
+      $scope.currentClass.has_fs = false;
+    }
   };
+  $scope.submit = function() {
+    console.log("Submission Commencing!");
+    var char_object = {};
+    // Save Stats
+    for (s in $scope.stats) {
+      char_object[$scope.stats[s].field] = $scope.stats[s].value;
+    }
+    // Save Skills
+    for (s in $scope.skills) {
+      char_object[$scope.skills[s].field] = $scope.skills[s].value;
+    }
+    // Save Details
+    for (d in $scope.details) {
+      char_object[$scope.details[d].field] = $scope.details[d].value;
+    }
+    // Save Gender, Race, Alignment, Class, Archetype, & Fighting Style
+    char_object['Gender'] = $scope.currentGender;
+    char_object['Race'] = $scope.currentRace.name;
+    char_object['Alignment'] = $scope.currentAlignment;
+    char_object['Class'] = $scope.currentClass.name;
+    char_object['Archetype'] = $scope.currentClass.currentArch;
+    char_object['Fighting Style'] = $scope.currentClass.currentFS;
+    // Save Descriptors
+    for (d in $scope.descriptors) {
+      char_object[$scope.descriptors[d].field] = $scope.descriptors[d].value;
+    }
+    // Save Equipment
+    for (e in $scope.equipment) {
+      char_object[$scope.equipment[e].field] = $scope.equipment[e].value;
+    }
+    var char_json = JSON.stringify(char_object);
+    console.log(char_json);
+    // Post to Server
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "", true);
+    xhttp.send(char_json);
+  };
+  $scope.load = function() {
+    console.log("Dude, we're falling right out of the sky! We gotta drop the load!");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        $scope.fillForm(JSON.parse(this.response));
+      }
+    }
+  };
+  $scope.fillForm = function(char_json) {
+    console.log(char_json);
+    for (key in char_json) {
+      $scope.findField(char_json, key);
+    }
+  };
+  $scope.findField = function(char_json, key) {
+    // Check if key in Stats
+    for (s in $scope.stats) {
+      if ($scope.stats[s].field === key) {
+        $scope.stats[s].value = char_json[key];
+      }
+    }
+    // Check if key in Skills
+    for (s in $scope.skills) {
+      if ($scope.skills[s].field === key) {
+        $scope.skills[s] = char_json[key];
+      }
+    }
+    // Check if key in Details
+    for (d in $scope.details) {
+      if ($scope.details[d].field === key) {
+        $scope.details[d] = char_json[key];
+      }
+    }
+    // Check if key is Gender, Race, Alignment, Class, Archetype, or Fighting Style
+    if (key === 'Gender') {
+      $scope.currentGender = char_json[key];
+    } else if (key === 'Race') {
+      $scope.currentRace = char_json[key];
+    } else if (key === 'Alignment') {
+      $scope.currentAlignment = char_json[key];
+    } else if (key === 'Class') {
+      $scope.currentClass = char_json[key];
+    } else if (key === 'Archetype') {
+      $scope.currentClass.currentArch = char_json[key];
+    } else if (key === 'Fighting Style') {
+      $scope.currentClass.currentFS = char_json[key];
+    }
+    // Check if key in Descriptors
+    for (d in $scope.descriptors) {
+      if ($scope.descriptors[d].field === key) {
+        $scope.descriptors[d] = char_json[key];
+      }
+    }
+    // Check if key in Equipment
+    for (e in $scope.equipment) {
+      if ($scope.equipment[e].field === key) {
+        $scope.equipment[e] = char_json[key];
+      }
+    }
+  }
 }]);

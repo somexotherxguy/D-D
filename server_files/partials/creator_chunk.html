@@ -23,26 +23,10 @@
 			  <script type="text/ng-template" id="stats.tpl.html">
 				<div class="mdl-layout__tab-panel is-active" id="stats">
 					<div class="page-content" align="center">
-							<!-- <select ng-model="app" ng-change="classSelect()" id="class">
-							  <option disabled selected value> -- -- </option>
-							  <option value="barbarian">Barbarian</option>
-							  <option value="bard">Bard</option>
-							  <option value="cleric">Cleric</option>
-							  <option value="druid">Druid</option>
-							  <option value="fighter">Fighter</option>
-							  <option value="monk">Monk</option>
-							  <option value="paladin">Paladin</option>
-							  <option value="ranger">Ranger</option>
-							  <option value="rogue">Rogue</option>
-							  <option value="sorcerer">Sorcerer</option>
-							  <option value="warlock">Warlock</option>
-							  <option value="wizard">Wizard</option>
-							</select> -->
 							<table class="mdl-data-table mdl-js-data-table">
-								<!-- <tr ng-repeat="d in details | hide"> -->
 								<tr ng-repeat="s in stats" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
-									<td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></td>
+									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)"></td>
 								</tr>
 							</table>
 					</div>
@@ -56,7 +40,7 @@
 								<!-- <tr ng-repeat="d in details | hide"> -->
 								<tr ng-repeat="s in skills" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
-									<td><input class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}"></td>
+									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)"></td>
 								</tr>
 							</table>
 					</div>
@@ -70,18 +54,23 @@
 					  <!-- <tr ng-repeat="d in details | hide"> -->
 					  <tr ng-repeat="d in details" ng-show="!d.hidden">
 						  <td style="text-align: center">{{ d.field }}</td>
-						  <td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
+						  <td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d.value)"></td>
 					  </tr>
-		              <tr ng-repeat="r in radios" ng-show="!r.hidden">
+		              <!-- <tr ng-repeat="r in radios" ng-show="!r.hidden">
 		                <td style="text-align: center">{{r.field}}</td>
 		                <td>
-		                  <!-- CURRENTLY NOT PRINTING Female Male Other -->
-		                  <!-- NO SPACE IN TD?  						  -->
+		                  <!-- CURRENTLY NOT PRINTING Female Male Other
+		                  <!-- NO SPACE IN TD?
 						  <span ng-repeat="elem in r.list">
-		                  <input type="radio" name="gender" value="{{ elem }}">{{elem}}
+		                  <input ng-model="elem" type="radio" name="gender" value="{{ elem }}" ng-change="updateGender(elem)">{{elem}}
 						  </span>
 		                </td>
-		              </tr>
+		              </tr> -->
+		              <tr>
+		                <td style="text-align: center">Gender</td>
+		                <td>
+		                  <span ng-repeat="g in genderList">
+		                  <input ng-model="gender" type="radio" name="{{g}}" value="{{currentGender}}" ng-change="updateGender(this.value)">{{g}}
 					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
 						<td style="text-align: center">{{ dd.field }}</td>
 						  <td>
@@ -104,10 +93,9 @@
 			  <div class="mdl-layout__tab-panel is-active" id="descriptors">
 				<div class="page-content" align="center">
 						<table class="mdl-data-table mdl-js-data-table">
-							<!-- <tr ng-repeat="d in details | hide"> -->
 							<tr ng-repeat="d in descriptors" ng-show="!d.hidden">
 								<td style="text-align: center">{{ d.field }}</td>
-								<td><input class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}"></td>
+								<td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d.value)"></td>
 							</tr>
 						</table>
 				</div>
@@ -119,10 +107,9 @@
 			  <!--Add background, Personality Traits, Name, Bonds, Traits of Note, Age, Weight-->
 				<div class="page-content" align="center">
 						<table class="mdl-data-table mdl-js-data-table">
-							<!-- <tr ng-repeat="d in details | hide"> -->
 							<tr ng-repeat="e in equipment" ng-show="!e.hidden">
 								<td style="text-align: center">{{ e.field }}</td>
-								<td><input class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}"></td>
+								<td><input ng-model="e.value" class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}" ng-change="updateValue(e.value)"></td>
 							</tr>
 						</table>
 				</div>
@@ -131,21 +118,9 @@
 			  
 			  <div class="page-content" align="center">
 				<div class="mdl-cell">
-				  <input id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit">
-				  <input id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Load">
+				  <input ng-model"submit" id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="submit()" value="Submit">
+				  <input ng-model="load" id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="load()" value="Load">
 				 </div>
 			   </div>
-			  
-			  <!-- <div class="mdl-layout__tab-panel" id="finalize">
-			  Add background, Personality Traits, Name, Bonds, Traits of Note, Age, Weight
-				<div class="page-content" align="center">
-				  <div class="mdl-cell">
-					<input id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="update()" value="Submit"></input>
-					<input id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" onclick="test_query()" value="Load"></input>
-				  </div>
-				</div>
-			  </div> -->
-        
-        <!-- </form> -->
         </main>
       </div>
