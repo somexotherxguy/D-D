@@ -12,8 +12,6 @@ def db_char_pull(id_token, char_name):
 	c.execute("SELECT * FROM char_info WHERE id_token=? AND char_name=?", (id_token, char_name))
 	char_data = c.fetchone()
 
-	c.execute("")
-
 	char_obj = {
 		'ideal': char_data['ideal'],
 		'flaw': char_data['flaw'],
@@ -90,15 +88,15 @@ def db_char_push(id_token, data):
 	c.execute('''INSERT OR REPLACE INTO users 
 		(id_token)
 		VALUES
-		(?)
-	''',(id_token))
+		(?)''',
+		(id_token,))
 
 	#If new character, add to character table
 	c.execute('''INSERT OR REPLACE INTO characters 
 		(char_name, id_token)
 		VALUES
-		(?,?)
-	''',(data['char_name'], id_token))
+		(?,?)''',
+		(data['char_name'], id_token))
 
 	#Update or create entry in char_entry table
 	c.execute('''INSERT OR REPLACE INTO char_info(
@@ -203,7 +201,7 @@ def db_get_char_list(id_token):
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
 
-	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token))
+	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token,))
 	char_list = c.fetchall()
 
 	#export data
