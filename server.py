@@ -6,6 +6,8 @@ import subprocess
 import sqlite3
 
 dbaseFile = '../' + 'DnD.db'
+character_file = 'object.json'
+user_tag = 'user'
 
 PORT_NUMBER = 5000
 
@@ -27,9 +29,45 @@ def dbase(sql_string, dbaseFile = dbaseFile):
   #close connection to database, creation completed
   conn.close()
 
+def readAction(stripped_path, user_name, character_name):
+  check_path = stripped_path.split('/')
+  is_character_file = check_path[ len(check_path) - 1 ] == character_file
+  if( is_character_file ):
+    serve_path = '/'.join(['..', user_tag, user_name, character_name + '.json'])
+  else:
+    serve_path = stripped_path
+  try:
+    serve_file = open(serve_path, 'rb')
+    serve_file.close()
+  except:
+    if( is_character_file ):
+      #ALWAYS RETURN A CHARACTER JSON
+      serve_path = './' + character_file
+      #serve_file = open(serve_path, 'rb')
+  #make the serve_path relative
+  return 'Read File', serve_path
+def readCSheet():
+  return ""
 
-character_file = 'object.json'
-user_tag = 'user'
+def writeCSheet():
+  return ""
+
+#input url
+#returns: 'user_name','character_name','stripped_url'
+def parse_url(url):
+  user_name, character_name, stripped_url = '','',''
+  check_path = url.split('/')
+  try:
+    tag_start = check_path.index(user_tag)
+    user_name = check_path[tag_start + 1]
+    character_name = check_path[tag_start + 2]
+    check_path = check_path[tag_start + 3:]
+  except:
+    pass
+  #The path should start with the './'
+  stripped_url = '/'.join( ['.'] + check_path )
+  return user_name, character_name, stripped_url
+
 #This class will handles any incoming request from
 #the browser
 class myHandler(http.server.SimpleHTTPRequestHandler):
@@ -45,51 +83,28 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     check_path = self.path.split('/')
     serve_file = ''
     serve_path = ''
+    serve_action = ''
 
     #clean any final '/'
     """if( len(check_path) > 2 and check_path[len(check_path) - 1] == ''):
     check_path = check_path[:len(check_path) - 1]
     self.path = self.path[:len(self.path) - 1]"""
-    #print(check_path) #DEBUG
 
     #check for
-    user_name = ''
-    character_name = ''
+    user_name, character_name, stripped_url = parse_url(self.path)
     long_enough = len(check_path) >= 5
     is_character_file = check_path[ len(check_path) - 1 ] == character_file
-    if( long_enough ):
-      if( is_character_file ):
-        #print('unique') # # debug
-        user_name = check_path[2]
-        character_name = check_path[3]
-        print(check_path) #DEBUG
-        #Use a single dot here; a second dot is added later to all paths.
-        serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
-      else:
-        #start by removing the user, <user>, and <character> from the path
-        serve_path = '/' + '/'.join( check_path[ 4: ] )
-        #print(serve_path) #DEBUG
-
-    if(serve_path == ''):
-      serve_path = '/'.join(check_path)
-
-    #ensure proper root folder resolution
-    if serve_path.endswith("/"):
-      serve_path="/index.html"
 
     #####
     #print('file:',serve_path,'opening') #DEBUG
     #Check that the user file exists
-    if( is_character_file ):
-      try:
-        serve_file = open(serve_path, 'rb')
-        serve_file.close()
-      except:
-        #ALWAYS RETURN A CHARACTER JSON
-        serve_path = '/' + character_file
-        #serve_file = open(serve_path, 'rb')
+    serve_action, serve_path = readAction(stripped_url, user_name, character_name)
     #make the serve_path relative
-    serve_path = '.' + serve_path
+    #serve_path = '.' + serve_path
+
+    #ensure proper root folder resolution
+    if serve_path.endswith("/"):
+      serve_path="./index.html"
 
     #####
     try:
@@ -119,7 +134,11 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
       if sendReply == True:
         #Open the static file requested
         print(serve_path)
-        serve_file = open(serve_path, 'rb')
+        serve_file = ''
+        if( 'Read File' == serve_action ):
+          serve_file = open(serve_path, 'rb')
+        else:
+          serve_file = readCSheet(user_name, character_name)
         #Send the headers
         self.send_response(200)
         self.send_header('Content-type',mimetype)
@@ -191,3 +210,27 @@ try:
 except KeyboardInterrupt:
   httpd.socket.close()
   print( '^C received, shutting down')
+
+
+
+"""
+get url
+parse
+  input url
+  return username, charactername, stripped_url
+read file
+  input stripped_url, username, charactername
+  read data
+
+post url
+parse
+  input url
+  return username, charactername, stripped_url
+write file
+  input username, charactername, characterdata
+  write data
+
+#input url
+#returns: 'user_name','character_name','stripped_url'
+parse
+"""
