@@ -82,6 +82,7 @@ def db_char_pull(id_token, char_name):
 	conn.close()
 	
 	#return json
+	char_obj = str(char_obj)
 	return json.dump(char_obj)
 
 #Given string 'id_token' representing a user, and input dictionary, pull information into the database.
