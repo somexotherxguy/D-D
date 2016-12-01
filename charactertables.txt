@@ -2980,7 +2980,7 @@ points remaining, you regain 4 ki points.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 1, "Divine Sense", "The presence of strong evil registers on your senses like
+("Paladin", NULL, 1, "Divine Sense", "The presence of strong evil registers on your senses like
 a noxious odor, and powerful good rings like heavenly
 music in your ears. As an action, you can open your
 awareness to detect such forces. Until the end of your
@@ -2999,7 +2999,7 @@ you regain all expended uses.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 1, "Lay On Hands", "Your blessed touch can heal wounds. You have a pool
+("Paladin", NULL, 1, "Lay On Hands", "Your blessed touch can heal wounds. You have a pool
 of healing power that replenishes when you take a long
 rest. With that pool, you can restore a total number of
 hit points equal to your paladin level x 5.
@@ -3018,7 +3018,7 @@ This feature has no effect on undead and constructs.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 2, "Fighting Style", "At 2nd level, you adopt a style of fighting as your
+("Paladin", NULL, 2, "Fighting Style", "At 2nd level, you adopt a style of fighting as your
 specialty. Choose one of the following options. You can’t
 take a Fighting Style option more than once, even if you
 later get to choose again.
@@ -3043,7 +3043,7 @@ You must be wielding a shield.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 2, "Spellcasting", "By 2nd level, you have learned to draw on divine
+("Paladin", NULL, 2, "Spellcasting", "By 2nd level, you have learned to draw on divine
 magic through meditation and prayer to cast spells as
 a cleric does. 
 Preparing and Casting Spells
@@ -3087,7 +3087,7 @@ spellcasting focus for your paladin spells.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 2, "Divine Smite", "Starting at 2nd level, when you hit a creature with a
+("Paladin", NULL, 2, "Divine Smite", "Starting at 2nd level, when you hit a creature with a
 melee weapon attack, you can expend one paladin spell
 slot to deal radiant damage to the target, in addition to
 the weapon’s damage. The extra damage is 2d8 for a
@@ -3098,13 +3098,131 @@ by 1d8 if the target is an undead or a fiend.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 3, "Divine Health", "By 3rd level, the divine magic flowing through you
+("Paladin", "Devotion", 3, "Oath of Devotion Spells", "
+Paladin Level- Spells
+3rd- protection from evil and good, sanctuary
+5th- lesser restoration, zone of truth
+9th- beacon of hope, dispel magic
+13th- freedom of movement, guardian of faith
+17th- commune, flame strike")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Ancients", 3, "Oath of the Ancients Spells", "
+Paladin Level- Spells
+3rd- ensnaring strike, speak with animals
+5th- moonbeam, misty step
+9th- plant growth, protection from energy
+13th- ice storm, stoneskin
+17th- commune with nature, tree stride")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Vengeance", 3, "Oath of the Vengeance Spells", "
+Paladin Level- Spells
+3rd- bane, hunter’s mark
+5th- hold person, misty step
+9th- haste, protection from energy
+13th- banishment, dimension door
+17th- hold monster, scrying")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Devotion", 3, "Channel Divinity", "When you take this oath at 3rd level, you gain the
+following two Channel Divinity options.
+Sacred Weapon. As an action, you can imbue one
+weapon that you are holding with positive energy,
+using your Channel Divinity. For 1 minute, you add
+your Charisma modifier to attack rolls made with that
+weapon (with a minimum bonus of +1). The weapon also
+emits bright light in a 20-foot radius and dim light 20
+feet beyond that. If the weapon is not already magical, it
+becomes magical for the duration.
+You can end this effect on your turn as part of any
+other action. If you are no longer holding or carrying
+this w eapon, or if you fall unconscious, this effect ends.
+Turn the Unholy. As an action, you present your
+holy symbol and speak a prayer censuring fiends and
+undead, using your Channel Divinity. Each fiend or
+undead that can see or hear you within 30 feet of you
+must make a Wisdom saving throw. If the creature
+fails its saving throw, it is turned for 1 minute or until
+it takes damage.
+A turned creature must spend its turns trying to move
+as far away from you as it can, and it can’t willingly
+move to a space within 30 feet of you. It also can’t take reactions. For its action, it can use only the Dash action
+or try to escape from an effect that prevents it from
+moving. If there’s nowhere to move, the creature can use
+the Dodge action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Ancients", 3, "Channel Divinity", "When you take this oath at 3rd level, you gain the
+following two Channel Divinity options.
+Nature’s Wrath. You can use your Channel Divinity
+to invoke primeval forces to ensnare a foe. As an action,
+you can cause spectral vines to spring up and reach
+for a creature within 10 feet of you that you can see.
+The creature must succeed on a Strength or Dexterity
+saving throw (its choice) or be restrained. While
+restrained by the vines, the creature repeats the saving
+throw at the end of each of its turns. On a success, it
+frees itself and the vines vanish.
+Turn the Faithless. You can use your Channel
+Divinity to utter ancient words that are painful for fey
+and fiends to hear. As an action, you present your holy symbol, and each fey or fiend within 30 feet of you that
+can hear you must make a Wisdom saving throw. On a
+failed save, the creature is turned for 1 minute or until it
+takes damage.
+A turned creature must spend its turns trying to move
+as far away from you as it can, and it can’t willingly
+move to a space within 30 feet of you. It also can’t take
+reactions. For its action, it can use only the Dash action
+or try to escape from an effect that prevents it from
+moving. If there’s nowhere to move, the creature can use
+the Dodge action.
+If the creature’s true form is concealed by an illusion,
+shapeshifting, or other effect, that form is revealed while
+it is turned.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "vengeance", 3, "Channel Divinity", "When you take this oath at 3rd level, you gain the
+following two Channel Divinity options.
+Abjure Enemy. As an action, you present your holy
+symbol and speak a prayer of denunciation, using your
+Channel Divinity. Choose one creature within 60 feet
+of you that you can see. That creature must make a
+Wisdom saving throw, unless it is immune to being
+frightened. Fiends and undead have disadvantage on
+this saving throw.
+On a failed save, the creature is frightened for 1
+minute or until it takes any damage. While frightened,
+the creature’s speed is 0, and it can’t benefit from any
+bonus to its speed.
+On a successful save, the creature’s speed is halved
+for 1 minute or until the creature takes any damage.
+Vow of Enmity. As a bonus action, you can utter a vow
+of enmity against a creature you can see within 10 feet
+of you, using your Channel Divinity. You gain advantage
+on attack rolls against the creature for 1 minute or until
+it drops to 0 hit points or falls unconscious.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", NULL, 3, "Divine Health", "By 3rd level, the divine magic flowing through you
 makes you immune to disease.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 3, "Sacred  Oath", "When you reach 3rd level, you swear the oath that binds
+("Paladin", NULL, 3, "Sacred  Oath", "When you reach 3rd level, you swear the oath that binds
 you as a paladin forever. Up to this time you have been
 in a preparatory stage, committed to the path but not
 yet sworn to it. Now you choose the Oath of Devotion,
@@ -3136,7 +3254,7 @@ equals your paladin spell save DC.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Paladin", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of your
 choice by 2, or you can increase two ability scores of
 your choice by 1. As normal, you can’t increase an ability
@@ -3145,13 +3263,13 @@ score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead o f
+("Paladin", NULL, 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead o f
 once, whenever you take the Attack action on your turn.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 6, "Aura of Protection", "Starting at 6th level, whenever you or a friendly creature
+("Paladin", NULL, 6, "Aura of Protection", "Starting at 6th level, whenever you or a friendly creature
 within 10 feet of you must make a saving throw, the
 creature gains a bonus to the saving throw equal to your
 Charisma modifier (with a minimum bonus of +1). You
@@ -3161,7 +3279,33 @@ At 18th level, the range of this aura increases to 30 feet.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 10, "Aura of Courage", "Starting at 10th level, you and friendly creatures
+("Paladin", "Devotion", 7, "Aura of Devotion", "Starting at 7th level, you and friendly creatures within
+10 feet of you can’t be charmed while you are conscious.
+At 18th level, the range of this aura increases to 30 feet.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Ancients", 7, "Aura of Warding", "Beginning at 7th level, ancient magic lies so heavily
+upon you that it forms an eldritch ward. You and friendly
+creatures within 10 feet of you have resistance to
+damage from spells.
+At 18th level, the range of this aura increases to 30 feet.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Vengeance", 7, "Relentless Avenger", "By 7th level, your supernatural focus helps you close
+off a foe’s retreat. When you hit a creature with an
+opportunity attack, you can move up to half your
+speed immediately after the attack and as part of
+the same reaction. This movement doesn’t provoke
+opportunity attacks.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", NULL, 10, "Aura of Courage", "Starting at 10th level, you and friendly creatures
 within 10 feet of you can’t be frightened while you
 are conscious.
 At 18th level, the range of this aura increases to 30 feet.")
@@ -3169,7 +3313,7 @@ At 18th level, the range of this aura increases to 30 feet.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 11, "Improved Divine Smite", "By 11th level, you are so suffused with righteous
+("Paladin", NULL, 11, "Improved Divine Smite", "By 11th level, you are so suffused with righteous
 might that all your melee weapon strikes carry divine
 power with them. Whenever you hit a creature with a
 melee weapon, the creature takes an extra 1d8 radiant
@@ -3180,7 +3324,7 @@ Divine Smite.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Paladin", 14, "Cleansing Touch", "Beginning at 14th level, you can use your action to
+("Paladin", NULL, 14, "Cleansing Touch", "Beginning at 14th level, you can use your action to
 end one spell on yourself or on one willing creature
 that you touch.
 You can use this feature a number of times equal
@@ -3190,7 +3334,86 @@ regain expended uses when you finish a long rest.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 1, "Natural Explorer", "You are particularly familiar with one type of natural
+("Paladin", "Devotion", 15, "Purity of Spirit", "Beginning at 15th level, you are always under the effects
+of a protection from evil and good spell.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Vengeance", 15, "Soul of Vengeance", "Starting at 15th level, the authority with which you
+speak your Vow of Enmity gives you greater power over
+your foe. When a creature under the effect of your Vow
+of Enmity makes an attack, you can use your reaction to
+make a melee weapon attack against that creature if it is
+within range.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Ancients", 15, "Undying Sentinel", "Starting at 15th level, when you are reduced to 0 hit
+points and are not killed outright, you can choose to
+drop to 1 hit point instead. Once you use this ability, you
+can’t use it again until you finish a long rest.
+Additionally, you suffer none of the drawbacks of old
+age, and you can’t be aged magically.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Devotion", 20, "Holy Nimbus", "At 20th level, as an action, you can emanate an aura of
+sunlight. For 1 minute, bright light shines from you in a
+30-foot radius, and dim light shines 30 feet beyond that.
+Whenever an enemy creature starts its turn in the
+bright light, the creature takes 10 radiant damage.
+In addition, for the duration, you have advantage on
+saving throws against spells cast by fiends or undead.
+Once you use this feature, you can’t use it again until
+you finish a long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Ancients", 20, "Elder Champion", "At 20th level, you can assume the form of an ancient
+force of nature, taking on an appearance you choose.
+For example, your skin might turn green or take on a
+bark-like texture, your hair might become leafy or mosslike,
+or you might sprout antlers or a lion-like mane.
+Using your action, you undergo a transformation.
+For 1 minute, you gain the following benefits:
+• At the start of each of your turns, you regain 10 hit
+points.
+• Whenever you cast a paladin spell that has a casting
+time of 1 action, you can cast it using a bonus action
+instead.
+• Enemy creatures within 10 feet of you have disadvantage
+on saving throws against your paladin spells and
+Channel Divinity options.
+Once you use this feature, you can’t use it again until
+you finish a long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Paladin", "Vengeance", 20, "Avenging Angel", "At 20th level, you can assume the form of an
+angelic avenger. Using your action, you undergo a
+transformation. For 1 hour, you gain the following
+benefits:
+• Wings sprout from your back and grant you a flying
+speed of 60 feet.
+• You emanate an aura of menace in a 30-foot radius.
+The first time any enemy creature enters the aura or
+starts its turn there during a battle, the creature must
+succeed on a Wisdom saving throw or become frightened
+of you for 1 minute or until it takes any damage.
+Attack rolls against the frightened creature have
+advantage.
+Once you use this feature, you can’t use it again until
+you finish a long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", NULL, 1, "Natural Explorer", "You are particularly familiar with one type of natural
 environment and are adept at traveling and surviving in
 such regions. Choose one type of favored terrain: arctic,
 coast, desert, forest, grassland, mountain, swamp,
@@ -3219,7 +3442,7 @@ and 10th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 1, "Favored Enemy", "Beginning at 1st level, you have significant experience
+("Ranger", NULL, 1, "Favored Enemy", "Beginning at 1st level, you have significant experience
 studying, tracking, hunting, and even talking to a certain
 type of enemy.
 Choose a type of favored enemy: aberrations,
@@ -3241,7 +3464,7 @@ monsters you have encountered on your adventures.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 2, "Fighting Style", "At 2nd level, you adopt a particular style of fighting as
+("Ranger", NULL, 2, "Fighting Style", "At 2nd level, you adopt a particular style of fighting as
 your specialty. Choose one of the following options.
 You can’t take a Fighting Style option more than once,
 even if you later get to choose again.
@@ -3261,7 +3484,7 @@ your ability modifier to the damage of the second attack.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 2, "Spellcasting", "By the time you reach 2nd level, you have learned to
+("Ranger", NULL, 2, "Spellcasting", "By the time you reach 2nd level, you have learned to
 use the magical essence of nature to cast spells, much
 as a druid does.
 Spell Slots
@@ -3301,7 +3524,7 @@ your Wisdom modifier.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 3, "Ranger Archetype", "At 3rd level, you choose an archetype that you strive
+("Ranger", NULL, 3, "Ranger Archetype", "At 3rd level, you choose an archetype that you strive
 to emulate: Hunter or Beast Master, both detailed at
 the end of the class description. Your choice grants
 you features at 3rd level and again at 7th, 11th,
@@ -3310,7 +3533,56 @@ and 15th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 3, "Primeval Awareness", "Beginning at 3rd level, you can use your action and
+("Ranger", "Hunter", 3, "Hunter's Prey", "At 3rd level, you gain one of the following features
+of your choice.
+Colossus Slayer. Your tenacity can wear down
+the most potent foes. When you hit a creature with a
+weapon attack, the creature takes an extra 1d8 damage
+if it’s below its hit point maximum. You can deal this
+extra damage only once per turn.
+Giant Killer. When a Large or larger creature within
+5 feet of you hits or misses you with an attack, you can
+use your reaction to attack that creature immediately
+after its attack, provided that you can see the creature.
+Horde Breaker. Once on each of your turns when you
+make a w eapon attack, you can make another attack
+with the same weapon against a different creature that
+is within 5 feet of the original target and within range
+of your weapon.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", "Beastmaster", 3, "Ranger's Companion", "At 3rd level, you gain a beast companion that
+accompanies you on your adventures and is trained to
+fight alongside you. Choose a beast that is no larger than
+Medium and that has a challenge rating of 1/4 or lower
+(appendix D presents statistics for the hawk, mastiff,
+and panther as examples). Add your proficiency bonus
+to the beast’s AC, attack rolls, and damage rolls, as well
+as to any saving throws and skills it is proficient in. Its
+hit point maximum equals its normal maximum or four
+times your ranger level, whichever is higher.
+The beast obeys your commands as best as it can. It
+takes its turn on your initiative, though it doesn’t take an
+action unless you command it to. On your turn, you can
+verbally command the beast where to move (no action
+required by you). You can use your action to verbally
+command it to take the Attack, Dash, Disengage, Dodge,
+or Help action. Once you have the Extra Attack feature,
+you can make one w eapon attack yourself when you
+command the beast to take the Attack action.
+While traveling through your favored terrain with only
+the beast, you can move stealthily at a normal pace.
+If the beast dies, you can obtain another one by
+spending 8 hours magically bonding with another beast
+that isn’t hostile to you, either the same type of beast as
+before or a different one.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", NULL, 3, "Primeval Awareness", "Beginning at 3rd level, you can use your action and
 expend one ranger spell slot to focus your awareness on
 the region around you. For 1 minute per level of the spell
 slot you expend, you can sense whether the following
@@ -3323,7 +3595,7 @@ location or number.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Ranger", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of your
 choice by 2, or you can increase two ability scores of
 your choice by 1. As normal, you can’t increase an ability
@@ -3332,13 +3604,35 @@ score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead of
+("Ranger", NULL, 5, "Extra Attack", "Beginning at 5th level, you can attack twice, instead of
 once, whenever you take the Attack action on your turn.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 8, "Land's Stride", "Starting at 8th level, moving through nonmagical
+("Ranger", "Hunter", 7, "Defensive Tactics", "At 7th level, you gain one of the following features
+of your choice.
+Escape the Horde. Opportunity attacks against you
+are made with disadvantage.
+Multiattack Defense. When a creature hits you
+with an attack, you gain a +4 bonus to AC against
+all subsequent attacks made by that creature for the
+rest of the turn.
+Steel Will. You have advantage on saving throws
+against being frightened.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", "Beastmaster", 7, "Exceptional Training", "Beginning at 7th level, on any of your turns when
+your beast companion doesn’t attack, you can use a
+bonus action to command the beast to take the Dash,
+Disengage, Dodge, or Help action on its turn.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", NULL, 8, "Land's Stride", "Starting at 8th level, moving through nonmagical
 difficult terrain costs you no extra movement. You can
 also pass through nonmagical plants without being
 slowed by them and without taking damage from them if
@@ -3351,7 +3645,7 @@ entangle spell.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 10, "Hide in Plain Sight", "Starting at 10th level, you can spend 1 minute creating
+("Ranger", NULL, 10, "Hide in Plain Sight", "Starting at 10th level, you can spend 1 minute creating
 camouflage for yourself. You must have access to fresh
 mud, dirt, plants, soot, and other naturally occurring
 materials with which to create your camouflage.
@@ -3367,14 +3661,61 @@ this benefit.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 14, "Vanish", "Starting at 14th level, you can use the Hide action as a
+("Ranger", "Hunter", 11, "Multiattack", "At 11th level, you gain one of the following features
+of your choice.
+Volley. You can use your action to make a ranged
+attack against any number of creatures within 10 feet
+of a point you can see within your weapon’s range. You
+must have ammunition for each target, as normal, and
+you make a separate attack roll for each target.
+Whirlwind Attack. You can use your action to make a
+melee attack against any number of creatures within 5
+feet of you, with a separate attack roll for each target.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", "Beastmaster", 11, "Bestial Fury", "Starting at 11th level, your beast companion can
+make two attacks when you command it to use the
+Attack action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", NULL, 14, "Vanish", "Starting at 14th level, you can use the Hide action as a
 bonus action on your turn. Also, you can’t be tracked by
 nonmagical means, unless you choose to leave a trail.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 18, "Feral Senses", "At 18th level, you gain preternatural senses that help
+("Ranger", "Hunter", 15, "Superior Hunter's Defense", "At 15th level, you gain one of the following features
+of your choice.
+Evasion. You can nimbly dodge out of the way of
+certain area effects, such as a red dragon’s fiery breath
+or a lightning bolt spell. When you are subjected to an
+effect that allows you to make a Dexterity saving throw
+to take only half damage, you instead take no damage if you succeed on the saving throw, and only half
+damage if you fail.
+Stand Against the Tide. When a hostile creature
+misses you with a melee attack, you can use your reaction
+to force that creature to repeat the same attack against
+another creature (other than itself) of your choice.
+Uncanny Dodge. When an attacker that you can see
+hits you with an attack, you can use your reaction to
+halve the attack’s damage against you.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", "Beastmaster", 15, "Share Spells", "Beginning at 15th level, when you cast a spell targeting
+yourself, you can also affect your beast companion with
+the spell if the beast is within 30 feet of you.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Ranger", NULL, 18, "Feral Senses", "At 18th level, you gain preternatural senses that help
 you fight creatures you can’t see. When you attack a
 creature you can’t see, your inability to see it doesn’t
 impose disadvantage on your attack rolls against it.
@@ -3386,7 +3727,7 @@ blinded or deafened.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Ranger", 20, "Foe Slayer", "At 20th level, you become an unparalleled hunter of your
+("Ranger", NULL, 20, "Foe Slayer", "At 20th level, you become an unparalleled hunter of your
 enemies. Once on each of your turns, you can add your
 Wisdom modifier to the attack roll or the damage roll of
 an attack you make against one of your favored enemies.
@@ -3396,7 +3737,7 @@ roll, but before any effects of the roll are applied.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 1, "Expertise", "At 1st level, choose two of your skill proficiencies, or
+("Rogue", NULL, 1, "Expertise", "At 1st level, choose two of your skill proficiencies, or
 one of your skill proficiencies and your proficiency with
 thieves’ tools. Your proficiency bonus is doubled for any
 ability check you make that uses either of the chosen
@@ -3408,7 +3749,7 @@ this benefit.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 1, "Sneak Attack", "Beginning at 1st level, you know how to strike subtly
+("Rogue", NULL, 1, "Sneak Attack", "Beginning at 1st level, you know how to strike subtly
 and exploit a foe’s distraction. Once per turn, you can
 deal an extra 1d6 damage to one creature you hit with
 an attack if you have advantage on the attack roll. The
@@ -3424,7 +3765,7 @@ column of the Rogue table.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 1, "Thieves' Cant", "During your rogue training you learned thieves’ cant, a
+("Rogue", NULL, 1, "Thieves' Cant", "During your rogue training you learned thieves’ cant, a
 secret mix of dialect, jargon, and code that allows you to
 hide messages in seemingly normal conversation. Only
 another creature that knows thieves’ cant understands
@@ -3440,7 +3781,7 @@ house for thieves on the run.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 2, "Cunning Action", "Starting at 2nd level, your quick thinking and agility
+("Rogue", NULL, 2, "Cunning Action", "Starting at 2nd level, your quick thinking and agility
 allow you to move and act quickly. You can take a
 bonus action on each of your turns in combat. This
 action can be used only to take the Dash, Disengage,
@@ -3449,7 +3790,26 @@ or Hide action.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 3, "Roguish Archetype", "At 3rd level, you choose an archetype that you emulate
+("Rogue", "Theif", 3, "Fast Hands", "Starting at 3rd level, you can use the bonus action
+granted by your Cunning A ction to make a Dexterity
+(Sleight of Hand) check, use your thieves’ tools to
+disarm a trap or open a lock, or take the Use an
+Object action.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Rogue", "Theif", 3, "Second-Story Work", "When you choose this archetype at 3rd level, you gain
+the ability to climb faster than normal; climbing no
+longer costs you extra movement.
+In addition, when you make a running jump, the
+distance you cover increases by a number of feet equal
+to your Dexterity modifier.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Rogue", NULL, 3, "Roguish Archetype", "At 3rd level, you choose an archetype that you emulate
 in the exercise of your rogue abilities: Thief, Assassin,
 or Arcane Trickster, all detailed at the end of the class
 description. Your archetype choice grants you features
@@ -3458,7 +3818,7 @@ at 3rd level and then again at 9th, 13th, and 17th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 4, "Ability Score Improvements", "When you reach 4th level, and again at 8th, 10th, 12th,
+("Rogue", NULL, 4, "Ability Score Improvements", "When you reach 4th level, and again at 8th, 10th, 12th,
 16th, and 19th level, you can increase one ability score
 of your choice by 2, or you can increase two ability
 scores of your choice by 1. As normal, you can’t increase
@@ -3467,14 +3827,14 @@ an ability score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 5, "Uncanny Dodge", "Starting at 5th level, when an attacker that you can see
+("Rogue", NULL, 5, "Uncanny Dodge", "Starting at 5th level, when an attacker that you can see
 hits you with an attack, you can use your reaction to
 halve the attack’s damage against you.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 7, "Evasion", "Beginning at 7th level, you can nimbly dodge out of the
+("Rogue", NULL, 7, "Evasion", "Beginning at 7th level, you can nimbly dodge out of the
 way of certain area effects, such as a red dragon’s fiery
 breath or an ice storm spell. When you are subjected
 to an effect that allows you to make a Dexterity saving
@@ -3485,7 +3845,14 @@ half damage if you fail.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 11, "Reliable Talent", "By 11th level, you have refined your chosen skills until
+("Rogue", "Theif", 9, "Supreme Sneak", "Starting at 9th level, you have advantage on a Dexterity
+(Stealth) check if you move no more than half your
+speed on the same turn.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Rogue", NULL, 11, "Reliable Talent", "By 11th level, you have refined your chosen skills until
 they approach perfection. Whenever you make an ability
 check that lets you add your proficiency bonus, you can
 treat a d20 roll of 9 or lower as a 10.")
@@ -3493,7 +3860,7 @@ treat a d20 roll of 9 or lower as a 10.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Rogue", 14, "Blindsense", "Starting at 14th level, if you are able to hear, you are
+("Rogue", NULL, 14, "Blindsense", "Starting at 14th level, if you are able to hear, you are
 aware of the location of any hidden or invisible creature
 within 10 feet of you.")
 
