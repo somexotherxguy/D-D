@@ -11,3 +11,5 @@ id_token = "H"
 DnD_db_manip.db_char_push(id_token,data)
 
 DnD_db_manip.db_char_pull(id_token, 'Trogdor')
+
+DnD_db_manip.db_get_char_list(id_token)
