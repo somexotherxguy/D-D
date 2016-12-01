@@ -10,51 +10,104 @@ app.directive('dynamicInput', [function(){
 
 app.controller('creator', ['$scope', function($scope) {
     $scope.feats = [
-      'Alert',
-      'Athlete',
-      'Actor',
-      'Charger',
-      'Crossbow Expert',
-      'Defensive Duelist',
-      'Dual Wielder',
-      'Dungeon Delver',
-      'Durable',
-      'Elemental Adept',
-      'Grappler',
-      'Great Weapon Master',
-      'Healer',
-      'Heavily Armored',
-      'Heavy Armor Master',
-      'Inspiring Leader',
-      'Keen Mind',
-      'Lightly Armored',
-      'Linguist',
-      'Lucky',
-      'Mage Slayer',
-      'Magic Initiate',
-      'Martial Adept',
-      'Medium Armor Master',
-      'Mobile',
-      'Moderately Armored',
-      'Mounted Combatant',
-      'Observant',
-      'Polearm Master',
-      'Resilient',
-      'Ritual Caster',
-      'Savage Attacker',
-      'Sentinel',
-      'Sharpshooter',
-      'Shield Master',
-      'Skilled',
-      'Skulker',
-      'Spell Sniper',
-      'Tavern Brawler',
-      'Tough',
-      'War Caster',
-      'Weapon Caster'
+      'alert',
+      'athlete',
+      'actor',
+      'charger',
+      'crossbow expert',
+      'defensive duelist',
+      'dual wielder',
+      'dungeon delver',
+      'durable',
+      'elemental adept',
+      'grappler',
+      'great weapon master',
+      'healer',
+      'heavily armored',
+      'heavy armor master',
+      'inspiring leader',
+      'keen mind',
+      'lightly armored',
+      'linguist',
+      'lucky',
+      'mage slayer',
+      'magic initiate',
+      'martial adept',
+      'medium armor master',
+      'mobile',
+      'moderately armored',
+      'mounted combatant',
+      'observant',
+      'polearm master',
+      'resilient',
+      'ritual caster',
+      'savage attacker',
+      'sentinel',
+      'sharpshooter',
+      'shield master',
+      'skilled',
+      'skulker',
+      'spell sniper',
+      'tavern brawler',
+      'tough',
+      'war caster',
+      'weapon caster'
     ],
-    $scope.weapons = [],
-    $scope.armor = [],
+    $scope.weapons = {
+        'club': 'simple',
+        'dagger': 'simple',
+        'greatclub': 'simple',
+        'handaxe': 'simple',
+        'javelin': 'simple',
+        'light hammer': 'simple',
+        'mace': 'simple',
+        'quarterstaff': 'simple',
+        'sickle': 'simple',
+        'spear' : 'simple',
+        'unarmored strike': 'simple',
+        'light crossbow' : 'simple',
+        'dart' : 'simple',
+        'shortbow' : 'simple',
+        'sling' : 'simple',
+        'battleaxe' : 'martial',
+        'flail' : 'martial',
+        'glaive' : 'martial',
+        'greataxe' : 'martial',
+        'greatsword' : 'martial',
+        'halberd' : 'martial',
+        'lance' : 'martial',
+        'longsword' : 'martial',
+        'maul' : 'martial',
+        'morningstar' : 'martial',
+        'pike' : 'martial',
+        'rapier' : 'martial',
+        'scimatar' : 'martial',
+        'shortsword' : 'martial',
+        'trident' : 'martial',
+        'war pick' : 'martial',
+        'warhammer' : 'martial',
+        'whip' : 'martial',
+        'blowgun' : 'martial',
+        'hand crossbow' : 'martial',
+        'heavy crossbow' : 'martial',
+        'longbow' : 'martial',
+        'net' : 'martial'
+    },
+    $scope.armor = {
+        'padded' : 'light',
+        'leather' : 'light',
+        'studded leather' : 'light',
+        'hide' : 'medium',
+        'chain shirt' : 'medium',
+        'scale mail' : 'medium',
+        'breastplate' : 'medium',
+        'half plate' : 'medium',
+        'ring mail' : 'heavy',
+        'chain mail' : 'heavy',
+        'splint' : 'heavy',
+        'plate' : 'heavy',
+        'shield' : 'no proficiency needed'
+    },
     $scope.stats = [
     {
     	field: 'Str',
@@ -560,6 +613,7 @@ app.controller('creator', ['$scope', function($scope) {
       var feats = skill.value.split(',');
       var times_occur = {};
       for (f in feats) {
+        feats[f].toLowerCase();
         if (times_occur[feats[f]]) {
           times_occur[feats[f]] += 1;
         } else {
@@ -567,25 +621,51 @@ app.controller('creator', ['$scope', function($scope) {
         }
         if ($scope.feats.indexOf(feats[f]) === -1) {
           console.log('Feat does not exist!');
-        } else if (times_occur[feats[f]] > 1) {
+        }
+        if (times_occur[feats[f]] > 1) {
           console.log('Cannot have a feat more than once');
+        }
+        if (feats[f] === 'defense duelist') {
+          if ($scope.stats[1].value < 13) {
+            console.log('Dex must be 13 or higher!');
+          }
+        } else if (feats[f] === 'elemental adept') {
+          continue; // At least one spell slot
+        } else if (feats[f] === 'grappler') {
+          if ($scope.stats[0].value < 13) {
+            console.log('Str must be 13 or higher!');
+          }
+        } else if (feats[f] === 'heavily armored') {
+          continue; // Prof. w/ medium armor
+        } else if (feats[f] === 'heavy armor master') {
+          continue; // Prof. w/ heavy armor
+        } else if (feats[f] === 'inspiring leader') {
+          if ($scope.stats[5].value < 13) {
+            conole.log('Char must be 13 or higher!');
+          }
+        } else if (feats[f] === 'medium armor master') {
+          continue; // Prof. w/ medium armor
+        } else if (feats[f] === 'moderately armored') {
+          continue; // Prof. w/ light armor
+        } else if (feats[f] === 'ritual caster') {
+          if ($scope.stats[3].value < 13 && $scope.stats[4].value < 13) {
+            console.log('Int or Wis must be 13 or higher!');
+          }
+        } else if (feats[f] === 'skulker') {
+          if ($scope.stats[1].value < 13) {
+            console.log('Dex must be 13 or higher!');
+          }
+        } else if (feats[f] === 'spell sniper') {
+          continue; // At least one spell slot
+        } else if (feats[f] === 'war caster') {
+          continue; // At least one spell slot
         }
       }
     }
   }
   $scope.updateValue = function(field, value) {
-    console.log(field, value);
+    //console.log(field, value);
     field.value = value;
-  };
-  $scope.raceSelect = function(race_name) {
-    // Clear current Sub Race dropdown
-    var details_table = document.getElementById('details_table');
-    if ($scope.currentRace.name && $scope.currentRace.has_sub) {
-      details_table.deleteRow(-1);
-    }
-    var sub_list = [];
-    var sub_row = details_table.insertRow(6);
-    var sub_cell1 = sub_row.insertCell();
   };
 	$scope.classSelect = function(class_name) {
     // Check if Class field is being changed
@@ -647,7 +727,6 @@ app.controller('creator', ['$scope', function($scope) {
     }
   };
   $scope.submit = function() {
-    console.log("Submission Commencing!");
     var char_object = {};
     // Save Stats
     for (s in $scope.stats) {
@@ -663,7 +742,7 @@ app.controller('creator', ['$scope', function($scope) {
     }
     // Save Gender, Race, Alignment, Class, Archetype, & Fighting Style
     char_object['Gender'] = $scope.currentGender;
-    char_object['Race'] = $scope.currentRace.name;
+    char_object['Race'] = $scope.currentRace;
     char_object['Alignment'] = $scope.currentAlignment;
     char_object['Class'] = $scope.currentClass.name;
     char_object['Archetype'] = $scope.currentClass.currentArch;
@@ -680,13 +759,12 @@ app.controller('creator', ['$scope', function($scope) {
     console.log(char_json);
     // Post to Server
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "", true);
+    xhttp.open("POST", "object.json", true);
     xhttp.send(char_json);
   };
   $scope.load = function() {
-    console.log("Dude, we're falling right out of the sky! We gotta drop the load!");
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "", true);
+    xhttp.open("GET", "object.json", true);
     xhttp.send();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
