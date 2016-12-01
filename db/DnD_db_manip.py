@@ -1,6 +1,8 @@
 import sqlite3
 import json
 
+#Given an input string 'id_token' representing the user, and character name, output a json file
+#containing that character's information.
 def db_char_pull(id_token, char_name):
 	conn = sqlite3.connect('DnD.db')
 	conn.row_factory = sqlite3.Row
@@ -12,8 +14,7 @@ def db_char_pull(id_token, char_name):
 	c.execute("SELECT * FROM char_info WHERE id_token=? AND char_name=?", (id_token, char_name))
 	char_data = c.fetchone()
 
-	c.execute("")
-
+	#Make dictionary
 	char_obj = {
 		'ideal': char_data['ideal'],
 		'flaw': char_data['flaw'],
@@ -64,9 +65,10 @@ def db_char_pull(id_token, char_name):
 		'notes': char_data['notes'],
 		'languages': char_data['languages']
 	}
-	#export data
-	with open('object.json', 'w') as outfile:
-		json.dump(char_obj, outfile)
+	
+	#export data as json
+	#with open('object.json', 'w') as outfile:
+	#	json.dump(char_obj, outfile)
 		
 	#test
 	#with open('test.json', 'w') as outfile:
@@ -78,10 +80,15 @@ def db_char_pull(id_token, char_name):
 
 	#close connection to database, creation completed
 	conn.close()
+	
+	#return json
+	return json.dump(char_obj)
 
-def db_char_push(id_token, data):
+#Given string 'id_token' representing a user, and input dictionary, pull information into the database.
+def db_char_push(id_token, info_string):
 	conn = sqlite3.connect('DnD.db')
 	c = conn.cursor()
+	data = json.load(info_string)
 
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
@@ -90,15 +97,15 @@ def db_char_push(id_token, data):
 	c.execute('''INSERT OR REPLACE INTO users 
 		(id_token)
 		VALUES
-		(?)
-	''',(id_token))
+		(?)''',
+		(id_token,))
 
 	#If new character, add to character table
 	c.execute('''INSERT OR REPLACE INTO characters 
 		(char_name, id_token)
 		VALUES
-		(?,?)
-	''',(data['char_name'], id_token))
+		(?,?)''',
+		(data['char_name'], id_token))
 
 	#Update or create entry in char_entry table
 	c.execute('''INSERT OR REPLACE INTO char_info(
@@ -113,7 +120,10 @@ def db_char_push(id_token, data):
 		class,
 		fighting_style,
 		background,
+		--armor,
+		--weapon,
 		proficiency_mod,
+		--ability,
 		str,
 		con,
 		wis,
@@ -136,16 +146,19 @@ def db_char_push(id_token, data):
 		tool_prof,
 		weapon_prof,
 		skills,
+		--saves,
+		--equipment,
 		platinum,
 		gold,
 		electrum,
 		silver,
 		copper,
+		--money,
 		available_spells,
 		notes,
 		languages)
 		VALUES
-		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?^^,?,?,?,?,?,?,?)''',
 		(
 		id_token,
 		data['ideal'],
@@ -158,13 +171,17 @@ def db_char_push(id_token, data):
 		data['class'],
 		data['fighting_style'],
 		data['background'],
+		#data['armor'],
+		#data['weapon'],
 		data['proficiency_mod'],
+		#data['ability'],
 		data['str'],
 		data['con'],
 		data['wis'],
 		data['dex'],
 		data['int'],
 		data['chr'],
+		#data['spellcasting'],
 		data['feat'],
 		data['char_name'],
 		data['traits'],
@@ -181,11 +198,14 @@ def db_char_push(id_token, data):
 		data['tool_prof'],
 		data['weapon_prof'],
 		data['skills'],
+		#data['saves'],
+		#data['equipment'],
 		data['platinum'],
 		data['gold'],
 		data['electrum'],
 		data['silver'],
 		data['copper'],
+		#data['money'],
 		data['available_spells'],
 		data['notes'],
 		data['languages'],
@@ -196,6 +216,7 @@ def db_char_push(id_token, data):
 	#close connection to database, creation completed
 	conn.close()
 
+#Given a string 'id_token' representing the user, return a json object containing a list of that user's characters
 def db_get_char_list(id_token):
 	conn = sqlite3.connect('DnD.db')
 	c = conn.cursor()
@@ -203,15 +224,17 @@ def db_get_char_list(id_token):
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
 
-	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token))
+	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token,))
 	char_list = c.fetchall()
 
 	#export data
-	with open('char_list.json', 'w') as outfile:
-		json.dump(char_list, outfile)
+	#with open('char_list.json', 'w') as outfile:
+	#	json.dump(char_list, outfile)
 
 	#commit changes to database
 	conn.commit()
 
 	#close connection to database, creation completed
 	conn.close()
+	
+	return json.dump(char_list)
