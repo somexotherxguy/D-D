@@ -65,8 +65,12 @@ def db_char_pull(id_token, char_name):
 		'languages': char_data['languages']
 	}
 	#export data
-	with open('test.json', 'w') as outfile:
+	with open('object.json', 'w') as outfile:
 		json.dump(char_obj, outfile)
+		
+	#test
+	#with open('test.json', 'w') as outfile:
+	#	json.dump(char_obj, outfile)
 
 
 	#commit changes to database
