@@ -85,10 +85,10 @@ def db_char_pull(id_token, char_name):
 	return json.dump(char_obj)
 
 #Given string 'id_token' representing a user, and input dictionary, pull information into the database.
-def db_char_push(id_token, data):
+def db_char_push(id_token, info_string):
 	conn = sqlite3.connect('DnD.db')
 	c = conn.cursor()
-	json.load(data)
+	data = json.load(info_string)
 
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
