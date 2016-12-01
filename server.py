@@ -4,9 +4,10 @@ import socketserver
 from os import curdir, sep
 import subprocess
 import sqlite3
+import io
 
 dbaseFile = '../' + 'DnD.db'
-character_file = 'object.json'
+character_file = 'new_object.json'
 user_tag = 'user'
 
 PORT_NUMBER = 5000
@@ -46,8 +47,9 @@ def readAction(stripped_path, user_name, character_name):
       #serve_file = open(serve_path, 'rb')
   #make the serve_path relative
   return 'Read File', serve_path
-def readCSheet():
-  return ""
+def readCSheet(user_name, character_name):
+  char_json = readChar(user_name, character_name)
+  return io.BytesIO( char_json.encode() )
 
 def writeCSheet():
   return ""
