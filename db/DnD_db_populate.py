@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3 
 conn = sqlite3.connect('DnD.db')
 
 c = conn.cursor()
