@@ -195,3 +195,23 @@ def db_char_push(id_token, data):
 
 	#close connection to database, creation completed
 	conn.close()
+
+def db_get_char_list(id_token):
+	conn = sqlite3.connect('DnD.db')
+	c = conn.cursor()
+
+	#Enable foreign key support
+	c.execute("PRAGMA foreign_keys = ON")
+
+	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token))
+	char_list = c.fetchall()
+
+	#export data
+	with open('char_list.json', 'w') as outfile:
+		json.dump(char_list, outfile)
+
+	#commit changes to database
+	conn.commit()
+
+	#close connection to database, creation completed
+	conn.close()
