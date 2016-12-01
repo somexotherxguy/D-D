@@ -1,0 +1,126 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs" ng-controller="creator">
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row mdl-color--grey-100 mdl-color-text--grey-600">
+            <span class="mdl-layout-title">Creator Tool</span>
+          </div>
+          <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--indigo-700" ng-model="app">
+			  <a ng-repeat="tab in tabs"
+				ng-class="{active:isActiveTab(tab.url)}"
+				ng-click="onClickTab(tab)"
+				class="mdl-layout__tab">{{tab.title}}</a>
+              <!-- <a href="#stats" class="mdl-layout__tab is-active">Stats</a>
+              <a href="#skills" class="mdl-layout__tab">Skills</a>
+              <a href="#details" class="mdl-layout__tab">Details</a>
+              <a href="#descriptors" class="mdl-layout__tab">Descriptors</a>
+              <a href="#equipment" class="mdl-layout__tab">Equipment</a> -->
+          </div>
+        </header>
+        
+        <main class="mdl-layout__content mdl-color--grey-100">
+          <form>
+			<div ng-include="currentTab"></div>
+		  </form>
+			  <script type="text/ng-template" id="stats.tpl.html">
+				<div class="mdl-layout__tab-panel is-active" id="stats">
+					<div class="page-content" align="center">
+							<table class="mdl-data-table mdl-js-data-table">
+								<tr ng-repeat="s in stats" ng-show="!s.hidden">
+									<td style="text-align: center">{{ s.field }}</td>
+									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)" ng-blur="validateStat(s)"></td>
+								</tr>
+							</table>
+					</div>
+				</div>
+			  </script>
+			
+              <script type="text/ng-template" id="skills.tpl.html">
+				  <div class="mdl-layout__tab-panel is-active" id="skills">
+					<div class="page-content" align="center">
+							<table class="mdl-data-table mdl-js-data-table">
+								<!-- <tr ng-repeat="d in details | hide"> -->
+								<tr ng-repeat="s in skills" ng-show="!s.hidden">
+									<td style="text-align: center">{{ s.field }}</td>
+									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)" ng-blur="validateSkill(s)"></td>
+								</tr>
+							</table>
+					</div>
+				  </div>
+			  </script>
+			  
+			  <script type="text/ng-template" id="details.tpl.html">
+			  <div class="mdl-layout__tab-panel is-active" id="details">
+				<div class="page-content" align="center">
+					<table id="details_table" class="mdl-data-table mdl-js-data-table">
+					  <!-- <tr ng-repeat="d in details | hide"> -->
+					  <tr ng-repeat="d in details" ng-show="!d.hidden">
+						  <td style="text-align: center">{{ d.field }}</td>
+						  <td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d.value)"></td>
+					  </tr>
+		              <!-- <tr ng-repeat="r in radios" ng-show="!r.hidden">
+		                <td style="text-align: center">{{r.field}}</td>
+		                <td>
+		                  <!-- CURRENTLY NOT PRINTING Female Male Other
+		                  <!-- NO SPACE IN TD?
+						  <span ng-repeat="elem in r.list">
+		                  <input ng-model="elem" type="radio" name="gender" value="{{ elem }}" ng-change="updateGender(elem)">{{elem}}
+						  </span>
+		                </td>
+		              </tr> -->
+		              <tr>
+		                <td style="text-align: center">Gender</td>
+		                <td>
+		                  <span ng-repeat="g in genderList">
+		                  <input ng-model="gender" type="radio" name="{{g}}" value="{{currentGender}}" ng-change="updateGender(this.value)">{{g}}
+					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
+						<td style="text-align: center">{{ dd.field }}</td>
+						  <td>
+							<!-- <select ng-options="l in dd.list">
+							    <option ng-repeat="l in dd.list">{{ l }}</option>
+							</select> -->
+							<select ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="classSelect(selectedClass)">
+							</select>
+						  </td>
+		              </tr>
+		              <!-- <tr>
+		                <td style="text-align: center">{{chosen_class.label}}</td>
+		              </tr> -->
+					</table>
+				</div>
+			  </div>
+			  </script>
+			  
+			  <script type="text/ng-template" id="descriptors.tpl.html">
+			  <div class="mdl-layout__tab-panel is-active" id="descriptors">
+				<div class="page-content" align="center">
+						<table class="mdl-data-table mdl-js-data-table">
+							<tr ng-repeat="d in descriptors" ng-show="!d.hidden">
+								<td style="text-align: center">{{ d.field }}</td>
+								<td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d.value)"></td>
+							</tr>
+						</table>
+				</div>
+			  </div>
+			  </script>
+			  
+			  <script type="text/ng-template" id="equipment.tpl.html">
+			  <div class="mdl-layout__tab-panel is-active" id="equipment">
+			  <!--Add background, Personality Traits, Name, Bonds, Traits of Note, Age, Weight-->
+				<div class="page-content" align="center">
+						<table class="mdl-data-table mdl-js-data-table">
+							<tr ng-repeat="e in equipment" ng-show="!e.hidden">
+								<td style="text-align: center">{{ e.field }}</td>
+								<td><input ng-model="e.value" class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}" ng-change="updateValue(e.value)"></td>
+							</tr>
+						</table>
+				</div>
+			  </div>
+			  </script>
+			  
+			  <div class="page-content" align="center">
+				<div class="mdl-cell">
+				  <input ng-model"submit" id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="submit()" value="Submit">
+				  <input ng-model="load" id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="load()" value="Load">
+				 </div>
+			   </div>
+        </main>
+      </div>
