@@ -1,29 +1,27 @@
 --PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS users(
-	username TEXT NOT NULL,
-	user_pw TEXT NOT NULL,
-	user_email TEXT NOT NULL,
+	id_token TEXT NOT NULL,
 
 	PRIMARY KEY (username)
 );
 
 CREATE TABLE IF NOT EXISTS characters(
 	char_name TEXT NOT NULL,
-	username TEXT,
-	group_name TEXT,
+	id_token TEXT NOT NULL,
+	group_name TEXT NOT NULL,
 
 	PRIMARY KEY (char_name),
-	FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+	FOREIGN KEY (id_token) REFERENCES users(id_token) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS groups(
 	group_name TEXT NOT NULL,
-	member_char TEXT,
-	member_username TEXT,
+	member_char TEXT NOT NULL,
+	member_id TEXT NOT NULL,
 	
 	PRIMARY KEY (group_name),
-	FOREIGN KEY (member_username) REFERENCES characters(username),
+	FOREIGN KEY (member_id) REFERENCES characters(id_token),
 	FOREIGN KEY (member_char) REFERENCES characters(char_name) ON DELETE CASCADE
 );
 
