@@ -1,5 +1,6 @@
 import sqlite3
 import json
+import ast
 
 #Given an input string 'id_token' representing the user, and character name, output a json file
 #containing that character's information.
@@ -25,9 +26,9 @@ def db_char_pull(id_token, char_name):
 		'HP': char_data['hp'],
 		'Level': char_data['level'],
 		'Languages': char_data['languages'],
-		'Feats': char_data['feat'],
-		'Spells': char_data['available_spells'],
-		'Abilities': char_data['ability'],
+		'Feats': char_data['feats'],
+		'Spells': char_data['spells'],
+		'Abilities': char_data['abilities'],
 		'Tool Proficiencies': char_data['tool_prof'],
 		'Weapon Proficiencies': char_data['weapon_prof'],
 		'Name': char_name,
@@ -38,14 +39,14 @@ def db_char_pull(id_token, char_name):
 		'Race': char_data['race'],
 		'Class': char_data['class'],
 		'Archetype': char_data['archetype'],
-		'Fighting_style': char_data['fighting_style'],
+		'Fighting Style': char_data['fighting_style'],
 		'Background': char_data['background'],
 		'Traits': char_data['traits'],
 		'Bonds': char_data['bonds'],
 		'Physical Description': char_data['description'],
 		'Miscellaneous Notes': char_data['notes'],
 		'Armor': char_data['armor'],
-		'Weapons': char_data['weapon'],
+		'Weapons': char_data['weapons'],
 		'Tools': char_data['tools'],
 		'Platinum': char_data['platinum'],
 		'Gold': char_data['gold'],
@@ -84,14 +85,15 @@ def db_char_pull(id_token, char_name):
 	conn.close()
 	
 	#return json
-	char_obj = str(char_obj)
-	return json.dump(char_obj)
+	#char_obj = str(char_obj)
+	return json.dumps(char_obj)
 
 #Given string 'id_token' representing a user, and input dictionary, pull information into the database.
 def db_char_push(id_token, info_string):
 	conn = sqlite3.connect('DnD.db')
 	c = conn.cursor()
-	data = json.load(info_string)
+	data = ast.literal_eval(info_string)
+	#data = json.loads(info_string)
 
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
@@ -113,105 +115,91 @@ def db_char_push(id_token, info_string):
 	#Update or create entry in char_entry table
 	c.execute('''INSERT OR REPLACE INTO char_info(
 		id_token,
-		ideal,
-		flaw,
-		story,
-		gender,
-		height,
-		race,
-		alignment,
-		class,
-		fighting_style,
-		background,
-		--armor,
-		--weapon,
-		proficiency_mod,
-		--ability,
 		str,
 		con,
 		wis,
 		dex,
 		intel,
 		chr,
-		feat,
-		char_name,
-		traits,
-		bonds,
-		notable_traits,
-		description,
-		age,
-		weight,
-		sub_race,
-		exp,
-		archetype,
-		level,
 		hp,
+		level,
+		languages,
+		feats,
+		spells,
+		abilities,
 		tool_prof,
 		weapon_prof,
-		skills,
-		--saves,
-		--equipment,
+		char_name,
+		age,
+		height,
+		weight,
+		gender,
+		race,
+		class,
+		archetype,
+		fighting_style,
+		background,
+		traits,
+		bonds,
+		description,
+		notes,
+		armor,
+		weapons,
+		tools,
 		platinum,
 		gold,
 		electrum,
 		silver,
-		copper,
-		--money,
-		available_spells,
-		notes,
-		languages)
+		copper
+
+		--ideals,
+		--flaws,
+		--backstory,
+		--alignment,
+		--exp,
+		--sub-race,
+		--prof_mod
+		)
 		VALUES
-		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?^^,?,?,?,?,?,?,?)''',
+		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
 		(
 		id_token,
-		data['ideal'],
-		data['flaw'],
-		data['story'],
-		data['gender'],
-		data['height'],
-		data['race'],
-		data['alignment'],
-		data['class'],
-		data['fighting_style'],
-		data['background'],
-		#data['armor'],
-		#data['weapon'],
-		data['proficiency_mod'],
-		#data['ability'],
-		data['str'],
-		data['con'],
-		data['wis'],
-		data['dex'],
-		data['int'],
-		data['chr'],
-		#data['spellcasting'],
-		data['feat'],
-		data['char_name'],
-		data['traits'],
-		data['bonds'],
-		data['notable_traits'],
-		data['description'],
-		data['age'],
-		data['weight'],
-		data['sub_race'],
-		data['exp'],
-		data['archetype'],
-		data['level'],
-		data['hp'],
-		data['tool_prof'],
-		data['weapon_prof'],
-		data['skills'],
-		#data['saves'],
-		#data['equipment'],
-		data['platinum'],
-		data['gold'],
-		data['electrum'],
-		data['silver'],
-		data['copper'],
-		#data['money'],
-		data['available_spells'],
-		data['notes'],
-		data['languages'],
+		data['Str'],
+		data['Con'],
+		data['Wis'],
+		data['Dex'],
+		data['Int'],
+		data['Char'],
+		data['HP'],
+		data['Level'],
+		data['Languages'],
+		data['Feats'],
+		data['Spells'],
+		data['Abilities'],
+		data['Tool Proficiencies'],
+		data['Weapon Proficiencies'],
+		data['Name'],
+		data['Age'],
+		data['Height'],
+		data['Weight'],
+		data['Gender'],
+		data['Race'],
+		data['Class'],
+		data['Archetype'],
+		data['Fighting Style'],
+		data['Background'],
+		data['Traits'],
+		data['Bonds'],
+		data['Physical Description'],
+		data['Miscellaneous Notes'],
+		data['Armor'],
+		data['Weapons'],
+		data['Tools'],
+		data['Platinum'],
+		data['Gold'],
+		data['Electrum'],
+		data['Silver'],
+		data['Copper']
 		))
 	#commit changes to database
 	conn.commit()
@@ -240,4 +228,4 @@ def db_get_char_list(id_token):
 	#close connection to database, creation completed
 	conn.close()
 	
-	return json.dump(char_list)
+	return json.dumps(char_list)
