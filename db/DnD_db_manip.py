@@ -53,11 +53,11 @@ def db_char_pull(id_token, char_name):
 		'Electrum': char_data['electrum'],
 		'Silver': char_data['silver'],
 		'Copper': char_data['copper'],
+		'Alignment': char_data['alignment']
 		
 		#'ideal': char_data['ideal'],
 		#'flaw': char_data['flaw'],
 		#'story': char_data['story'],
-		#'alignment': char_data['alignment'],
 		#'proficiency_mod': char_data['proficiency_mod'],
 		#'spellcasting': char_data['spellcasting'],
 		#'char_name': char_name,
@@ -150,7 +150,8 @@ def db_char_push(id_token, info_string):
 		gold,
 		electrum,
 		silver,
-		copper
+		copper,
+		alignment
 
 		--ideals,
 		--flaws,
@@ -161,7 +162,7 @@ def db_char_push(id_token, info_string):
 		--prof_mod
 		)
 		VALUES
-		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
+		(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''',
 		(
 		id_token,
 		data['Str'],
@@ -199,7 +200,8 @@ def db_char_push(id_token, info_string):
 		data['Gold'],
 		data['Electrum'],
 		data['Silver'],
-		data['Copper']
+		data['Copper'],
+		data['Alignment']
 		))
 	#commit changes to database
 	conn.commit()
