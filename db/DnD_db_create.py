@@ -58,6 +58,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS char_info(
 	electrum INTEGER,
 	silver INTEGER,
 	copper INTEGER,
+	alignment TEXT,
 
 	FOREIGN KEY (char_name) REFERENCES characters(char_name) ON DELETE CASCADE,
 	FOREIGN KEY (id_token) REFERENCES users(id_token) ON DELETE CASCADE
