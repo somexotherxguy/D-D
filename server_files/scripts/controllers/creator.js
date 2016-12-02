@@ -109,6 +109,35 @@ app.controller('creator', ['$scope', function($scope) {
         'plate' : 'heavy',
         'shield' : 'no proficiency needed'
     },
+    $scope.tools = [
+      "alchemist's supplies",
+      "bowyer/fletcher tools",
+      "brewer's supplies",
+      "calligrapher's supplies",
+      "carpenter's tools",
+      "cartographer's tools",
+      "climber's kit",
+      "cobbler's tools",
+      "cook's utensils",
+      "disguise kit",
+      "forgery kit",
+      "glassblower's tools",
+      "goldsmith/silversmith's tools",
+      "healer's kit",
+      "herbalism kit",
+      "jeweler's tools",
+      "leatherworker's tools",
+      "mason's tools",
+      "navigator's tools",
+      "painter's supplies",
+      "poisoner's kit",
+      "potter's tools",
+      "smith's tools",
+      "thieves' tools",
+      "tinker's tools",
+      "weaver's tools",
+      "woodcarver's tools"
+    ];
     $scope.stats = [
     {
     	field: 'Str',
@@ -194,6 +223,12 @@ app.controller('creator', ['$scope', function($scope) {
     	value: '',
       type: 'text',
       id: 'weapon_prof'
+    },
+    {
+      field: 'Armor Proficiencies',
+      value: '',
+      type: 'text',
+      id: 'armor_prof'
     }];
     $scope.details = [
     {
@@ -584,18 +619,7 @@ app.controller('creator', ['$scope', function($scope) {
           }
       }
 
-      var weaponChecks = [];
-      var weaponProfs = $scope.skills[6].value;
-      weaponProfs.split(',');
-      var weapons = $scope.equipment[1].value;
-      weapons.split(',');
-	   //MODIFY THIS
-      for(i in weapons){
-          if(weaponProfs.indexOf(weaponss[i]) === -1){
-              //that weapon is not in the profs
-              weaponChecks.push(tools[i]);
-          }
-      }
+      
   };
   $scope.validateStat = function(stat) {
     if (stat.value < 0) {
@@ -609,6 +633,8 @@ app.controller('creator', ['$scope', function($scope) {
       }
     } else if (skill.field === 'Feats') {
       var feats = skill.value.split(',');
+      $scope.armor_list = $scope.equipment[0].value.split(',');
+      console.log($scope.armor_list);
       var times_occur = {};
       for (f in feats) {
         feats[f].toLowerCase();
@@ -660,7 +686,53 @@ app.controller('creator', ['$scope', function($scope) {
         }
       }
     }
-  }
+  };
+  $scope.validateEquipment = function(field, equipment) {
+    console.log(field, equipment);
+    if (field === 'Weapons') {
+      var weaponChecks = [];
+      var weaponProfs = $scope.skills[6].value;
+      weaponProfs.split(',');
+      var weapon_list = $scope.equipment[1].value.split(',');
+     //MODIFY THIS
+      for(i in weapon_list){
+          console.log($scope.weapons[weapon_list[i]]);
+          if(weaponProfs.indexOf($scope.weapons[weapon_list[i]]) === -1){
+              //that weapon is not in the profs
+              weaponChecks.push(weapon_list[i]);
+          }
+      }
+      console.log(weaponChecks);
+    } else if (field === 'Armor') {
+       var armorChecks = [];
+       var armorProfs = $scope.skills[7].value;
+       armorProfs.split(',');
+       var armor_list = $scope.equipment[0].value.split(',');
+      //MODIFY THIS
+       for(i in armor_list){
+           console.log($scope.armor[armor_list[i]]);
+           if(armorProfs.indexOf($scope.armor[armor_list[i]]) === -1){
+               //that weapon is not in the profs
+               armorChecks.push(armor_list[i]);
+           }
+       }
+       console.log(armorChecks);
+    } else if (field === 'Tools') {
+      console.log(equipment);
+      //display what tools and weapons do not have proficiency
+      var toolChecks = [];
+      var toolProfs = $scope.skills[5].value;
+      toolProfs.split(',');
+      var tools = $scope.equipment[2].value.split(',');
+      for(i in tools){
+          if(toolProfs.indexOf(tools[i]) === -1){
+              //that tool is not in the profs
+              toolChecks.push(tools[i]);
+          }
+      }
+      console.log(toolChecks);
+    }
+  };
   $scope.updateValue = function(field, value) {
     console.log('Hello');
     console.log(field, value);

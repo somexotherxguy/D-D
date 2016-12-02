@@ -95,7 +95,7 @@
 						<table class="mdl-data-table mdl-js-data-table">
 							<tr ng-repeat="d in descriptors" ng-show="!d.hidden">
 								<td style="text-align: center">{{ d.field }}</td>
-								<td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d.value)"></td>
+								<td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d, d.value)"></td>
 							</tr>
 						</table>
 				</div>
@@ -109,7 +109,7 @@
 						<table class="mdl-data-table mdl-js-data-table">
 							<tr ng-repeat="e in equipment" ng-show="!e.hidden">
 								<td style="text-align: center">{{ e.field }}</td>
-								<td><input ng-model="e.value" class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}" ng-change="updateValue(e.value)"></td>
+								<td><input ng-model="e.value" class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}" ng-change="updateValue(e, e.value)" ng-blur="validateEquipment(e.field, e.value)"></td>
 							</tr>
 						</table>
 				</div>
