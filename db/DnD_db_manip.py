@@ -99,21 +99,24 @@ def db_char_push(id_token, info_string):
 	c.execute("PRAGMA foreign_keys = ON")
 
 	#If new user, add to table of user id_tokens
-	c.execute('''INSERT OR REPLACE INTO users 
-		(id_token)
-		VALUES
-		(?)''',
-		(id_token,))
+	c.execute("SELECT * FROM users WHERE id_token=?", (id_token))
+	check = c.fetchall()
+	if not check:
+		c.execute('''REPLACE INTO users 
+			(id_token)
+			VALUES
+			(?)''',
+			(id_token,))
 
 	#If new character, add to character table
-	c.execute('''INSERT OR REPLACE INTO characters 
+	c.execute('''REPLACE INTO characters 
 		(char_name, id_token)
 		VALUES
 		(?,?)''',
 		(data['Name'], id_token))
 
 	#Update or create entry in char_entry table
-	c.execute('''INSERT OR REPLACE INTO char_info(
+	c.execute('''REPLACE INTO char_info(
 		id_token,
 		str,
 		con,
