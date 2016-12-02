@@ -60,8 +60,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS char_info(
 	copper INTEGER,
 	alignment TEXT,
 
-	FOREIGN KEY (char_name) REFERENCES characters(char_name) ON DELETE CASCADE,
-	FOREIGN KEY (id_token) REFERENCES users(id_token) ON DELETE CASCADE
+	FOREIGN KEY (char_name) REFERENCES characters(char_name) ON DELETE CASCADE
+	--FOREIGN KEY (id_token) REFERENCES users(id_token) ON DELETE CASCADE
 )''')
 
 #commit changes to database
