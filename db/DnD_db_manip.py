@@ -108,7 +108,7 @@ def db_char_push(id_token, info_string):
 		(char_name, id_token)
 		VALUES
 		(?,?)''',
-		(data['char_name'], id_token))
+		(data['Name'], id_token))
 
 	#Update or create entry in char_entry table
 	c.execute('''INSERT OR REPLACE INTO char_info(
