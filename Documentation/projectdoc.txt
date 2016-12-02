@@ -10,8 +10,10 @@ Sean Langford
         - Created Class Tables
 	- Created Magic Tables
 	- Created/Populated Feat Tables
+	- Created/Populated Base Class Feature Tables
+	- Created/Populated Archetype Feature Tables
     In Progress
-        - Creating/Populating Base Class Feature Tables
+
 Sean Dickey
     Completed
         - imported HTML field names into JavaScript
