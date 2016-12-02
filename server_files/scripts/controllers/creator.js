@@ -93,6 +93,7 @@ app.controller('creator', ['$scope', function($scope) {
         'longbow' : 'martial',
         'net' : 'martial'
     },
+    $scope.weapon_list = [];
     $scope.armor = {
         'padded' : 'light',
         'leather' : 'light',
@@ -540,7 +541,7 @@ app.controller('creator', ['$scope', function($scope) {
         }
       },
       hidden: false
-    },
+    }
   ];
 	$scope.radios = [
     {
@@ -555,13 +556,10 @@ app.controller('creator', ['$scope', function($scope) {
   ]
   $scope.genderList = [ 'Male', 'Female', 'Other' ];
   $scope.currentGender = '';
-  $scope.updateGender = function(gender) {
-    console.log(gender);
-    //$scope.currentGender = gender;
-  }
-  $scope.currentClass = { name: '', has_fs: false , currentArch: '', currentFS: '' };
+  $scope.currentClass = { name: '', has_fs: false , archList: [], currentArch: '', currentFS: '' };
   $scope.currentRace = '';
   $scope.currentTab = 'stats.tpl.html';
+  $scope.currentAlignment = '';
 	$scope.onClickTab = function(tab) {
 		$scope.currentTab = tab.url;
 	};
@@ -664,19 +662,28 @@ app.controller('creator', ['$scope', function($scope) {
     }
   }
   $scope.updateValue = function(field, value) {
-    //console.log(field, value);
-    field.value = value;
+    console.log('Hello');
+    console.log(field, value);
+    //field.value = value;
+    if (($scope.stats.indexOf(field) !== -1) ||  
+      ($scope.skills.indexOf(field) !== -1) || 
+      ($scope.details.indexOf(field) !== -1) ||
+      ($scope.descriptors.indexOf(field) !== -1) ||
+      ($scope.equipment.indexOf(field) !== -1)) {
+      field.value = value;
+    } else if (field === 'Gender') {
+      $scope.currentGender = value;
+    } else if (field === 'Race') {
+      $scope.currentRace = value;
+    } else if (field === 'Class') {
+      $scope.classSelect(value);
+    } else if (field === 'Archetype') {
+      $scope.currentClass.currentArch = value;
+    } else if (field === 'Fighting Style') {
+      $scope.currentClass.currentFS = value;
+    }
   };
 	$scope.classSelect = function(class_name) {
-    // Check if Class field is being changed
-    var isClass = false;
-    if ($scope.dropdowns[2].list.indexOf(class_name) !== -1) {
-      isClass = true;
-    } else if ($scope.dropdowns[0].list.indexOf(class_name) !== -1) {
-      $scope.currentRace = class_name;
-    }
-    if (!(isClass)) {return;}
-
     // Clear current Archetype and Fighting Style dropdowns
     var details_table = document.getElementById('details_table');
     if ($scope.currentClass.name) {
@@ -691,6 +698,7 @@ app.controller('creator', ['$scope', function($scope) {
     $scope.currentClass.name = class_name;
     var selected_class = $scope.dropdowns[2].class_objects[class_name];
 	  var a_list = selected_class.archetype.list;
+    $scope.currentClass.archList = a_list;
     for (first in selected_class) break;
     for (last in selected_class);
     var a_row = details_table.insertRow();
@@ -698,8 +706,8 @@ app.controller('creator', ['$scope', function($scope) {
     a_cell1.innerHTML = selected_class.archetype.name;
     a_cell1.setAttribute("style", "text-align: center");
     var a_cell2 = a_row.insertCell();
-	  var str = '<select>';
-	  for (a in a_list) {
+	  var str = '<select ng-model="archetype" ng-change="updateValue(Archetype, archetype)">';
+    for (a in a_list) {
 	    str += '<option value="' + a_list[a] + '">' + a_list[a] + '</option>';
 	    if (a === a_list.length - 1) {
 		    str += '</select>';
@@ -759,12 +767,12 @@ app.controller('creator', ['$scope', function($scope) {
     console.log(char_json);
     // Post to Server
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "object.json", true);
+    xhttp.open("POST", "new_object.json", true);
     xhttp.send(char_json);
   };
   $scope.load = function() {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "object.json", true);
+    xhttp.open("GET", "new_object.json", true);
     xhttp.send();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {

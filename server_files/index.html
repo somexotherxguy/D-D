@@ -18,6 +18,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="google-signin-client_id" content="18176617181-2cfdus7ulb4rg8e4hmrnjjolorjobt1p.apps.googleusercontent.com">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -64,7 +65,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
     <script src="scripts/app.js"></script>
-    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div class="demo-layout mdl-layout mdl-js-layout">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -97,13 +98,26 @@
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-50 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span>Help</a>
         </nav>
       </div>
-      
       <div ng-view></div>
-      
     </div>
+    <button type="button" style="position: absolute; top: 150px" href="#" onclick="signOut()">Sign Out</button>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        //console.log(profile.getId());
+        var id_token = googleUser.getAuthResponse().id_token;
+        //console.log(id_token);
+      }
+      function signOut() {
+        console.log('Logging Out!');
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out');
+        });
+      }
+    </script>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-	
-    
     <script src="scripts/controllers/creator.js"></script>
   </body>
 </html>

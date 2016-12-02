@@ -70,14 +70,14 @@
 		                <td style="text-align: center">Gender</td>
 		                <td>
 		                  <span ng-repeat="g in genderList">
-		                  <input ng-model="gender" type="radio" name="{{g}}" value="{{currentGender}}" ng-change="updateGender(this.value)">{{g}}
+		                  <input ng-model="gender" type="radio" name="gender_name" value="{{g}}" ng-click="updateValue('Gender', g)">{{g}}
 					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
 						<td style="text-align: center">{{ dd.field }}</td>
 						  <td>
 							<!-- <select ng-options="l in dd.list">
 							    <option ng-repeat="l in dd.list">{{ l }}</option>
 							</select> -->
-							<select ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="classSelect(selectedClass)">
+							<select ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="updateValue(dd.field, selectedClass)">
 							</select>
 						  </td>
 		              </tr>
