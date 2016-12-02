@@ -4072,7 +4072,7 @@ you finish a short or long rest.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Sorcerer", 1, "Spellcasting", "An event in your past, or in the life of a parent or
+("Sorcerer", NULL, 1, "Spellcasting", "An event in your past, or in the life of a parent or
 ancestor, left an indelible mark on you, infusing you with
 arcane magic. This font of magic, whatever its origin,
 fuels your spells. 
@@ -4123,7 +4123,7 @@ spellcasting focus for your sorcerer spells.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Sorcerer", 1, "Sorcerous Origin", "Choose a sorcerous origin, which describes the
+("Sorcerer", NULL, 1, "Sorcerous Origin", "Choose a sorcerous origin, which describes the
 source of your innate magical power: Draconic
 Bloodline or Wild Magic, both detailed at the end of the
 class description.
@@ -4133,7 +4133,63 @@ Your choice grants you features when you choose it at
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Sorcerer", 2, "Font of Magic", "At 2nd level, you tap into a deep wellspring of magic
+("Sorcerer", "Draconic", 1, "Dragon Ancestor", "At 1st level, you choose one type of dragon as your
+ancestor. The damage type associated with each dragon
+is used by features you gain later.
+Draconic Ancestry
+Dragon- Damage Type
+Black- Acid
+Blue- Lightning
+Brass- Fire
+Bronze- Lightning
+Copper- Acid
+Cold- Fire
+Green- Poison
+Red- Fire
+Silver- Cold
+White- Cold
+You can speak, read, and write Draconic. Additionally,
+whenever you make a Charisma check when interacting
+with dragons, your proficiency bonus is doubled if it
+applies to the check.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Draconic", 1, "Draconic Resilience", "As magic flows through your body, it causes physical
+traits of your dragon ancestors to emerge. At 1st level,
+your hit point maximum increases by 1 and increases by
+1 again whenever you gain a level in this class.
+Additionally, parts  f your skin are covered by a thin
+sheen of dragon-like scales. When you aren’t wearing
+armor, your AC equals 13 + your Dexterity modifier.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Wild Magic", 1, "Wild Magic Surge", "Starting when you choose this origin at 1st level, your
+spellcasting can unleash surges of untamed magic.
+Immediately after you cast a sorcerer spell of 1st level
+or higher, the DM can have you roll a d20. If you roll a
+1, roll on the Wild Magic Surge table to create a random
+magical effect.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Wild Magic", 1, "Tides of Chaos", "Starting at 1st level, you can manipulate the forces of
+chance and chaos to gain advantage on one attack roll,
+ability check, or saving throw. Once you do so, you must
+finish a long rest before you can use this feature again.
+Any time before you regain the use of this feature, the
+DM can have you roll on the Wild Magic Surge table
+immediately after you cast a sorcerer spell of 1st level or
+higher. You then regain the use of this feature.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", NULL, 2, "Font of Magic", "At 2nd level, you tap into a deep wellspring of magic
 within yourself. This wellspring is represented by
 sorcery points, which allow you to create a variety of
 magical effects.
@@ -4170,7 +4226,7 @@ slot’s level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Sorcerer", 3, "Metamagic", "At 3rd level, you gain the ability to twist your spells
+("Sorcerer", NULL, 3, "Metamagic", "At 3rd level, you gain the ability to twist your spells
 to suit your needs. You gain two of the following
 Metamagic options of your choice. You gain another one
 at 10th and 17th level.
@@ -4225,7 +4281,7 @@ the spell is a cantrip).")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Sorcerer", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Sorcerer", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of your
 choice by 2, or you can increase two ability scores of
 your choice by 1. As normal, you can’t increase an ability
@@ -4234,13 +4290,79 @@ score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Sorcerer", 20, "Sorcerous Restoration", "At 20th level, you regain 4 expended sorcery points
+("Sorcerer", "Draconic", 6, "Elemental Affinity", "Starting at 6th level, when you cast a spell that deals
+damage of the type associated with your draconic
+ancestry, add your Charisma modifier to that damage.
+At the same time, you can spend 1 sorcery point to gain
+resistance to that damage type for 1 hour.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Wild Magic", 6, "Bend Luck", "Starting at 6th level, you have the ability to twist fate
+using your wild magic. When another creature you can
+see makes an attack roll, an ability check, or a saving
+throw, you can use your reaction and spend 2 sorcery
+points to roll 1d4 and apply the number rolled as a
+bonus or penalty (your choice) to the creature’s roll. You can do so after the creature rolls but before any effects
+of the roll occur.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Draconic", 14, "Dragon Wings", "At 14th level, you gain the ability to sprout a pair of
+dragon wings from your back, gaining a flying speed
+equal to your current speed. You can create these w ings
+as a bonus action on your turn. They last until you
+dismiss them as a bonus action on your turn.
+You can’t manifest your wings while wearing armor
+unless the armor is made to accommodate them, and
+clothing not made to accommodate your wings might
+be destroyed when you manifest them.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Wild Magic", 14, "Controlled Chaos", "At 14th level, you gain a modicum of control over the
+surges of your wild magic. Whenever you roll on the
+Wild Magic Surge table, you can roll twice and use
+either number.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Draconic", 18, "Draconic Presence", "Beginning at 18th level, you can channel the dread
+presence of your dragon ancestor, causing those around
+you to become awestruck or frightened. As an action,
+you can spend 5 sorcery points to draw on this power
+and exude an aura of awe or fear (your choice) to a
+distance of 60 feet. For 1 minute or until you lose your
+concentration (as if you were casting a concentration
+spell), each hostile creature that starts its turn in this
+aura must succeed on a Wisdom saving throw or be
+charmed (if you chose awe) or frightened (if you chose
+fear) until the aura ends. A creature that succeeds on
+this saving throw is immune to your aura for 24 hours.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", "Wild Magic", 18, "Spell Bombardment", "Beginning at 18th level, the harmful energy of your
+spells intensifies. When you roll damage for a spell and
+roll the highest number possible on any of the dice,
+choose one of those dice, roll it again and add that roll to
+the damage. You can use the feature only once per turn.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Sorcerer", NULL, 20, "Sorcerous Restoration", "At 20th level, you regain 4 expended sorcery points
 whenever you finish a short rest.")
 
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 1, "Otherworldly Patron", "At 1st level, you have struck a bargain with an
+("Warlock", NULL, 1, "Otherworldly Patron", "At 1st level, you have struck a bargain with an
 otherworldly being of your choice: the Archfey, the
 Fiend, or the Great Old One, each of which is detailed
 at the end of the class description. Your choice
@@ -4250,7 +4372,81 @@ and 14th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 1, "Pact Magic", "Your arcane research and the magic bestowed on you
+("Warlock", "Archfey", 1, "Expanded Spell List", "The Archfey lets you choose from an expanded list of
+spells when you learn a warlock spell. The following
+spells are added to the warlock spell list for you.
+Archfey Expanded Spells
+Spell Level- Spells
+1st- faerie fire, sleep
+2nd- calm emotions, phantasmal force
+3rd- blink, plant growth
+4th- dominate beast, greater invisibility
+5th- dominate person, seeming")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Archfey", 1, "Fey Presence", "Starting at 1st level, your patron bestows upon you the
+ability to project the beguiling and fearsome presence
+of the fey. As an action, you can cause each creature in
+a 10-foot cube originating from you to make a Wisdom
+saving throw against your warlock spell save DC. The
+creatures that fail their saving throws are all charmed
+or frightened by you (your choice) until the end of
+your next turn.
+Once you use this feature, you can’t use it again until
+you finish a short or long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Fiend", 1, "Expanded Spell List", "The Fiend lets you choose from an expanded list of
+spells when you learn a warlock spell. The following
+spells are added to the warlock spell list for you.
+Fiend Expanded Spells
+Spell Level- Spells
+1st- burning hands, command
+2nd- blindness/deafness, scorching ray
+3rd- fireball, stinking cloud
+4th- fire shield, wall of fire
+5th- flame strike, hallow")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Fiend", 1, "Dark One's Blessing", "Starting at 1st level, when you reduce a hostile creature
+to 0 hit points, you gain temporary hit points equal to your
+Charisma modifier + your warlock level (minimum of 1).")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Great Old One", 1, "Expanded Spell List", "The Great Old One lets you choose from an expanded list
+of spells when you learn a warlock spell. The following
+spells are added to the w arlock spell list for you.
+Great Old One Expanded Spells
+Spell Level- Spells
+1st- dissonant whispers, Tasha's hideous laughter
+2nd- detect thoughts, phantasmal force
+3rd- clairvoyance, sending
+4th- dominate beast, Evard’s black tentacles
+5th- dominate person, telekinesis")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Great Old One", 1, "Awakened Mind", "Starting at 1st level, your alien knowledge gives you
+the ability to touch the minds of other creatures. You
+can communicate telepathically with any creature you
+can see within 30 feet of you. You don’t need to share
+a language with the creature for it to understand your
+telepathic utterances, but the creature must be able to
+understand at least one language.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", NULL, 1, "Pact Magic", "Your arcane research and the magic bestowed on you
 by your patron have given you facility with spells.
 Cantrips
 You know two cantrips of your choice from the warlock
@@ -4271,8 +4467,8 @@ you cast it as a 3rd-level spell.
 Spells Known of 1st Level and Higher
 At 1st level, you know two 1st-level spells of your choice
 from the warlock spell list.
-The Spells Known column of the W arlock table shows
-when you learn more w arlock spells of your choice of 1st
+The Spells Known column of the Warlock table shows
+when you learn more warlock spells of your choice of 1st
 level and higher. A spell you choose must be of a level
 no higher than what’s shown in the table's Slot Level
 column for your level. When you reach 6th level, for
@@ -4301,7 +4497,7 @@ spellcasting focus for your w arlock spells.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 2, "Eldritch Invocations", "In your study of occult lore, you have unearthed eldritch
+("Warlock", NULL, 2, "Eldritch Invocations", "In your study of occult lore, you have unearthed eldritch
 invocations, fragments of forbidden knowledge that
 imbue you with an abiding magical ability.
 At 2nd level, you gain two eldritch invocations of your
@@ -4318,7 +4514,7 @@ at that level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 3, "Pact Boon", "At 3rd level, your otherworldly patron bestows a gift
+("Warlock", NULL, 3, "Pact Boon", "At 3rd level, your otherworldly patron bestows a gift
 upon you for your loyal service. You gain one of the
 following features of your choice.
 Pact of the Chain
@@ -4371,7 +4567,7 @@ turns to ash when you die.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Warlock", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of your
 choice by 2, or you can increase two ability scores of
 your choice by 1. As normal, you can't increase an ability
@@ -4380,7 +4576,74 @@ score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 11, "Mystic Arcanum", "At 11th level, your patron bestows upon you a magical
+("Warlock", "Archfey", 6, "Misty Escape", "Starting at 6th level, you can vanish in a puff of mist in
+response to harm. When you take damage, you can use
+your reaction to turn invisible and teleport up to 60 feet
+to an unoccupied space you can see. You remain invisible
+until the start of your next turn or until you attack or
+cast a spell.
+Once you use this feature, you can't use it again until
+you finish a short or long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Fiend", 6, "Dark One's Own Luck", "Starting at 6th level, you can call on your patron to alter
+fate in your favor. When you make an ability check or a
+saving throw, you can use this feature to add a d10 to
+your roll. You can do so after seeing the initial roll but
+before any of the roll’s effects occur.
+Once you use this feature, you can’t use it again until
+you finish a short or long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Great Old One", 6, "Entropic Ward", "At 6th level, you learn to magically ward yourself against
+attack and to turn an enemy’s failed strike into good
+luck for yourself. When a creature makes an attack
+roll against you, you can use your reaction to impose
+disadvantage on that roll. If the attack misses you, your
+next attack roll against the creature has advantage if you
+make it before the end of your next turn.
+Once you use this feature, you can’t use it again until
+you finish a short or long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Archfey", 10, "Beguiling Defenses", "Beginning at 10th level, your patron teaches you how to
+turn the mind-affecting magic of your enemies against
+them. You are immune to being charmed, and when
+another creature attempts to charm you, you can use
+your reaction to attempt to turn the charm back on
+that creature. The creature must succeed on a Wisdom
+saving throw against your warlock spell save DC or
+be charmed by you for 1 minute or until the creature
+takes any damage.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Fiend", 10, "Fiendish Resilience", "Starting at 10th level, you can choose one damage type
+when you finish a short or long rest. You gain resistance
+to that damage type until you choose a different one
+with this feature. Damage from magical weapons or
+silver weapons ignores this resistance.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Great Old One", 10, "Thought Shield", "Starting at 10th level, your thoughts can’t be read by
+telepathy or other means unless you allow it. You also
+have resistance to psychic damage, and whenever a
+creature deals psychic damage to you, that creature
+takes the same amount of damage that you do.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", NULL, 11, "Mystic Arcanum", "At 11th level, your patron bestows upon you a magical
 secret called an arcanum. Choose one 6th-level spell
 from the warlock spell list as this arcanum.
 You can cast your arcanum spell once without
@@ -4395,7 +4658,52 @@ Mystic Arcanum when you finish a long rest.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Warlock", 20, "Eldritch Master", "At 20th level, you can draw on your inner reserve of
+("Warlock", "Archfey", 14, "Dark Delirium", "Starting at 14th level, you can plunge a creature into
+an illusory realm. As an action, choose a creature
+that you can see within 60 feet of you. It must make a
+Wisdom saving throw against your warlock spell save
+DC. On a failed save, it is charmed or frightened by you
+(your choice) for 1 minute or until your concentration
+is broken (as if you are concentrating on a spell). This
+effect ends early if the creature takes any damage.
+Until this illusion ends, the creature thinks it is lost
+in a misty realm, the appearance of which you choose.
+The creature can see and hear only itself, you, and
+the illusion.
+You must finish a short or long rest before you can
+use this feature again.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Fiend", 14, "Hurl Through Hell", "Starting at 14th level, when you hit a creature with an
+attack, you can use this feature to instantly transport
+the target through the lower planes. The creature
+disappears and hurtles through a nightmare landscape.
+At the end of your next turn, the target returns to the
+space it previously occupied, or the nearest unoccupied
+space. If the target is not a fiend, it takes 10d10 psychic
+damage as it reels from its horrific experience.
+Once you use this feature, you can’t use it again until
+you finish a long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", "Great Old One", 14, "Create Thrall", "At 14th level, you gain the ability to infect a humanoid’s
+mind with the alien magic of your patron. You can use
+your action to touch an incapacitated humanoid. That
+creature is then charmed by you until a remove curse
+spell is cast on it, the charmed condition is removed
+from it, or you use this feature again.
+You can communicate telepathically with the charmed
+creature as long as the two of you are on the same plane
+of existence.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Warlock", NULL, 20, "Eldritch Master", "At 20th level, you can draw on your inner reserve of
 mystical power while entreating your patron to regain
 expended spell slots. You can spend 1 minute entreating
 your patron for aid to regain all your expended spell slots
@@ -4406,7 +4714,7 @@ can do so again.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Wizard", 1, "Spellcasting", "As a student of arcane magic, you have a spellbook
+("Wizard", NULL, 1, "Spellcasting", "As a student of arcane magic, you have a spellbook
 containing spells that show the first glimmerings of
 your true power.
 Cantrips
@@ -4472,7 +4780,7 @@ to your spellbook (see the “Your Spellbook” sidebar).")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Wizard", 1, "Arcane Recovery", "You have learned to regain some of your magical energy
+("Wizard", NULL, 1, "Arcane Recovery", "You have learned to regain some of your magical energy
 by studying your spellbook. Once per day when you
 finish a short rest, you can choose expended spell slots
 to recover. The spell slots can have a combined level that
@@ -4485,7 +4793,7 @@ a 2nd-level spell slot or two 1st-level spell slots.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Wizard", 2, "Arcane Tradition", "When you reach 2nd level, you choose an arcane
+("Wizard", NULL, 2, "Arcane Tradition", "When you reach 2nd level, you choose an arcane
 tradition, shaping your practice of magic through one
 of eight schools: Abjuration, Conjuration, Divination,
 Enchantment, Evocation, Illusion, Necromancy,
@@ -4497,7 +4805,180 @@ at 6th, 10th, and 14th level.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Wizard", 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
+("Wizard", "Abjuration", 2, "Abjuration Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy an abjuration
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Abjuration", 2, "Arcane Ward", "Starting at 2nd level, you can weave magic around
+yourself for protection. When you cast an abjuration
+spell of 1st level or higher, you can simultaneously use a
+strand of the spell’s magic to create a magical ward on
+yourself that lasts until you finish a long rest. The ward
+has hit points equal to twice your wizard level + your
+Intelligence modifier. Whenever you take damage, the
+ward takes the damage instead. If this damage reduces
+the ward to 0 hit points, you take any remaining damage.
+While the ward has 0 hit points, it can’t absorb
+damage, but its magic remains. Whenever you cast an
+abjuration spell of 1st level or higher, the ward regains a
+number of hit points equal to twice the level of the spell.
+Once you create the ward, you can't create it again
+until you finish a long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Conjuration", 2, "Conjuration Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy a conjuration
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Conjuration", 2, "Minor Conjuration", "Starting at 2nd level when you select this school, you
+can use your action to conjure up an inanimate object
+in your hand or on the ground in an unoccupied space
+that you can see within 10 feet of you. This object can be
+no larger than 3 feet on a side and weigh no more than
+10 pounds, and its form must be that of a nonmagical object that you have seen. The object is visibly magical,
+radiating dim light out to 5 feet.
+The object disappears after 1 hour, when you use this
+feature again, or if it takes any damage.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Divination", 2, "Divination Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy a divination
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Divination", 2, "Portent", "Starting at 2nd level when you choose this school,
+glimpses of the future begin to press in on your
+awareness. When you finish a long rest, roll two d20s
+and record the numbers rolled. You can replace any
+attack roll, saving throw, or ability check made by you or
+a creature that you can see with one of these foretelling
+rolls. You must choose to do so before the roll, and you
+can replace a roll in this way only once per turn.
+Each foretelling roll can be used only once. When you
+finish a long rest, you lose any unused foretelling rolls.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Enchantment", 2, "Enchantment Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy an enchantment
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Enchantment", 2, "Hypnotic Gaze", "Starting at 2nd level when you choose this school, your
+soft words and enchanting gaze can magically enthrall
+another creature. As an action, choose one creature that
+you can see within 5 feet of you. If the target can see or
+hear you, it must succeed on a Wisdom saving throw
+against your wizard spell save DC or be charmed by you
+until the end of your next turn. The charmed creature’s
+speed drops to 0, and the creature is incapacitated and
+visibly dazed.
+On subsequent turns, you can use your action to
+maintain this effect, extending its duration until the
+end of your next turn. However, the effect ends if you
+move more than 5 feet away from the creature, if the
+creature can neither see nor hear you, or if the creature
+takes damage.
+Once the effect ends, or if the creature succeeds on its
+initial saving throw against this effect, you can’t use this
+feature on that creature again until you finish a long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Evocation", 2, "Evocation Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy an evocation
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Evocation", 2, "Sculpt Spells", "Beginning at 2nd level, you can create pockets of
+relative safety within the effects of your evocation spells.
+When you cast an evocation spell that affects other
+creatures that you can see, you can choose a number
+of them equal to 1 + the spell’s level. The chosen
+creatures automatically succeed on their saving throws
+against the spell, and they take no damage if they would
+normally take half damage on a successful save.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Illusion", 2, "Illusion Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy a illusion
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Illusion", 2, "Improved Minor Illusion", "When you choose this school at 2nd level, you learn
+the minor illusion cantrip. If you already know this
+cantrip, you learn a different wizard cantrip of your
+choice. The cantrip doesn’t count against your number
+of cantrips known.
+When you cast minor illusion, you can create both a
+sound and an image with a single casting of the spell.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Necromancy", 2, "Necromancy Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy a necromancy
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Necromancy", 2, "Grim Harvest", "At 2nd level, you gain the ability to reap life energy from
+creatures you kill with your spells. Once per turn when
+you kill one or more creatures with a spell of 1st level
+or higher, you regain hit points equal to twice the spell’s
+level, or three times its level if the spell belongs to the
+School of Necromancy. You don’t gain this benefit for
+killing constructs or undead.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Transmutation", 2, "Transmutation Savant", "Beginning when you select this school at 2nd level, the
+gold and time you must spend to copy a transmutation
+spell into your spellbook is halved.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Transmutation", 2, "Minor Alchemy", "Starting at 2nd level when you select this school, you
+can temporarily alter the physical properties of one
+nonmagical object, changing it from one substance into
+another. You perform a special alchemical procedure
+on one object composed entirely of wood, stone (but not
+a gemstone), iron, copper, or silver, transforming it into
+a different one of those materials. For each 10 minutes
+you spend performing the procedure, you can transform
+up to 1 cubic foot of material. After 1 hour, or until you
+lose your concentration (as if you w ere concentrating on
+a spell), the material reverts to its original substance.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", NULL, 4, "Ability Score Improvement", "When you reach 4th level, and again at 8th, 12th, 16th,
 and 19th level, you can increase one ability score of your
 choice by 2, or you can increase two ability scores of
 your choice by 1. As normal, you can’t increase an ability
@@ -4506,7 +4987,309 @@ score above 20 using this feature.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Wizard", 18, "Spell Mastery", "At 18th level, you have achieved such mastery over
+("Wizard", "Abjuration", 6, "Projected Ward", "Starting at 6th level, when a creature that you can see
+within 30 feet of you takes damage, you can use your
+reaction to cause your Arcane Ward to absorb that
+damage. If this damage reduces the ward to 0 hit points,
+the warded creature takes any remaining damage.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Conjuration", 6, "Benign Transposition", "Starting at 6th level, you can use your action to teleport
+up to 30 feet to an unoccupied space that you can see.
+Alternatively, you can choose a space within range
+that is occupied by a Small or Medium creature. If that
+creature is willing, you both teleport, swapping places.
+Once you use this feature, you can’t use it again until
+you finish a long rest or you cast a conjuration spell of
+1st level or higher.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Divination", 6, "Expert Divination", "Beginning at 6th level, casting divination spells comes
+so easily to you that it expends only a fraction of your
+spellcasting efforts. When you cast a divination spell
+of 2nd level or higher using a spell slot, you regain one
+expended spell slot. The slot you regain must be of a
+level lower than the spell you cast and can’t be higher
+than 5th level.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Enchantment", 6, "Instinctive Charm", "Beginning at 6th level, when a creature you can see
+within 30 feet of you makes an attack roll against
+you, you can use your reaction to divert the attack,
+provided that another creature is within the attack’s
+range. The attacker must make a Wisdom saving throw
+against your wizard spell save DC. On a failed save,
+the attacker must target the creature that is closest
+to it, not including you or itself. If multiple creatures
+are closest, the attacker chooses which one to target.
+On a successful save, you can’t use this feature on the
+attacker again until you finish a long rest.
+You must choose to use this feature before knowing
+whether the attack hits or misses. Creatures that can’t
+be charmed are immune to this effect.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Evocation", 6, "Potent Cantrip", "Starting at 6th level, your damaging cantrips affect
+even creatures that avoid the brunt of the effect. When
+a creature succeeds on a saving throw against your
+cantrip, the creature takes half the cantrip’s damage (if
+any) but suffers no additional effect from the cantrip.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Illusion", 6, "Malleable Illusions", "Starting at 6th level, when you cast an illusion spell that
+has a duration of 1 minute or longer, you can use your
+action to change the nature of that illusion (using the
+spell’s normal parameters for the illusion), provided that
+you can see the illusion.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Necromancy", 6, "Undead Thralls", "At 6th level, you add the animate dead spell to your
+spellbook if it is not there already. When you cast
+animate dead, you can target one additional corpse
+or pile of bones, creating another zombie or skeleton,
+as appropriate.
+Whenever you create an undead using a necromancy
+spell, it has additional benefits:
+• The creature’s hit point maximum is increased by an
+amount equal to your wizard level.
+• The creature adds your proficiency bonus to its
+weapon damage rolls.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Transmutation", 6, "Transmuter's Stone", "Starting at 6th level, you can spend 8 hours creating a
+transmuter’s stone that stores transmutation magic. You
+can benefit from the stone yourself or give it to another
+creature. A creature gains a benefit of your choice
+as long as the stone is in the creature’s possession.
+When you create the stone, choose the benefit from the
+following options:
+• Darkvision out to a range of 60 feet, as described in
+chapter 8
+• An increase to speed of 10 feet while the creature is
+unencumbered
+• Proficiency in Constitution saving throws
+• Resistance to acid, cold, fire, lightning, or thunder
+damage (your choice whenever you choose this
+benefit)
+Each time you cast a transmutation spell of 1st level
+or higher, you can change the effect of your stone if the
+stone is on your person.
+If you create a new transmuter’s stone, the previous
+one ceases to function.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Abjuration", 10, "Improved Abjuration", "Beginning at 10th level, when you cast an abjuration
+spell that requires you to make an ability check as
+a part of casting that spell (as in counterspell and
+dispel magic), you add your proficiency bonus to that
+ability check.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Conjuration", 10, "Focused Conjuration", "Beginning at 10th level, while you are concentrating on
+a conjuration spell, your concentration can’t be broken
+as a result of taking damage.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Divination", 10, "The Third Eye", "Starting at 10th level, you can use your action to
+increase your powers of perception. When you do so, choose one of the following benefits, which lasts until
+you are incapacitated or you take a short or long rest.
+You can’t use the feature again until you finish a rest.
+Darkvision. You gain darkvision out to a range of 60
+feet, as described in chapter 8.
+Ethereal Sight. You can see into the Ethereal Plane
+within 60 feet of you.
+Greater Comprehension. You can read any language.
+See Invisibility. You can see invisible creatures and
+objects within 10 feet of you that are within line of sight.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Enchantment", 10, "Split Enchantment", "Starting at 10th level, when you cast an enchantment
+spell of 1st level or higher that targets only one creature,
+you can have it target a second creature.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Evocation", 10, "Empowered Evocation", "Beginning at 10th level, you can add your Intelligence
+modifier to the damage roll of any wizard evocation
+spell you cast.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Illusion", 10, "Illusory Self", "Beginning at 10th level, you can create an illusory
+duplicate of yourself as an instant, almost instinctual
+reaction to danger. When a creature makes an attack
+roll against you, you can use your reaction to interpose
+the illusory duplicate between the attacker and
+yourself. The attack automatically misses you, then the
+illusion dissipates.
+Once you use this feature, you can’t use it again until
+you finish a short or long rest.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Necromancy", 10, "Inured to Undeath", "Beginning at 10th level, you have resistance to necrotic
+damage, and your hit point maximum can't be reduced.
+You have spent so much time dealing with undead and
+the forces that animate them that you have become
+inured to some of their worst effects.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Transmutation", 10, "Shapechanger", "At 10th level, you add the polymorph spell to your
+spellbook, if it is not there already. You can cast
+polymorph without expending a spell slot. When you
+do so, you can target only yourself and transform into a
+beast whose challenge rating is 1 or lower.
+Once you cast polymorph in this way, you can’t do so
+again until you finish a short or long rest, though you
+can still cast it normally using an available spell slot.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Abjuration", 14, "Spell Resistance", "Starting at 14th level, you have advantage on saving
+throws against spells.
+Furthermore, you have resistance against the
+damage of spells.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Conjuration", 14, "Durable Summons", "Starting at 14th level, any creature that you
+summon or create with a conjuration spell has 30
+temporary hit points.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Divination", 14, "Greater Portent", "Starting at 14th level, the visions in your dreams
+intensify and paint a more accurate picture in your mind
+of what is to come. You roll three d20s for your Portent
+feature, rather than two.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Enchantment", 14, "Alter Memories", "At 14th level, you gain the ability to make a creature
+unaware of your magical influence on it. When you cast
+an enchantment spell to charm one or more creatures,
+you can alter one creature’s understanding so that it
+remains unaware of being charmed.
+Additionally, once before the spell expires, you can
+use your action to try to make the chosen creature
+forget some of the time it spent charmed. The creature
+must succeed on an Intelligence saving throw against
+your wizard spell save DC or lose a number of hours
+of its memories equal to 1 + your Charisma modifier
+(minimum 1). You can make the creature forget less
+time, and the amount of time can’t exceed the duration
+of your enchantment spell.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Evocation", 14, "Overchannel", "Starting at 14th level, you can increase the power of
+your simpler spells. When you cast a wizard spell of
+5th level or lower that deals damage, you can deal
+maximum damage with that spell.
+The first time you do so, you suffer no adverse effect.
+If you use this feature again before you finish a long
+rest, you take 2d12 necrotic damage for each level of
+the spell, immediately after you cast it. Each time you
+use this feature again before finishing a long rest, the
+necrotic damage per spell level increases by 1d 12. This
+damage ignores resistance and immunity.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Illusion", 14, "Illusory Reality", "By 14th level, you have learned the secret of weaving
+shadow magic into your illusions to give them a semireality.
+When you cast an illusion spell of 1st level or
+higher, you can choose one inanimate, nonmagical
+object that is part of the illusion and make that object
+real. You can do this on your turn as a bonus action
+while the spell is ongoing. The object remains real for
+1 minute. For example, you can create an illusion of a
+bridge over a chasm and then make it real long enough
+for your allies to cross.
+The object can’t deal damage or otherwise
+directly harm anyone.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Necromancy", 14, "Command Undead", "Starting at 14th level, you can use magic to bring
+undead under your control, even those created by other
+wizards. As an action, you can choose one undead that
+you can see within 60 feet of you. That creature must
+make a Charisma saving throw against your wizard
+spell save DC. If it succeeds, you can’t use this feature
+on it again. If it fails, it becomes friendly to you and
+obeys your commands until you use this feature again.
+Intelligent undead are harder to control in this way.
+If the target has an Intelligence of 8 or higher, it has
+advantage on the saving throw. If it fails the saving
+throw and has an Intelligence of 12 or higher, it can
+repeat the saving throw at the end of every hour until it
+succeeds and breaks free.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", "Transmutation", 14, "Master Transmuter", "Starting at 14th level, you can use your action to
+consume the reserve of transmutation magic stored
+within your transmuter’s stone in a single burst. When
+you do so, choose one of the following effects. Your
+transmuter’s stone is destroyed and can’t be remade
+until you finish a long rest.
+Major Transformation. You can transmute one
+nonmagical object—no larger than a 5-foot cube—into
+another nonmagical object of similar size and mass and
+of equal or lesser value. You must spend 10 minutes
+handling the object to transform it.
+Panacea. You remove all curses, diseases, and poisons
+affecting a creature that you touch with the transmuter’s
+stone. The creature also regains all its hit points.
+Restore Life. You cast the raise dead spell on a
+creature you touch with the transmuter’s stone, without
+expending a spell slot or needing to have the spell in
+your spellbook.
+Restore Youth. You touch the transmuter’s stone to
+a willing creature, and that creature’s apparent age is
+reduced by 3d10 years, to a minimum of 13 years. This
+effect doesn’t extend the creature’s lifespan.")
+
+INSERT INTO
+class_features(class, archetype, level, feature_name, description)
+VALUES
+("Wizard", NULL, 18, "Spell Mastery", "At 18th level, you have achieved such mastery over
 certain spells that you can cast them at will. Choose a
 1st-level wizard spell and a 2nd-level wizard spell that
 are in your spellbook. You can cast those spells at their
@@ -4520,7 +5303,7 @@ the same levels.")
 INSERT INTO
 class_features(class, archetype, level, feature_name, description)
 VALUES
-("Wizard", 20, "Signature Spells", "When you reach 20th level, you gain mastery over two
+("Wizard", NULL, 20, "Signature Spells", "When you reach 20th level, you gain mastery over two
 powerful spells and can cast them with little effort.
 Choose two 3rd-level wizard spells in your spellbook
 as your signature spells. You always have these spells
