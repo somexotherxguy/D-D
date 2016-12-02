@@ -2,8 +2,8 @@ import sqlite3
 import json
 import ast
 
-#Given an input string 'id_token' representing the user, and character name, output a json file
-#containing that character's information.
+#Given an input string 'id_token' representing the user, and character name, output a json formatted string
+#containing all data relevant to that id_token/character combo.
 def db_char_pull(id_token, char_name):
 	conn = sqlite3.connect('DnD.db')
 	conn.row_factory = sqlite3.Row
@@ -88,7 +88,7 @@ def db_char_pull(id_token, char_name):
 	#char_obj = str(char_obj)
 	return json.dumps(char_obj)
 
-#Given string 'id_token' representing a user, and input dictionary, pull information into the database.
+#Given string 'id_token' representing a user, and input json formatted string, pull information into the database.
 def db_char_push(id_token, info_string):
 	conn = sqlite3.connect('DnD.db')
 	c = conn.cursor()
@@ -209,7 +209,7 @@ def db_char_push(id_token, info_string):
 	#close connection to database, creation completed
 	conn.close()
 
-#Given a string 'id_token' representing the user, return a json object containing a list of that user's characters
+#Given a string 'id_token' representing the user, return a json formatted string containing a list of that user's characters
 def db_get_char_list(id_token):
 	conn = sqlite3.connect('DnD.db')
 	c = conn.cursor()
