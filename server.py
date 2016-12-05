@@ -28,7 +28,7 @@ def db_char_pull(id_token, char_name):
 
 	c.execute("SELECT * FROM char_info WHERE id_token=? AND char_name=?", (id_token, char_name))
 	char_data = c.fetchone()
-	print('CCC HHH AAA RRR:',id_token,char_name,'aaaaa',char_data)#DEBUG
+	#print('CCC HHH AAA RRR:',id_token,char_name,'aaaaa',char_data)#DEBUG
 
 	#Make dictionary
 	char_obj = {
@@ -107,7 +107,7 @@ def db_char_pull(id_token, char_name):
 
 #Given string 'id_token' representing a user, and input json formatted string, pull information into the database.
 def db_char_push(id_token, char_name, info_string):
-	print(type(info_string),'aaaaaaaaaaaaaaaa',info_string)#DEBUG
+	#print(type(info_string),'aaaaaaaaaaaaaaaa',info_string)#DEBUG
 	#conn = sqlite3.connect(dbaseFile)
 	#conn = sqlite3.connect('DnD.db')#DEBUG
 	c = conn.cursor()
@@ -119,12 +119,12 @@ def db_char_push(id_token, char_name, info_string):
 	#print(c.exexute("SELECT * FROM users"))
 
 	#If new user, add to table of user id_tokens
-	print('eeeeeeeee',data['Str'])#DEBUG
+	#print('eeeeeeeee',data['Str'])#DEBUG
 	#id_token = 'D'#DEBUG
 	c.execute("SELECT * FROM users WHERE id_token=?", (id_token,))
-	print('bbbb')#DEBUG
+	#print('bbbb')#DEBUG
 	check = c.fetchall()
-	print('ccc',check) #DEBUG
+	#print('ccc',check) #DEBUG
 	if not check:
 		c.execute('''REPLACE INTO users 
 			(id_token)
@@ -231,11 +231,8 @@ def db_char_push(id_token, char_name, info_string):
 		data['Alignment']
 		))
 	#commit changes to database
-	print(data,'fffffffffffffffffffff',type(data))#DEBUG
+	#print(data,'fffffffffffffffffffff',type(data))#DEBUG
 	conn.commit()
-
-	#close connection to database, creation completed
-	#conn.close()
 
 
 
@@ -335,8 +332,20 @@ def make_db():
   #c.execute("INSERT INTO users (id_token ) values (?)",('D'))#DEBUG
   conn.commit()
 
-  #close connection to database, creation completed
-  #conn.close()
+
+def db_char_delete(id_token, char_name):
+	#conn = sqlite3.connect(dbaseFile)
+	c = conn.cursor()
+	
+	#Enable foreign key support
+	c.execute("PRAGMA foreign_keys = ON")
+	
+	#delete char from both tables
+	c.execute("DELETE FROM char_info WHERE id_token=? AND char_name=?", (id_token, char_name))
+	c.execute("DELETE FROM characters WHERE id_token=? AND char_name=?", (id_token, char_name))
+	
+	#commit changes to database
+	conn.commit()
 
 
 
@@ -344,25 +353,21 @@ def readAction(stripped_path, user_name, character_name):
   check_path = stripped_path.split('/')
   is_character_file = check_path[ -1 ] == character_file
   action = 'Read File'
+  serve_path = ''
   if( is_character_file ):
-    serve_path = '/'.join(['..', user_tag, user_name, character_name + '.json'])
-    action = 'Read Character'
+    if( character_name ):
+      action = 'Read Character'
+    else:
+      action = 'List User'
   else:
     serve_path = stripped_path
-  try:
-    serve_file = open(serve_path, 'rb')
-    serve_file.close()
-  except:
-    if( is_character_file ):
-      #ALWAYS RETURN A CHARACTER JSON
-      serve_path = './' + character_file
-      #serve_file = open(serve_path, 'rb')
-  #make the serve_path relative
   return action, serve_path
 
 def readCSheet(user_name, character_name):
-  char_json = db_char_pull(user_name, character_name)
-  return io.BytesIO( char_json.encode() )
+  return strtofile( db_char_pull(user_name, character_name) )
+
+def strtofile(thestring):
+  return io.BytesIO( thestring.encode() )
 
 #input url
 #returns: 'user_name','character_name','stripped_url'
@@ -375,7 +380,12 @@ def parse_url(url):
     character_name = check_path[tag_start + 2]
     check_path = check_path[tag_start + 3:]
   except:
-    pass
+    try:
+      tag_start = check_path.index(id_tag)
+      user_name = check_path[tag_start + 1]
+      check_path = check_path[tag_start + 2:]
+    except:
+      pass
   #The path should start with the './'
   stripped_url = '/'.join( ['.'] + check_path )
   return user_name, character_name, stripped_url
@@ -397,22 +407,9 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
     serve_path = ''
     serve_action = ''
 
-    #clean any final '/'
-    """if( len(check_path) > 2 and check_path[len(check_path) - 1] == ''):
-    check_path = check_path[:len(check_path) - 1]
-    self.path = self.path[:len(self.path) - 1]"""
-
     #check for
     user_name, character_name, stripped_url = parse_url(self.path)
-    long_enough = len(check_path) >= 5
-    is_character_file = check_path[ len(check_path) - 1 ] == character_file
-
-    #####
-    #print('file:',serve_path,'opening') #DEBUG
-    #Check that the user file exists
     serve_action, serve_path = readAction(stripped_url, user_name, character_name)
-    #make the serve_path relative
-    #serve_path = '.' + serve_path
 
     #ensure proper root folder resolution
     if serve_path.endswith("/"):
@@ -447,10 +444,14 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         #Open the static file requested
         print(serve_path)
         serve_file = ''
+        print(serve_action)#DEBUG
         if( 'Read File' == serve_action ):
           serve_file = open(serve_path, 'rb')
-        else:
+        elif('Read Character' == serve_action):
           serve_file = readCSheet(user_name, character_name)
+        else:
+          serve_file = strtofile(db_get_char_list(user_name))
+          print(user_name,db_get_char_list(user_name))#DEBUG
         #Send the headers
         self.send_response(200)
         self.send_header('Content-type',mimetype)
@@ -477,43 +478,6 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
       #print(user_name)#DEBUG
       db_char_push(user_name, character_name, data.decode())
       self.send_response(200)
-      '''
-    check_path = self.path.split('/')
-    serve_path = ''
-    #check for
-    long_enough = len(check_path) >= 5
-    is_character_file = check_path[ -1 ] == character_file
-    
-    if( long_enough ):
-      if( is_character_file ):
-        user_name = check_path[2]
-        character_name = check_path[3]
-
-        #Use a single dot here; asecond dot is added later to all paths.
-        serve_path = '/'.join(['.', user_tag, user_name, character_name + '.json'])
-
-        #make the serve_path relative
-        serve_path = '.' + serve_path
-        check_path = serve_path.split('/')
-
-        #Ensure the directory tree exists
-        file_make = ["mkdir", '-p', '/'.join(check_path[: len(check_path) - 1])]
-        aarg = subprocess.check_output(file_make).decode()
-        #print(aarg) #DEBUG
-
-        #print(self.rfile)
-        out_file = open(serve_path, 'w')
-
-        length = self.headers['content-length']
-        data = self.rfile.read(int(length))
-
-        out_file.write( data.decode() )
-        out_file.close()
-        """
-        with open(self.store_path, 'w') as fh:
-        fh.write(data.decode())
-        """
-        self.send_response(200)'''
     except Exception as theProblem:
       print(theProblem)#DEBUG
       self.send_response(400)
