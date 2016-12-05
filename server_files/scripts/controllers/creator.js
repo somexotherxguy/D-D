@@ -143,92 +143,107 @@ app.controller('creator', ['$scope', function($scope) {
     	field: 'Str',
     	value: 0,
       type: 'number',
-      id: 'str'
+      id: 'str',
+      errors: []
     },
     {
     	field: 'Dex',
     	value: 0,
       type: 'number',
-      id: 'dex'
+      id: 'dex',
+      errors: []
     },
     {
     	field: 'Con',
     	value: 0,
       type: 'number',
-      id: 'con'
+      id: 'con',
+      errors: []
     },
     {
     	field: 'Int',
     	value: 0,
       type: 'number',
-      id: 'int'
+      id: 'int',
+      errors: []
     },
     {
     	field: 'Wis',
     	value: 0,
       type: 'number',
-      id: 'wis'
+      id: 'wis',
+      errors: []
     },
     {
     	field: 'Char',
     	value: 0,
       type: 'number',
-      id: 'char'
+      id: 'char',
+      errors: []
     },
     {
     	field: 'HP',
     	value: 0,
       type: 'number',
-      id: 'hp'
+      id: 'hp',
+      errors: []
     }];
     $scope.skills = [
     {
     	field: 'Level',
     	value: 1,
       type: 'number',
-      id: 'level'
+      id: 'level',
+      errors: []
     },
     {
     	field: 'Languages',
     	value: '',
       type: 'text',
-      id: 'languages'
+      id: 'languages',
+      errors: []
     },
     {
     	field: 'Feats',
     	value: '',
       type: 'text',
-      id: 'feat'
+      id: 'feat',
+      errors: []
     },
     {
     	field: 'Spells',
     	value: '',
       type: 'text',
-      id: 'available_spells'
+      id: 'available_spells',
+      errors: []
     },
     {
     	field: 'Abilities',
     	value: '',
       type: 'text',
-      id: 'abilities'
+      id: 'abilities',
+      errors: []
     },
     {
     	field: 'Tool Proficiencies',
     	value: '',
       type: 'text',
-      id: 'tool_prof'
+      id: 'tool_prof',
+      errors: []
     },
     {
     	field: 'Weapon Proficiencies',
     	value: '',
       type: 'text',
-      id: 'weapon_prof'
+      id: 'weapon_prof',
+      errors: []
     },
     {
       field: 'Armor Proficiencies',
       value: '',
       type: 'text',
-      id: 'armor_prof'
+      id: 'armor_prof',
+      errors: []
     }];
     $scope.details = [
     {
@@ -236,100 +251,117 @@ app.controller('creator', ['$scope', function($scope) {
     	value: '',
     	hidden: false,
       type: 'text',
-      id: 'name'
+      id: 'name',
+      errors: []
     },
     {
     	field: 'Age',
     	value: 1,
     	hidden: false,
       type: 'number',
-      id: 'age'
+      id: 'age',
+      errors: []
     },
     {
     	field: 'Height',
     	value: 0,
     	hidden: false,
       type: 'number',
-      id: 'height'
+      id: 'height',
+      errors: []
     },
     {
     	field: 'Weight',
     	value: 0,
     	hidden: false,
       type: 'number',
-      id: 'weight'
+      id: 'weight',
+      errors: []
     }];
     $scope.descriptors = [
     {
     	field: 'Background',
     	value: '',
       type: 'text',
-      id: 'background'
+      id: 'background',
+      errors: []
     },
     {
     	field: 'Traits',
     	value: '',
       type: 'text',
-      id: 'notable_traits'
+      id: 'notable_traits',
+      errors: []
     },
     {
     	field: 'Bonds',
     	value: '',
       type: 'text',
-      id: 'bonds'
+      id: 'bonds',
+      errors: []
     },
     {
     	field: 'Physical Description',
     	value: '',
       type: 'text',
-      id: 'description'
+      id: 'description',
+      errors: []
     },
     {
     	field: 'Miscellaneous Notes',
     	value: '',
       type: 'text',
-      id: 'notes'
+      id: 'notes',
+      errors: []
     }];
     $scope.equipment = [
     {
     	field: 'Armor',
     	value: '',
-      type: 'text'
+      type: 'text',
+      errors: []
     },
     {
     	field: 'Weapons',
     	value: '',
-      type: 'text'
+      type: 'text',
+      errors: []
     },
     {
     	field: 'Tools',
     	value: '',
-      type: 'text'
+      type: 'text',
+      errors: []
     },
     {
     	field: 'Platinum',
     	value: 0,
-      type: 'number'
+      type: 'number',
+      errors: []
     },
     {
     	field: 'Gold',
     	value: 0,
-      type: 'number'
+      type: 'number',
+      errors: []
     },
     {
     	field: 'Electrum',
     	value: 0,
-      type: 'number'
+      type: 'number',
+      errors: []
     },
     {
     	field: 'Silver',
     	value: 0,
-      type: 'number'
+      type: 'number',
+      errors: []
     },
     {
     	field: 'Copper',
     	value: 0,
-      type: 'number'
+      type: 'number',
+      errors: []
     }];
     $scope.tabs = [
 		{
@@ -356,6 +388,7 @@ app.controller('creator', ['$scope', function($scope) {
   $scope.dropdowns = [
     {
       field: 'Race',
+      value: '',
       list: [
         'Dragonborn',
         'Dwarf',
@@ -371,6 +404,7 @@ app.controller('creator', ['$scope', function($scope) {
     },
     {
       field: 'Alignment',
+      value: '',
       list: [
         'Lawful Good',
         'Lawful Neutral',
@@ -386,6 +420,7 @@ app.controller('creator', ['$scope', function($scope) {
     },
     {
       field: 'Class',
+      value: '',
       list: [
         'Barbarian',
         'Bard',
@@ -581,7 +616,7 @@ app.controller('creator', ['$scope', function($scope) {
 	$scope.radios = [
     {
       field: 'Gender',
-      value: 'Male',
+      g_value: 'Male',
       list: [
         'Female',
         'Male',
@@ -617,24 +652,27 @@ app.controller('creator', ['$scope', function($scope) {
               //that tool is not in the profs
               toolChecks.push(tools[i]);
           }
-      }
-
-      
+      }    
   };
   $scope.validateStat = function(stat) {
-    if (stat.value < 0) {
-      console.log(stat.field, 'must be greater than 0');
+    stat.errors = [];
+    if (stat.value === null) {
+      stat.errors.push(stat.field + ' cannot be blank');
+    } else if (stat.value < 0) {
+      stat.errors.push(stat.field + ' must be greater than 0');
     }
   }
   $scope.validateSkill = function(skill) {
+    skill.errors = [];
     if (skill.field === 'Level') {
-      if (skill.value < 1 || skill.value > 20) {
-        console.log('Level must be between 1 and 20');
+      if (skill.value === null) {
+        skill.errors.push('Level cannot be blank');
+      } else if (skill.value < 1 || skill.value > 20) {
+        skill.errors.push('Level must be between 1 and 20');
       }
     } else if (skill.field === 'Feats') {
       var feats = skill.value.split(',');
-      $scope.armor_list = $scope.equipment[0].value.split(',');
-      console.log($scope.armor_list);
+      armor_profs = $scope.skills[7].value.split(',');
       var times_occur = {};
       for (f in feats) {
         feats[f].toLowerCase();
@@ -644,40 +682,48 @@ app.controller('creator', ['$scope', function($scope) {
           times_occur[feats[f]] = 1;
         }
         if ($scope.feats.indexOf(feats[f]) === -1) {
-          console.log('Feat does not exist!');
+          skill.errors.push('Feat does not exist');
         }
         if (times_occur[feats[f]] > 1) {
-          console.log('Cannot have a feat more than once');
+          skill.errors.push('Cannot have a feat more than once');
         }
         if (feats[f] === 'defense duelist') {
           if ($scope.stats[1].value < 13) {
-            console.log('Dex must be 13 or higher!');
+            skill.errors.push('Dex must be 13 or higher');
           }
         } else if (feats[f] === 'elemental adept') {
           continue; // At least one spell slot
         } else if (feats[f] === 'grappler') {
           if ($scope.stats[0].value < 13) {
-            console.log('Str must be 13 or higher!');
+            skill.errors.push('Str must be 13 or higher');
           }
         } else if (feats[f] === 'heavily armored') {
-          continue; // Prof. w/ medium armor
+          if (armor_profs.indexOf('medium') === -1) {
+            skill.errors.push('Must be proficient in medium armor');
+          }
         } else if (feats[f] === 'heavy armor master') {
-          continue; // Prof. w/ heavy armor
+          if (armor_profs.indexOf('heavy') === -1) {
+            skill.errors.push('Must be proficient in heavy armor');
+          }
         } else if (feats[f] === 'inspiring leader') {
           if ($scope.stats[5].value < 13) {
-            conole.log('Char must be 13 or higher!');
+            skill.errors.push('Char must 13 or higher');
           }
         } else if (feats[f] === 'medium armor master') {
-          continue; // Prof. w/ medium armor
+          if (armor_profs.indexOf('medium') === -1) {
+            skill.errors.push('Must be proficient in medium armor');
+          }
         } else if (feats[f] === 'moderately armored') {
-          continue; // Prof. w/ light armor
+          if (armor_profs.indexOf('light') === -1) {
+            skill.errors.push('Must be proficient in light armor');
+          }
         } else if (feats[f] === 'ritual caster') {
           if ($scope.stats[3].value < 13 && $scope.stats[4].value < 13) {
-            console.log('Int or Wis must be 13 or higher!');
+            skill.errors.push('Int or Wis must be 13 or higher!');
           }
         } else if (feats[f] === 'skulker') {
           if ($scope.stats[1].value < 13) {
-            console.log('Dex must be 13 or higher!');
+            skill.errors.push('Dex must be 13 or higher!');
           }
         } else if (feats[f] === 'spell sniper') {
           continue; // At least one spell slot
@@ -688,66 +734,110 @@ app.controller('creator', ['$scope', function($scope) {
     }
   };
   $scope.validateEquipment = function(field, equipment) {
-    console.log(field, equipment);
     if (field === 'Weapons') {
-      var weaponChecks = [];
-      var weaponProfs = $scope.skills[6].value;
-      weaponProfs.split(',');
-      var weapon_list = $scope.equipment[1].value.split(',');
-     //MODIFY THIS
-      for(i in weapon_list){
-          console.log($scope.weapons[weapon_list[i]]);
-          if(weaponProfs.indexOf($scope.weapons[weapon_list[i]]) === -1){
-              //that weapon is not in the profs
-              weaponChecks.push(weapon_list[i]);
-          }
+      if (equipment) {
+         $scope.equipment[1].errors = [];
+         var weaponChecks = [];
+         var weaponProfs = $scope.skills[6].value;
+         weaponProfs.split(',');
+         var weapon_list = $scope.equipment[1].value.split(',');
+        //MODIFY THIS
+         for(i in weapon_list){
+           if(weaponProfs.indexOf($scope.weapons[weapon_list[i]]) === -1){
+               //that weapon is not in the profs
+               weaponChecks.push(weapon_list[i]);
+           }
+         }
+         if (weaponChecks.length > 0) {
+           var temp = 'Your are not proficient with ';
+           for (a in weaponChecks) {
+             $scope.equipment[1].errors.push(temp + weaponChecks[a]);
+             temp = ', ';
+           }
+         }
       }
-      console.log(weaponChecks);
     } else if (field === 'Armor') {
-       var armorChecks = [];
-       var armorProfs = $scope.skills[7].value;
-       armorProfs.split(',');
-       var armor_list = $scope.equipment[0].value.split(',');
-      //MODIFY THIS
-       for(i in armor_list){
-           console.log($scope.armor[armor_list[i]]);
+      if (equipment) {
+        $scope.equipment[0].errors = [];
+         var armorChecks = [];
+         var armorProfs = $scope.skills[7].value;
+         armorProfs.split(',');
+         var armor_list = $scope.equipment[0].value.split(',');
+         console.log(armor_list);
+         console.log(armorProfs);
+        //MODIFY THIS
+         for(i in armor_list){
            if(armorProfs.indexOf($scope.armor[armor_list[i]]) === -1){
                //that weapon is not in the profs
                armorChecks.push(armor_list[i]);
            }
-       }
-       console.log(armorChecks);
+         }
+         if (armorChecks.length > 0) {
+           var temp = 'Your are not proficient with ';
+           for (a in armorChecks) {
+             $scope.equipment[0].errors.push(temp + armorChecks[a]);
+             temp = ', ';
+           }
+         }
+      }
     } else if (field === 'Tools') {
-      console.log(equipment);
-      //display what tools and weapons do not have proficiency
-      var toolChecks = [];
-      var toolProfs = $scope.skills[5].value;
-      toolProfs.split(',');
-      var tools = $scope.equipment[2].value.split(',');
-      for(i in tools){
+      if (equipment) {
+        $scope.equipment[2].errors = [];
+        //display what tools and weapons do not have proficiency
+        var toolChecks = [];
+        var toolProfs = $scope.skills[5].value;
+        toolProfs.split(',');
+        var tools = $scope.equipment[2].value.split(',');
+        for(i in tools){
           if(toolProfs.indexOf(tools[i]) === -1){
               //that tool is not in the profs
               toolChecks.push(tools[i]);
           }
+        }
+        if (toolChecks.length > 0) {
+          var temp = 'Your are not proficient with ';
+          for (a in toolChecks) {
+            $scope.equipment[2].errors.push(temp + toolChecks[a]);
+            temp = ', ';
+          }
+        }
       }
-      console.log(toolChecks);
     }
   };
   $scope.updateValue = function(field, value) {
-    console.log('Hello');
-    console.log(field, value);
+    var s = document.getElementById(field);
+    //console.log($scope.dropdowns[0].value);
+    //console.log(value);
+    //console.log ($scope.dropdowns[0].value === value);
     //field.value = value;
     if (($scope.stats.indexOf(field) !== -1) ||  
       ($scope.skills.indexOf(field) !== -1) || 
       ($scope.details.indexOf(field) !== -1) ||
       ($scope.descriptors.indexOf(field) !== -1) ||
       ($scope.equipment.indexOf(field) !== -1)) {
+      if (typeof(value) === 'string') {
+        value = value.toLowerCase();
+        field.value = value;
+      }
       field.value = value;
     } else if (field === 'Gender') {
       $scope.currentGender = value;
+      $scope.radios[0].g_value = value;
+      console.log($scope.radios[0].g_value);
     } else if (field === 'Race') {
+      $scope.dropdowns[0].errors = [];
+      $scope.dropdowns[0].value = value;
+      $scope.dropdowns[0].errors.push(value);
       $scope.currentRace = value;
+    } else if (field === 'Alignment') {
+      $scope.dropdowns[1].errors = [];
+      $scope.dropdowns[1].value = value;
+      $scope.dropdowns[1].errors.push(value);
+      $scope.currentAlignment = value;
     } else if (field === 'Class') {
+      $scope.dropdowns[2].errors = []
+      $scope.dropdowns[2].value = value;
+      $scope.dropdowns[2].errors.push(value);
       $scope.classSelect(value);
     } else if (field === 'Archetype') {
       $scope.currentClass.currentArch = value;
@@ -786,6 +876,7 @@ app.controller('creator', ['$scope', function($scope) {
 	    }
 	  }
 	  a_cell2.innerHTML = str;
+    a_row.insertCell();
     if (last !== first) {
       $scope.currentClass.has_fs = true;
       var f_list = selected_class.fighting_style.list;
@@ -802,6 +893,7 @@ app.controller('creator', ['$scope', function($scope) {
         }
       }
       f_cell2.innerHTML = str;
+      f_row.insertCell();
     } else {
       $scope.currentClass.has_fs = false;
     }
@@ -839,13 +931,14 @@ app.controller('creator', ['$scope', function($scope) {
     console.log(char_json);
     // Post to Server
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "new_object.json", true);
+    xhttp.open("POST", "/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
     xhttp.send(char_json);
   };
   $scope.load = function() {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "new_object.json", true);
+    xhttp.open("GET", "/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
     xhttp.send();
+    console.log(xhttp.response);
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         $scope.fillForm(JSON.parse(this.response));
@@ -863,44 +956,55 @@ app.controller('creator', ['$scope', function($scope) {
     for (s in $scope.stats) {
       if ($scope.stats[s].field === key) {
         $scope.stats[s].value = char_json[key];
+        return;
       }
     }
     // Check if key in Skills
     for (s in $scope.skills) {
       if ($scope.skills[s].field === key) {
         $scope.skills[s] = char_json[key];
+        return;
       }
     }
     // Check if key in Details
     for (d in $scope.details) {
       if ($scope.details[d].field === key) {
         $scope.details[d] = char_json[key];
+        return;
       }
     }
     // Check if key is Gender, Race, Alignment, Class, Archetype, or Fighting Style
     if (key === 'Gender') {
       $scope.currentGender = char_json[key];
+      return;
     } else if (key === 'Race') {
       $scope.currentRace = char_json[key];
+      return;
     } else if (key === 'Alignment') {
       $scope.currentAlignment = char_json[key];
+      return;
     } else if (key === 'Class') {
       $scope.currentClass = char_json[key];
+      return;
     } else if (key === 'Archetype') {
       $scope.currentClass.currentArch = char_json[key];
+      return;
     } else if (key === 'Fighting Style') {
       $scope.currentClass.currentFS = char_json[key];
+      return;
     }
     // Check if key in Descriptors
     for (d in $scope.descriptors) {
       if ($scope.descriptors[d].field === key) {
         $scope.descriptors[d] = char_json[key];
+        return;
       }
     }
     // Check if key in Equipment
     for (e in $scope.equipment) {
       if ($scope.equipment[e].field === key) {
         $scope.equipment[e] = char_json[key];
+        return;
       }
     }
   }

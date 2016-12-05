@@ -27,6 +27,11 @@
 								<tr ng-repeat="s in stats" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
 									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)" ng-blur="validateStat(s)"></td>
+									<td>
+									  <span style="color:red; font-size:80%;" ng-repeat="e in s.errors">
+									  {{e}}
+									  <br>
+									</td>
 								</tr>
 							</table>
 					</div>
@@ -41,6 +46,11 @@
 								<tr ng-repeat="s in skills" ng-show="!s.hidden">
 									<td style="text-align: center">{{ s.field }}</td>
 									<td><input ng-model="s.value" class="mdl-textfield__input" type="{{ s.type }}" style="text-align: center" value="{{ s.value }}" ng-change="updateValue(s, s.value)" ng-blur="validateSkill(s)"></td>
+									<td>
+									  <span style="color:red; font-size:80%;" ng-repeat="e in s.errors">
+									  {{e}}
+									  <br>
+									</td>
 								</tr>
 							</table>
 					</div>
@@ -55,6 +65,11 @@
 					  <tr ng-repeat="d in details" ng-show="!d.hidden">
 						  <td style="text-align: center">{{ d.field }}</td>
 						  <td><input ng-model="d.value" class="mdl-textfield__input" type="{{ d.type }}" style="text-align: center" value="{{ d.value }}" ng-change="updateValue(d.value)"></td>
+						  <td>
+						    <span style="color:red; font-size:80%;" ng-repeat="e in d.errors">
+						    {{e}}
+						    <br>
+						  </td>
 					  </tr>
 		              <!-- <tr ng-repeat="r in radios" ng-show="!r.hidden">
 		                <td style="text-align: center">{{r.field}}</td>
@@ -68,17 +83,28 @@
 		              </tr> -->
 		              <tr>
 		                <td style="text-align: center">Gender</td>
-		                <td>
+		                <td ng-init="gender='Male'">
 		                  <span ng-repeat="g in genderList">
-		                  <input ng-model="gender" type="radio" name="gender_name" value="{{g}}" ng-click="updateValue('Gender', g)">{{g}}
+		                  <input id="{{g}}" ng-model="gender" type="radio" name="gender_name" ng-value="{{g}}" ng-checked="{{g === radios[0].g_value}}" ng-click="updateValue('Gender', g)">{{g}}
+		                </td>
+		                <td>
+		                  <span style="color:red; font-size:80%;" ng-repeat="e in details[4].errors">
+		                  {{e}}
+		                  <br>
+		                </td>
 					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
 						<td style="text-align: center">{{ dd.field }}</td>
 						  <td>
-							<!-- <select ng-options="l in dd.list">
-							    <option ng-repeat="l in dd.list">{{ l }}</option>
+						    <select id="{{dd.field}}" ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="updateValue(dd.field, selectedClass)">
+						    </select>
+							<!-- <select ng-model="selectedClass" ng-value="{{dd.value}}" ng-change="updateValue(dd.field, selectedClass)">
+							<option ng-repeat="l in dd.list" ng-selected="{{l === dd.value}}" ng-value="dd.value">{{l}}</option>
 							</select> -->
-							<select ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="updateValue(dd.field, selectedClass)">
-							</select>
+						  </td>
+						  <td>
+						    <span style="font-size:110%;" ng-repeat="e in dd.errors">
+						    {{e}}
+						    <br>
 						  </td>
 		              </tr>
 		              <!-- <tr>
@@ -110,6 +136,10 @@
 							<tr ng-repeat="e in equipment" ng-show="!e.hidden">
 								<td style="text-align: center">{{ e.field }}</td>
 								<td><input ng-model="e.value" class="mdl-textfield__input" type="{{ e.type }}" style="text-align: center" value="{{ e.value }}" ng-change="updateValue(e, e.value)" ng-blur="validateEquipment(e.field, e.value)"></td>
+								<td>
+								  <span style="color:red; font-size:80%;" ng-repeat="i in e.errors">
+								  {{i}}
+								</td>
 							</tr>
 						</table>
 				</div>
