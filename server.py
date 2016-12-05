@@ -12,6 +12,7 @@ dbaseFile = '../db/' + 'DnD.db'
 character_file = 'new_object.json'
 user_tag = 'user'
 id_tag = 'id'
+del_tag = 'del'
 
 PORT_NUMBER = 5000
 
@@ -20,7 +21,8 @@ PORT_NUMBER = 5000
 def db_char_pull(id_token, char_name):
 	#conn = sqlite3.connect(dbaseFile)
 	#conn = sqlite3.connect('DnD.db')#DEBUG
-	conn.row_factory = sqlite3.Row
+	old_row_factory = conn.row_factory
+	conn.row_factory = sqlite3.Row #BIGTEST
 	c = conn.cursor()
 
 	#Enable foreign key support
@@ -69,35 +71,8 @@ def db_char_pull(id_token, char_name):
 		'Silver': char_data['silver'],
 		'Copper': char_data['copper'],
 		'Alignment': char_data['alignment']
-		
-		#'ideal': char_data['ideal'],
-		#'flaw': char_data['flaw'],
-		#'story': char_data['story'],
-		#'proficiency_mod': char_data['proficiency_mod'],
-		#'spellcasting': char_data['spellcasting'],
-		#'char_name': char_name,
-		#'notable_traits': char_data['notable_traits'],
-		#'sub_race': char_data['sub_race'],
-		#'exp': char_data['exp'],
-		#'skills': char_data['skills'],
-		#'saves': char_data['saves'],
-		#'equipment': char_data['equipment'],
 	}
-	
-	#export data as json
-	#with open('object.json', 'w') as outfile:
-	#	json.dump(char_obj, outfile)
-		
-	#test
-	#with open('test.json', 'w') as outfile:
-	#	json.dump(char_obj, outfile)
-
-
-	#commit changes to database
-	conn.commit()
-
-	#close connection to database, creation completed
-	#conn.close()
+	conn.row_factory = old_row_factory
 	
 	#return json
 	#char_obj = str(char_obj)
@@ -253,7 +228,7 @@ def db_get_char_list(id_token):
 	#	json.dump(char_list, outfile)
 
 	#commit changes to database
-	conn.commit()
+	#conn.commit()
 
 	#close connection to database, creation completed
 	#conn.close()
@@ -355,6 +330,7 @@ def readAction(stripped_path, user_name, character_name):
   action = 'Read File'
   serve_path = ''
   if( is_character_file ):
+    
     if( character_name ):
       action = 'Read Character'
     else:
@@ -409,7 +385,20 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
 
     #check for
     user_name, character_name, stripped_url = parse_url(self.path)
-    serve_action, serve_path = readAction(stripped_url, user_name, character_name)
+    
+    
+    #serve_action, serve_path = readAction(stripped_url, user_name, character_name)
+    the_tags = {
+      user_tag:'Read Character'
+      ,id_tag:'List User'
+      ,del_tag:'Delete Character'}
+    #print(check_path,'||||||||||||||||||||||||||||||||||||||||||||')#DEBUG
+    if(check_path[1] in the_tags):
+      serve_action = the_tags[check_path[1]]
+    else:
+      serve_action = 'Read File'
+    
+    serve_path = stripped_url
 
     #ensure proper root folder resolution
     if serve_path.endswith("/"):
@@ -444,14 +433,14 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         #Open the static file requested
         print(serve_path)
         serve_file = ''
-        print(serve_action)#DEBUG
+        #print(serve_action)#DEBUG
         if( 'Read File' == serve_action ):
           serve_file = open(serve_path, 'rb')
         elif('Read Character' == serve_action):
           serve_file = readCSheet(user_name, character_name)
         else:
           serve_file = strtofile(db_get_char_list(user_name))
-          print(user_name,db_get_char_list(user_name))#DEBUG
+          #print(user_name,db_get_char_list(user_name))#DEBUG
         #Send the headers
         self.send_response(200)
         self.send_header('Content-type',mimetype)
