@@ -952,7 +952,6 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "/user/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
     xhttp.send();
-    console.log(xhttp.response);
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         $scope.fillForm(JSON.parse(this.response));
@@ -976,29 +975,29 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
     // Check if key in Skills
     for (s in $scope.skills) {
       if ($scope.skills[s].field === key) {
-        $scope.skills[s] = char_json[key];
+        $scope.skills[s].value = char_json[key];
         return;
       }
     }
     // Check if key in Details
     for (d in $scope.details) {
       if ($scope.details[d].field === key) {
-        $scope.details[d] = char_json[key];
+        $scope.details[d].value = char_json[key];
         return;
       }
     }
     // Check if key is Gender, Race, Alignment, Class, Archetype, or Fighting Style
     if (key === 'Gender') {
-      $scope.currentGender = char_json[key];
+      $scope.radios[0].g_value = char_json[key];
       return;
     } else if (key === 'Race') {
-      $scope.currentRace = char_json[key];
+      $scope.dropdowns[0].value = char_json[key];
       return;
     } else if (key === 'Alignment') {
-      $scope.currentAlignment = char_json[key];
+      $scope.dropdowns[1].value = char_json[key];
       return;
     } else if (key === 'Class') {
-      $scope.currentClass = char_json[key];
+      $scope.dropdowns[2].value = char_json[key];
       return;
     } else if (key === 'Archetype') {
       $scope.currentClass.currentArch = char_json[key];
@@ -1010,14 +1009,14 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
     // Check if key in Descriptors
     for (d in $scope.descriptors) {
       if ($scope.descriptors[d].field === key) {
-        $scope.descriptors[d] = char_json[key];
+        $scope.descriptors[d].value = char_json[key];
         return;
       }
     }
     // Check if key in Equipment
     for (e in $scope.equipment) {
       if ($scope.equipment[e].field === key) {
-        $scope.equipment[e] = char_json[key];
+        $scope.equipment[e].value = char_json[key];
         return;
       }
     }
