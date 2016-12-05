@@ -8,16 +8,18 @@ import io
 import json
 import ast
 
-dbaseFile = '../' +'db/' + 'DnD.db'
+dbaseFile = '../db/' + 'DnD.db'
 character_file = 'new_object.json'
 user_tag = 'user'
+id_tag = 'id'
 
 PORT_NUMBER = 5000
 
 #Given an input string 'id_token' representing the user, and character name, output a json formatted string
 #containing all data relevant to that id_token/character combo.
 def db_char_pull(id_token, char_name):
-	conn = sqlite3.connect('DnD.db')
+	#conn = sqlite3.connect(dbaseFile)
+	#conn = sqlite3.connect('DnD.db')#DEBUG
 	conn.row_factory = sqlite3.Row
 	c = conn.cursor()
 
@@ -26,6 +28,7 @@ def db_char_pull(id_token, char_name):
 
 	c.execute("SELECT * FROM char_info WHERE id_token=? AND char_name=?", (id_token, char_name))
 	char_data = c.fetchone()
+	print('CCC HHH AAA RRR:',id_token,char_name,'aaaaa',char_data)#DEBUG
 
 	#Make dictionary
 	char_obj = {
@@ -94,25 +97,34 @@ def db_char_pull(id_token, char_name):
 	conn.commit()
 
 	#close connection to database, creation completed
-	conn.close()
+	#conn.close()
 	
 	#return json
 	#char_obj = str(char_obj)
 	return json.dumps(char_obj)
 
+
+
 #Given string 'id_token' representing a user, and input json formatted string, pull information into the database.
-def db_char_push(id_token, info_string):
-	conn = sqlite3.connect('DnD.db')
+def db_char_push(id_token, char_name, info_string):
+	print(type(info_string),'aaaaaaaaaaaaaaaa',info_string)#DEBUG
+	#conn = sqlite3.connect(dbaseFile)
+	#conn = sqlite3.connect('DnD.db')#DEBUG
 	c = conn.cursor()
 	data = ast.literal_eval(info_string)
 	#data = json.loads(info_string)
 
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
+	#print(c.exexute("SELECT * FROM users"))
 
 	#If new user, add to table of user id_tokens
-	c.execute("SELECT * FROM users WHERE id_token=?", (id_token))
+	print('eeeeeeeee',data['Str'])#DEBUG
+	#id_token = 'D'#DEBUG
+	c.execute("SELECT * FROM users WHERE id_token=?", (id_token,))
+	print('bbbb')#DEBUG
 	check = c.fetchall()
+	print('ccc',check) #DEBUG
 	if not check:
 		c.execute('''REPLACE INTO users 
 			(id_token)
@@ -125,7 +137,7 @@ def db_char_push(id_token, info_string):
 		(char_name, id_token)
 		VALUES
 		(?,?)''',
-		(data['Name'], id_token))
+		(char_name, id_token))
 
 	#Update or create entry in char_entry table
 	c.execute('''REPLACE INTO char_info(
@@ -194,7 +206,7 @@ def db_char_push(id_token, info_string):
 		data['Abilities'],
 		data['Tool Proficiencies'],
 		data['Weapon Proficiencies'],
-		data['Name'],
+		char_name,
 		data['Age'],
 		data['Height'],
 		data['Weight'],
@@ -219,14 +231,18 @@ def db_char_push(id_token, info_string):
 		data['Alignment']
 		))
 	#commit changes to database
+	print(data,'fffffffffffffffffffff',type(data))#DEBUG
 	conn.commit()
 
 	#close connection to database, creation completed
-	conn.close()
+	#conn.close()
+
+
 
 #Given a string 'id_token' representing the user, return a json formatted string containing a list of that user's characters
 def db_get_char_list(id_token):
-	conn = sqlite3.connect('DnD.db')
+	#conn = sqlite3.connect(dbaseFile)
+	#conn = sqlite3.connect('DnD.db')#DEBUG
 	c = conn.cursor()
 
 	#Enable foreign key support
@@ -243,14 +259,15 @@ def db_get_char_list(id_token):
 	conn.commit()
 
 	#close connection to database, creation completed
-	conn.close()
+	#conn.close()
 	
 	return json.dumps(char_list)
 
 
 
 def make_db():
-  conn = sqlite3.connect(dbaseFile)
+  #conn = sqlite3.connect(dbaseFile)
+  #conn = sqlite3.connect('DnD.db')#DEBUG
   c = conn.cursor()
 
   #Enable foreign key support
@@ -315,35 +332,21 @@ def make_db():
   )''')
 
   #commit changes to database
+  #c.execute("INSERT INTO users (id_token ) values (?)",('D'))#DEBUG
   conn.commit()
 
   #close connection to database, creation completed
-  conn.close()
+  #conn.close()
 
 
-def dbase(sql_string, dbaseFile = dbaseFile):
-  conn = sqlite3.connect(dbaseFile)
-
-  c = conn.cursor()
-
-  #Enable foreign key support
-  c.execute("PRAGMA foreign_keys = ON")
-
-  #Insert table values
-  c.execute(sql_string)
-  #GIVE ME YOUR DUMMY VALUES
-
-  #commit changes to database
-  conn.commit()
-
-  #close connection to database, creation completed
-  conn.close()
 
 def readAction(stripped_path, user_name, character_name):
   check_path = stripped_path.split('/')
-  is_character_file = check_path[ len(check_path) - 1 ] == character_file
+  is_character_file = check_path[ -1 ] == character_file
+  action = 'Read File'
   if( is_character_file ):
     serve_path = '/'.join(['..', user_tag, user_name, character_name + '.json'])
+    action = 'Read Character'
   else:
     serve_path = stripped_path
   try:
@@ -355,13 +358,11 @@ def readAction(stripped_path, user_name, character_name):
       serve_path = './' + character_file
       #serve_file = open(serve_path, 'rb')
   #make the serve_path relative
-  return 'Read File', serve_path
-def readCSheet(user_name, character_name):
-  char_json = readChar(user_name, character_name)
-  return io.BytesIO( char_json.encode() )
+  return action, serve_path
 
-def writeCSheet():
-  return ""
+def readCSheet(user_name, character_name):
+  char_json = db_char_pull(user_name, character_name)
+  return io.BytesIO( char_json.encode() )
 
 #input url
 #returns: 'user_name','character_name','stripped_url'
@@ -468,11 +469,21 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
 
   def do_POST(self):
     print( '\t'.join(("POST",self.path)) )
+    user_name, character_name, stripped_url = parse_url(self.path)
+    length = self.headers['content-length']
+    data = self.rfile.read(int(length))
+    print(data.decode(),length)
+    try:
+      #print(user_name)#DEBUG
+      db_char_push(user_name, character_name, data.decode())
+      self.send_response(200)
+      '''
     check_path = self.path.split('/')
     serve_path = ''
     #check for
     long_enough = len(check_path) >= 5
-    is_character_file = check_path[ len(check_path) - 1 ] == character_file
+    is_character_file = check_path[ -1 ] == character_file
+    
     if( long_enough ):
       if( is_character_file ):
         user_name = check_path[2]
@@ -502,13 +513,15 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
         with open(self.store_path, 'w') as fh:
         fh.write(data.decode())
         """
-        self.send_response(200)
-    else:
+        self.send_response(200)'''
+    except Exception as theProblem:
+      print(theProblem)#DEBUG
       self.send_response(400)
 
 
 try:
   #ensure database exists
+  conn = sqlite3.connect(dbaseFile)
   make_db()
   #Create a web server and define the handler to manage the
   #incoming request
@@ -523,6 +536,7 @@ try:
 except KeyboardInterrupt:
   httpd.socket.close()
   print( '^C received, shutting down')
+  conn.close()
 
 
 
