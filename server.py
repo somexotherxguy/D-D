@@ -213,15 +213,19 @@ def db_char_push(id_token, char_name, info_string):
 
 #Given a string 'id_token' representing the user, return a json formatted string containing a list of that user's characters
 def db_get_char_list(id_token):
+	old_row_factory = conn.row_factory
+	conn.row_factory = lambda cursor, row: row[0]
 	c = conn.cursor()
-
+	
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
 
 	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token,))
-	char_list = c.fetchall()
+	data = c.fetchall()
 	
-	return json.dumps(char_list)
+	conn.row_factory = old_row_factory
+	
+	return json.dumps(data)
 
 
 
