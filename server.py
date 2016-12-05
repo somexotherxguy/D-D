@@ -213,8 +213,6 @@ def db_char_push(id_token, char_name, info_string):
 
 #Given a string 'id_token' representing the user, return a json formatted string containing a list of that user's characters
 def db_get_char_list(id_token):
-	#conn = sqlite3.connect(dbaseFile)
-	#conn = sqlite3.connect('DnD.db')#DEBUG
 	c = conn.cursor()
 
 	#Enable foreign key support
@@ -222,16 +220,6 @@ def db_get_char_list(id_token):
 
 	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token,))
 	char_list = c.fetchall()
-
-	#export data
-	#with open('char_list.json', 'w') as outfile:
-	#	json.dump(char_list, outfile)
-
-	#commit changes to database
-	#conn.commit()
-
-	#close connection to database, creation completed
-	#conn.close()
 	
 	return json.dumps(char_list)
 
@@ -460,16 +448,19 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
   def do_POST(self):
     print( '\t'.join(("POST",self.path)) )
     user_name, character_name, stripped_url = parse_url(self.path)
-    length = self.headers['content-length']
-    data = self.rfile.read(int(length))
-    print(data.decode(),length)
-    try:
-      #print(user_name)#DEBUG
-      db_char_push(user_name, character_name, data.decode())
-      self.send_response(200)
-    except Exception as theProblem:
-      print(theProblem)#DEBUG
-      self.send_response(400)
+    if(self.path[1] == del_tag):
+      db_char_delete(user_name,character_name)
+    else:
+      length = self.headers['content-length']
+      data = self.rfile.read(int(length))
+      print(data.decode(),length)
+      try:
+        #print(user_name)#DEBUG
+        db_char_push(user_name, character_name, data.decode())
+        self.send_response(200)
+      except Exception as theProblem:
+        print(theProblem)#DEBUG
+        self.send_response(400)
 
 
 try:
