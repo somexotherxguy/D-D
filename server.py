@@ -353,7 +353,13 @@ def parse_url(url):
       user_name = check_path[tag_start + 1]
       check_path = check_path[tag_start + 2:]
     except:
-      pass
+      try:
+        tag_start = check_path.index(del_tag)
+        user_name = check_path[tag_start + 1]
+        character_name = check_path[tag_start + 2]
+        check_path = check_path[tag_start + 3:]
+      except:
+        pass
   #The path should start with the './'
   stripped_url = '/'.join( ['.'] + check_path )
   return user_name, character_name, stripped_url
@@ -452,6 +458,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
   def do_POST(self):
     print( '\t'.join(("POST",self.path)) )
     user_name, character_name, stripped_url = parse_url(self.path)
+    print(character_name, user_name, '\n#############################')#DEBUG
     if(self.path[1] == del_tag):
       db_char_delete(user_name,character_name)
     else:
