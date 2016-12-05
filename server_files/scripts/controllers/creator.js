@@ -880,7 +880,7 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
     a_cell1.innerHTML = selected_class.archetype.name;
     a_cell1.setAttribute("style", "text-align: center");
     var a_cell2 = a_row.insertCell();
-	  var str = '<select ng-model="archetype" ng-change="updateValue(Archetype, archetype)">';
+	  var str = '<select ng-model="archetype" ng-change="currentClass.currentArch = archetype">';
     for (a in a_list) {
 	    str += '<option value="' + a_list[a] + '">' + a_list[a] + '</option>';
 	    if (a === a_list.length - 1) {
@@ -898,7 +898,7 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       f_cell1.innerHTML = selected_class.fighting_style.name;
       f_cell1.setAttribute("style", "text-align: center");
       var f_cell2 = f_row.insertCell();
-      str = '<select>';
+      str = '<select ng-model="fs" ng-change="currentClass.currentFS = fs">';
       for (f in f_list) {
         str += '<option value="' + f_list[f] + '">' + f_list[f] + '</option>';
         if (f === f_list.length - 1) {
