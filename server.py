@@ -491,6 +491,7 @@ try:
 except KeyboardInterrupt:
   httpd.socket.close()
   print( '^C received, shutting down')
+  conn.commit()
   conn.close()
 
 
