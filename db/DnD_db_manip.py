@@ -234,3 +234,21 @@ def db_get_char_list(id_token):
 	conn.close()
 	
 	return json.dumps(char_list)
+
+#Given an id_token and char_name, delete all data for that character.
+def db_char_delete(id_token, char_name):
+	conn = sqlite3.connect('DnD.db')
+	c = conn.cursor()
+	
+	#Enable foreign key support
+	c.execute("PRAGMA foreign_keys = ON")
+	
+	#delete char from both tables
+	c.execute("DELETE FROM char_info WHERE id_token=? AND char_name=?", (id_token, char_name))
+	c.execute("DELETE FROM characters WHERE id_token=? AND char_name=?", (id_token, char_name))
+	
+	#commit changes to database
+	conn.commit()
+
+	#close connection to database, creation completed
+	conn.close()
