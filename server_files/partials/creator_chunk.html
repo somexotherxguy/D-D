@@ -18,7 +18,7 @@
         
         <main class="mdl-layout__content mdl-color--grey-100">
           <form>
-			<div ng-include="currentTab"></div>
+			<div ng-include="currentTab" onload="classSelect(currentClass.name)"></div>
 		  </form>
 			  <script type="text/ng-template" id="stats.tpl.html">
 				<div class="mdl-layout__tab-panel is-active" id="stats">
@@ -92,6 +92,7 @@
 		                  {{e}}
 		                  <br>
 		                </td>
+		              </tr>
 					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
 						<td style="text-align: center">{{ dd.field }}</td>
 						  <td>

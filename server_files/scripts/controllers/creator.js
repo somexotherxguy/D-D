@@ -8,7 +8,7 @@ app.directive('dynamicInput', [function(){
     }
 }]);
 
-app.controller('creator', ['$scope', function($scope) {
+app.controller('creator', ['$scope', '$route', function($scope, $route) {
     $scope.feats = [
       'alert',
       'athlete',
@@ -435,6 +435,8 @@ app.controller('creator', ['$scope', function($scope) {
         'Warlock',
         'Wizard'
       ],
+      a_list: [],
+      f_list: [],
       class_objects: {
         'Barbarian':
         {
@@ -623,15 +625,21 @@ app.controller('creator', ['$scope', function($scope) {
         'Other'
       ]
     }
-  ]
+  ];
   $scope.genderList = [ 'Male', 'Female', 'Other' ];
   $scope.currentGender = '';
   $scope.currentClass = { name: '', has_fs: false , archList: [], currentArch: '', currentFS: '' };
   $scope.currentRace = '';
   $scope.currentTab = 'stats.tpl.html';
   $scope.currentAlignment = '';
+
 	$scope.onClickTab = function(tab) {
+    console.log(tab.url);
 		$scope.currentTab = tab.url;
+    console.log($scope.currentTab);
+    if ($scope.currentTab === "details.tpl.html") {
+      $scope.classSelect($scope.currentClass.name);
+    }
 	};
 	$scope.isActiveTab = function(tabUrl) {
 		return tabUrl === $scope.currentTab;
@@ -846,13 +854,17 @@ app.controller('creator', ['$scope', function($scope) {
     }
   };
 	$scope.classSelect = function(class_name) {
+    console.log(class_name);
+    if (!(class_name) || $scope.currentTab !== "details.tpl.html") {return;}
+
     // Clear current Archetype and Fighting Style dropdowns
     var details_table = document.getElementById('details_table');
-    if ($scope.currentClass.name) {
-      if ($scope.currentClass.has_fs) {
+    console.log(details_table);
+    if ($scope.currentClass.name && details_table) {
+      if ($scope.currentClass.has_fs && details_table.rows.length === 10) {
         details_table.deleteRow(-1);
         details_table.deleteRow(-1);
-      } else {
+      } else if (details_table.rows.length === 9) {
         details_table.deleteRow(-1);
       }
     }
@@ -876,7 +888,8 @@ app.controller('creator', ['$scope', function($scope) {
 	    }
 	  }
 	  a_cell2.innerHTML = str;
-    a_row.insertCell();
+    a_cell3 = a_row.insertCell();
+    a_cell3.innerHTML = $scope.currentClass.currentArch;
     if (last !== first) {
       $scope.currentClass.has_fs = true;
       var f_list = selected_class.fighting_style.list;
@@ -893,7 +906,8 @@ app.controller('creator', ['$scope', function($scope) {
         }
       }
       f_cell2.innerHTML = str;
-      f_row.insertCell();
+      f_cell3 = f_row.insertCell();
+      f_cell3.innerHTML = $scope.currentClass.currentArch;
     } else {
       $scope.currentClass.has_fs = false;
     }
@@ -931,12 +945,12 @@ app.controller('creator', ['$scope', function($scope) {
     console.log(char_json);
     // Post to Server
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
+    xhttp.open("POST", "/user/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
     xhttp.send(char_json);
   };
   $scope.load = function() {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
+    xhttp.open("GET", "/user/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
     xhttp.send();
     console.log(xhttp.response);
     xhttp.onreadystatechange = function() {
