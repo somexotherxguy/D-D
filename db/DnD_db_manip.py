@@ -215,25 +215,23 @@ def db_char_push(id_token, info_string):
 #Given a string 'id_token' representing the user, return a json formatted string containing a list of that user's characters
 def db_get_char_list(id_token):
 	conn = sqlite3.connect('DnD.db')
+	conn.row_factory = lambda cursor, row: row[0]
 	c = conn.cursor()
-
+	
 	#Enable foreign key support
 	c.execute("PRAGMA foreign_keys = ON")
 
 	c.execute("SELECT char_name FROM characters WHERE id_token=?", (id_token,))
-	char_list = c.fetchall()
-
+	data = c.fetchall()
+	
 	#export data
 	#with open('char_list.json', 'w') as outfile:
 	#	json.dump(char_list, outfile)
 
-	#commit changes to database
-	conn.commit()
-
 	#close connection to database, creation completed
 	conn.close()
 	
-	return json.dumps(char_list)
+	return data
 
 #Given an id_token and char_name, delete all data for that character.
 def db_char_delete(id_token, char_name):
