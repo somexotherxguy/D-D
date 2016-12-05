@@ -67,11 +67,6 @@
     <script src="scripts/app.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div class="demo-layout mdl-layout mdl-js-layout">
-      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title"><!--Title Goes Here--></span>
-        </div>
-      </header>
       <div class="demo-drawer mdl-layout__drawer mdl-color--indigo-900 mdl-color-text--indigo-50">
         <header class="demo-drawer-header">
           <img src="images/user.jpg" class="demo-avatar">
@@ -83,7 +78,7 @@
               <span class="visuallyhidden">Accounts</span>
             </button>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item"><a class="mdl-navigation__link" href="login.html">Logoff</a></li>
+              <li class="mdl-menu__item"><a class="mdl-navigation__link" href="login.html">Login</a></li>
             </ul>
           </div>
         </header>
@@ -100,7 +95,7 @@
       </div>
       <div ng-view></div>
     </div>
-    <button type="button" style="position: absolute; top: 150px" href="#" onclick="signOut()">Sign Out</button>
+    <!-- <button type="button" style="position: absolute; top: 150px" href="#" onclick="signOut()">Sign Out</button> -->
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <script>
       function onSignIn(googleUser) {
