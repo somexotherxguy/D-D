@@ -388,6 +388,7 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
   $scope.dropdowns = [
     {
       field: 'Race',
+      name: 'Race',
       value: '',
       list: [
         'Dragonborn',
@@ -400,10 +401,12 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
         'Human',      
         'Tiefling'
       ],
-      hidden: false
+      hidden: false,
+      errors: []
     },
     {
       field: 'Alignment',
+      name: 'Alignment',
       value: '',
       list: [
         'Lawful Good',
@@ -416,10 +419,12 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
         'Chaotic Neutral',
         'Choatic Evil'
       ],
-      hidden: false
+      hidden: false,
+      errors: []
     },
     {
       field: 'Class',
+      name: 'Class',
       value: '',
       list: [
         'Barbarian',
@@ -437,6 +442,7 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       ],
       a_list: [],
       f_list: [],
+      errors:[],
       class_objects: {
         'Barbarian':
         {
@@ -613,6 +619,20 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
         }
       },
       hidden: false
+    },
+    {
+      field:'Archetype',
+      name: 'Archetype',
+      value: '',
+      list: [],
+      errors: []
+    },
+    {
+      field:'Fighting Style',
+      name: 'Fighting Style',
+      value:'',
+      list: [],
+      errors: []
     }
   ];
 	$scope.radios = [
@@ -848,16 +868,23 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       $scope.dropdowns[2].errors.push(value);
       $scope.classSelect(value);
     } else if (field === 'Archetype') {
+      $scope.dropdowns[3].value.errors = [];
+      $scope.dropdowns[3].value = value;
+      $scope.dropdowns[3].errors.push(value);
       $scope.currentClass.currentArch = value;
     } else if (field === 'Fighting Style') {
+      $scope.dropdowns[4].value.errors = [];
+      $scope.dropdowns[4].value = value;
+      $scope.dropdowns[4].errors.push(value);
       $scope.currentClass.currentFS = value;
     }
   };
 	$scope.classSelect = function(class_name) {
+    console.log(class_name);
     if (!(class_name) || $scope.currentTab !== "details.tpl.html") {return;}
 
     // Clear current Archetype and Fighting Style dropdowns
-    var details_table = document.getElementById('details_table');
+    /*var details_table = document.getElementById('details_table');
     console.log(details_table);
     if ($scope.currentClass.name && details_table) {
       if ($scope.currentClass.has_fs && details_table.rows.length === 10) {
@@ -866,10 +893,18 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       } else if (details_table.rows.length === 9) {
         details_table.deleteRow(-1);
       }
-    }
+    }*/
 
     $scope.currentClass.name = class_name;
-    var selected_class = $scope.dropdowns[2].class_objects[class_name];
+    for (first in $scope.dropdowns[2].class_objects[$scope.currentClass.name]) break;
+    for (last in $scope.dropdowns[2].class_objects[$scope.currentClass.name]);    
+    $scope.dropdowns[3].list = $scope.dropdowns[2].class_objects[$scope.currentClass.name].archetype.list;
+    $scope.dropdowns[3].name = $scope.dropdowns[2].class_objects[$scope.currentClass.name].archetype.name;
+    if (last !== first) {
+      $scope.dropdowns[4].list = $scope.dropdowns[2].class_objects[$scope.currentClass.name].fighting_style.list;
+      $scope.dropdowns[4].name = $scope.dropdowns[2].class_objects[$scope.currentClass.name].fighting_style.name;
+    }
+    /*var selected_class = $scope.dropdowns[2].class_objects[class_name];
 	  var a_list = selected_class.archetype.list;
     $scope.currentClass.archList = a_list;
     for (first in selected_class) break;
@@ -909,7 +944,7 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       f_cell3.innerHTML = $scope.currentClass.currentArch;
     } else {
       $scope.currentClass.has_fs = false;
-    }
+    }*/
   };
   $scope.submit = function() {
     var char_object = {};
@@ -995,18 +1030,35 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       $scope.radios[0].g_value = char_json[key];
       return;
     } else if (key === 'Race') {
-      $scope.dropdowns[0].value = char_json[key];
+      $scope.dropdowns[0].errors = [];
+      $scope.updateValue($scope.dropdowns[0], char_json[key]);
+      $scope.dropdowns[0].errors.push(char_json[key]);
       return;
     } else if (key === 'Alignment') {
-      $scope.dropdowns[1].value = char_json[key];
+      $scope.dropdowns[1].errors = [];
+      $scope.updateValue($scope.dropdowns[1], char_json[key]);
+      $scope.dropdowns[1].errors.push(char_json[key]);
       return;
     } else if (key === 'Class') {
-      $scope.dropdowns[2].value = char_json[key];
+      $scope.dropdowns[2].errors = [];
+      $scope.dropdowns[3].list = [];
+      $scope.dropdowns[3].name = 'Archetype';
+      $scope.dropdowns[4].list = [];
+      $scope.dropdowns[4].name = 'Fighting Style';
+      $scope.updateValue($scope.dropdowns[2], char_json[key]);
+      $scope.dropdowns[2].errors.push(char_json[key]);
+      $scope.classSelect(char_json[key]);
+      $scope.currentClass.name = char_json[key];
+      console.log($scope.currentClass.name);
       return;
     } else if (key === 'Archetype') {
+      $scope.dropdowns[3].errors = [];
+      $scope.updateValue('Archetype', char_json[key]);
       $scope.currentClass.currentArch = char_json[key];
       return;
     } else if (key === 'Fighting Style') {
+      $scope.dropdowns[4].errors = [];
+      $scope.updateValue('Fighting Style', char_json[key]);
       $scope.currentClass.currentFS = char_json[key];
       return;
     }
