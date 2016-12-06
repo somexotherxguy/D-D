@@ -458,7 +458,7 @@ class myHandler(http.server.SimpleHTTPRequestHandler):
   def do_POST(self):
     print( '\t'.join(("POST",self.path)) )
     user_name, character_name, stripped_url = parse_url(self.path)
-    if(self.path[1] == del_tag):
+    if(self.path.split('/')[1] == del_tag):
       print('\n#####',character_name, user_name, '\n#############################')#DEBUG
       db_char_delete(user_name,character_name)
     else:
