@@ -35,11 +35,12 @@ Dylan Roach
 	- Integrated dynamic dropdowns with new interface
 	- Started work on login
 	- Fixed issues discovered in presentation
+	- Converted majority of old JS to Angular
+	- Implemented Google Sign-In/Out
+	- Fixed most of loading issues
+	- Included input restrictions (feats, proficiencies, etc.)
     In Progress
-    	- Convert code to Angular
-        - Fully Implement login
-	- Integrate Weapons, Armor, etc.
-        - Implement RNG
+    	- Don't screw up the demo
 Jace O'Brien
     Completed
         - 
