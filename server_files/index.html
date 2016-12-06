@@ -101,9 +101,9 @@
       function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         //console.log(profile.getId());
-        var id_token = googleUser.getAuthResponse().id_token;
+        var id_token = googleUser.getId();
         localStorage.setItem('userID', id_token);
-        //console.log(id_token);
+        console.log(id_token);
       }
       function signOut() {
         console.log('Logging Out!');

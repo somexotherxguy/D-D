@@ -12,7 +12,7 @@
         <h2 class="mdl-card__title-text mdl-color-text--indigo-50" style="align:">Your Characters:</h2>
       </div>
       <a href="#/creator">
-      <div class="list-action mdl-list" ng-repeat="c in character_json">
+      <div class="list-action mdl-list" ng-repeat="c in character_json" ng-click="load_character(c)">
           <span class="mdl-list__item-primary-content">
             <i class="material-icons mdl-list__item-avatar">CharOne</i>
             <span >{{c}}</span>

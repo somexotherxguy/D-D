@@ -854,7 +854,6 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
     }
   };
 	$scope.classSelect = function(class_name) {
-    console.log(class_name);
     if (!(class_name) || $scope.currentTab !== "details.tpl.html") {return;}
 
     // Clear current Archetype and Fighting Style dropdowns
@@ -948,14 +947,19 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
     xhttp.open("POST", "/user/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
     xhttp.send(char_json);
   };
-  $scope.load = function() {
+  $scope.load = function(char_name) {
+    console.log(char_name);
+    //char_name = char_name[0].toUpperCase() + char_name.slice(1, char_name.length);
+    //console.log(char_name);
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/user/"+localStorage.getItem('userID')+"/"+$scope.details[0].value+"/new_object.json", true);
+    xhttp.open("GET", "/user/"+localStorage.getItem('userID')+"/"+char_name+"/new_object.json", true);
     xhttp.send();
     xhttp.onreadystatechange = function() {
+      console.log(this.status);
       if (this.readyState == 4 && this.status == 200) {
         $scope.fillForm(JSON.parse(this.response));
       }
+      localStorage.removeItem('charID');
     }
   };
   $scope.fillForm = function(char_json) {
@@ -1021,5 +1025,13 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       }
     }
   }
-  console.log(localStorage.getItem('charID'), 'hey');
+  $scope.init = function() {
+    //console.log(localStorage.getItem('charID'));
+    //console.log($scope.details[0].value);
+    if (localStorage.getItem('charID')) {
+      $scope.load(localStorage.getItem('charID'));
+      //localStorage.removeItem('charID');
+    }
+  };
+  $scope.init();
 }]);
