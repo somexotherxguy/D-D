@@ -1021,4 +1021,5 @@ app.controller('creator', ['$scope', '$route', function($scope, $route) {
       }
     }
   }
+  console.log(localStorage.getItem('charID'), 'hey');
 }]);
