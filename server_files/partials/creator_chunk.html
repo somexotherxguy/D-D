@@ -94,7 +94,7 @@
 		                </td>
 		              </tr>
 					  <tr ng-repeat="dd in dropdowns" ng-show="!dd.hidden">
-						<td style="text-align: center">{{ dd.field }}</td>
+						<td style="text-align: center">{{ dd.name }}</td>
 						  <td>
 						    <select id="{{dd.field}}" ng-model="selectedClass" ng-options="l for l in dd.list" ng-change="updateValue(dd.field, selectedClass)">
 						    </select>
@@ -108,9 +108,6 @@
 						    <br>
 						  </td>
 		              </tr>
-		              <!-- <tr>
-		                <td style="text-align: center">{{chosen_class.label}}</td>
-		              </tr> -->
 					</table>
 				</div>
 			  </div>
@@ -150,7 +147,7 @@
 			  <div class="page-content" align="center">
 				<div class="mdl-cell">
 				  <input ng-model"submit" id="submit" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="submit()" value="Submit">
-				  <input ng-model="load" id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="load()" value="Load">
+				  <input ng-model="load" id="load" type="button" class="mdl-button mdl-js-button mdl-button--accent" ng-click="load(details[0].value)" value="Load">
 				 </div>
 			   </div>
         </main>
